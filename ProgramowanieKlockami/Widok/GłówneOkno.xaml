@@ -1,0 +1,65 @@
+﻿<Window x:Class="ProgramowanieKlockami.Widok.GłówneOkno"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mw="clr-namespace:ProgramowanieKlockami.ModelWidoku"
+        xmlns:mwi="clr-namespace:ProgramowanieKlockami.ModelWidoku.Inne"
+        xmlns:mwt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Tekst"
+        xmlns:ki="clr-namespace:ProgramowanieKlockami.Kontrolki.Inne"
+        xmlns:kt="clr-namespace:ProgramowanieKlockami.Kontrolki.Tekst"
+        Title="GłówneOkno" Height="300" Width="300">
+    <Window.DataContext>
+        <mw:Główny></mw:Główny>
+    </Window.DataContext>
+    <Window.Resources>
+        <!--
+        <DataTemplate DataType="{x:Type mwi:RozpoczęcieProgramu}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ki:RozpoczęcieProgramu />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{Binding Następny}"></ContentControl>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwt:Wyświetl}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <kt:Wyświetl></kt:Wyświetl>
+                    <ContentControl Content="{Binding Wartość}"></ContentControl>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ContentControl Content="{Binding Następny}"></ContentControl>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwt:Napis}">
+            <kt:Napis></kt:Napis>
+        </DataTemplate>-->
+        <ControlTemplate x:Key="Szablon" TargetType="ki:AbstrakcyjnaKontrolka">
+            <StackPanel Orientation="Horizontal">
+                <Label>Control</Label>
+                <ContentPresenter></ContentPresenter>
+            </StackPanel>
+        </ControlTemplate>
+        <DataTemplate DataType="{x:Type mwi:RozpoczęcieProgramu}">
+            <StackPanel>
+                <Label>Data</Label>
+                <ki:RozpoczęcieProgramu Template="{StaticResource Szablon}" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ContentControl Grid.Column="1" Content="{Binding RozpoczęcieProgramu}"></ContentControl>
+        </Grid>
+    </Grid>
+</Window>
