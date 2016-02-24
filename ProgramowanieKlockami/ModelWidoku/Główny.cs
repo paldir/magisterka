@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using ProgramowanieKlockami.ModelWidoku.Inne;
 using ProgramowanieKlockami.ModelWidoku.Tekst;
 
@@ -8,18 +6,26 @@ namespace ProgramowanieKlockami.ModelWidoku
 {
     public class Główny
     {
-        public KlocekPionowy[] KlockiPionowe { get; private set; }
+        public ObservableCollection<KlocekPionowy> KlockiPionowe { get; private set; }
+        public ObservableCollection<KlocekZwracającyWartość> KlockiZwracająceWartość { get; private set; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; private set; }
 
         public Główny()
         {
-            Napis napis = new Napis() {WpisanaZawartość = "Hello, World!"};
-            Wyświetl wyświetl = new Wyświetl {Wartość = napis};
-            RozpoczęcieProgramu = new RozpoczęcieProgramu {Następny = wyświetl};
+            KlockiPionowe = new ObservableCollection<KlocekPionowy>
+            {
+                new Wyświetl()
+            };
 
-            Type typKlockaPionowego = typeof (KlocekPionowy);
-            IEnumerable<Type> wszystkieTypy = AppDomain.CurrentDomain.GetAssemblies().SelectMany(t => t.GetTypes());
-            var tmp = wszystkieTypy.Where(t => typKlockaPionowego.IsAssignableFrom(t) && !t.IsAbstract);
+            KlockiZwracająceWartość = new ObservableCollection<KlocekZwracającyWartość>
+            {
+                new Napis()
+            };
+
+            Napis napis = new Napis {WpisanaZawartość = "Hello, World!"};
+            Wyświetl wyświetl = new Wyświetl {Wartość = napis};
+            RozpoczęcieProgramu = new RozpoczęcieProgramu();
+            //RozpoczęcieProgramu.Następny = wyświetl;
         }
     }
 }

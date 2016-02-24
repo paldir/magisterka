@@ -1,65 +1,99 @@
 ﻿<Window x:Class="ProgramowanieKlockami.Widok.GłówneOkno"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
+        xmlns:ki="clr-namespace:ProgramowanieKlockami.Kontrolki.Inne"
+        xmlns:kt="clr-namespace:ProgramowanieKlockami.Kontrolki.Tekst"
         xmlns:mw="clr-namespace:ProgramowanieKlockami.ModelWidoku"
         xmlns:mwi="clr-namespace:ProgramowanieKlockami.ModelWidoku.Inne"
         xmlns:mwt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Tekst"
-        xmlns:ki="clr-namespace:ProgramowanieKlockami.Kontrolki.Inne"
-        xmlns:kt="clr-namespace:ProgramowanieKlockami.Kontrolki.Tekst"
+        xmlns:wk="clr-namespace:ProgramowanieKlockami.Widok.Konwertery"
         Title="GłówneOkno" Height="300" Width="300">
     <Window.DataContext>
         <mw:Główny></mw:Główny>
     </Window.DataContext>
     <Window.Resources>
-        <!--
-        <DataTemplate DataType="{x:Type mwi:RozpoczęcieProgramu}">
+        <Style x:Key="ListaKlocków" TargetType="ComboBox">
+            <Setter Property="DisplayMemberPath" Value="Nazwa"></Setter>
+            <Setter Property="Width" Value="17"></Setter>
+            <Setter Property="Height" Value="10"></Setter>
+        </Style>
+        <Style x:Key="ListaKlockówPionowych" TargetType="ComboBox" BasedOn="{StaticResource ListaKlocków}">
+            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiPionowe}"></Setter>
+            <Setter Property="SelectedValue" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=k:KlocekPionowyKontrolka}, Path=Następny}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+        <Style x:Key="ListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlocków}">
+            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiZwracająceWartość}"></Setter>
+            <Setter Property="SelectedValue" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=k:KlocekPionowyPrzyjmującyWartośćKontrolka}, Path=Wartość}"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="270" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel.LayoutTransform>
+                                <RotateTransform Angle="90" />
+                            </StackPanel.LayoutTransform>
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <wk:ObiektNaNowyObiektKonwerter x:Key="ObiektNaNowyObiektKonwerter"></wk:ObiektNaNowyObiektKonwerter>
+        <ControlTemplate x:Key="KlocekPionowySzablon" TargetType="k:KlocekPionowyKontrolka">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <ki:RozpoczęcieProgramu />
+                    <Grid>
+                        <ContentPresenter></ContentPresenter>
+                        <ComboBox Style="{StaticResource ListaKlockówPionowych}"></ComboBox>
+                    </Grid>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{Binding Następny}"></ContentControl>
+                    <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Następny, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                 </StackPanel>
             </StackPanel>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type mwt:Wyświetl}">
+        </ControlTemplate>
+        <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon" TargetType="k:KlocekPionowyPrzyjmującyWartośćKontrolka">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <kt:Wyświetl></kt:Wyświetl>
-                    <ContentControl Content="{Binding Wartość}"></ContentControl>
+                    <Grid>
+                        <ContentPresenter></ContentPresenter>
+                        <ComboBox Style="{StaticResource ListaKlockówPionowych}"></ComboBox>
+                        <ComboBox Style="{StaticResource ListaKlockówZwracającychWartość}"></ComboBox>
+                    </Grid>
+                    <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{Binding Następny}"></ContentControl>
+                <StackPanel>
+                    <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Następny, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                 </StackPanel>
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type mwt:Napis}">
-            <kt:Napis></kt:Napis>
-        </DataTemplate>-->
-        <ControlTemplate x:Key="Szablon" TargetType="ki:AbstrakcyjnaKontrolka">
-            <StackPanel Orientation="Horizontal">
-                <Label>Control</Label>
-                <ContentPresenter></ContentPresenter>
             </StackPanel>
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwi:RozpoczęcieProgramu}">
-            <StackPanel>
-                <Label>Data</Label>
-                <ki:RozpoczęcieProgramu Template="{StaticResource Szablon}" />
-            </StackPanel>
+            <ki:RozpoczęcieProgramu Następny="{Binding Następny}" Template="{StaticResource KlocekPionowySzablon}"></ki:RozpoczęcieProgramu>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwt:Wyświetl}">
+            <kt:Wyświetl Następny="{Binding Następny}" Wartość="{Binding Wartość}" Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}"></kt:Wyświetl>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwt:Napis}">
+            <kt:Napis></kt:Napis>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <ContentControl Grid.Column="1" Content="{Binding RozpoczęcieProgramu}"></ContentControl>
-        </Grid>
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>-->
+        <ContentControl Content="{Binding RozpoczęcieProgramu}"></ContentControl>
     </Grid>
 </Window>

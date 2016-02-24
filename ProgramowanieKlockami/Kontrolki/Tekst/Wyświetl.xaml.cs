@@ -18,7 +18,7 @@ namespace ProgramowanieKlockami.Kontrolki.Tekst
     /// <summary>
     /// Interaction logic for Wyświetl.xaml
     /// </summary>
-    public partial class Wyświetl : UserControl
+    public partial class Wyświetl : KlocekPionowyPrzyjmującyWartośćKontrolka
     {
         public Wyświetl()
         {

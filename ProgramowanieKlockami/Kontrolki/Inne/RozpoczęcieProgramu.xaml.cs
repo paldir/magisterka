@@ -18,7 +18,7 @@ namespace ProgramowanieKlockami.Kontrolki.Inne
     /// <summary>
     /// Interaction logic for RozpoczęcieProgramu.xaml
     /// </summary>
-    public partial class RozpoczęcieProgramu : AbstrakcyjnaKontrolka
+    public partial class RozpoczęcieProgramu : KlocekPionowyKontrolka
     {
         public RozpoczęcieProgramu()
         {

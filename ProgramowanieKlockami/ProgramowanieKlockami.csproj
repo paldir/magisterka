@@ -56,7 +56,8 @@
     <Compile Include="Kontrolki\Inne\RozpoczęcieProgramu.xaml.cs">
       <DependentUpon>RozpoczęcieProgramu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Kontrolki\Inne\AbstrakcyjnaKontrolka.cs" />
+    <Compile Include="Kontrolki\KlocekPionowyKontrolka.cs" />
+    <Compile Include="Kontrolki\KlocekPionowyPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\Tekst\Napis.xaml.cs">
       <DependentUpon>Napis.xaml</DependentUpon>
     </Compile>
@@ -70,6 +71,7 @@
     <Compile Include="Widok\GłówneOkno.xaml.cs">
       <DependentUpon>GłówneOkno.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Widok\Konwertery\ObiektNaNowyObiektKonwerter.cs" />
     <Page Include="Kontrolki\Inne\RozpoczęcieProgramu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
