@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
              mc:Ignorable="d">
-    <Grid>
-        <Label Background="White" Foreground="Black" BorderThickness="1,1,1,5" BorderBrush="Black">Start</Label>
+    <Grid Style="{StaticResource GridKlocka}">
+        <Ellipse Style="{StaticResource DolnyCypek}" Fill="Black"></Ellipse>
+        <Label Style="{StaticResource EtykietaKlocka}" Background="White" Foreground="Black" BorderBrush="Black">Start</Label>
     </Grid>
 </k:KlocekPionowyKontrolka>

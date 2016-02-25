@@ -23,6 +23,11 @@
             <Setter Property="SelectedValue" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=k:KlocekPionowyKontrolka}, Path=Następny}"></Setter>
             <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="5" Y="-6"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="ListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlocków}">
             <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiZwracająceWartość}"></Setter>
