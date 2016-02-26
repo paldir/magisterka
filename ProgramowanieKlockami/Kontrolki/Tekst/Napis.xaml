@@ -4,15 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d">
-    <Grid Style="{StaticResource GridKlocka}">
-        <Border BorderThickness="1" BorderBrush="Black">
-            <Border BorderThickness="5,0,0,0" BorderBrush="Green">
-                <StackPanel Orientation="Horizontal" Background="LightGreen">
-                    <Label>"</Label>
-                    <TextBox></TextBox>
-                    <Label>"</Label>
-                </StackPanel>
-            </Border>
+    <Grid Background="LightGreen" Style="{StaticResource GridKlockaZLewąDziurką}">
+        <Border BorderBrush="Green" Style="{StaticResource ObramowanieKlocka}">
+            <StackPanel Orientation="Horizontal">
+                <Label>"</Label>
+                <TextBox></TextBox>
+                <Label>"</Label>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

@@ -5,8 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
              mc:Ignorable="d">
-    <Grid Style="{StaticResource GridKlockaZGórnąDziurką}">
-        <Ellipse Fill="Green" Style="{StaticResource DolnyCypek}"></Ellipse>
-        <Label Style="{StaticResource EtykietaKlocka}" Background="LightGreen" BorderBrush="Green">Wyświetl</Label>
+    <Grid Background="LightGreen" Style="{StaticResource GridKlockaZGórnąDziurką}">
+        <Border BorderBrush="Green" Style="{StaticResource ObramowanieKlocka}">
+            <Grid>
+                <Ellipse Fill="Green" Style="{StaticResource DolnyCypek}"></Ellipse>
+                <Ellipse Fill="Green" Style="{StaticResource PrawyCypek}"></Ellipse>
+                <Label>Wyświetl</Label>
+            </Grid>
+        </Border>
     </Grid>
 </k:KlocekPionowyPrzyjmującyWartośćKontrolka>

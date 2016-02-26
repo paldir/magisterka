@@ -25,7 +25,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="5" Y="-6"></TranslateTransform>
+                    <TranslateTransform X="5" Y="-5"></TranslateTransform>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -34,6 +34,11 @@
             <Setter Property="SelectedValue" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=k:KlocekPionowyPrzyjmującyWartośćKontrolka}, Path=Wartość}"></Setter>
             <Setter Property="VerticalAlignment" Value="Top"></Setter>
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="-5" Y="5"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
             <Setter Property="LayoutTransform">
                 <Setter.Value>
                     <RotateTransform Angle="270" />

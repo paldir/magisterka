@@ -25,7 +25,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             Napis napis = new Napis {WpisanaZawartość = "Hello, World!"};
             Wyświetl wyświetl = new Wyświetl {Wartość = napis};
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
-            //RozpoczęcieProgramu.Następny = wyświetl;
+            RozpoczęcieProgramu.Następny = wyświetl;
         }
     }
 }
