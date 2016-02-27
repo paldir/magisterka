@@ -1,0 +1,22 @@
+﻿<k:KlocekPionowyPrzyjmującyWartośćKontrolka x:Class="ProgramowanieKlockami.Kontrolki.Zmienne.UstawZmienną"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
+             mc:Ignorable="d"
+             x:Name="Kontrolka">
+    <Grid Style="{StaticResource GridKlockaZGórnąDziurką}" Background="LightPink">
+        <Border Style="{StaticResource ObramowanieKlocka}" BorderBrush="Red">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Ustaw</Label>
+                    <ComboBox ItemsSource="{Binding ElementName=Kontrolka, Path=Zmienne}"></ComboBox>
+                    <Label>na</Label>
+                </StackPanel>
+                <Ellipse Style="{StaticResource DolnyCypek}" Fill="Red"></Ellipse>
+                <Ellipse Style="{StaticResource PrawyCypek}" Fill="Red"></Ellipse>
+            </Grid>
+        </Border>
+    </Grid>
+</k:KlocekPionowyPrzyjmującyWartośćKontrolka>

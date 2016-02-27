@@ -9,7 +9,9 @@
         <Border BorderBrush="Black" Style="{StaticResource ObramowanieKlocka}">
             <Grid>
                 <Ellipse Style="{StaticResource DolnyCypek}" Fill="Black"></Ellipse>
-                <Label Foreground="Black" BorderBrush="Black">Start</Label>
+                <StackPanel>
+                    <Label Foreground="Black" BorderBrush="Black">Start</Label>
+                </StackPanel>
             </Grid>
         </Border>
     </Grid>

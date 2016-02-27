@@ -34,8 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +69,9 @@
     <Compile Include="Kontrolki\Tekst\Napis.xaml.cs">
       <DependentUpon>Napis.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Kontrolki\Zmienne\UstawZmienną.xaml.cs">
+      <DependentUpon>UstawZmienną.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModelWidoku\Główny.cs" />
     <Compile Include="ModelWidoku\Inne\RozpoczęcieProgramu.cs" />
     <Compile Include="ModelWidoku\KlocekPionowy.cs" />
@@ -68,6 +79,7 @@
     <Compile Include="ModelWidoku\KlocekZwracającyWartość.cs" />
     <Compile Include="ModelWidoku\Tekst\Napis.cs" />
     <Compile Include="ModelWidoku\Tekst\Wyświetl.cs" />
+    <Compile Include="ModelWidoku\Zmienne\UstawZmienną.cs" />
     <Compile Include="Widok\GłówneOkno.xaml.cs">
       <DependentUpon>GłówneOkno.xaml</DependentUpon>
     </Compile>
@@ -91,6 +103,10 @@
     <Compile Include="Kontrolki\Tekst\Wyświetl.xaml.cs">
       <DependentUpon>Wyświetl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Kontrolki\Zmienne\UstawZmienną.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Widok\GłówneOkno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +131,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

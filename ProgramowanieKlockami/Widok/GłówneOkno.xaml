@@ -4,9 +4,11 @@
         xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
         xmlns:ki="clr-namespace:ProgramowanieKlockami.Kontrolki.Inne"
         xmlns:kt="clr-namespace:ProgramowanieKlockami.Kontrolki.Tekst"
+        xmlns:kz="clr-namespace:ProgramowanieKlockami.Kontrolki.Zmienne"
         xmlns:mw="clr-namespace:ProgramowanieKlockami.ModelWidoku"
         xmlns:mwi="clr-namespace:ProgramowanieKlockami.ModelWidoku.Inne"
         xmlns:mwt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Tekst"
+        xmlns:mwz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Zmienne"
         xmlns:wk="clr-namespace:ProgramowanieKlockami.Widok.Konwertery"
         Title="GłówneOkno" Height="300" Width="300">
     <Window.DataContext>
@@ -94,6 +96,9 @@
         <DataTemplate DataType="{x:Type mwt:Napis}">
             <kt:Napis></kt:Napis>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwz:UstawZmienną}">
+            <kz:UstawZmienną Zmienne="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Zmienne}" Następny="{Binding Następny}" Wartość="{Binding Wartość}" Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}"></kz:UstawZmienną>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <!--<Grid.RowDefinitions>
@@ -104,6 +109,10 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>-->
-        <ContentControl Content="{Binding RozpoczęcieProgramu}"></ContentControl>
+        <DockPanel LastChildFill="True">
+            <ListBox ItemsSource="{Binding Zmienne}"></ListBox>
+            <ContentControl Content="{Binding RozpoczęcieProgramu}"></ContentControl>
+        </DockPanel>
+
     </Grid>
 </Window>

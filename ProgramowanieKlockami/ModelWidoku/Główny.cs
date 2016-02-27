@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using ProgramowanieKlockami.ModelWidoku.Inne;
 using ProgramowanieKlockami.ModelWidoku.Tekst;
+using ProgramowanieKlockami.ModelWidoku.Zmienne;
 
 namespace ProgramowanieKlockami.ModelWidoku
 {
@@ -9,12 +10,14 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObservableCollection<KlocekPionowy> KlockiPionowe { get; private set; }
         public ObservableCollection<KlocekZwracającyWartość> KlockiZwracająceWartość { get; private set; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; private set; }
+        public ObservableCollection<string> Zmienne { get; private set; }
 
         public Główny()
         {
             KlockiPionowe = new ObservableCollection<KlocekPionowy>
             {
-                new Wyświetl()
+                new Wyświetl(),
+                new UstawZmienną()
             };
 
             KlockiZwracająceWartość = new ObservableCollection<KlocekZwracającyWartość>
@@ -22,10 +25,9 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Napis()
             };
 
-            Napis napis = new Napis {WpisanaZawartość = "Hello, World!"};
-            Wyświetl wyświetl = new Wyświetl {Wartość = napis};
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
-            RozpoczęcieProgramu.Następny = wyświetl;
+            RozpoczęcieProgramu.Następny = new UstawZmienną();
+            Zmienne = new ObservableCollection<string> {"Zmienna"};
         }
     }
 }

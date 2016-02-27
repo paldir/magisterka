@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
              mc:Ignorable="d">
-    <Grid Background="LightGreen" Style="{StaticResource GridKlockaZGórnąDziurką}">
-        <Border BorderBrush="Green" Style="{StaticResource ObramowanieKlocka}">
+    <Grid Background="DarkSeaGreen" Style="{StaticResource GridKlockaZGórnąDziurką}">
+        <Border BorderBrush="SeaGreen" Style="{StaticResource ObramowanieKlocka}">
             <Grid>
-                <Ellipse Fill="Green" Style="{StaticResource DolnyCypek}"></Ellipse>
-                <Ellipse Fill="Green" Style="{StaticResource PrawyCypek}"></Ellipse>
+                <Ellipse Fill="SeaGreen" Style="{StaticResource DolnyCypek}"></Ellipse>
+                <Ellipse Fill="SeaGreen" Style="{StaticResource PrawyCypek}"></Ellipse>
                 <Label>Wyświetl</Label>
             </Grid>
         </Border>
