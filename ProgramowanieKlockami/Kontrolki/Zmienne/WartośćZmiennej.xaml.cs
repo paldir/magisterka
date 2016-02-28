@@ -18,20 +18,20 @@ using ProgramowanieKlockami.ModelWidoku;
 namespace ProgramowanieKlockami.Kontrolki.Zmienne
 {
     /// <summary>
-    /// Interaction logic for UstawZmienną.xaml
+    /// Interaction logic for WartośćZmiennej.xaml
     /// </summary>
-    public partial class UstawZmienną : KlocekPionowyPrzyjmującyWartośćKontrolka
+    public partial class WartośćZmiennej : UserControl
     {
         public static readonly DependencyProperty ZmienneProperty = DependencyProperty.Register(
-            "Zmienne", typeof (ObservableCollection<Zmienna>), typeof (UstawZmienną), new PropertyMetadata(default(ObservableCollection<Zmienna>)));
+            "Zmienne", typeof (ObservableCollection<Zmienna>), typeof (WartośćZmiennej), new PropertyMetadata(default(ObservableCollection<Zmienna>)));
 
         public ObservableCollection<Zmienna> Zmienne
         {
             get { return (ObservableCollection<Zmienna>) GetValue(ZmienneProperty); }
             set { SetValue(ZmienneProperty, value); }
         }
-        
-        public UstawZmienną()
+
+        public WartośćZmiennej()
         {
             InitializeComponent();
         }

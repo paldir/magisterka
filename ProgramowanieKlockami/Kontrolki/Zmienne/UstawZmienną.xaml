@@ -11,7 +11,7 @@
             <Grid>
                 <StackPanel Orientation="Horizontal">
                     <Label>Ustaw</Label>
-                    <ComboBox ItemsSource="{Binding ElementName=Kontrolka, Path=Zmienne}"></ComboBox>
+                    <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
                     <Label>na</Label>
                 </StackPanel>
                 <Ellipse Style="{StaticResource DolnyCypek}" Fill="Red"></Ellipse>

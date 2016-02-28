@@ -99,6 +99,9 @@
         <DataTemplate DataType="{x:Type mwz:UstawZmienną}">
             <kz:UstawZmienną Zmienne="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Zmienne}" Następny="{Binding Następny}" Wartość="{Binding Wartość}" Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}"></kz:UstawZmienną>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwz:WartośćZmiennej}">
+            <kz:WartośćZmiennej Zmienne="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Zmienne}"></kz:WartośćZmiennej>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <!--<Grid.RowDefinitions>
@@ -110,9 +113,29 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>-->
         <DockPanel LastChildFill="True">
-            <ListBox ItemsSource="{Binding Zmienne}"></ListBox>
+            <GroupBox Header="Zmienne">
+                <StackPanel>
+                    <ListBox ItemsSource="{Binding Zmienne}" IsSynchronizedWithCurrentItem="True" SelectionMode="Single">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
+                                    <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.KomendaUsunięciaZmiennej}" CommandParameter="{Binding}">Usuń</Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Nowa:</Label>
+                        <TextBox Width="50" Text="{Binding NazwaNowejZmiennej, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding KomendaDodaniaZmiennej}"></KeyBinding>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
             <ContentControl Content="{Binding RozpoczęcieProgramu}"></ContentControl>
         </DockPanel>
-
     </Grid>
 </Window>
