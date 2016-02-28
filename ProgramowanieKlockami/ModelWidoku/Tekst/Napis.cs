@@ -11,12 +11,5 @@
         {
             get { return "Zwraca literę, słowo lub linię tekstu."; }
         }
-
-        public string WpisanaZawartość { get; set; }
-
-        public override object ZwróćWartość()
-        {
-            return WpisanaZawartość;
-        }
     }
 }

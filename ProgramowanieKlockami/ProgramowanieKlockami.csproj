@@ -40,6 +40,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -66,6 +68,10 @@
     </Compile>
     <Compile Include="Kontrolki\KlocekPionowyKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyPrzyjmującyWartośćKontrolka.cs" />
+    <Compile Include="Kontrolki\KlocekZwracającyWartośćZawierającyListęZmiennychKontrolka.cs" />
+    <Compile Include="Kontrolki\Logika\Porównaj.xaml.cs">
+      <DependentUpon>Porównaj.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Kontrolki\Tekst\Napis.xaml.cs">
       <DependentUpon>Napis.xaml</DependentUpon>
     </Compile>
@@ -81,6 +87,7 @@
     <Compile Include="ModelWidoku\KlocekPionowyPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\KlocekZwracającyWartość.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
+    <Compile Include="ModelWidoku\Logika\Porównaj.cs" />
     <Compile Include="ModelWidoku\Tekst\Napis.cs" />
     <Compile Include="ModelWidoku\Tekst\Wyświetl.cs" />
     <Compile Include="ModelWidoku\Zmienna.cs" />
@@ -91,6 +98,10 @@
     </Compile>
     <Compile Include="Widok\Konwertery\ObiektNaNowyObiektKonwerter.cs" />
     <Page Include="Kontrolki\Inne\RozpoczęcieProgramu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Kontrolki\Logika\Porównaj.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

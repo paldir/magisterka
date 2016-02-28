@@ -15,14 +15,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProgramowanieKlockami.ModelWidoku;
 
-namespace ProgramowanieKlockami.Kontrolki.Zmienne
+namespace ProgramowanieKlockami.Kontrolki.Logika
 {
     /// <summary>
-    /// Interaction logic for WartośćZmiennej.xaml
+    /// Interaction logic for Porównaj.xaml
     /// </summary>
-    public partial class WartośćZmiennej : KlocekZwracającyWartośćZawierającyListęZmiennychKontrolka
-    {
-        public WartośćZmiennej()
+    public partial class Porównaj : KlocekZwracającyWartośćZawierającyListęZmiennychKontrolka
+    {        
+        public Porównaj()
         {
             InitializeComponent();
         }

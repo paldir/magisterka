@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ProgramowanieKlockami.ModelWidoku.Inne;
+using ProgramowanieKlockami.ModelWidoku.Logika;
 using ProgramowanieKlockami.ModelWidoku.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Zmienne;
 
@@ -44,6 +44,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiZwracająceWartość = new ObservableCollection<KlocekZwracającyWartość>
             {
+                new Porównaj(),
                 new Napis(),
                 new WartośćZmiennej()
             };
@@ -52,8 +53,6 @@ namespace ProgramowanieKlockami.ModelWidoku
             Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
-
-            throw new Exception("ogar stylów");
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

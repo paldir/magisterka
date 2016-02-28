@@ -2,6 +2,5 @@
 {
     public abstract class KlocekZwracającyWartość : Klocek
     {
-        public abstract object ZwróćWartość();
     }
 }

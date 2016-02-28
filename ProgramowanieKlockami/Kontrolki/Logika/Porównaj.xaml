@@ -1,0 +1,27 @@
+﻿<k:KlocekZwracającyWartośćZawierającyListęZmiennychKontrolka x:Class="ProgramowanieKlockami.Kontrolki.Logika.Porównaj"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
+             mc:Ignorable="d"
+             x:Name="Kontrolka">
+    <Grid Style="{StaticResource GridKlockaZLewąDziurką}" Background="LightBlue">
+        <Border Style="{StaticResource ObramowanieKlocka}" BorderBrush="Blue">
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
+                <ComboBox>
+                    <ComboBox.Items>
+                        <ComboBoxItem IsSelected="True">=</ComboBoxItem>
+                        <ComboBoxItem>!=</ComboBoxItem>
+                        <ComboBoxItem>&lt;</ComboBoxItem>
+                        <ComboBoxItem>&lt;=</ComboBoxItem>
+                        <ComboBoxItem>&gt;</ComboBoxItem>
+                        <ComboBoxItem>&gt;=</ComboBoxItem>
+                    </ComboBox.Items>
+                </ComboBox>
+                <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
+            </StackPanel>
+        </Border>
+    </Grid>
+</k:KlocekZwracającyWartośćZawierającyListęZmiennychKontrolka>

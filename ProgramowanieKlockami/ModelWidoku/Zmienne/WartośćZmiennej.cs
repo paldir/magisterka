@@ -11,10 +11,5 @@
         {
             get { return "Zwraca wartość wybranej zmiennej."; }
         }
-
-        public override object ZwróćWartość()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

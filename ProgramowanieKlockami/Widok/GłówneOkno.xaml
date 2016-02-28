@@ -3,10 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
         xmlns:ki="clr-namespace:ProgramowanieKlockami.Kontrolki.Inne"
+        xmlns:kl="clr-namespace:ProgramowanieKlockami.Kontrolki.Logika"
         xmlns:kt="clr-namespace:ProgramowanieKlockami.Kontrolki.Tekst"
         xmlns:kz="clr-namespace:ProgramowanieKlockami.Kontrolki.Zmienne"
         xmlns:mw="clr-namespace:ProgramowanieKlockami.ModelWidoku"
         xmlns:mwi="clr-namespace:ProgramowanieKlockami.ModelWidoku.Inne"
+        xmlns:mwl="clr-namespace:ProgramowanieKlockami.ModelWidoku.Logika"
         xmlns:mwt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Tekst"
         xmlns:mwz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Zmienne"
         xmlns:wk="clr-namespace:ProgramowanieKlockami.Widok.Konwertery"
@@ -89,6 +91,9 @@
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwi:RozpoczęcieProgramu}">
             <ki:RozpoczęcieProgramu Następny="{Binding Następny}" Template="{StaticResource KlocekPionowySzablon}"></ki:RozpoczęcieProgramu>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwl:Porównaj}">
+            <kl:Porównaj Zmienne="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Zmienne}"></kl:Porównaj>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwt:Wyświetl}">
             <kt:Wyświetl Następny="{Binding Następny}" Wartość="{Binding Wartość}" Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}"></kt:Wyświetl>
