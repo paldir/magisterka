@@ -18,11 +18,11 @@ using ProgramowanieKlockami.ModelWidoku;
 namespace ProgramowanieKlockami.Kontrolki.Logika
 {
     /// <summary>
-    /// Interaction logic for Porównaj.xaml
+    /// Interaction logic for Porównanie.xaml
     /// </summary>
-    public partial class Porównaj : KlocekZwracającyWartośćZawierającyListęZmiennychKontrolka
+    public partial class Porównanie : UserControl
     {        
-        public Porównaj()
+        public Porównanie()
         {
             InitializeComponent();
         }

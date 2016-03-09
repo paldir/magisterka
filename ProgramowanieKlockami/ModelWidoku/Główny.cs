@@ -14,7 +14,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObservableCollection<KlocekPionowy> KlockiPionowe { get; private set; }
         public ObservableCollection<KlocekZwracającyWartość> KlockiZwracająceWartość { get; private set; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; private set; }
-        public ObservableCollection<Zmienna> Zmienne { get; private set; }
+        public ObservableCollection<Zmienna> Zmienne { get; }
         public Komenda KomendaDodaniaZmiennej { get; private set; }
         public Komenda KomendaUsunięciaZmiennej { get; private set; }
 
@@ -44,7 +44,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiZwracająceWartość = new ObservableCollection<KlocekZwracającyWartość>
             {
-                new Porównaj(),
+                new Porównanie(),
                 new Napis(),
                 new WartośćZmiennej()
             };
@@ -58,7 +58,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void DodajZmienną()

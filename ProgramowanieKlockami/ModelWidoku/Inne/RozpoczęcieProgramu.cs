@@ -1,4 +1,6 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Inne
+﻿using System.Windows.Media;
+
+namespace ProgramowanieKlockami.ModelWidoku.Inne
 {
     public class RozpoczęcieProgramu : KlocekPionowy
     {
@@ -11,5 +13,7 @@
         {
             get { throw new System.NotImplementedException(); }
         }
+
+        public override Brush KolorObramowania => Brushes.Black;
     }
 }

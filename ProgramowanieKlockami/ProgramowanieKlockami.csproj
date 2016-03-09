@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -69,8 +70,8 @@
     <Compile Include="Kontrolki\KlocekPionowyKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekZwracającyWartośćZawierającyListęZmiennychKontrolka.cs" />
-    <Compile Include="Kontrolki\Logika\Porównaj.xaml.cs">
-      <DependentUpon>Porównaj.xaml</DependentUpon>
+    <Compile Include="Kontrolki\Logika\Porównanie.xaml.cs">
+      <DependentUpon>Porównanie.xaml</DependentUpon>
     </Compile>
     <Compile Include="Kontrolki\Tekst\Napis.xaml.cs">
       <DependentUpon>Napis.xaml</DependentUpon>
@@ -87,7 +88,7 @@
     <Compile Include="ModelWidoku\KlocekPionowyPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\KlocekZwracającyWartość.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
-    <Compile Include="ModelWidoku\Logika\Porównaj.cs" />
+    <Compile Include="ModelWidoku\Logika\Porównanie.cs" />
     <Compile Include="ModelWidoku\Tekst\Napis.cs" />
     <Compile Include="ModelWidoku\Tekst\Wyświetl.cs" />
     <Compile Include="ModelWidoku\Zmienna.cs" />
@@ -101,7 +102,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Kontrolki\Logika\Porównaj.xaml">
+    <Page Include="Kontrolki\Logika\Porównanie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
