@@ -5,6 +5,7 @@
         xmlns:mw="clr-namespace:ProgramowanieKlockami.ModelWidoku"
         xmlns:wk="clr-namespace:ProgramowanieKlockami.Widok.Konwertery"
         xmlns:mwki="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Inne"
+        xmlns:mwkl="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Logika"
         xmlns:mwkt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Tekst"
         xmlns:mwkz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne"
         Title="GłówneOkno" Height="300" Width="300">
@@ -106,29 +107,45 @@
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwki:RozpoczęcieProgramu}">
             <k:KlocekPionowyKontrolka Template="{StaticResource KlocekPionowySzablon}">
-                <Label>Start</Label>
+                <TextBlock>Start</TextBlock>
             </k:KlocekPionowyKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkl:Porównanie}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox>
+                        <ComboBox.Items>
+                            <ComboBoxItem IsSelected="True">=</ComboBoxItem>
+                            <ComboBoxItem>!=</ComboBoxItem>
+                            <ComboBoxItem>&lt;</ComboBoxItem>
+                            <ComboBoxItem>&lt;=</ComboBoxItem>
+                            <ComboBoxItem>&gt;</ComboBoxItem>
+                            <ComboBoxItem>&gt;=</ComboBoxItem>
+                        </ComboBox.Items>
+                    </ComboBox>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkt:Napis}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Orientation="Horizontal">
-                    <Label>"</Label>
+                    <TextBlock>"</TextBlock>
                     <TextBox></TextBox>
-                    <Label>"</Label>
+                    <TextBlock>"</TextBlock>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkt:Wyświetl}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
-                <Label>Wyświetl</Label>
+                <TextBlock>Wyświetl</TextBlock>
             </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkz:UstawZmienną}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
                 <StackPanel Orientation="Horizontal">
-                    <Label>Ustaw</Label>
+                    <TextBlock>Ustaw</TextBlock>
                     <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
-                    <Label>na</Label>
+                    <TextBlock>na</TextBlock>
                 </StackPanel>
             </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
         </DataTemplate>
