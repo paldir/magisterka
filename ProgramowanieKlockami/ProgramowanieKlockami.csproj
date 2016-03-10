@@ -67,48 +67,27 @@
     <Compile Include="Kontrolki\KlocekPionowyKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekZwracającyWartośćKontrolka.cs" />
-    <Compile Include="Kontrolki\KlocekZwracającyWartośćZawierającyListęZmiennychKontrolka.cs" />
-    <Compile Include="Kontrolki\Logika\Porównanie.xaml.cs">
-      <DependentUpon>Porównanie.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Kontrolki\Zmienne\UstawZmienną.xaml.cs">
-      <DependentUpon>UstawZmienną.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Kontrolki\Zmienne\WartośćZmiennej.xaml.cs">
-      <DependentUpon>WartośćZmiennej.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ModelWidoku\Główny.cs" />
-    <Compile Include="ModelWidoku\Inne\RozpoczęcieProgramu.cs" />
+    <Compile Include="ModelWidoku\Klocki\Inne\RozpoczęcieProgramu.cs" />
     <Compile Include="ModelWidoku\KlocekPionowy.cs" />
     <Compile Include="ModelWidoku\KlocekPionowyPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\KlocekZwracającyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\Kolory.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
-    <Compile Include="ModelWidoku\Logika\Porównanie.cs" />
-    <Compile Include="ModelWidoku\Tekst\Napis.cs" />
-    <Compile Include="ModelWidoku\Tekst\Wyświetl.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\Napis.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\Wyświetl.cs" />
     <Compile Include="ModelWidoku\Zmienna.cs" />
-    <Compile Include="ModelWidoku\Zmienne\UstawZmienną.cs" />
-    <Compile Include="ModelWidoku\Zmienne\WartośćZmiennej.cs" />
+    <Compile Include="ModelWidoku\Klocki\Zmienne\UstawZmienną.cs" />
+    <Compile Include="ModelWidoku\Klocki\Zmienne\WartośćZmiennej.cs" />
     <Compile Include="Widok\GłówneOkno.xaml.cs">
       <DependentUpon>GłówneOkno.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widok\Konwertery\ObiektNaNowyObiektKonwerter.cs" />
-    <Page Include="Kontrolki\Logika\Porównanie.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Kontrolki\Zmienne\UstawZmienną.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Kontrolki\Zmienne\WartośćZmiennej.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Widok\GłówneOkno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

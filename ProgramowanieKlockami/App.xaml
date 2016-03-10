@@ -80,9 +80,5 @@
             <Setter Property="Padding" Value="10"></Setter>
             <Setter Property="BorderThickness" Value="5"></Setter>
         </Style>
-        <Style x:Key="ListaZmiennych" TargetType="ComboBox">
-            <Setter Property="ItemsSource" Value="{Binding ElementName=Kontrolka, Path=Zmienne}"></Setter>
-            <Setter Property="DisplayMemberPath" Value="Nazwa"></Setter>
-        </Style>
     </Application.Resources>
 </Application>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using ProgramowanieKlockami.ModelWidoku.Zmienne;
 
 namespace ProgramowanieKlockami.Widok.Konwertery
 {

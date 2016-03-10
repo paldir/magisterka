@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
         xmlns:mw="clr-namespace:ProgramowanieKlockami.ModelWidoku"
-        xmlns:mwi="clr-namespace:ProgramowanieKlockami.ModelWidoku.Inne"
-        xmlns:mwl="clr-namespace:ProgramowanieKlockami.ModelWidoku.Logika"
-        xmlns:mwt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Tekst"
-        xmlns:mwz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Zmienne"
         xmlns:wk="clr-namespace:ProgramowanieKlockami.Widok.Konwertery"
+        xmlns:mwki="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Inne"
+        xmlns:mwkt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Tekst"
+        xmlns:mwkz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne"
         Title="GłówneOkno" Height="300" Width="300">
     <Window.DataContext>
         <mw:Główny></mw:Główny>
@@ -53,6 +52,10 @@
                     </ItemsPanelTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style x:Key="ListaZmiennych" TargetType="ComboBox">
+            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Zmienne}"></Setter>
+            <Setter Property="DisplayMemberPath" Value="Nazwa"></Setter>
         </Style>
         <wk:ObiektNaNowyObiektKonwerter x:Key="ObiektNaNowyObiektKonwerter"></wk:ObiektNaNowyObiektKonwerter>
         <ControlTemplate x:Key="KlocekPionowySzablon" TargetType="k:KlocekPionowyKontrolka">
@@ -101,12 +104,12 @@
                 </Border>
             </Grid>
         </ControlTemplate>
-        <DataTemplate DataType="{x:Type mwi:RozpoczęcieProgramu}">
+        <DataTemplate DataType="{x:Type mwki:RozpoczęcieProgramu}">
             <k:KlocekPionowyKontrolka Template="{StaticResource KlocekPionowySzablon}">
                 <Label>Start</Label>
             </k:KlocekPionowyKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwt:Napis}">
+        <DataTemplate DataType="{x:Type mwkt:Napis}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Orientation="Horizontal">
                     <Label>"</Label>
@@ -115,10 +118,24 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwt:Wyświetl}">
+        <DataTemplate DataType="{x:Type mwkt:Wyświetl}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
                 <Label>Wyświetl</Label>
             </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkz:UstawZmienną}">
+            <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
+                <StackPanel Orientation="Horizontal">
+                    <Label>Ustaw</Label>
+                    <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
+                    <Label>na</Label>
+                </StackPanel>
+            </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkz:WartośćZmiennej}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
+            </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
     </Window.Resources>
     <Grid>

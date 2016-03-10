@@ -2,21 +2,21 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using ProgramowanieKlockami.ModelWidoku.Inne;
-using ProgramowanieKlockami.ModelWidoku.Logika;
-using ProgramowanieKlockami.ModelWidoku.Tekst;
-using ProgramowanieKlockami.ModelWidoku.Zmienne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 
 namespace ProgramowanieKlockami.ModelWidoku
 {
     public class Główny : INotifyPropertyChanged
     {
-        public ObservableCollection<KlocekPionowy> KlockiPionowe { get; private set; }
-        public ObservableCollection<KlocekZwracającyWartość> KlockiZwracająceWartość { get; private set; }
-        public RozpoczęcieProgramu RozpoczęcieProgramu { get; private set; }
+        public ObservableCollection<KlocekPionowy> KlockiPionowe { get; }
+        public ObservableCollection<KlocekZwracającyWartość> KlockiZwracająceWartość { get; }
+        public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
-        public Komenda KomendaDodaniaZmiennej { get; private set; }
-        public Komenda KomendaUsunięciaZmiennej { get; private set; }
+        public Komenda KomendaDodaniaZmiennej { get; }
+        public Komenda KomendaUsunięciaZmiennej { get; }
 
         private string _nazwaNowejZmiennej;
 
@@ -58,6 +58,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
+
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace ProgramowanieKlockami.ModelWidoku.Tekst
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
     public class Wyświetl : KlocekPionowyPrzyjmującyWartość
     {
@@ -8,6 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Tekst
 
         public override string Opis => "Wyświetla tekst, liczbę lub inną wartość.";
 
-        public override Brush KolorObramowania => Brushes.SeaGreen;
+        public override Brush KolorObramowania => Kolory.Tekst;
     }
 }

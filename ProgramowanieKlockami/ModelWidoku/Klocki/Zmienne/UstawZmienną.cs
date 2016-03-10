@@ -1,7 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
-namespace ProgramowanieKlockami.ModelWidoku.Zmienne
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
 {
     public class UstawZmienną : KlocekPionowyPrzyjmującyWartość
     {
@@ -9,6 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Zmienne
 
         public override string Opis => "Ustawia zmiennej wybraną wartość";
 
-        public override Brush KolorObramowania => Brushes.Black;
+        public override Brush KolorObramowania => Kolory.Zmienne;
     }
 }

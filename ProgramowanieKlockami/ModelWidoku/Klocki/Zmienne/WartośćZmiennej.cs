@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace ProgramowanieKlockami.ModelWidoku.Zmienne
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
 {
     public class WartośćZmiennej : KlocekZwracającyWartość
     {
@@ -8,6 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Zmienne
 
         public override string Opis => "Zwraca wartość wybranej zmiennej.";
 
-        public override Brush KolorObramowania => Brushes.Black;
+        public override Brush KolorObramowania => Kolory.Zmienne;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace ProgramowanieKlockami.ModelWidoku.Logika
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
     public class Porównanie : KlocekZwracającyWartość
     {
@@ -8,6 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Logika
 
         public override string Opis => "Zwraca prawdę, jeśli oba wejścia są takie same.";
 
-        public override Brush KolorObramowania => Brushes.Black;
+        public override Brush KolorObramowania => Kolory.Logika;
     }
 }
