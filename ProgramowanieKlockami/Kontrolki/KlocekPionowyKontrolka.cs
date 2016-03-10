@@ -3,12 +3,8 @@ using ProgramowanieKlockami.ModelWidoku;
 
 namespace ProgramowanieKlockami.Kontrolki
 {
-    public class KlocekPionowyKontrolka : UserControl
+    public class KlocekPionowyKontrolka : ContentControl
     {
-        public KlocekPionowy Kontekst
-        {
-            get { return DataContext as KlocekPionowy; }
-            set { DataContext = value; }
-        }
+        public KlocekPionowy Kontekst => (KlocekPionowy) DataContext;
     }
 }

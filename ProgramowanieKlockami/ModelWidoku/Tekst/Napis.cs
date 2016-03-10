@@ -8,6 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Tekst
 
         public override string Opis => "Zwraca literę, słowo lub linię tekstu.";
 
-        public override Brush KolorObramowania => Brushes.Black;
+        public override Brush KolorObramowania => Brushes.SeaGreen;
     }
 }
