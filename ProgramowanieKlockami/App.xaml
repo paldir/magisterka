@@ -19,7 +19,7 @@
                                                 <RectangleGeometry Rect="0,0,99999999,99999999"></RectangleGeometry>
                                             </CombinedGeometry.Geometry1>
                                             <CombinedGeometry.Geometry2>
-                                                <EllipseGeometry Center="30, 2" RadiusX="5.5" RadiusY="4.5"></EllipseGeometry>
+                                                <EllipseGeometry Center="30, 2" RadiusX="5.5" RadiusY="5.5"></EllipseGeometry>
                                             </CombinedGeometry.Geometry2>
                                         </CombinedGeometry>
                                     </GeometryDrawing.Geometry>
@@ -43,7 +43,7 @@
                                                 <RectangleGeometry Rect="0,0,99999999,99999999"></RectangleGeometry>
                                             </CombinedGeometry.Geometry1>
                                             <CombinedGeometry.Geometry2>
-                                                <EllipseGeometry Center="0.5, 30" RadiusX="4.5" RadiusY="5.5"></EllipseGeometry>
+                                                <EllipseGeometry Center="1.5, 30" RadiusX="5.5" RadiusY="5.5"></EllipseGeometry>
                                             </CombinedGeometry.Geometry2>
                                         </CombinedGeometry>
                                     </GeometryDrawing.Geometry>
@@ -72,13 +72,27 @@
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="20" Y="10"></TranslateTransform>
+                    <TranslateTransform X="21" Y="10"></TranslateTransform>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="ObramowanieKlocka" TargetType="Border">
-            <Setter Property="Padding" Value="10"></Setter>
+        <Style x:Key="PrawyCypekWewnętrzny" TargetType="Ellipse" BasedOn="{StaticResource Cypek}">
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="0" Y="30"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Obramowanie" TargetType="Border">
             <Setter Property="BorderThickness" Value="5"></Setter>
+        </Style>
+        <Style x:Key="ObramowanieKlocka" TargetType="Border" BasedOn="{StaticResource Obramowanie}">
+            <Setter Property="Padding" Value="10"></Setter>
+        </Style>
+        <Style x:Key="ObramowanieWnętrza" TargetType="Border" BasedOn="{StaticResource Obramowanie}">
+            
         </Style>
     </Application.Resources>
 </Application>

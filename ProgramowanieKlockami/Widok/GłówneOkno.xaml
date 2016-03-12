@@ -8,7 +8,7 @@
         xmlns:mwkl="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Logika"
         xmlns:mwkt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Tekst"
         xmlns:mwkz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne"
-        Title="GłówneOkno" Height="300" Width="300">
+        Title="GłówneOkno">
     <Window.DataContext>
         <mw:Główny></mw:Główny>
     </Window.DataContext>
@@ -31,12 +31,6 @@
         <Style x:Key="ListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlocków}">
             <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiZwracająceWartość}"></Setter>
             <Setter Property="VerticalAlignment" Value="Top"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <TranslateTransform X="-5" Y="5"></TranslateTransform>
-                </Setter.Value>
-            </Setter>
             <Setter Property="LayoutTransform">
                 <Setter.Value>
                     <RotateTransform Angle="270" />
@@ -51,6 +45,22 @@
                             </StackPanel.LayoutTransform>
                         </StackPanel>
                     </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ZewnętrznaListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlockówZwracającychWartość}">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="-5" Y="5"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        </Style>
+        <Style x:Key="WewnętrznaListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlockówZwracającychWartość}">
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="-10" Y="5"></TranslateTransform>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -89,7 +99,7 @@
                             </Grid>
                         </Border>
                         <ComboBox Style="{StaticResource ListaKlockówPionowych}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Następny}"></ComboBox>
-                        <ComboBox Style="{StaticResource ListaKlockówZwracającychWartość}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"></ComboBox>
+                        <ComboBox Style="{StaticResource ZewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"></ComboBox>
                     </Grid>
                     <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                 </StackPanel>
@@ -113,16 +123,25 @@
         <DataTemplate DataType="{x:Type mwkl:Porównanie}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox>
-                        <ComboBox.Items>
-                            <ComboBoxItem IsSelected="True">=</ComboBoxItem>
-                            <ComboBoxItem>!=</ComboBoxItem>
-                            <ComboBoxItem>&lt;</ComboBoxItem>
-                            <ComboBoxItem>&lt;=</ComboBoxItem>
-                            <ComboBoxItem>&gt;</ComboBoxItem>
-                            <ComboBoxItem>&gt;=</ComboBoxItem>
-                        </ComboBox.Items>
-                    </ComboBox>
+                    <Grid>
+                        <Border Style="{StaticResource ObramowanieWnętrza}" BorderBrush="{Binding KolorObramowania}">
+                            <ContentControl MinHeight="35" MinWidth="10" Content="{Binding WartośćPierwsza}"></ContentControl>
+                        </Border>
+                        <Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding KolorObramowania}"></Ellipse>
+                        <ComboBox Style="{StaticResource WewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding WartośćPierwsza}"></ComboBox>
+                    </Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox>
+                            <ComboBox.Items>
+                                <ComboBoxItem IsSelected="True">=</ComboBoxItem>
+                                <ComboBoxItem>!=</ComboBoxItem>
+                                <ComboBoxItem>&lt;</ComboBoxItem>
+                                <ComboBoxItem>&lt;=</ComboBoxItem>
+                                <ComboBoxItem>&gt;</ComboBoxItem>
+                                <ComboBoxItem>&gt;=</ComboBoxItem>
+                            </ComboBox.Items>
+                        </ComboBox>
+                    </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>

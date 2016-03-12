@@ -49,7 +49,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WartośćZmiennej()
             };
 
-            RozpoczęcieProgramu = new RozpoczęcieProgramu();
+            RozpoczęcieProgramu = new RozpoczęcieProgramu { Następny = new Wyświetl { Wartość = new Porównanie() } };
             Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
@@ -68,7 +68,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             if (!string.IsNullOrEmpty(NazwaNowejZmiennej) && (zmienna == null))
             {
-                Zmienne.Add(new Zmienna(Zmienne) {Nazwa = NazwaNowejZmiennej});
+                Zmienne.Add(new Zmienna(Zmienne) { Nazwa = NazwaNowejZmiennej });
 
                 NazwaNowejZmiennej = null;
             }
