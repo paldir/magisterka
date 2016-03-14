@@ -7,6 +7,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
         public abstract Brush KolorObramowania { get; }
+        public abstract Brush KolorWypełnienia { get; }
         public KlocekPionowy Poprzedni { get; protected set; }
     }
 }

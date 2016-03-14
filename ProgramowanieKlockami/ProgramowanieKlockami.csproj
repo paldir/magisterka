@@ -73,6 +73,7 @@
     <Compile Include="ModelWidoku\KlocekPionowyPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\KlocekZwracającyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\Kolory.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\Jeżeli.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Napis.cs" />

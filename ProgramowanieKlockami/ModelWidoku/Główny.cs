@@ -38,6 +38,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         {
             KlockiPionowe = new ObservableCollection<KlocekPionowy>
             {
+                new Jeżeli(),
                 new Wyświetl(),
                 new UstawZmienną()
             };
@@ -49,7 +50,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WartośćZmiennej()
             };
 
-            RozpoczęcieProgramu = new RozpoczęcieProgramu { Następny = new Wyświetl { Wartość = new Porównanie() } };
+            RozpoczęcieProgramu = new RozpoczęcieProgramu { Następny = new Jeżeli() { Wartość = new Porównanie() } };
             Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
