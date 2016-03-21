@@ -18,8 +18,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 _możnaWykonać = value;
 
-                if (CanExecuteChanged != null)
-                    CanExecuteChanged(this, new EventArgs());
+                CanExecuteChanged?.Invoke(this, new EventArgs());
             }
         }
 
