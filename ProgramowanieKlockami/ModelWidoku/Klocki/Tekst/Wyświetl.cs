@@ -8,8 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public override string Opis => "Wyświetla tekst, liczbę lub inną wartość.";
 
-        public override Brush KolorObramowania => Kolory.TekstObramowanie;
-
-        public override Brush KolorWypełnienia => Kolory.TekstWypełnienie;
+        public override Brush Kolor => Kolory.Tekst;
     }
 }

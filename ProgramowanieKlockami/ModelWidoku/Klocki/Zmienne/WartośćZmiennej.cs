@@ -8,8 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
 
         public override string Opis => "Zwraca wartość wybranej zmiennej.";
 
-        public override Brush KolorObramowania => Kolory.ZmienneObramowanie;
-
-        public override Brush KolorWypełnienia => Kolory.ZmienneWypełnienie;
+        public override Brush Kolor => Kolory.Zmienne;
     }
 }

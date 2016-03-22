@@ -1,4 +1,4 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyPrzyjmującyWartość : KlocekPionowy
     {

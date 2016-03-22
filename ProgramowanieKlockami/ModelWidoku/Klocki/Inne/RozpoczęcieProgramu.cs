@@ -14,7 +14,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Inne
             get { throw new System.NotImplementedException(); }
         }
 
-        public override Brush KolorObramowania => Kolory.InneObramowanie;
-        public override Brush KolorWypełnienia => Kolory.InneWypełnienie;
+        public override Brush Kolor => Kolory.Inne;
     }
 }

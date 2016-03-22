@@ -1,13 +1,12 @@
 ﻿using System.Windows.Media;
 
-namespace ProgramowanieKlockami.ModelWidoku
+namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class Klocek
     {
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
-        public abstract Brush KolorObramowania { get; }
-        public abstract Brush KolorWypełnienia { get; }
+        public abstract Brush Kolor { get; }
         public KlocekPionowy Poprzedni { get; protected set; }
     }
 }

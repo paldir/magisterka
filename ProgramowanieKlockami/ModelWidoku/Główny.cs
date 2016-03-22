@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
@@ -50,7 +51,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WartośćZmiennej()
             };
 
-            RozpoczęcieProgramu = new RozpoczęcieProgramu();
+            RozpoczęcieProgramu = new RozpoczęcieProgramu() {Następny = new Wyświetl() {Wartość = new Porównanie()} };
             Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);

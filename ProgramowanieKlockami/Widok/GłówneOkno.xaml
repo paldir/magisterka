@@ -26,7 +26,7 @@
             <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="5" Y="-5"></TranslateTransform>
+                    <TranslateTransform X="1" Y="-1"></TranslateTransform>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -61,7 +61,7 @@
         <Style x:Key="ZewnętrznaListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlockówZwracającychWartość}">
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="-5" Y="5"></TranslateTransform>
+                    <TranslateTransform X="-1" Y="1"></TranslateTransform>
                 </Setter.Value>
             </Setter>
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
@@ -82,13 +82,11 @@
         <ControlTemplate x:Key="KlocekPionowySzablon" TargetType="k:KlocekPionowyKontrolka">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorWypełnienia}">
-                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}" Style="{StaticResource Obramowanie}">
-                            <Grid>
-                                <Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}" Style="{StaticResource DolnyCypek}"></Ellipse>
-                                <ContentPresenter></ContentPresenter>
-                            </Grid>
-                        </Border>
+                    <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                        <Grid>
+                            <Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" Style="{StaticResource DolnyCypek}"></Ellipse>
+                            <ContentPresenter></ContentPresenter>
+                        </Grid>
                         <ComboBox Style="{StaticResource ZewnętrznaListaKlockówPionowych}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Następny, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ComboBox>
                     </Grid>
                 </StackPanel>
@@ -100,14 +98,17 @@
         <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon" TargetType="k:KlocekPionowyPrzyjmującyWartośćKontrolka">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Grid Style="{StaticResource GridKlockaZGórnąDziurką}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorWypełnienia}">
-                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}" Style="{StaticResource Obramowanie}">
-                            <Grid>
-                                <Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}" Style="{StaticResource DolnyCypek}"></Ellipse>
-                                <Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}" Style="{StaticResource PrawyCypek}"></Ellipse>
-                                <ContentPresenter></ContentPresenter>
-                            </Grid>
-                        </Border>
+                    <Grid Style="{StaticResource GridKlockaZGórnąDziurką}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                        <Grid>
+                            <Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" Style="{StaticResource DolnyCypek}"></Ellipse>
+                            <Rectangle Width="10" Height="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                                <Rectangle.RenderTransform>
+                                    <TranslateTransform X="20"></TranslateTransform>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" Style="{StaticResource PrawyCypek}"></Ellipse>
+                            <ContentPresenter></ContentPresenter>
+                        </Grid>
                         <ComboBox Style="{StaticResource ZewnętrznaListaKlockówPionowych}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Następny}"></ComboBox>
                         <ComboBox Style="{StaticResource ZewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"></ComboBox>
                     </Grid>
@@ -120,17 +121,15 @@
         </ControlTemplate>
         <ControlTemplate x:Key="KlocekZwracającyWartośćSzablon" TargetType="k:KlocekZwracającyWartośćKontrolka">
             <StackPanel>
-                <Grid Style="{StaticResource GridKlockaZLewąDziurką}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorWypełnienia}">
-                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}" Style="{StaticResource Obramowanie}">
-                        <ContentPresenter></ContentPresenter>
-                    </Border>
+                <Grid Style="{StaticResource GridKlockaZLewąDziurką}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                    <ContentPresenter></ContentPresenter>
                 </Grid>
             </StackPanel>
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwki:RozpoczęcieProgramu}">
             <k:KlocekPionowyKontrolka Template="{StaticResource KlocekPionowySzablon}">
                 <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
-                    <TextBlock>Start</TextBlock>
+                    <TextBlock Style="{StaticResource TekstKlocka}">Start</TextBlock>
                 </StackPanel>
             </k:KlocekPionowyKontrolka>
         </DataTemplate>
@@ -141,12 +140,12 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Grid MinWidth="70">
-                                    <Border Style="{StaticResource Obramowanie}"  BorderBrush="{Binding KolorObramowania}">
-                                        <Grid Background="{Binding KolorWypełnienia}">
+                                    <Border Style="{StaticResource Obramowanie}"  BorderBrush="{Binding Kolor}">
+                                        <Grid Background="{Binding Kolor}">
                                             <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
                                                 <TextBlock>Jeżeli</TextBlock>
                                             </StackPanel>
-                                            <Ellipse Style="{StaticResource PrawyCypek}" Fill="{Binding KolorObramowania}"></Ellipse>
+                                            <Ellipse Style="{StaticResource PrawyCypek}" Fill="{Binding Kolor}"></Ellipse>
                                             <ComboBox Style="{StaticResource WewnętrznaListaKlockówPionowych}" SelectedValue="{Binding Zawartość}"></ComboBox>
                                         </Grid>
                                     </Border>
@@ -155,9 +154,9 @@
                                 <ContentControl Content="{Binding Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Border BorderBrush="{Binding KolorObramowania}" BorderThickness="5,0,5,0" Background="{Binding KolorWypełnienia}">
+                                <Border BorderBrush="{Binding Kolor}" BorderThickness="5,0,5,0" Background="{Binding Kolor}">
                                     <Grid>
-                                        <Rectangle Height="5" Width="15" Fill="{Binding KolorWypełnienia}" VerticalAlignment="Top">
+                                        <Rectangle Height="5" Width="15" Fill="{Binding Kolor}" VerticalAlignment="Top">
                                             <Rectangle.RenderTransform>
                                                 <TranslateTransform Y="-5"></TranslateTransform>
                                             </Rectangle.RenderTransform>
@@ -165,16 +164,16 @@
                                     </Grid>
                                 </Border>
                                 <Grid Margin="0,0,0,6">
-                                    <Ellipse Style="{StaticResource DolnyCypekWewnętrzny}" Fill="{Binding KolorObramowania}"></Ellipse>
+                                    <Ellipse Style="{StaticResource DolnyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>
                                     <ContentControl Content="{Binding Zawartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}" Margin="0.5"></ContentControl>
                                 </Grid>
                             </StackPanel>
                             <Grid>
-                                <Border BorderThickness="5" BorderBrush="{Binding KolorObramowania}" Width="70" Height="25" HorizontalAlignment="Left" Background="{Binding KolorWypełnienia}">
-                                    <Ellipse Style="{StaticResource DolnyCypek}" Fill="{Binding KolorObramowania}"></Ellipse>
+                                <Border BorderThickness="5" BorderBrush="{Binding Kolor}" Width="70" Height="25" HorizontalAlignment="Left" Background="{Binding Kolor}">
+                                    <Ellipse Style="{StaticResource DolnyCypek}" Fill="{Binding Kolor}"></Ellipse>
                                 </Border>
                                 <ComboBox Style="{StaticResource ZewnętrznaListaKlockówPionowych}" SelectedValue="{Binding Następny}"></ComboBox>
-                                <Rectangle Height="5" Width="15" Fill="{Binding KolorWypełnienia}" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Rectangle Height="5" Width="15" Fill="{Binding Kolor}" VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <Rectangle.RenderTransform>
                                         <TranslateTransform X="5"></TranslateTransform>
                                     </Rectangle.RenderTransform>
@@ -191,10 +190,10 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Grid Margin="10,3,3,3">
-                            <Border Style="{StaticResource WewnętrzneObramowanie}" BorderBrush="{Binding KolorObramowania}">
+                            <Border Style="{StaticResource WewnętrzneObramowanie}" BorderBrush="{Binding Kolor}">
                                 <ContentControl MinHeight="40" MinWidth="10" Margin="0.5" Content="{Binding WartośćPierwsza, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                             </Border>
-                            <Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding KolorObramowania}"></Ellipse>
+                            <Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>
                             <ComboBox Style="{StaticResource WewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding WartośćPierwsza}"></ComboBox>
                         </Grid>
                         <StackPanel VerticalAlignment="Center">
@@ -210,10 +209,10 @@
                             </ComboBox>
                         </StackPanel>
                         <Grid Margin="10,3,3,3">
-                            <Border Style="{StaticResource WewnętrzneObramowanie}" BorderBrush="{Binding KolorObramowania}">
+                            <Border Style="{StaticResource WewnętrzneObramowanie}" BorderBrush="{Binding Kolor}">
                                 <ContentControl MinHeight="40" MinWidth="10" Margin="0.5" Content="{Binding WartośćDruga, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                             </Border>
-                            <Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding KolorObramowania}"></Ellipse>
+                            <Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>
                             <ComboBox Style="{StaticResource WewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding WartośćDruga}"></ComboBox>
                         </Grid>
                     </StackPanel>
@@ -223,25 +222,25 @@
         <DataTemplate DataType="{x:Type mwkt:Napis}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource PanelKlockaKońcowego}">
-                    <TextBlock>"</TextBlock>
+                    <TextBlock Style="{StaticResource TekstKlocka}">"</TextBlock>
                     <TextBox></TextBox>
-                    <TextBlock>"</TextBlock>
+                    <TextBlock Style="{StaticResource TekstKlocka}">"</TextBlock>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkt:Wyświetl}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
                 <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
-                    <TextBlock>Wyświetl</TextBlock>
+                    <TextBlock Style="{StaticResource TekstKlocka}">Wyświetl</TextBlock>
                 </StackPanel>
             </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkz:UstawZmienną}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
                 <StackPanel  Style="{StaticResource PanelKlockaNiekońcowego}">
-                    <TextBlock>Ustaw</TextBlock>
+                    <TextBlock Style="{StaticResource TekstKlocka}">Ustaw</TextBlock>
                     <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
-                    <TextBlock>na</TextBlock>
+                    <TextBlock Style="{StaticResource TekstKlocka}">na</TextBlock>
                 </StackPanel>
             </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
         </DataTemplate>

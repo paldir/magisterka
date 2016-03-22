@@ -69,9 +69,9 @@
     <Compile Include="Kontrolki\KlocekZwracającyWartośćKontrolka.cs" />
     <Compile Include="ModelWidoku\Główny.cs" />
     <Compile Include="ModelWidoku\Klocki\Inne\RozpoczęcieProgramu.cs" />
-    <Compile Include="ModelWidoku\KlocekPionowy.cs" />
-    <Compile Include="ModelWidoku\KlocekPionowyPrzyjmującyWartość.cs" />
-    <Compile Include="ModelWidoku\KlocekZwracającyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekPionowy.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekPionowyPrzyjmującyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekZwracającyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\Kolory.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Jeżeli.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
@@ -95,7 +95,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelWidoku\Klocek.cs" />
+    <Compile Include="ModelWidoku\Klocki\Klocek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

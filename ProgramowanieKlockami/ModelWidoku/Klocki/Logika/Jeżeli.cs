@@ -6,8 +6,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
     {
         public override string Nazwa { get; } = "Jeżeli";
         public override string Opis { get; } = "Jeśli wartość jest prawdziwa, wykonuje instrukcje.";
-        public override Brush KolorObramowania { get; } = Kolory.LogikaObramowanie;
-        public override Brush KolorWypełnienia { get; } = Kolory.LogikaWypełnienie;
+        public override Brush Kolor => Kolory.Logika;
         public KlocekPionowy Zawartość { get; set; }
     }
 }
