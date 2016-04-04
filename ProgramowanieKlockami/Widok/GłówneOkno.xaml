@@ -274,12 +274,12 @@
                 <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Visible">
                     <ContentControl Content="{Binding RozpoczęcieProgramu}">
                         <ContentControl.LayoutTransform>
-                            <ScaleTransform ScaleX="{Binding WybranePowiększenie.Powiększenie}" ScaleY="{Binding WybranePowiększenie.Powiększenie}"></ScaleTransform>
+                            <ScaleTransform ScaleX="{Binding Powiększenie}" ScaleY="{Binding Powiększenie}"></ScaleTransform>
                         </ContentControl.LayoutTransform>
                     </ContentControl>
                 </ScrollViewer>
                 <DockPanel Grid.Row="1" LastChildFill="True">
-                    <ComboBox ItemsSource="{Binding OpcjePowiększenia}" SelectedValue="{Binding WybranePowiększenie}" DisplayMemberPath="Etykieta"></ComboBox>
+                    <Slider Minimum="0.25" Maximum="4" Value="{Binding Powiększenie}" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" TickFrequency="0.25" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
                 </DockPanel>
             </Grid>
             <!--<ContentControl Content="{Binding Test}"></ContentControl>-->

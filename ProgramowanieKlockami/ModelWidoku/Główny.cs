@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -17,13 +16,11 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObservableCollection<KlocekZwracającyWartość> KlockiZwracająceWartość { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
-        public ObservableCollection<OpcjaPowiększenia> OpcjePowiększenia { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
         public Klocek Test { get; }
 
         private string _nazwaNowejZmiennej;
-        private OpcjaPowiększenia _wybranePowiększenie;
 
         public string NazwaNowejZmiennej
         {
@@ -37,13 +34,15 @@ namespace ProgramowanieKlockami.ModelWidoku
             }
         }
 
-        public OpcjaPowiększenia WybranePowiększenie
+        private double _powiększenie;
+
+        public double Powiększenie
         {
-            get { return _wybranePowiększenie; }
+            get { return _powiększenie; }
 
             set
             {
-                _wybranePowiększenie = value;
+                _powiększenie = value;
 
                 OnPropertyChanged();
             }
@@ -67,18 +66,12 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WartośćZmiennej()
             };
 
-            OpcjePowiększenia = new ObservableCollection<OpcjaPowiększenia>
-            {
-                new OpcjaPowiększenia(2),
-                new OpcjaPowiększenia(1)
-            };
-
             RozpoczęcieProgramu = new RozpoczęcieProgramu() {Następny = new Jeżeli() {Wartość = new Porównanie()}};
             Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
             Test = new Porównanie();
-            WybranePowiększenie = OpcjePowiększenia.Single(o => Math.Abs(o.Powiększenie - 1) < 0.0001);
+            Powiększenie = 1;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
