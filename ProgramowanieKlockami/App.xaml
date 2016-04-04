@@ -4,7 +4,7 @@
              StartupUri="Widok/GłówneOkno.xaml">
     <Application.Resources>
         <Style x:Key="GridKlocka" TargetType="Grid">
-            <Setter Property="Margin" Value="0"></Setter>
+            <Setter Property="Margin" Value="1"></Setter>
         </Style>
         <Style x:Key="GridKlockaZGórnąDziurką" TargetType="Grid" BasedOn="{StaticResource GridKlocka}">
             <Setter Property="OpacityMask">
