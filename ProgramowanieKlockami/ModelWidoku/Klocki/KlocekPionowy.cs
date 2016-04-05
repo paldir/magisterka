@@ -2,6 +2,18 @@
 {
     public abstract class KlocekPionowy : Klocek
     {
-        public KlocekPionowy Następny { get; set; }
+        private KlocekPionowy _następny;
+
+        public KlocekPionowy Następny
+        {
+            get { return _następny; }
+
+            set
+            {
+                _następny = value;
+
+                OnPropertyChanged();
+            }
+        }
     }
 }

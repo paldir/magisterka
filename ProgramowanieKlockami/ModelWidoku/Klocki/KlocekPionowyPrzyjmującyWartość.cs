@@ -2,6 +2,18 @@
 {
     public abstract class KlocekPionowyPrzyjmującyWartość : KlocekPionowy
     {
-        public KlocekZwracającyWartość Wartość { get; set; }
+        private KlocekZwracającyWartość _wartość;
+
+        public KlocekZwracającyWartość Wartość
+        {
+            get { return _wartość; }
+
+            set
+            {
+                _wartość = value;
+
+                OnPropertyChanged();
+            }
+        }
     }
 }
