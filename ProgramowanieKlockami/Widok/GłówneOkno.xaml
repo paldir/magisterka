@@ -148,10 +148,12 @@
             </StackPanel>
         </ControlTemplate>
         <ControlTemplate x:Key="KlocekZwracającyWartośćSzablon" TargetType="k:KlocekZwracającyWartośćKontrolka">
-            <StackPanel>
-                <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
-                    <ContentPresenter></ContentPresenter>
-                </Grid>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                        <ContentPresenter></ContentPresenter>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwki:RozpoczęcieProgramu}">
@@ -273,6 +275,32 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>-->
         <DockPanel LastChildFill="True">
+            <TabControl TabStripPlacement="Left" Width="200">
+                <TabItem Header="Logika">
+                    <ItemsControl>
+                        <ItemsControl.Items>
+                            <mwkl:Jeżeli></mwkl:Jeżeli>
+                            <mwkl:Porównanie></mwkl:Porównanie>
+                        </ItemsControl.Items>
+                    </ItemsControl>
+                </TabItem>
+                <TabItem Header="Tekst">
+                    <ItemsControl>
+                        <ItemsControl.Items>
+                            <mwkt:Napis></mwkt:Napis>
+                            <mwkt:Wyświetl></mwkt:Wyświetl>
+                        </ItemsControl.Items>
+                    </ItemsControl>
+                </TabItem>
+                <TabItem Header="Zmienne">
+                    <ItemsControl>
+                        <ItemsControl.Items>
+                            <mwkz:UstawZmienną></mwkz:UstawZmienną>
+                            <mwkz:WartośćZmiennej></mwkz:WartośćZmiennej>
+                        </ItemsControl.Items>
+                    </ItemsControl>
+                </TabItem>
+            </TabControl>
             <GroupBox Header="Zmienne">
                 <StackPanel>
                     <ListBox ItemsSource="{Binding Zmienne}" IsSynchronizedWithCurrentItem="True" SelectionMode="Single">

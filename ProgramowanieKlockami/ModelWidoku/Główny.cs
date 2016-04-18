@@ -66,7 +66,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WartośćZmiennej()
             };
 
-            RozpoczęcieProgramu = new RozpoczęcieProgramu() {Następny = new Jeżeli() {Wartość = new Porównanie()}};
+            RozpoczęcieProgramu = new RozpoczęcieProgramu();
             Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
