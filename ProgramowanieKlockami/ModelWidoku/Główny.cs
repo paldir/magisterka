@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -19,6 +20,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
         public Klocek Test { get; }
+        public IEnumerable<Klocek> KlockiLogiczne { get; } 
+        public IEnumerable<Klocek> KlockiTekstowe { get; }
+        public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
 
         private string _nazwaNowejZmiennej;
 
@@ -52,17 +56,30 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public Główny()
         {
-            KlockiPionowe = new ObservableCollection<KlocekPionowy>
-            {
-                new Jeżeli(),
-                new Wyświetl(),
-                new UstawZmienną()
-            };
+            KlockiPionowe = new ObservableCollection<KlocekPionowy>();
 
             KlockiZwracająceWartość = new ObservableCollection<KlocekZwracającyWartość>
             {
                 new Porównanie(),
                 new Napis(),
+                new WartośćZmiennej()
+            };
+
+            KlockiLogiczne = new Klocek[]
+            {
+                new Jeżeli(),
+                new Porównanie()
+            };
+
+            KlockiTekstowe = new Klocek[]
+            {
+                new Napis(),
+                new Wyświetl()
+            };
+
+            KlockiDotycząceZmiennych = new Klocek[]
+            {
+                new UstawZmienną(),
                 new WartośćZmiennej()
             };
 

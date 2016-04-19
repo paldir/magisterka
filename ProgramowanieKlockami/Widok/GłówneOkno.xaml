@@ -1,6 +1,7 @@
 ﻿<Window x:Class="ProgramowanieKlockami.Widok.GłówneOkno"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
         xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
         xmlns:mw="clr-namespace:ProgramowanieKlockami.ModelWidoku"
         xmlns:wk="clr-namespace:ProgramowanieKlockami.Widok.Konwertery"
@@ -111,11 +112,10 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
-                        <Grid>
-                            <!--<Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" Style="{StaticResource DolnyCypek}"></Ellipse>-->
+                        <StackPanel>
                             <ContentPresenter></ContentPresenter>
-                        </Grid>
-                        <ComboBox Style="{StaticResource ZewnętrznaListaKlockówPionowych}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Następny, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ComboBox>
+                            <ItemsControl Height="1" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" BorderThickness="1" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
+                        </StackPanel>
                     </Grid>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -277,28 +277,13 @@
         <DockPanel LastChildFill="True">
             <TabControl TabStripPlacement="Left" Width="200">
                 <TabItem Header="Logika">
-                    <ItemsControl>
-                        <ItemsControl.Items>
-                            <mwkl:Jeżeli></mwkl:Jeżeli>
-                            <mwkl:Porównanie></mwkl:Porównanie>
-                        </ItemsControl.Items>
-                    </ItemsControl>
+                    <ItemsControl dd:DragDrop.IsDragSource="True" ItemsSource="{Binding KlockiLogiczne}"></ItemsControl>
                 </TabItem>
                 <TabItem Header="Tekst">
-                    <ItemsControl>
-                        <ItemsControl.Items>
-                            <mwkt:Napis></mwkt:Napis>
-                            <mwkt:Wyświetl></mwkt:Wyświetl>
-                        </ItemsControl.Items>
-                    </ItemsControl>
+                    <ItemsControl dd:DragDrop.IsDragSource="True" ItemsSource="{Binding KlockiTekstowe}"></ItemsControl>
                 </TabItem>
                 <TabItem Header="Zmienne">
-                    <ItemsControl>
-                        <ItemsControl.Items>
-                            <mwkz:UstawZmienną></mwkz:UstawZmienną>
-                            <mwkz:WartośćZmiennej></mwkz:WartośćZmiennej>
-                        </ItemsControl.Items>
-                    </ItemsControl>
+                    <ItemsControl dd:DragDrop.IsDragSource="True" ItemsSource="{Binding KlockiDotycząceZmiennych}"></ItemsControl>
                 </TabItem>
             </TabControl>
             <GroupBox Header="Zmienne">
