@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using GongSolutions.Wpf.DragDrop;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
@@ -21,8 +22,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         public void DragOver(IDropInfo dropInfo)
         {
+            Type typObiektu = dropInfo.Data.GetType();
+            Type typListy = dropInfo.TargetCollection.GetType().GetElementType();
+            DragDropEffects efektUpuszczenia = typListy.IsAssignableFrom(typObiektu) ? DragDropEffects.Copy : DragDropEffects.None;
+            dropInfo.Effects = efektUpuszczenia;
             dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
-            dropInfo.Effects = DragDropEffects.Copy;
         }
 
         public virtual void Drop(IDropInfo dropInfo)

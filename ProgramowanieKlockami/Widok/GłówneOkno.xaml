@@ -106,6 +106,12 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="MiejsceUpuszczaniaKlockówPionowych" TargetType="ItemsControl">
+            <Setter Property="Height" Value="1"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="dd:DragDrop.IsDropTarget" Value="True"></Setter>
+            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiPionowe}"></Setter>
+        </Style>
         <wk:ObiektNaNowyObiektKonwerter x:Key="ObiektNaNowyObiektKonwerter"></wk:ObiektNaNowyObiektKonwerter>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowySzablon" TargetType="k:KlocekPionowyKontrolka">
@@ -114,7 +120,7 @@
                     <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
                         <StackPanel>
                             <ContentPresenter></ContentPresenter>
-                            <ItemsControl Height="1" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" BorderThickness="1" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
+                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -127,18 +133,10 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
-                        <Grid>
-                            <!--<Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" Style="{StaticResource DolnyCypek}"></Ellipse>-->
-                            <Rectangle Width="10" Height="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
-                                <Rectangle.RenderTransform>
-                                    <TranslateTransform X="20"></TranslateTransform>
-                                </Rectangle.RenderTransform>
-                            </Rectangle>
-                            <!--<Ellipse Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" Style="{StaticResource PrawyCypek}"></Ellipse>-->
+                        <StackPanel>
                             <ContentPresenter></ContentPresenter>
-                        </Grid>
-                        <ComboBox Style="{StaticResource ZewnętrznaListaKlockówPionowych}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Następny}"></ComboBox>
-                        <ComboBox Style="{StaticResource ZewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"></ComboBox>
+                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
+                        </StackPanel>
                     </Grid>
                     <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                 </StackPanel>
