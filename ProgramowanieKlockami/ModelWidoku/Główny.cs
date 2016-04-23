@@ -14,7 +14,7 @@ namespace ProgramowanieKlockami.ModelWidoku
     public class Główny : INotifyPropertyChanged
     {
         public KlocekPionowy[] KlockiPionowe { get; }
-        public ObservableCollection<KlocekZwracającyWartość> KlockiZwracająceWartość { get; }
+        public KlocekZwracającyWartość[] KlockiZwracająceWartość { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
@@ -57,13 +57,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Główny()
         {
             KlockiPionowe = new KlocekPionowy[0];
-
-            KlockiZwracająceWartość = new ObservableCollection<KlocekZwracającyWartość>
-            {
-                new Porównanie(),
-                new Napis(),
-                new WartośćZmiennej()
-            };
+            KlockiZwracająceWartość = new KlocekZwracającyWartość[0];
 
             KlockiLogiczne = new Klocek[]
             {

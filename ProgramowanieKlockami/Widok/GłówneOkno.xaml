@@ -14,67 +14,6 @@
         <mw:Główny></mw:Główny>
     </Window.DataContext>
     <Window.Resources>
-        <Style x:Key="ListaKlocków" TargetType="ComboBox">
-            <Setter Property="DisplayMemberPath" Value="Nazwa"></Setter>
-            <Setter Property="Width" Value="17"></Setter>
-            <Setter Property="Height" Value="10"></Setter>
-        </Style>
-        <Style x:Key="ListaKlockówPionowych" TargetType="ComboBox" BasedOn="{StaticResource ListaKlocków}">
-            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiPionowe}"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        </Style>
-        <Style x:Key="ZewnętrznaListaKlockówPionowych" TargetType="ComboBox" BasedOn="{StaticResource ListaKlockówPionowych}">
-            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <TranslateTransform X="1" Y="-1"></TranslateTransform>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="WewnętrznaListaKlockówPionowych" TargetType="ComboBox" BasedOn="{StaticResource ListaKlockówPionowych}">
-            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <TranslateTransform X="13" Y="-1"></TranslateTransform>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="ListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlocków}">
-            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiZwracająceWartość}"></Setter>
-            <Setter Property="VerticalAlignment" Value="Top"></Setter>
-            <Setter Property="LayoutTransform">
-                <Setter.Value>
-                    <RotateTransform Angle="270" />
-                </Setter.Value>
-            </Setter>
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.LayoutTransform>
-                                <RotateTransform Angle="90" />
-                            </StackPanel.LayoutTransform>
-                        </StackPanel>
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="ZewnętrznaListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlockówZwracającychWartość}">
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <TranslateTransform X="-1" Y="1"></TranslateTransform>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
-        </Style>
-        <Style x:Key="WewnętrznaListaKlockówZwracającychWartość" TargetType="ComboBox" BasedOn="{StaticResource ListaKlockówZwracającychWartość}">
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <TranslateTransform X="-6" Y="5"></TranslateTransform>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <Style x:Key="ListaZmiennych" TargetType="ComboBox">
             <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.Zmienne}"></Setter>
             <Setter Property="DisplayMemberPath" Value="Nazwa"></Setter>
@@ -106,11 +45,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="MiejsceUpuszczaniaKlockówPionowych" TargetType="ItemsControl">
-            <Setter Property="Height" Value="1"></Setter>
+        <Style x:Key="MiejsceUpuszczaniaKlocków" TargetType="ItemsControl">
             <Setter Property="BorderThickness" Value="1"></Setter>
             <Setter Property="dd:DragDrop.IsDropTarget" Value="True"></Setter>
+        </Style>
+        <Style x:Key="MiejsceUpuszczaniaKlockówPionowych" BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}" TargetType="ItemsControl">
+            <Setter Property="Height" Value="3"></Setter>
             <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiPionowe}"></Setter>
+        </Style>
+        <Style x:Key="MiejsceUpuszczaniaKlockówZwracającychWartość" BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}" TargetType="ItemsControl">
+            <Setter Property="Width" Value="3"></Setter>
+            <Setter Property="ItemsSource" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.KlockiZwracająceWartość}"></Setter>
         </Style>
         <wk:ObiektNaNowyObiektKonwerter x:Key="ObiektNaNowyObiektKonwerter"></wk:ObiektNaNowyObiektKonwerter>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
@@ -133,9 +78,12 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
-                        <StackPanel>
-                            <ContentPresenter></ContentPresenter>
-                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <ContentPresenter></ContentPresenter>
+                                <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
+                            </StackPanel>
+                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
                         </StackPanel>
                     </Grid>
                     <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
@@ -174,9 +122,8 @@
                                         </StackPanel>
                                         <!--<Ellipse Style="{StaticResource PrawyCypek}" Fill="{Binding Kolor}"></Ellipse>-->
                                         <ToggleButton Command="{Binding KomendaOdwróceniaWidoczności}" Style="{StaticResource PrzyciskZwijania}"></ToggleButton>
-                                        <ComboBox Style="{StaticResource WewnętrznaListaKlockówPionowych}" SelectedValue="{Binding Zawartość}" Visibility="{Binding Widoczny, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></ComboBox>
+                                        <ItemsControl HorizontalAlignment="Right" Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" BorderBrush="{Binding Kolor}" dd:DragDrop.DropHandler="{Binding}"></ItemsControl>
                                     </Grid>
-                                    <ComboBox Style="{StaticResource ZewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding Wartość}"></ComboBox>
                                 </Grid>
                                 <ContentControl Content="{Binding Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                             </StackPanel>
@@ -187,9 +134,11 @@
                                     <ContentControl Content="{Binding Zawartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}" Margin="1"></ContentControl>
                                 </Grid>
                             </StackPanel>
-                            <Grid Background="{Binding Kolor}" MinHeight="12" Width="40" HorizontalAlignment="Left" Margin="1,0,0,0">
-                                <ComboBox Style="{StaticResource ZewnętrznaListaKlockówPionowych}" SelectedValue="{Binding Następny}"></ComboBox>
-                            </Grid>
+                            <StackPanel>
+                                <Grid Background="{Binding Kolor}" MinHeight="12" Width="40" HorizontalAlignment="Left" Margin="1,0,0,0">
+                                    <ItemsControl VerticalAlignment="Bottom" Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding Kolor}" dd:DragDrop.DropHandler="{Binding}"></ItemsControl>
+                                </Grid>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -205,7 +154,6 @@
                                 <ContentControl MinHeight="20" MinWidth="10" Margin="1" Content="{Binding WartośćPierwsza, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                             </Border>
                             <!--<Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>-->
-                            <ComboBox Style="{StaticResource WewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding WartośćPierwsza}"></ComboBox>
                         </Grid>
                         <StackPanel VerticalAlignment="Center">
                             <ComboBox>
@@ -224,7 +172,6 @@
                                 <ContentControl MinHeight="20" MinWidth="10" Margin="1" Content="{Binding WartośćDruga, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                             </Border>
                             <!--<Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>-->
-                            <ComboBox Style="{StaticResource WewnętrznaListaKlockówZwracającychWartość}" SelectedValue="{Binding WartośćDruga}"></ComboBox>
                         </Grid>
                     </StackPanel>
                 </StackPanel>
