@@ -17,15 +17,5 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 OnPropertyChanged();
             }
         }
-
-        public override void Drop(IDropInfo dropInfo)
-        {
-            base.Drop(dropInfo);
-
-            KlocekZwracającyWartość klocek = dropInfo.Data as KlocekZwracającyWartość;
-
-            if (klocek != null)
-                Wartość = klocek;
-        }
     }
 }

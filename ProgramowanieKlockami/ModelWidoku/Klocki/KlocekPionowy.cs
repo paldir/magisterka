@@ -4,7 +4,7 @@ using GongSolutions.Wpf.DragDrop;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public abstract class KlocekPionowy : Klocek, IDropTarget
+    public abstract class KlocekPionowy : Klocek
     {
         private KlocekPionowy _następny;
 
@@ -18,23 +18,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
                 OnPropertyChanged();
             }
-        }
-
-        public void DragOver(IDropInfo dropInfo)
-        {
-            Type typObiektu = dropInfo.Data.GetType();
-            Type typListy = dropInfo.TargetCollection.GetType().GetElementType();
-            DragDropEffects efektUpuszczenia = typListy.IsAssignableFrom(typObiektu) ? DragDropEffects.Copy : DragDropEffects.None;
-            dropInfo.Effects = efektUpuszczenia;
-            dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
-        }
-
-        public virtual void Drop(IDropInfo dropInfo)
-        {
-            KlocekPionowy klocek = dropInfo.Data as KlocekPionowy;
-
-            if (klocek != null)
-                Następny = klocek;
         }
     }
 }

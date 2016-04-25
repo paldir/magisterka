@@ -60,37 +60,21 @@
         <wk:ObiektNaNowyObiektKonwerter x:Key="ObiektNaNowyObiektKonwerter"></wk:ObiektNaNowyObiektKonwerter>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowySzablon" TargetType="k:KlocekPionowyKontrolka">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
-                        <StackPanel>
-                            <ContentPresenter></ContentPresenter>
-                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Następny, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
-                </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                    <ContentPresenter></ContentPresenter>
+                </Grid>
             </StackPanel>
         </ControlTemplate>
         <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon" TargetType="k:KlocekPionowyPrzyjmującyWartośćKontrolka">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <ContentPresenter></ContentPresenter>
-                                <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
-                            </StackPanel>
-                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
-                        </StackPanel>
-                    </Grid>
-                    <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
-                </StackPanel>
-                <StackPanel>
-                    <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Następny, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
-                </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                    <StackPanel Orientation="Horizontal">
+                        <ContentPresenter></ContentPresenter>
+                        <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></ItemsControl>
+                    </StackPanel>
+                </Grid>
+                <ContentControl Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
             </StackPanel>
         </ControlTemplate>
         <ControlTemplate x:Key="KlocekZwracającyWartośćSzablon" TargetType="k:KlocekZwracającyWartośćKontrolka">
@@ -103,11 +87,21 @@
             </StackPanel>
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwki:RozpoczęcieProgramu}">
-            <k:KlocekPionowyKontrolka Template="{StaticResource KlocekPionowySzablon}">
-                <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
-                    <TextBlock Style="{StaticResource TekstKlocka}">Start</TextBlock>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Style="{StaticResource GridKlocka}" Background="{Binding Kolor}">
+                        <StackPanel>
+                            <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
+                                <TextBlock Style="{StaticResource TekstKlocka}">Start</TextBlock>
+                            </StackPanel>
+                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding Kolor}" dd:DragDrop.DropHandler="{Binding}"></ItemsControl>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
-            </k:KlocekPionowyKontrolka>
+                <StackPanel Orientation="Horizontal">
+                    <ItemsControl ItemsSource="{Binding Zawartość}"></ItemsControl>
+                </StackPanel>
+            </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkl:Jeżeli}">
             <StackPanel>
