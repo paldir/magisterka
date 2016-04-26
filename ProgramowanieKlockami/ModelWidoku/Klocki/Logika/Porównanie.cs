@@ -2,16 +2,12 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
-    public class Porównanie : KlocekZwracającyWartość
+    public class Porównanie : IKlocekZwracającyWartość
     {
-        public override string Nazwa => "Porównanie";
-
-        public override string Opis => "Zwraca prawdę, jeśli oba wejścia są takie same.";
-
-        public override Brush Kolor => Kolory.Logika;
-
-        public KlocekZwracającyWartość WartośćPierwsza { get; set; }
-
-        public KlocekZwracającyWartość WartośćDruga { get; set; }
+        public string Nazwa => "Porównanie";
+        public string Opis => "Zwraca prawdę, jeśli oba wejścia są takie same.";
+        public Brush Kolor => Kolory.Logika;
+        public IKlocekZwracającyWartość WartośćPierwsza { get; set; }
+        public IKlocekZwracającyWartość WartośćDruga { get; set; }
     }
 }

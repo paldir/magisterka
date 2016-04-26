@@ -71,12 +71,16 @@
     </ApplicationDefinition>
     <Compile Include="Kontrolki\KlocekPionowyKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyPrzyjmującyWartośćKontrolka.cs" />
+    <Compile Include="Kontrolki\KlocekPionowyZZawartością.cs" />
     <Compile Include="Kontrolki\KlocekZwracającyWartośćKontrolka.cs" />
     <Compile Include="ModelWidoku\Główny.cs" />
+    <Compile Include="ModelWidoku\Klocki\IKlocekPionowy.cs" />
+    <Compile Include="ModelWidoku\Klocki\IKlocekPionowyPrzyjmującyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\IKlocekZwracającyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\IKlocekPionowyZZawartością.cs" />
     <Compile Include="ModelWidoku\Klocki\Inne\RozpoczęcieProgramu.cs" />
-    <Compile Include="ModelWidoku\Klocki\KlocekPionowy.cs" />
-    <Compile Include="ModelWidoku\Klocki\KlocekPionowyPrzyjmującyWartość.cs" />
-    <Compile Include="ModelWidoku\Klocki\KlocekZwracającyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekPionowyPionowyPrzyjmującyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekPionowyPionowyZZawartością.cs" />
     <Compile Include="ModelWidoku\Klocki\Kolory.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Jeżeli.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
@@ -100,7 +104,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelWidoku\Klocki\Klocek.cs" />
+    <Compile Include="ModelWidoku\Klocki\IKlocek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

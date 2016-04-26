@@ -1,9 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Inne
 {
-    public class RozpoczęcieProgramu : KlocekPionowy
+    public class RozpoczęcieProgramu : KlocekPionowyPionowyZZawartością
     {
         public override string Nazwa
         {
@@ -15,13 +14,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Inne
             get { throw new System.NotImplementedException(); }
         }
 
-        public ObservableCollection<KlocekPionowy> Zawartość { get; private set; }
-
         public override Brush Kolor => Kolory.Inne;
-
-        public RozpoczęcieProgramu()
-        {
-            Zawartość = new ObservableCollection<KlocekPionowy>();
-        }
     }
 }

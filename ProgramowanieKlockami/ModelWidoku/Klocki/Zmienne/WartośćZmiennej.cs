@@ -2,12 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
 {
-    public class WartośćZmiennej : KlocekZwracającyWartość
+    public class WartośćZmiennej : IKlocekZwracającyWartość
     {
-        public override string Nazwa => "Wartość zmiennej";
-
-        public override string Opis => "Zwraca wartość wybranej zmiennej.";
-
-        public override Brush Kolor => Kolory.Zmienne;
+        public string Nazwa => "Wartość zmiennej";
+        public string Opis => "Zwraca wartość wybranej zmiennej.";
+        public Brush Kolor => Kolory.Zmienne;
     }
 }

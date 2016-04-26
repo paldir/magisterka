@@ -13,16 +13,16 @@ namespace ProgramowanieKlockami.ModelWidoku
 {
     public class Główny : INotifyPropertyChanged
     {
-        public KlocekPionowy[] KlockiPionowe { get; }
-        public KlocekZwracającyWartość[] KlockiZwracająceWartość { get; }
+        public IKlocekPionowy[] KlockiPionowe { get; }
+        public IKlocekZwracającyWartość[] KlockiZwracająceWartość { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
-        public Klocek Test { get; }
-        public IEnumerable<Klocek> KlockiLogiczne { get; } 
-        public IEnumerable<Klocek> KlockiTekstowe { get; }
-        public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
+        public IKlocek Test { get; }
+        public IEnumerable<IKlocek> KlockiLogiczne { get; }
+        public IEnumerable<IKlocek> KlockiTekstowe { get; }
+        public IEnumerable<IKlocek> KlockiDotycząceZmiennych { get; }
 
         private string _nazwaNowejZmiennej;
 
@@ -56,22 +56,22 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public Główny()
         {
-            KlockiPionowe = new KlocekPionowy[0];
-            KlockiZwracająceWartość = new KlocekZwracającyWartość[0];
+            KlockiPionowe = new IKlocekPionowy[0];
+            KlockiZwracająceWartość = new IKlocekZwracającyWartość[0];
 
-            KlockiLogiczne = new Klocek[]
+            KlockiLogiczne = new IKlocek[]
             {
                 new Jeżeli(),
                 new Porównanie()
             };
 
-            KlockiTekstowe = new Klocek[]
+            KlockiTekstowe = new IKlocek[]
             {
                 new Napis(),
                 new Wyświetl()
             };
 
-            KlockiDotycząceZmiennych = new Klocek[]
+            KlockiDotycząceZmiennych = new IKlocek[]
             {
                 new UstawZmienną(),
                 new WartośćZmiennej()
@@ -96,7 +96,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             if (!string.IsNullOrEmpty(NazwaNowejZmiennej) && (zmienna == null))
             {
-                Zmienne.Add(new Zmienna(Zmienne) { Nazwa = NazwaNowejZmiennej });
+                Zmienne.Add(new Zmienna(Zmienne) {Nazwa = NazwaNowejZmiennej});
 
                 NazwaNowejZmiennej = null;
             }

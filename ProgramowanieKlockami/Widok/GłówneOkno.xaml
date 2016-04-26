@@ -66,6 +66,25 @@
                 </Grid>
             </StackPanel>
         </ControlTemplate>
+        <ControlTemplate x:Key="KlocekPionowyZZawartościąSzablon" TargetType="k:KlocekPionowyZZawartością">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="0,0,0,1">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid MinWidth="70" Margin="1,1,1,0" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                            <ContentPresenter></ContentPresenter>
+                            <ToggleButton Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.OdwrócenieWidoczności}" Style="{StaticResource PrzyciskZwijania}"></ToggleButton>
+                        </Grid>
+                    </StackPanel>
+                    <DockPanel LastChildFill="True" Margin="1,0,0,0"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Widoczny, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" MinWidth="12"></Grid>
+                        <StackPanel Margin="1,1,0,5">
+                            <ItemsControl Background="Transparent" MinHeight="10" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}" dd:DragDrop.IsDropTarget="True"></ItemsControl>
+                        </StackPanel>
+                    </DockPanel>
+                    <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" MinHeight="12" Width="40" HorizontalAlignment="Left" Margin="1,0,0,0"></Grid>
+                </StackPanel>
+            </StackPanel>
+        </ControlTemplate>
         <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon" TargetType="k:KlocekPionowyPrzyjmującyWartośćKontrolka">
             <StackPanel Orientation="Horizontal">
                 <Grid Style="{StaticResource GridKlocka}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
@@ -87,56 +106,41 @@
             </StackPanel>
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwki:RozpoczęcieProgramu}">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Grid Style="{StaticResource GridKlocka}" Background="{Binding Kolor}">
-                        <StackPanel>
-                            <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
-                                <TextBlock Style="{StaticResource TekstKlocka}">Start</TextBlock>
-                            </StackPanel>
-                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding Kolor}" dd:DragDrop.DropHandler="{Binding}"></ItemsControl>
-                        </StackPanel>
-                    </Grid>
+            <k:KlocekPionowyZZawartością Template="{StaticResource KlocekPionowyZZawartościąSzablon}">
+                <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Główna funkcja</TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <ItemsControl ItemsSource="{Binding Zawartość}"></ItemsControl>
-                </StackPanel>
-            </StackPanel>
+            </k:KlocekPionowyZZawartością>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkl:Jeżeli}">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Grid Margin="0,0,0,1">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Grid MinWidth="70" Margin="1,1,1,0">
-                                    <Grid Background="{Binding Kolor}">
-                                        <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
-                                            <TextBlock Style="{StaticResource TekstKlocka}">Jeżeli</TextBlock>
-                                        </StackPanel>
-                                        <!--<Ellipse Style="{StaticResource PrawyCypek}" Fill="{Binding Kolor}"></Ellipse>-->
-                                        <ToggleButton Command="{Binding KomendaOdwróceniaWidoczności}" Style="{StaticResource PrzyciskZwijania}"></ToggleButton>
-                                        <ItemsControl HorizontalAlignment="Right" Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" BorderBrush="{Binding Kolor}" dd:DragDrop.DropHandler="{Binding}"></ItemsControl>
-                                    </Grid>
-                                </Grid>
-                                <ContentControl Content="{Binding Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="1,0,0,0"  Visibility="{Binding Widoczny, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
-                                <Grid Background="{Binding Kolor}" MinWidth="12"></Grid>
-                                <Grid Margin="0,0,0,6">
-                                    <!--<Ellipse Style="{StaticResource DolnyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>-->
-                                    <ContentControl Content="{Binding Zawartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}" Margin="1"></ContentControl>
-                                </Grid>
-                            </StackPanel>
-                            <StackPanel>
-                                <Grid Background="{Binding Kolor}" MinHeight="12" Width="40" HorizontalAlignment="Left" Margin="1,0,0,0">
-                                    <ItemsControl VerticalAlignment="Bottom" Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding Kolor}" dd:DragDrop.DropHandler="{Binding}"></ItemsControl>
-                                </Grid>
-                            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Grid Margin="0,0,0,1">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Grid MinWidth="70" Margin="1,1,1,0" Background="{Binding Kolor}">
+                                <StackPanel Style="{StaticResource PanelKlockaNiekońcowego}">
+                                    <TextBlock Style="{StaticResource TekstKlocka}">Jeżeli</TextBlock>
+                                </StackPanel>
+                                <!--<Ellipse Style="{StaticResource PrawyCypek}" Fill="{Binding Kolor}"></Ellipse>-->
+                                <ToggleButton Command="{Binding OdwrócenieWidoczności}" Style="{StaticResource PrzyciskZwijania}"></ToggleButton>
+                                <ItemsControl HorizontalAlignment="Right" Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" BorderBrush="{Binding Kolor}" dd:DragDrop.DropHandler="{Binding}"></ItemsControl>
+                            </Grid>
+                            <ContentControl Content="{Binding Wartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
                         </StackPanel>
-                    </Grid>
-                </StackPanel>
-                <ContentControl Content="{Binding Następny, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
+                        <StackPanel Orientation="Horizontal" Margin="1,0,0,0"  Visibility="{Binding Widoczny, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                            <Grid Background="{Binding Kolor}" MinWidth="12"></Grid>
+                            <Grid Margin="0,0,0,6">
+                                <!--<Ellipse Style="{StaticResource DolnyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>-->
+                                <ContentControl Content="{Binding Zawartość, Converter={StaticResource ObiektNaNowyObiektKonwerter}}" Margin="1"></ContentControl>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel>
+                            <Grid Background="{Binding Kolor}" MinHeight="12" Width="40" HorizontalAlignment="Left" Margin="1,0,0,0">
+                                <ItemsControl VerticalAlignment="Bottom" Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" BorderBrush="{Binding Kolor}" dd:DragDrop.DropHandler="{Binding}"></ItemsControl>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkl:Porównanie}">
