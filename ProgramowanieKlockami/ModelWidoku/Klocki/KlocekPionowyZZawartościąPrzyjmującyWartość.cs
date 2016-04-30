@@ -5,13 +5,14 @@ using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public abstract class KlocekPionowyPionowyZZawartością : IKlocekPionowyZZawartością
+    public abstract class KlocekPionowyZZawartościąPrzyjmującyWartość : IKlocekPionowyZZawartościąPrzyjmującyWartość
     {
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
         public abstract Brush Kolor { get; }
         public ObservableCollection<IKlocekPionowy> Zawartość { get; }
         public Komenda OdwrócenieWidoczności { get; }
+        public IKlocekZwracającyWartość Wartość { get; set; }
 
         private bool _widoczny;
 
@@ -27,7 +28,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             }
         }
 
-        protected KlocekPionowyPionowyZZawartością()
+        protected KlocekPionowyZZawartościąPrzyjmującyWartość()
         {
             Zawartość = new ObservableCollection<IKlocekPionowy>();
             Widoczny = true;

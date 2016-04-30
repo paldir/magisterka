@@ -2,7 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Inne
 {
-    public class RozpoczęcieProgramu : KlocekPionowyPionowyZZawartością
+    public class RozpoczęcieProgramu : KlocekPionowyZZawartością
     {
         public override string Nazwa
         {
@@ -14,6 +14,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Inne
             get { throw new System.NotImplementedException(); }
         }
 
-        public override Brush Kolor => Kolory.Inne;
+        public override Brush Kolor => Kolory.Funkcje;
     }
 }

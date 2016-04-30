@@ -8,21 +8,20 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
+using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
 
 namespace ProgramowanieKlockami.ModelWidoku
 {
     public class Główny : INotifyPropertyChanged
     {
-        public IKlocekPionowy[] KlockiPionowe { get; }
-        public IKlocekZwracającyWartość[] KlockiZwracająceWartość { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
-        public IKlocek Test { get; }
         public IEnumerable<IKlocek> KlockiLogiczne { get; }
         public IEnumerable<IKlocek> KlockiTekstowe { get; }
         public IEnumerable<IKlocek> KlockiDotycząceZmiennych { get; }
+        public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
 
         private string _nazwaNowejZmiennej;
 
@@ -56,9 +55,6 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public Główny()
         {
-            KlockiPionowe = new IKlocekPionowy[0];
-            KlockiZwracająceWartość = new IKlocekZwracającyWartość[0];
-
             KlockiLogiczne = new IKlocek[]
             {
                 new Jeżeli(),
@@ -81,8 +77,8 @@ namespace ProgramowanieKlockami.ModelWidoku
             Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
-            Test = new Porównanie();
             Powiększenie = 1;
+            ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -104,10 +100,9 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void UsuńZmienną(object zmiennaDoUsunięcia)
         {
-            Zmienna zmienna = zmiennaDoUsunięcia as Zmienna;
+            Zmienna zmienna = (Zmienna) zmiennaDoUsunięcia;
 
-            if (zmienna != null)
-                Zmienne.Remove(zmienna);
+            Zmienne.Remove(zmienna);
         }
     }
 }

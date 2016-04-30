@@ -2,7 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public abstract class KlocekPionowyPionowyPrzyjmującyWartość : IKlocekPionowyPrzyjmującyWartość
+    public abstract class KlocekPionowyPrzyjmującyWartość : IKlocekPionowyPrzyjmującyWartość
     {
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }

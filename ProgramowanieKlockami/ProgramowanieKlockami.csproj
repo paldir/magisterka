@@ -71,16 +71,19 @@
     </ApplicationDefinition>
     <Compile Include="Kontrolki\KlocekPionowyKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyPrzyjmującyWartośćKontrolka.cs" />
-    <Compile Include="Kontrolki\KlocekPionowyZZawartością.cs" />
+    <Compile Include="Kontrolki\KlocekPionowyZZawartościąKontrolka.cs" />
+    <Compile Include="Kontrolki\KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekZwracającyWartośćKontrolka.cs" />
     <Compile Include="ModelWidoku\Główny.cs" />
+    <Compile Include="ModelWidoku\IKlocekPionowyZZawartościąPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\IKlocekPionowy.cs" />
     <Compile Include="ModelWidoku\Klocki\IKlocekPionowyPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\IKlocekZwracającyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\IKlocekPionowyZZawartością.cs" />
     <Compile Include="ModelWidoku\Klocki\Inne\RozpoczęcieProgramu.cs" />
-    <Compile Include="ModelWidoku\Klocki\KlocekPionowyPionowyPrzyjmującyWartość.cs" />
-    <Compile Include="ModelWidoku\Klocki\KlocekPionowyPionowyZZawartością.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekPionowyPrzyjmującyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekPionowyZZawartością.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekPionowyZZawartościąPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\Kolory.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Jeżeli.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
@@ -98,6 +101,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanieKlockówPionowych.cs" />
     <Page Include="Widok\GłówneOkno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

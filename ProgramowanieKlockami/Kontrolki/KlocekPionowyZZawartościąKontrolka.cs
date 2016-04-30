@@ -3,7 +3,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.Kontrolki
 {
-    public class KlocekPionowyZZawartością : ContentControl
+    public class KlocekPionowyZZawartościąKontrolka : ContentControl
     {
         public IKlocekPionowyZZawartością Kontekst => (IKlocekPionowyZZawartością) DataContext;
     }
