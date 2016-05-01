@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -7,6 +8,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
         public abstract Brush Kolor { get; }
-        public IKlocekZwracającyWartość Wartość { get; set; }
+        public ObservableCollection<IKlocekZwracającyWartość> Wartość { get; }
+
+        protected KlocekPionowyPrzyjmującyWartość()
+        {
+            Wartość = new ObservableCollection<IKlocekZwracającyWartość> {null};
+        }
     }
 }

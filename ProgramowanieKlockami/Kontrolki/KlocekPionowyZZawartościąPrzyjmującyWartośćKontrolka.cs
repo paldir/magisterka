@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using ProgramowanieKlockami.ModelWidoku;
+using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.Kontrolki
 {

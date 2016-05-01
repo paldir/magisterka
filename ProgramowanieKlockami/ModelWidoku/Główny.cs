@@ -22,6 +22,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IKlocek> KlockiTekstowe { get; }
         public IEnumerable<IKlocek> KlockiDotycząceZmiennych { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
+        public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
 
         private string _nazwaNowejZmiennej;
 
@@ -79,6 +80,8 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
             Powiększenie = 1;
             ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
+            ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
+            RozpoczęcieProgramu.Zawartość.Add(new Wyświetl());
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

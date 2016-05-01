@@ -1,6 +1,4 @@
-﻿using ProgramowanieKlockami.ModelWidoku.Klocki;
-
-namespace ProgramowanieKlockami.ModelWidoku
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public interface IKlocekPionowyZZawartościąPrzyjmującyWartość : IKlocekPionowyZZawartością, IKlocekPionowyPrzyjmującyWartość
     {

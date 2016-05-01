@@ -75,7 +75,7 @@
     <Compile Include="Kontrolki\KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekZwracającyWartośćKontrolka.cs" />
     <Compile Include="ModelWidoku\Główny.cs" />
-    <Compile Include="ModelWidoku\IKlocekPionowyZZawartościąPrzyjmującyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\IKlocekPionowyZZawartościąPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\IKlocekPionowy.cs" />
     <Compile Include="ModelWidoku\Klocki\IKlocekPionowyPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\IKlocekZwracającyWartość.cs" />
@@ -90,6 +90,7 @@
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Napis.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Wyświetl.cs" />
+    <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanieKlockówZwracającychWartość.cs" />
     <Compile Include="ModelWidoku\Zmienna.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\UstawZmienną.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\WartośćZmiennej.cs" />

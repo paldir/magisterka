@@ -6,11 +6,11 @@ using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 {
-    public class ObsługującyUpuszczanieKlockówPionowych : IDropTarget
+    public class ObsługującyUpuszczanieKlockówZwracającychWartość : IDropTarget
     {
         public void DragOver(IDropInfo dropInfo)
         {
-            IKlocekPionowy upuszczanyKlocek = dropInfo.Data as IKlocekPionowy;
+            IKlocekZwracającyWartość upuszczanyKlocek = dropInfo.Data as IKlocekZwracającyWartość;
             DragDropEffects efektUpuszczenia;
 
             if (upuszczanyKlocek == null)
@@ -18,7 +18,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             else
             {
                 efektUpuszczenia = DragDropEffects.Copy;
-                dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
+                dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
             }
 
             dropInfo.Effects = efektUpuszczenia;
@@ -26,10 +26,8 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 
         public void Drop(IDropInfo dropInfo)
         {
-            ObservableCollection<IKlocekPionowy> docelowaKolekcja = (ObservableCollection<IKlocekPionowy>) dropInfo.TargetCollection;
-            IKlocekPionowy kopiaUpuszczanegoObiektu = (IKlocekPionowy) Activator.CreateInstance(dropInfo.Data.GetType());
-
-            docelowaKolekcja.Insert(dropInfo.InsertIndex, kopiaUpuszczanegoObiektu);
+            ObservableCollection<IKlocekZwracającyWartość> docelowaKolekcja = (ObservableCollection<IKlocekZwracającyWartość>) dropInfo.TargetCollection;
+            docelowaKolekcja[0] = (IKlocekZwracającyWartość) Activator.CreateInstance(dropInfo.Data.GetType());
         }
     }
 }

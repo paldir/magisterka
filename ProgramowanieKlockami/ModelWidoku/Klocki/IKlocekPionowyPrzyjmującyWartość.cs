@@ -1,7 +1,9 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki
+﻿using System.Collections.ObjectModel;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public interface IKlocekPionowyPrzyjmującyWartość : IKlocekPionowy
     {
-        IKlocekZwracającyWartość Wartość { get; set; }
+        ObservableCollection<IKlocekZwracającyWartość> Wartość { get; }
     }
 }

@@ -12,7 +12,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public abstract Brush Kolor { get; }
         public ObservableCollection<IKlocekPionowy> Zawartość { get; }
         public Komenda OdwrócenieWidoczności { get; }
-        public IKlocekZwracającyWartość Wartość { get; set; }
+        public ObservableCollection<IKlocekZwracającyWartość> Wartość { get; }
 
         private bool _widoczny;
 
@@ -33,6 +33,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             Zawartość = new ObservableCollection<IKlocekPionowy>();
             Widoczny = true;
             OdwrócenieWidoczności = new Komenda(OdwróćWidoczność);
+            Wartość = new ObservableCollection<IKlocekZwracającyWartość> {null};
         }
 
         private void OdwróćWidoczność()
