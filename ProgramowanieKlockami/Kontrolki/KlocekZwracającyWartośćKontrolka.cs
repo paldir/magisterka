@@ -5,6 +5,6 @@ namespace ProgramowanieKlockami.Kontrolki
 {
     public class KlocekZwracającyWartośćKontrolka : ContentControl
     {
-        public IKlocekZwracającyWartość Kontekst => (IKlocekZwracającyWartość) DataContext;
+        public KlocekZwracającyWartość Kontekst => (KlocekZwracającyWartość) DataContext;
     }
 }

@@ -5,47 +5,16 @@ using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public abstract class KlocekPionowyZZawartościąPrzyjmującyWartość : IKlocekPionowyZZawartościąPrzyjmującyWartość
+    public abstract class KlocekPionowyZZawartościąPrzyjmującyWartość : KlocekPionowyZZawartością
     {
-        public abstract string Nazwa { get; }
-        public abstract string Opis { get; }
-        public abstract Brush Kolor { get; }
-        public ObservableCollection<IKlocekPionowy> Zawartość { get; }
-        public Komenda OdwrócenieWidoczności { get; }
-        public ObservableCollection<IKlocekZwracającyWartość> Wartość { get; }
-
-        private bool _widoczny;
-
-        public bool Widoczny
-        {
-            get { return _widoczny; }
-
-            private set
-            {
-                _widoczny = value;
-
-                OnPropertyChanged();
-            }
-        }
+        public abstract override string Nazwa { get; }
+        public abstract override string Opis { get; }
+        public abstract override Brush Kolor { get; }
+        public ObservableCollection<KlocekZwracającyWartość> Wartość { get; }
 
         protected KlocekPionowyZZawartościąPrzyjmującyWartość()
         {
-            Zawartość = new ObservableCollection<IKlocekPionowy>();
-            Widoczny = true;
-            OdwrócenieWidoczności = new Komenda(OdwróćWidoczność);
-            Wartość = new ObservableCollection<IKlocekZwracającyWartość> {null};
-        }
-
-        private void OdwróćWidoczność()
-        {
-            Widoczny = !Widoczny;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Wartość = new ObservableCollection<KlocekZwracającyWartość> {null};
         }
     }
 }

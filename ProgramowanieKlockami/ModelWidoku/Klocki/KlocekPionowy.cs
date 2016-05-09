@@ -1,6 +1,7 @@
 ﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public interface IKlocekZwracającyWartość : IKlocek
+    public abstract class KlocekPionowy : Klocek
     {
+
     }
 }

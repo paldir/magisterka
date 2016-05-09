@@ -1,16 +1,14 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public abstract class KlocekPionowyZZawartością : IKlocekPionowyZZawartością
+    public abstract class KlocekPionowyZZawartością : KlocekPionowy
     {
-        public abstract string Nazwa { get; }
-        public abstract string Opis { get; }
-        public abstract Brush Kolor { get; }
-        public ObservableCollection<IKlocekPionowy> Zawartość { get; }
+        public abstract override string Nazwa { get; }
+        public abstract override string Opis { get; }
+        public abstract override Brush Kolor { get; }
+        public ObservableCollection<KlocekPionowy> Zawartość { get; }
         public Komenda OdwrócenieWidoczności { get; }
 
         private bool _widoczny;
@@ -29,7 +27,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         protected KlocekPionowyZZawartością()
         {
-            Zawartość = new ObservableCollection<IKlocekPionowy>();
+            Zawartość = new ObservableCollection<KlocekPionowy>();
             Widoczny = true;
             OdwrócenieWidoczności = new Komenda(OdwróćWidoczność);
         }
@@ -37,13 +35,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         private void OdwróćWidoczność()
         {
             Widoczny = !Widoczny;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

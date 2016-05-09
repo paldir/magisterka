@@ -14,15 +14,19 @@ namespace ProgramowanieKlockami.ModelWidoku
 {
     public class Główny : INotifyPropertyChanged
     {
+        private Klocek _klocekPosiadającySkupienie;
+
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
-        public IEnumerable<IKlocek> KlockiLogiczne { get; }
-        public IEnumerable<IKlocek> KlockiTekstowe { get; }
-        public IEnumerable<IKlocek> KlockiDotycząceZmiennych { get; }
+        public Komenda KomendaPrzejęciaSkupienia { get; }
+        public IEnumerable<Klocek> KlockiLogiczne { get; }
+        public IEnumerable<Klocek> KlockiTekstowe { get; }
+        public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
+
 
         private string _nazwaNowejZmiennej;
 
@@ -56,19 +60,19 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public Główny()
         {
-            KlockiLogiczne = new IKlocek[]
+            KlockiLogiczne = new Klocek[]
             {
                 new Jeżeli(),
                 new Porównanie()
             };
 
-            KlockiTekstowe = new IKlocek[]
+            KlockiTekstowe = new Klocek[]
             {
                 new Napis(),
                 new Wyświetl()
             };
 
-            KlockiDotycząceZmiennych = new IKlocek[]
+            KlockiDotycząceZmiennych = new Klocek[]
             {
                 new UstawZmienną(),
                 new WartośćZmiennej()
@@ -78,9 +82,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
+            KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
             Powiększenie = 1;
             ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
             ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
+
+            RozpoczęcieProgramu.Zawartość.Add(new Wyświetl());
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -105,6 +112,16 @@ namespace ProgramowanieKlockami.ModelWidoku
             Zmienna zmienna = (Zmienna) zmiennaDoUsunięcia;
 
             Zmienne.Remove(zmienna);
+        }
+
+        private void PrzejmijSkupienie(object obiektKlocka)
+        {
+            if (_klocekPosiadającySkupienie != null)
+                _klocekPosiadającySkupienie.PosiadaSkupienie = false;
+
+            Klocek klocek = (Klocek) obiektKlocka;
+            klocek.PosiadaSkupienie = true;
+            _klocekPosiadającySkupienie = klocek;
         }
     }
 }

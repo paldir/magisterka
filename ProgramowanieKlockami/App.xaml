@@ -5,6 +5,11 @@
     <Application.Resources>
         <Style x:Key="GridKlocka" TargetType="Grid">
             <Setter Property="Margin" Value="1"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=IsKeyboardFocusWithin}">
+                    <Setter Property="Background" Value="Crimson"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="GridKlockaZGórnąDziurką" TargetType="Grid" BasedOn="{StaticResource GridKlocka}">
             <Setter Property="OpacityMask">

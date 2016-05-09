@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
-    public class Napis : IKlocekZwracającyWartość
+    public class Napis : KlocekZwracającyWartość
     {
-        public string Nazwa => "Napis";
-        public string Opis => "Zwraca literę, słowo lub linię tekstu.";
-        public Brush Kolor => Kolory.Tekst;
+        public override string Nazwa => "Napis";
+        public override string Opis => "Zwraca literę, słowo lub linię tekstu.";
+        public override Brush Kolor => Kolory.Tekst;
     }
 }

@@ -10,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
     {
         public void DragOver(IDropInfo dropInfo)
         {
-            IKlocekPionowy upuszczanyKlocek = dropInfo.Data as IKlocekPionowy;
+            KlocekPionowy upuszczanyKlocek = dropInfo.Data as KlocekPionowy;
             DragDropEffects efektUpuszczenia;
 
             if (upuszczanyKlocek == null)
@@ -26,8 +26,8 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 
         public void Drop(IDropInfo dropInfo)
         {
-            ObservableCollection<IKlocekPionowy> docelowaKolekcja = (ObservableCollection<IKlocekPionowy>) dropInfo.TargetCollection;
-            IKlocekPionowy kopiaUpuszczanegoObiektu = (IKlocekPionowy) Activator.CreateInstance(dropInfo.Data.GetType());
+            ObservableCollection<KlocekPionowy> docelowaKolekcja = (ObservableCollection<KlocekPionowy>) dropInfo.TargetCollection;
+            KlocekPionowy kopiaUpuszczanegoObiektu = (KlocekPionowy) Activator.CreateInstance(dropInfo.Data.GetType());
 
             docelowaKolekcja.Insert(dropInfo.InsertIndex, kopiaUpuszczanegoObiektu);
         }

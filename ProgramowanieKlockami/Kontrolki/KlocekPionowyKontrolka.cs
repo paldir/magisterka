@@ -5,6 +5,6 @@ namespace ProgramowanieKlockami.Kontrolki
 {
     public class KlocekPionowyKontrolka : ContentControl
     {
-        public IKlocekPionowy Kontekst => (IKlocekPionowy) DataContext;
+        public KlocekPionowy Kontekst => (KlocekPionowy) DataContext;
     }
 }

@@ -10,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
     {
         public void DragOver(IDropInfo dropInfo)
         {
-            IKlocekZwracającyWartość upuszczanyKlocek = dropInfo.Data as IKlocekZwracającyWartość;
+            KlocekZwracającyWartość upuszczanyKlocek = dropInfo.Data as KlocekZwracającyWartość;
             DragDropEffects efektUpuszczenia;
 
             if (upuszczanyKlocek == null)
@@ -26,8 +26,8 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 
         public void Drop(IDropInfo dropInfo)
         {
-            ObservableCollection<IKlocekZwracającyWartość> docelowaKolekcja = (ObservableCollection<IKlocekZwracającyWartość>) dropInfo.TargetCollection;
-            docelowaKolekcja[0] = (IKlocekZwracającyWartość) Activator.CreateInstance(dropInfo.Data.GetType());
+            ObservableCollection<KlocekZwracającyWartość> docelowaKolekcja = (ObservableCollection<KlocekZwracającyWartość>) dropInfo.TargetCollection;
+            docelowaKolekcja[0] = (KlocekZwracającyWartość) Activator.CreateInstance(dropInfo.Data.GetType());
         }
     }
 }
