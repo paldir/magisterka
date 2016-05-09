@@ -97,7 +97,6 @@
     <Compile Include="Widok\GłówneOkno.xaml.cs">
       <DependentUpon>GłówneOkno.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Widok\Konwertery\ObiektNaNowyObiektKonwerter.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

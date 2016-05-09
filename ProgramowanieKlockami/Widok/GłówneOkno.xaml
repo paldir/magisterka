@@ -8,7 +8,6 @@
         xmlns:mwkl="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Logika"
         xmlns:mwkt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Tekst"
         xmlns:mwkz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne"
-        xmlns:wk="clr-namespace:ProgramowanieKlockami.Widok.Konwertery"
         Title="GłówneOkno">
     <Window.DataContext>
         <mw:Główny></mw:Główny>
@@ -41,7 +40,6 @@
             <Setter Property="MinWidth" Value="5"></Setter>
             <Setter Property="dd:DragDrop.DropHandler" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.ObsługującyUpuszczanieKlockówZwracającychWartość}"></Setter>
         </Style>
-        <wk:ObiektNaNowyObiektKonwerter x:Key="ObiektNaNowyObiektKonwerter"></wk:ObiektNaNowyObiektKonwerter>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowySzablon" TargetType="k:KlocekPionowyKontrolka">
             <StackPanel Orientation="Horizontal">
@@ -124,11 +122,8 @@
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Grid Margin="10,3,3,3">
-                            <Border Style="{StaticResource WewnętrzneObramowanie}" BorderBrush="{Binding Kolor}">
-                                <ContentControl MinHeight="20" MinWidth="10" Margin="1" Content="{Binding WartośćPierwsza, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
-                            </Border>
-                            <!--<Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>-->
+                        <Grid Margin="5">
+                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" ItemsSource="{Binding WartośćPierwsza}" MinHeight="20" MinWidth="10" Margin="1" Background="White"></ItemsControl>
                         </Grid>
                         <StackPanel VerticalAlignment="Center">
                             <ComboBox>
@@ -142,11 +137,8 @@
                                 </ComboBox.Items>
                             </ComboBox>
                         </StackPanel>
-                        <Grid Margin="10,3,3,3">
-                            <Border Style="{StaticResource WewnętrzneObramowanie}" BorderBrush="{Binding Kolor}">
-                                <ContentControl MinHeight="20" MinWidth="10" Margin="1" Content="{Binding WartośćDruga, Converter={StaticResource ObiektNaNowyObiektKonwerter}}"></ContentControl>
-                            </Border>
-                            <!--<Ellipse Style="{StaticResource PrawyCypekWewnętrzny}" Fill="{Binding Kolor}"></Ellipse>-->
+                        <Grid Margin="5">
+                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" ItemsSource="{Binding WartośćDruga}" MinHeight="20" MinWidth="10" Margin="1" Background="White"></ItemsControl>
                         </Grid>
                     </StackPanel>
                 </StackPanel>
