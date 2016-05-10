@@ -1,10 +1,9 @@
-﻿using System.Windows.Controls;
-using ProgramowanieKlockami.ModelWidoku.Klocki;
+﻿using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.Kontrolki
 {
-    public class KlocekZwracającyWartośćKontrolka : ContentControl
+    public class KlocekZwracającyWartośćKontrolka : KlocekKontrolka<KlocekZwracającyWartość>
     {
-        public KlocekZwracającyWartość Kontekst => (KlocekZwracającyWartość) DataContext;
+        public override KlocekZwracającyWartość Kontekst => (KlocekZwracającyWartość) DataContext;
     }
 }

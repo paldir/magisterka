@@ -8,5 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public static readonly Brush Logika = Brushes.Blue;
         public static readonly Brush Tekst = Brushes.SeaGreen;
         public static readonly Brush Zmienne = Brushes.Red;
+        public static readonly Brush Skupienie = Brushes.Goldenrod;
     }
 }

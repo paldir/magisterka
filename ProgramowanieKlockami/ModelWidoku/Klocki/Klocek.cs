@@ -19,6 +19,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             set
             {
                 _posiadaSkupienie = value;
+                KolorObramowania = PosiadaSkupienie ? Kolory.Skupienie : Kolor;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Brush _kolorObramowania;
+
+        public Brush KolorObramowania
+        {
+            get { return _kolorObramowania; }
+
+            set
+            {
+                _kolorObramowania = value;
 
                 OnPropertyChanged();
             }

@@ -87,7 +87,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
             ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
 
-            RozpoczęcieProgramu.Zawartość.Add(new Wyświetl());
+            RozpoczęcieProgramu.Zawartość.Add(new Jeżeli());
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Kontrolki\KlocekKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyZZawartościąKontrolka.cs" />
@@ -99,6 +100,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanieKlockówPionowych.cs" />
+    <Compile Include="Widok\Konwertery\SkupienieNaKolorObramowaniaKonwerter.cs" />
     <Page Include="Widok\GłówneOkno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

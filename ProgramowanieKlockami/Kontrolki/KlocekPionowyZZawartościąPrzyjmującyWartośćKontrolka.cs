@@ -1,10 +1,9 @@
-﻿using System.Windows.Controls;
-using ProgramowanieKlockami.ModelWidoku.Klocki;
+﻿using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.Kontrolki
 {
-    public class KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka : ContentControl
+    public class KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka : KlocekKontrolka<KlocekPionowyZZawartościąPrzyjmującyWartość>
     {
-        public KlocekPionowyZZawartościąPrzyjmującyWartość Kontekst => (KlocekPionowyZZawartościąPrzyjmującyWartość) DataContext;
+        public override KlocekPionowyZZawartościąPrzyjmującyWartość Kontekst => (KlocekPionowyZZawartościąPrzyjmującyWartość) DataContext;
     }
 }
