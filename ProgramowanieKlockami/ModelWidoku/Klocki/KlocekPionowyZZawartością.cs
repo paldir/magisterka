@@ -1,13 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyZZawartością : KlocekPionowy
     {
-        public abstract override string Nazwa { get; }
-        public abstract override string Opis { get; }
-        public abstract override Brush Kolor { get; }
         public ObservableCollection<KlocekPionowy> Zawartość { get; }
         public Komenda OdwrócenieWidoczności { get; }
 

@@ -21,12 +21,13 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
         public Komenda KomendaPrzejęciaSkupienia { get; }
+        public Komenda KomendaUsunięciaKlockaPionowego { get; }
+        public Komenda KomendaUsunięciaKlockaZwracającegoWartość { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
         public IEnumerable<Klocek> KlockiTekstowe { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
-
 
         private string _nazwaNowejZmiennej;
 
@@ -83,16 +84,11 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
             KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
+            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy);
+            KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
             Powiększenie = 1;
             ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
             ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
-
-            RozpoczęcieProgramu.Zawartość.Add(new Jeżeli());
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void DodajZmienną()
@@ -122,6 +118,25 @@ namespace ProgramowanieKlockami.ModelWidoku
             Klocek klocek = (Klocek) obiektKlocka;
             klocek.PosiadaSkupienie = true;
             _klocekPosiadającySkupienie = klocek;
+        }
+
+        private void UsuńKlocekPionowy()
+        {
+            KlocekPionowy usuwanyKlocek = (KlocekPionowy) _klocekPosiadającySkupienie;
+            ObservableCollection<KlocekPionowy> miejsceUmieszczenia = usuwanyKlocek.MiejsceUmieszczenia;
+
+            miejsceUmieszczenia?.Remove(usuwanyKlocek);
+        }
+
+        private void UsuńKlocekZwracającyWartość()
+        {
+            KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość) _klocekPosiadającySkupienie;
+            usuwanyKlocek.MiejsceUmieszczenia[0] = null;
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

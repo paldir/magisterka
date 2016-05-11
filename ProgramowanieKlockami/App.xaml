@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="Widok/GłówneOkno.xaml">
     <Application.Resources>
-        <Style x:Key="GridKlocka" TargetType="Grid">
-            <Setter Property="Margin" Value="1"></Setter>
-        </Style>
         <Style x:Key="GridKlockaZGórnąDziurką" TargetType="Grid" BasedOn="{StaticResource GridKlocka}">
             <Setter Property="OpacityMask">
                 <Setter.Value>
@@ -100,13 +97,13 @@
         <Style x:Key="WewnętrzneObramowanie" TargetType="Border" BasedOn="{StaticResource Obramowanie}">
             <Setter Property="Background" Value="White"></Setter>
         </Style>
-        <Style x:Key="PanelKlocka" TargetType="StackPanel">
+        <Style x:Key="StackPanelKlocka" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"></Setter>
         </Style>
-        <Style x:Key="PanelKlockaNiekońcowego" TargetType="StackPanel" BasedOn="{StaticResource PanelKlocka}">
+        <Style x:Key="StackPanelKlockaNiekońcowego" TargetType="StackPanel" BasedOn="{StaticResource StackPanelKlocka}">
             <Setter Property="Margin" Value="10"></Setter>
         </Style>
-        <Style x:Key="PanelKlockaKońcowego" TargetType="StackPanel" BasedOn="{StaticResource PanelKlocka}">
+        <Style x:Key="StackPanelKlockaKońcowego" TargetType="StackPanel" BasedOn="{StaticResource StackPanelKlocka}">
             <Setter Property="Margin" Value="5"></Setter>
         </Style>
         <Style x:Key="TekstKlocka" TargetType="TextBlock">
