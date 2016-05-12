@@ -9,11 +9,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         private bool _widoczny;
 
-        public bool Widoczny
+        public bool Rozwinięty
         {
             get { return _widoczny; }
 
-            private set
+            set
             {
                 _widoczny = value;
 
@@ -24,13 +24,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         protected KlocekPionowyZZawartością()
         {
             Zawartość = new ObservableCollection<KlocekPionowy>();
-            Widoczny = true;
+            Rozwinięty = true;
             OdwrócenieWidoczności = new Komenda(OdwróćWidoczność);
         }
 
         private void OdwróćWidoczność()
         {
-            Widoczny = !Widoczny;
+            Rozwinięty = !Rozwinięty;
         }
     }
 }

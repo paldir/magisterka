@@ -34,18 +34,6 @@ namespace ProgramowanieKlockami.ModelWidoku
             MożnaWykonać = () => true;
         }
 
-        public Komenda(Action akcja, Func<bool> możnaWykonać)
-        {
-            _akcja = akcja;
-            MożnaWykonać = możnaWykonać;
-        }
-
-        public Komenda(Action<object> akcja, Func<bool> możnaWykonać)
-        {
-            _akcjaZParametrem = akcja;
-            MożnaWykonać = możnaWykonać;
-        }
-
         public bool CanExecute(object parameter)
         {
             return MożnaWykonać();

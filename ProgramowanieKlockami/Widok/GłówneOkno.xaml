@@ -14,6 +14,7 @@
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
             <MenuItem Header="Usuń" Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaPionowego}"></MenuItem>
+            <MenuItem Header="Zwiń/Rozwiń" Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaZwinięciaRozwinięciaKlockaZZawartością}"></MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="MenuKontekstoweKlockaZwracającegoWartość">
             <MenuItem Header="Usuń" Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaZwracającegoWartość}"></MenuItem>
@@ -102,7 +103,7 @@
                             </Border>
                         </StackPanel>
                     </StackPanel>
-                    <DockPanel LastChildFill="True" Margin="1,0,0,0"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Widoczny, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                    <DockPanel LastChildFill="True" Margin="1,0,0,0"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
                         <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" MinWidth="12" ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewMouseDown">
@@ -159,7 +160,7 @@
                         </StackPanel>
                         <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"></ItemsControl>
                     </StackPanel>
-                    <DockPanel LastChildFill="True" Margin="1,0,0,0"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Widoczny, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                    <DockPanel LastChildFill="True" Margin="1,0,0,0"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
                         <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" MinWidth="12" ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewMouseDown">
