@@ -121,7 +121,6 @@ namespace ProgramowanieKlockami.ModelWidoku
             klocek.PosiadaSkupienie = true;
             _klocekPosiadającySkupienie = klocek;
             KomendaUsunięciaKlockaPionowego.MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy;
-            KomendaZwinięciaRozwinięciaKlockaZZawartością.MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy;
         }
 
         private void UsuńKlocekPionowy()
@@ -134,7 +133,17 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private bool SprawdźCzyMożnaUsunąćKlocekPionowy()
         {
-            KlocekPionowy usuwanyKlocek = (KlocekPionowy)_klocekPosiadającySkupienie;
+            KlocekPionowy usuwanyKlocek = _klocekPosiadającySkupienie as KlocekPionowy;
+
+            if (usuwanyKlocek == null)
+                return false;
+
+            return usuwanyKlocek.MiejsceUmieszczenia != null;
+        }
+
+        private bool SprawdźCzyMożnaUsunąćKlocekZwracającyWartość()
+        {
+            KlocekZwracającyWartość usuwanyKlocek = _klocekPosiadającySkupienie as KlocekZwracającyWartość;
 
             if (usuwanyKlocek == null)
                 return false;
