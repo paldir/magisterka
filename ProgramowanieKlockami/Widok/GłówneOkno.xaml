@@ -287,7 +287,7 @@
         <DockPanel LastChildFill="True">
             <TabControl TabStripPlacement="Left" Width="200">
                 <TabItem Header="Logika">
-                    <ItemsControl dd:DragDrop.IsDragSource="True" ItemsSource="{Binding KlockiLogiczne}"></ItemsControl>
+                    <ItemsControl dd:DragDrop.IsDragSource="True" dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}" ItemsSource="{Binding KlockiLogiczne}"></ItemsControl>
                 </TabItem>
                 <TabItem Header="Tekst">
                     <ItemsControl dd:DragDrop.IsDragSource="True" ItemsSource="{Binding KlockiTekstowe}"></ItemsControl>

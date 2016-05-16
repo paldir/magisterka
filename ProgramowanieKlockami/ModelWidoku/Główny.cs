@@ -29,6 +29,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
+        public ObsługującyPrzeciąganieZPrzybornika ObsługującyPrzeciąganieZPrzybornika { get; }
 
         private string _nazwaNowejZmiennej;
 
@@ -91,6 +92,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             Powiększenie = 1;
             ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
             ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
+            ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
         }
 
         private void DodajZmienną()
