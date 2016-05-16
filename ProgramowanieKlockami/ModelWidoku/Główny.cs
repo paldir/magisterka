@@ -16,23 +16,22 @@ namespace ProgramowanieKlockami.ModelWidoku
     {
         private Klocek _klocekPosiadającySkupienie;
 
-        public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
-        public ObservableCollection<Zmienna> Zmienne { get; }
+        public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
+        public IEnumerable<Klocek> KlockiLogiczne { get; }
+        public IEnumerable<Klocek> KlockiTekstowe { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
-        public Komenda KomendaUsunięciaZmiennej { get; }
         public Komenda KomendaPrzejęciaSkupienia { get; }
         public Komenda KomendaUsunięciaKlockaPionowego { get; }
         public Komenda KomendaUsunięciaKlockaZwracającegoWartość { get; }
+        public Komenda KomendaUsunięciaZmiennej { get; }
         public Komenda KomendaZwinięciaRozwinięciaKlockaZZawartością { get; }
-        public IEnumerable<Klocek> KlockiLogiczne { get; }
-        public IEnumerable<Klocek> KlockiTekstowe { get; }
-        public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
+        public ObsługującyPrzeciąganieZPrzybornika ObsługującyPrzeciąganieZPrzybornika { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
-        public ObsługującyPrzeciąganieZPrzybornika ObsługującyPrzeciąganieZPrzybornika { get; }
+        public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
+        public ObservableCollection<Zmienna> Zmienne { get; }
 
         private string _nazwaNowejZmiennej;
-
         public string NazwaNowejZmiennej
         {
             get { return _nazwaNowejZmiennej; }
@@ -46,7 +45,6 @@ namespace ProgramowanieKlockami.ModelWidoku
         }
 
         private double _powiększenie;
-
         public double Powiększenie
         {
             get { return _powiększenie; }
@@ -63,6 +61,12 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public Główny()
         {
+            KlockiDotycząceZmiennych = new Klocek[]
+{
+                new UstawZmienną(),
+                new WartośćZmiennej()
+};
+
             KlockiLogiczne = new Klocek[]
             {
                 new Jeżeli(),
@@ -75,24 +79,18 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Wyświetl()
             };
 
-            KlockiDotycząceZmiennych = new Klocek[]
-            {
-                new UstawZmienną(),
-                new WartośćZmiennej()
-            };
-
-            RozpoczęcieProgramu = new RozpoczęcieProgramu();
-            Zmienne = new ObservableCollection<Zmienna>();
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
-            KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
             KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
-            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) {MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy};
+            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) { MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy };
             KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
+            KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
             KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) {MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy};
-            Powiększenie = 1;
+            ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
             ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
             ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
-            ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
+            Powiększenie = 1;
+            RozpoczęcieProgramu = new RozpoczęcieProgramu();
+            Zmienne = new ObservableCollection<Zmienna>();
         }
 
         private void DodajZmienną()
@@ -107,31 +105,16 @@ namespace ProgramowanieKlockami.ModelWidoku
             }
         }
 
-        private void UsuńZmienną(object zmiennaDoUsunięcia)
-        {
-            Zmienna zmienna = (Zmienna) zmiennaDoUsunięcia;
-
-            Zmienne.Remove(zmienna);
-        }
-
         private void PrzejmijSkupienie(object obiektKlocka)
         {
             if (_klocekPosiadającySkupienie != null)
                 _klocekPosiadającySkupienie.PosiadaSkupienie = false;
 
-            Klocek klocek = (Klocek) obiektKlocka;
+            Klocek klocek = (Klocek)obiektKlocka;
             klocek.PosiadaSkupienie = true;
             _klocekPosiadającySkupienie = klocek;
             KomendaUsunięciaKlockaPionowego.MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy;
             KomendaZwinięciaRozwinięciaKlockaZZawartością.MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy;
-        }
-
-        private void UsuńKlocekPionowy()
-        {
-            KlocekPionowy usuwanyKlocek = (KlocekPionowy) _klocekPosiadającySkupienie;
-            ObservableCollection<KlocekPionowy> miejsceUmieszczenia = usuwanyKlocek.MiejsceUmieszczenia;
-
-            miejsceUmieszczenia?.Remove(usuwanyKlocek);
         }
 
         private bool SprawdźCzyMożnaUsunąćKlocekPionowy()
@@ -141,23 +124,38 @@ namespace ProgramowanieKlockami.ModelWidoku
             return usuwanyKlocek?.MiejsceUmieszczenia != null;
         }
 
-        private void UsuńKlocekZwracającyWartość()
-        {
-            KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość) _klocekPosiadającySkupienie;
-            usuwanyKlocek.MiejsceUmieszczenia[0] = null;
-        }
-
-        private void ZwińRozwińKlocekZZawartością()
-        {
-            KlocekPionowyZZawartością klocek = (KlocekPionowyZZawartością) _klocekPosiadającySkupienie;
-            klocek.Rozwinięty = !klocek.Rozwinięty;
-        }
-
         private bool SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy()
         {
             KlocekPionowyZZawartością klocek = _klocekPosiadającySkupienie as KlocekPionowyZZawartością;
 
             return klocek != null;
+        }
+
+        private void UsuńKlocekPionowy()
+        {
+            KlocekPionowy usuwanyKlocek = (KlocekPionowy)_klocekPosiadającySkupienie;
+            ObservableCollection<KlocekPionowy> miejsceUmieszczenia = usuwanyKlocek.MiejsceUmieszczenia;
+
+            miejsceUmieszczenia?.Remove(usuwanyKlocek);
+        }
+
+        private void UsuńKlocekZwracającyWartość()
+        {
+            KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość)_klocekPosiadającySkupienie;
+            usuwanyKlocek.MiejsceUmieszczenia[0] = null;
+        }
+
+        private void UsuńZmienną(object zmiennaDoUsunięcia)
+        {
+            Zmienna zmienna = (Zmienna) zmiennaDoUsunięcia;
+
+            Zmienne.Remove(zmienna);
+        }
+
+        private void ZwińRozwińKlocekZZawartością()
+        {
+            KlocekPionowyZZawartością klocek = (KlocekPionowyZZawartością)_klocekPosiadającySkupienie;
+            klocek.Rozwinięty = !klocek.Rozwinięty;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

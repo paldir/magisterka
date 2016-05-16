@@ -4,18 +4,17 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyZZawartością : KlocekPionowy
     {
-        public ObservableCollection<KlocekPionowy> Zawartość { get; }
         public Komenda OdwrócenieWidoczności { get; }
+        public ObservableCollection<KlocekPionowy> Zawartość { get; }
 
-        private bool _widoczny;
-
+        private bool _rozwinięty;
         public bool Rozwinięty
         {
-            get { return _widoczny; }
+            get { return _rozwinięty; }
 
             set
             {
-                _widoczny = value;
+                _rozwinięty = value;
 
                 OnPropertyChanged();
             }

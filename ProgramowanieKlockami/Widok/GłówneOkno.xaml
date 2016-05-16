@@ -13,75 +13,114 @@
     <Window.Resources>
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
-            <MenuItem Header="Usuń" Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaPionowego}"></MenuItem>
-            <MenuItem Header="Zwiń/Rozwiń" Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaZwinięciaRozwinięciaKlockaZZawartością}"></MenuItem>
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaPionowego}"
+                      Header="Usuń"></MenuItem>
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaZwinięciaRozwinięciaKlockaZZawartością}"
+                      Header="Zwiń/Rozwiń"></MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="MenuKontekstoweKlockaZwracającegoWartość">
-            <MenuItem Header="Usuń" Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaZwracającegoWartość}"></MenuItem>
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaZwracającegoWartość}"
+                      Header="Usuń"></MenuItem>
         </ContextMenu>
-        <Style x:Key="ListaZmiennych" TargetType="ComboBox">
-            <Setter Property="ItemsSource" Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=Zmienne}"></Setter>
-            <Setter Property="DisplayMemberPath" Value="Nazwa"></Setter>
+        <Style x:Key="ListaZmiennych"
+               TargetType="ComboBox">
+            <Setter Property="ItemsSource"
+                    Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=Zmienne}"></Setter>
+            <Setter Property="DisplayMemberPath"
+                    Value="Nazwa"></Setter>
         </Style>
-        <Style x:Key="MiejsceUpuszczaniaKlocków" TargetType="ItemsControl">
-            <Setter Property="Background" Value="Transparent"></Setter>
-            <Setter Property="dd:DragDrop.IsDropTarget" Value="True"></Setter>
+        <Style x:Key="MiejsceUpuszczaniaKlocków"
+               TargetType="ItemsControl">
+            <Setter Property="Background"
+                    Value="Transparent"></Setter>
+            <Setter Property="dd:DragDrop.IsDropTarget"
+                    Value="True"></Setter>
         </Style>
-        <Style x:Key="MiejsceUpuszczaniaKlockówPionowych" BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}" TargetType="ItemsControl">
-            <Setter Property="MinHeight" Value="10"></Setter>
-            <Setter Property="dd:DragDrop.DropHandler" Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówPionowych}"></Setter>
+        <Style x:Key="MiejsceUpuszczaniaKlockówPionowych"
+               BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}"
+               TargetType="ItemsControl">
+            <Setter Property="MinHeight"
+                    Value="10"></Setter>
+            <Setter Property="dd:DragDrop.DropHandler"
+                    Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówPionowych}"></Setter>
         </Style>
-        <Style x:Key="MiejsceUpuszczaniaKlockówZwracającychWartość" BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}" TargetType="ItemsControl">
-            <Setter Property="MinWidth" Value="5"></Setter>
-            <Setter Property="dd:DragDrop.DropHandler" Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówZwracającychWartość}"></Setter>
+        <Style x:Key="MiejsceUpuszczaniaKlockówZwracającychWartość"
+               BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}"
+               TargetType="ItemsControl">
+            <Setter Property="MinWidth"
+                    Value="5"></Setter>
+            <Setter Property="dd:DragDrop.DropHandler"
+                    Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówZwracającychWartość}"></Setter>
         </Style>
-        <Style x:Key="PanelKlocka" TargetType="Panel">
-            <Setter Property="Margin" Value="1"></Setter>
+        <Style x:Key="PanelKlocka"
+               TargetType="Panel">
+            <Setter Property="Margin"
+                    Value="1"></Setter>
         </Style>
-        <Style x:Key="PanelKlockaPionowego" TargetType="Panel" BasedOn="{StaticResource PanelKlocka}">
-            <Setter Property="ContextMenu" Value="{StaticResource MenuKontekstoweKlockaPionowego}"></Setter>
+        <Style x:Key="PanelKlockaPionowego"
+               TargetType="Panel"
+               BasedOn="{StaticResource PanelKlocka}">
+            <Setter Property="ContextMenu"
+                    Value="{StaticResource MenuKontekstoweKlockaPionowego}"></Setter>
         </Style>
-        <Style x:Key="PanelKlockaZwracającegoWartość" TargetType="Panel" BasedOn="{StaticResource PanelKlocka}">
-            <Setter Property="ContextMenu" Value="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"></Setter>
+        <Style x:Key="PanelKlockaZwracającegoWartość"
+               TargetType="Panel"
+               BasedOn="{StaticResource PanelKlocka}">
+            <Setter Property="ContextMenu"
+                    Value="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"></Setter>
         </Style>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
-        <ControlTemplate x:Key="KlocekPionowySzablon" TargetType="k:KlocekPionowyKontrolka">
+        <ControlTemplate x:Key="KlocekPionowySzablon"
+                         TargetType="k:KlocekPionowyKontrolka">
             <StackPanel Orientation="Horizontal">
-                <Grid Style="{StaticResource PanelKlockaPionowego}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                      Style="{StaticResource PanelKlockaPionowego}">
                     <ContentPresenter></ContentPresenter>
                 </Grid>
             </StackPanel>
         </ControlTemplate>
-        <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon" TargetType="k:KlocekPionowyPrzyjmującyWartośćKontrolka">
+        <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon"
+                         TargetType="k:KlocekPionowyPrzyjmującyWartośćKontrolka">
             <StackPanel Orientation="Horizontal">
-                <Grid Style="{StaticResource PanelKlockaPionowego}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                      Style="{StaticResource PanelKlockaPionowego}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
-                            <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                            <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    <Border BorderThickness="3" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}">
+                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                            BorderThickness="3">
                         <ContentPresenter></ContentPresenter>
                     </Border>
                 </Grid>
-                <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"></ItemsControl>
+                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
+                              Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
             </StackPanel>
         </ControlTemplate>
-        <ControlTemplate x:Key="KlocekPionowyZZawartościąSzablon" TargetType="k:KlocekPionowyZZawartościąKontrolka">
+        <ControlTemplate x:Key="KlocekPionowyZZawartościąSzablon"
+                         TargetType="k:KlocekPionowyZZawartościąKontrolka">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="0,0,0,1">
-                    <StackPanel Orientation="Horizontal" ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
-                        <StackPanel Orientation="Horizontal" Margin="1,1,1,0" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                    <StackPanel ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                                Orientation="Horizontal">
+                        <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                                    Margin="1,1,1,0"
+                                    Orientation="Horizontal">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewMouseDown">
-                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                           CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            <Border BorderThickness="3,3,3,0" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}">
+                            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                    BorderThickness="3,3,3,0">
                                 <StackPanel Orientation="Horizontal">
                                     <Grid MinWidth="6"></Grid>
                                     <Grid>
-                                        <Border BorderThickness="0,0,0,3" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}">
+                                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                                BorderThickness="0,0,0,3">
                                             <ContentPresenter HorizontalAlignment="Center"></ContentPresenter>
                                         </Border>
                                     </Grid>
@@ -89,30 +128,45 @@
                             </Border>
                         </StackPanel>
                     </StackPanel>
-                    <DockPanel LastChildFill="True" Margin="1,0,0,0"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
-                        <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" MinWidth="12" ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
+                    <DockPanel LastChildFill="True"
+                               Margin="1,0,0,0"
+                               Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                              ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                              MinWidth="12">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewMouseDown">
-                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                           CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            <Border BorderThickness="3,0" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"></Border>
+                            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                    BorderThickness="3,0"></Border>
                         </Grid>
                         <StackPanel Margin="1,1,0,5">
-                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"></ItemsControl>
+                            <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
                         </StackPanel>
                     </DockPanel>
-                    <StackPanel Orientation="Horizontal" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" HorizontalAlignment="Left" Margin="1,0,0,0" ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
+                    <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                                HorizontalAlignment="Left"
+                                Margin="1,0,0,0"
+                                Orientation="Horizontal">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewMouseDown">
-                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <Border BorderThickness="3,0,3,3" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}">
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="3,0,3,3">
                             <StackPanel Orientation="Horizontal">
                                 <Grid MinWidth="6"></Grid>
-                                <Grid MinHeight="9" Width="40">
-                                    <Border BorderThickness="0,3,0,0" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"></Border>
+                                <Grid MinHeight="9"
+                                      Width="40">
+                                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                            BorderThickness="0,3,0,0"></Border>
                                 </Grid>
                             </StackPanel>
                         </Border>
@@ -120,53 +174,76 @@
                 </StackPanel>
             </StackPanel>
         </ControlTemplate>
-        <ControlTemplate x:Key="KlocekPionowyZZawartościąPrzyjmującyWartośćSzablon" TargetType="k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka">
+        <ControlTemplate x:Key="KlocekPionowyZZawartościąPrzyjmującyWartośćSzablon"
+                         TargetType="k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="0,0,0,1">
                     <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Horizontal" Margin="1,1,1,0" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
+                        <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                                    ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                                    Margin="1,1,1,0"
+                                    Orientation="Horizontal">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewMouseDown">
-                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                           CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            <Border BorderThickness="3,3,3,0" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}">
+                            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                    BorderThickness="3,3,3,0">
                                 <StackPanel Orientation="Horizontal">
                                     <Grid MinWidth="6"></Grid>
                                     <Grid>
-                                        <Border BorderThickness="0,0,0,3" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}">
+                                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                                BorderThickness="0,0,0,3">
                                             <ContentPresenter HorizontalAlignment="Center"></ContentPresenter>
                                         </Border>
                                     </Grid>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
-                        <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"></ItemsControl>
+                        <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
+                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
                     </StackPanel>
-                    <DockPanel LastChildFill="True" Margin="1,0,0,0"  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
-                        <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" MinWidth="12" ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
+                    <DockPanel LastChildFill="True"
+                               Margin="1,0,0,0"
+                               Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                              ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                              MinWidth="12">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewMouseDown">
-                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                           CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            <Border BorderThickness="3,0" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"></Border>
+                            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                    BorderThickness="3,0"></Border>
                         </Grid>
                         <StackPanel Margin="1,1,0,5">
-                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}" ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"></ItemsControl>
+                            <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
                         </StackPanel>
                     </DockPanel>
-                    <StackPanel Orientation="Horizontal" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}" HorizontalAlignment="Left" Margin="1,0,0,0" ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
+                    <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                                HorizontalAlignment="Left"
+                                Margin="1,0,0,0"
+                                Orientation="Horizontal">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewMouseDown">
-                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <Border BorderThickness="3,0,3,3" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}">
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="3,0,3,3">
                             <StackPanel Orientation="Horizontal">
                                 <Grid MinWidth="6"></Grid>
-                                <Grid MinHeight="9" Width="40">
-                                    <Border BorderThickness="0,3,0,0" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"></Border>
+                                <Grid MinHeight="9"
+                                      Width="40">
+                                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                            BorderThickness="0,3,0,0"></Border>
                                 </Grid>
                             </StackPanel>
                         </Border>
@@ -174,16 +251,20 @@
                 </StackPanel>
             </StackPanel>
         </ControlTemplate>
-        <ControlTemplate x:Key="KlocekZwracającyWartośćSzablon" TargetType="k:KlocekZwracającyWartośćKontrolka">
+        <ControlTemplate x:Key="KlocekZwracającyWartośćSzablon"
+                         TargetType="k:KlocekZwracającyWartośćKontrolka">
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
-                    <Grid Style="{StaticResource PanelKlockaZwracającegoWartość}" Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}">
+                    <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                          Style="{StaticResource PanelKlockaZwracającegoWartość}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewMouseDown">
-                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                        <Border BorderThickness="3" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}">
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="3">
                             <ContentPresenter></ContentPresenter>
                         </Border>
                     </Grid>
@@ -209,7 +290,12 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Grid Margin="5">
-                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" ItemsSource="{Binding WartośćPierwsza}" MinHeight="20" MinWidth="10" Margin="1" Background="White"></ItemsControl>
+                            <ItemsControl Background="White"
+                                          ItemsSource="{Binding Wartość1}"
+                                          Margin="1"
+                                          MinHeight="20"
+                                          MinWidth="10"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
                         </Grid>
                         <StackPanel VerticalAlignment="Center">
                             <ComboBox>
@@ -224,7 +310,12 @@
                             </ComboBox>
                         </StackPanel>
                         <Grid Margin="5">
-                            <ItemsControl Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}" ItemsSource="{Binding WartośćDruga}" MinHeight="20" MinWidth="10" Margin="1" Background="White"></ItemsControl>
+                            <ItemsControl Background="White"
+                                          ItemsSource="{Binding Wartość2}"
+                                          Margin="1"
+                                          MinHeight="20"
+                                          MinWidth="10"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
                         </Grid>
                     </StackPanel>
                 </StackPanel>
@@ -248,7 +339,7 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkz:UstawZmienną}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
-                <StackPanel  Style="{StaticResource StackPanelKlockaNiekońcowego}">
+                <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Ustaw</TextBlock>
                     <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
                     <TextBlock Style="{StaticResource TekstKlocka}">na</TextBlock>
@@ -268,34 +359,46 @@
     </Window.DataContext>
     <Grid>
         <DockPanel LastChildFill="True">
-            <TabControl TabStripPlacement="Left" Width="200">
+            <TabControl TabStripPlacement="Left"
+                        Width="200">
                 <TabItem Header="Logika">
-                    <ItemsControl dd:DragDrop.IsDragSource="True" dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}" ItemsSource="{Binding KlockiLogiczne}"></ItemsControl>
+                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                  dd:DragDrop.IsDragSource="True"
+                                  ItemsSource="{Binding KlockiLogiczne}"></ItemsControl>
                 </TabItem>
                 <TabItem Header="Tekst">
-                    <ItemsControl dd:DragDrop.IsDragSource="True" ItemsSource="{Binding KlockiTekstowe}"></ItemsControl>
+                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                  dd:DragDrop.IsDragSource="True"
+                                  ItemsSource="{Binding KlockiTekstowe}"></ItemsControl>
                 </TabItem>
                 <TabItem Header="Zmienne">
-                    <ItemsControl dd:DragDrop.IsDragSource="True" ItemsSource="{Binding KlockiDotycząceZmiennych}"></ItemsControl>
+                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                  dd:DragDrop.IsDragSource="True"
+                                  ItemsSource="{Binding KlockiDotycząceZmiennych}"></ItemsControl>
                 </TabItem>
             </TabControl>
             <GroupBox Header="Zmienne">
                 <StackPanel>
-                    <ListBox ItemsSource="{Binding Zmienne}" IsSynchronizedWithCurrentItem="True" SelectionMode="Single">
+                    <ListBox IsSynchronizedWithCurrentItem="True"
+                             ItemsSource="{Binding Zmienne}"
+                             SelectionMode="Single">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
-                                    <Button Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaZmiennej}" CommandParameter="{Binding}">Usuń</Button>
+                                    <Button Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaZmiennej}"
+                                            CommandParameter="{Binding}">Usuń</Button>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                     <StackPanel Orientation="Horizontal">
                         <Label>Nowa:</Label>
-                        <TextBox Width="50" Text="{Binding NazwaNowejZmiennej, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox Text="{Binding NazwaNowejZmiennej, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="50">
                             <TextBox.InputBindings>
-                                <KeyBinding Key="Enter" Command="{Binding KomendaDodaniaZmiennej}"></KeyBinding>
+                                <KeyBinding Command="{Binding KomendaDodaniaZmiennej}"
+                                            Key="Enter"></KeyBinding>
                             </TextBox.InputBindings>
                         </TextBox>
                     </StackPanel>
@@ -306,15 +409,25 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Visible">
+                <ScrollViewer Grid.Row="0"
+                              VerticalScrollBarVisibility="Visible">
                     <ContentControl Content="{Binding RozpoczęcieProgramu}">
                         <ContentControl.LayoutTransform>
-                            <ScaleTransform ScaleX="{Binding Powiększenie}" ScaleY="{Binding Powiększenie}"></ScaleTransform>
+                            <ScaleTransform ScaleX="{Binding Powiększenie}"
+                                            ScaleY="{Binding Powiększenie}"></ScaleTransform>
                         </ContentControl.LayoutTransform>
                     </ContentControl>
                 </ScrollViewer>
-                <DockPanel Grid.Row="1" LastChildFill="True">
-                    <Slider Minimum="0.25" Maximum="4" Value="{Binding Powiększenie}" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" TickFrequency="0.25" TickPlacement="BottomRight" IsSnapToTickEnabled="True"></Slider>
+                <DockPanel Grid.Row="1"
+                           LastChildFill="True">
+                    <Slider AutoToolTipPlacement="TopLeft"
+                            AutoToolTipPrecision="2"
+                            IsSnapToTickEnabled="True"
+                            Maximum="4"
+                            Minimum="0.25"
+                            TickFrequency="0.25"
+                            TickPlacement="BottomRight"
+                            Value="{Binding Powiększenie}"></Slider>
                 </DockPanel>
             </Grid>
         </DockPanel>

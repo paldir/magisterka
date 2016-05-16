@@ -26,10 +26,10 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 
         public void Drop(IDropInfo dropInfo)
         {
-            ObservableCollection<KlocekZwracającyWartość> docelowaKolekcja = (ObservableCollection<KlocekZwracającyWartość>) dropInfo.TargetCollection;
-            KlocekZwracającyWartość kopiaUpuszczanegoKlocka = (KlocekZwracającyWartość) Activator.CreateInstance(dropInfo.Data.GetType());
-            kopiaUpuszczanegoKlocka.MiejsceUmieszczenia = docelowaKolekcja;
-            docelowaKolekcja[0] = kopiaUpuszczanegoKlocka;
+            ObservableCollection<KlocekZwracającyWartość> docelowaKolekcja = (ObservableCollection<KlocekZwracającyWartość>)dropInfo.TargetCollection;
+            KlocekZwracającyWartość upuszczanyKlocek = (KlocekZwracającyWartość)dropInfo.Data;
+            upuszczanyKlocek.MiejsceUmieszczenia = docelowaKolekcja;
+            docelowaKolekcja[0] = upuszczanyKlocek;
         }
     }
 }

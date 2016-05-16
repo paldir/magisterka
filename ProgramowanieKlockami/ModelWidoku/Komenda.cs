@@ -9,7 +9,6 @@ namespace ProgramowanieKlockami.ModelWidoku
         private readonly Action<object> _akcjaZParametrem;
 
         private Func<bool> _możnaWykonać;
-
         public Func<bool> MożnaWykonać
         {
             get { return _możnaWykonać; }

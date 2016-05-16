@@ -7,8 +7,6 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
     {
         public bool CanStartDrag(IDragInfo dragInfo)
         {
-            dragInfo.Effects = System.Windows.DragDropEffects.Copy;
-
             return true;
         }
 
