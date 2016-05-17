@@ -89,6 +89,10 @@
     <Compile Include="ModelWidoku\Klocki\Tekst\Napis.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Wyświetl.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzeciąganieZPrzybornika.cs" />
+    <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenie.cs" />
+    <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówPionowych.cs" />
+    <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówZwracającychWartość.cs" />
+    <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanieKlockówZwracającychWartość.cs" />
     <Compile Include="ModelWidoku\Zmienna.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\UstawZmienną.cs" />

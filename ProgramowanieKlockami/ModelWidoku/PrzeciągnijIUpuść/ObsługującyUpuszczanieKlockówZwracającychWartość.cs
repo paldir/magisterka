@@ -1,34 +1,17 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using GongSolutions.Wpf.DragDrop;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 {
-    public class ObsługującyUpuszczanieKlockówZwracającychWartość : IDropTarget
+    public class ObsługującyUpuszczanieKlockówZwracającychWartość : ObsługującyUpuszczanie<KlocekZwracającyWartość>
     {
-        public void DragOver(IDropInfo dropInfo)
+        public override void Drop(IDropInfo dropInfo)
         {
-            KlocekZwracającyWartość upuszczanyKlocek = dropInfo.Data as KlocekZwracającyWartość;
-            DragDropEffects efektUpuszczenia;
-
-            if (upuszczanyKlocek == null)
-                efektUpuszczenia = DragDropEffects.None;
-            else
-            {
-                efektUpuszczenia = DragDropEffects.Copy;
-                dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
-            }
-
-            dropInfo.Effects = efektUpuszczenia;
-        }
-
-        public void Drop(IDropInfo dropInfo)
-        {
-            ObservableCollection<KlocekZwracającyWartość> docelowaKolekcja = (ObservableCollection<KlocekZwracającyWartość>)dropInfo.TargetCollection;
-            KlocekZwracającyWartość upuszczanyKlocek = (KlocekZwracającyWartość)dropInfo.Data;
+            ObservableCollection<KlocekZwracającyWartość> docelowaKolekcja = (ObservableCollection<KlocekZwracającyWartość>) dropInfo.TargetCollection;
+            KlocekZwracającyWartość upuszczanyKlocek = (KlocekZwracającyWartość) dropInfo.Data;
             upuszczanyKlocek.MiejsceUmieszczenia = docelowaKolekcja;
+            upuszczanyKlocek.ZPrzybornika = false;
             docelowaKolekcja[0] = upuszczanyKlocek;
         }
     }

@@ -10,11 +10,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
 
+        public bool ZPrzybornika { get; set; }
+
         private bool _aktywny;
+
         public bool Aktywny
         {
-            get
-            { return _aktywny; }
+            get { return _aktywny; }
 
             set
             {
@@ -25,6 +27,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         }
 
         private Brush _kolorObramowania;
+
         public Brush KolorObramowania
         {
             get { return _kolorObramowania; }
@@ -38,6 +41,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         }
 
         private bool _posiadaSkupienie;
+
         public bool PosiadaSkupienie
         {
             get { return _posiadaSkupienie; }

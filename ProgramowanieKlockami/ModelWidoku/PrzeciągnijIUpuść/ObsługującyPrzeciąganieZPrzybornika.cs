@@ -1,5 +1,7 @@
 ﻿using GongSolutions.Wpf.DragDrop;
 using System;
+using System.Windows;
+using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 {
@@ -22,8 +24,10 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 
         public void StartDrag(IDragInfo dragInfo)
         {
-            dragInfo.Effects = System.Windows.DragDropEffects.Copy;
-            dragInfo.Data = Activator.CreateInstance(dragInfo.SourceItem.GetType());
+            dragInfo.Effects = DragDropEffects.Copy;
+            Klocek klocek = (Klocek) Activator.CreateInstance(dragInfo.SourceItem.GetType());
+            klocek.ZPrzybornika = true;
+            dragInfo.Data = klocek;
         }
     }
 }

@@ -33,22 +33,28 @@
                TargetType="ItemsControl">
             <Setter Property="Background"
                     Value="Transparent"></Setter>
+            <Setter Property="dd:DragDrop.IsDragSource"
+                    Value="True"></Setter>
             <Setter Property="dd:DragDrop.IsDropTarget"
                     Value="True"></Setter>
         </Style>
         <Style x:Key="MiejsceUpuszczaniaKlockówPionowych"
                BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}"
                TargetType="ItemsControl">
-            <Setter Property="MinHeight"
-                    Value="10"></Setter>
+            <Setter Property="dd:DragDrop.DragHandler"
+                    Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyPrzenoszenieKlockówPionowych}"></Setter>
             <Setter Property="dd:DragDrop.DropHandler"
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówPionowych}"></Setter>
+            <Setter Property="MinHeight"
+                    Value="10"></Setter>
         </Style>
         <Style x:Key="MiejsceUpuszczaniaKlockówZwracającychWartość"
                BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}"
                TargetType="ItemsControl">
             <Setter Property="MinWidth"
                     Value="5"></Setter>
+            <Setter Property="dd:DragDrop.DragHandler"
+                    Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyPrzenoszenieKlockówZwracającychWartość}"></Setter>
             <Setter Property="dd:DragDrop.DropHandler"
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówZwracającychWartość}"></Setter>
         </Style>
