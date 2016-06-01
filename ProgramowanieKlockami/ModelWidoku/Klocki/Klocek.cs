@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public abstract class Klocek : INotifyPropertyChanged
+    public abstract class Klocek : ICloneable, INotifyPropertyChanged
     {
         public abstract Brush Kolor { get; }
         public abstract string Nazwa { get; }
@@ -53,6 +54,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
                 OnPropertyChanged();
             }
+        }
+
+        public virtual object Clone()
+        {
+            return Activator.CreateInstance(GetType());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

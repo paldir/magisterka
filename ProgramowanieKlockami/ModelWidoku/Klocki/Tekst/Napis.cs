@@ -7,5 +7,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
         public override Brush Kolor => Kolory.Tekst;
         public override string Nazwa => "Napis";
         public override string Opis => "Zwraca literę, słowo lub linię tekstu.";
+
+        public string Tekst { get; set; }
+
+        public override object Zwróć()
+        {
+            return Tekst;
+        }
     }
 }

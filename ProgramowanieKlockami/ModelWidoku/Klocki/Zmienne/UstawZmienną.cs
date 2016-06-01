@@ -7,5 +7,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
         public override Brush Kolor => Kolory.Zmienne;
         public override string Nazwa => "Ustaw zmienną";
         public override string Opis => "Ustawia zmiennej wybraną wartość";
+
+        public Zmienna WybranaZmienna { get; set; }
+
+        public override void Wykonaj()
+        {
+            if ((WybranaZmienna != null) && (Wartość != null))
+                WybranaZmienna.Wartość = Wartość[0].Zwróć();
+        }
     }
 }

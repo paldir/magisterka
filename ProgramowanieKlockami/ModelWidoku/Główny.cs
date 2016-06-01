@@ -16,11 +16,13 @@ namespace ProgramowanieKlockami.ModelWidoku
     {
         private Klocek _klocekPosiadającySkupienie;
 
+        public Konsola Konsola { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
         public IEnumerable<Klocek> KlockiTekstowe { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaPrzejęciaSkupienia { get; }
+        public Komenda KomendaStartuProgramu { get; }
         public Komenda KomendaUsunięciaKlockaPionowego { get; }
         public Komenda KomendaUsunięciaKlockaZwracającegoWartość { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
@@ -63,6 +65,23 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public Główny()
         {
+            Konsola = new Konsola();
+            KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
+            KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
+            KomendaStartuProgramu = new Komenda(RozpocznijWykonywanieProgramu);
+            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) {MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy};
+            KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
+            KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
+            KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) {MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy};
+            ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
+            ObsługującyPrzenoszenieKlockówPionowych = new ObsługującyPrzenoszenieKlockówPionowych();
+            ObsługującyPrzenoszenieKlockówZwracającychWartość = new ObsługującyPrzenoszenieKlockówZwracającychWartość();
+            ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
+            ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
+            Powiększenie = 1;
+            RozpoczęcieProgramu = new RozpoczęcieProgramu();
+            Zmienne = new ObservableCollection<Zmienna>();
+
             KlockiDotycząceZmiennych = new Klocek[]
             {
                 new UstawZmienną(),
@@ -78,23 +97,8 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlockiTekstowe = new Klocek[]
             {
                 new Napis(),
-                new Wyświetl()
+                new Wyświetl {Konsola = Konsola}
             };
-
-            KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
-            KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
-            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) {MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy};
-            KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
-            KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
-            KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) {MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy};
-            ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
-            ObsługującyPrzenoszenieKlockówPionowych = new ObsługującyPrzenoszenieKlockówPionowych();
-            ObsługującyPrzenoszenieKlockówZwracającychWartość = new ObsługującyPrzenoszenieKlockówZwracającychWartość();
-            ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych();
-            ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
-            Powiększenie = 1;
-            RozpoczęcieProgramu = new RozpoczęcieProgramu();
-            Zmienne = new ObservableCollection<Zmienna>();
         }
 
         private void DodajZmienną()
@@ -119,6 +123,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             _klocekPosiadającySkupienie = klocek;
             KomendaUsunięciaKlockaPionowego.MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy;
             KomendaZwinięciaRozwinięciaKlockaZZawartością.MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy;
+        }
+
+        private void RozpocznijWykonywanieProgramu()
+        {
+            Konsola.Czyść();
+            RozpoczęcieProgramu.Wykonaj();
         }
 
         private bool SprawdźCzyMożnaUsunąćKlocekPionowy()

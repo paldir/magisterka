@@ -304,7 +304,7 @@
                                           Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
                         </Grid>
                         <StackPanel VerticalAlignment="Center">
-                            <ComboBox>
+                            <ComboBox SelectedItem="{Binding ZnakPorównania}">
                                 <ComboBox.Items>
                                     <ComboBoxItem IsSelected="True">=</ComboBoxItem>
                                     <ComboBoxItem>!=</ComboBoxItem>
@@ -331,7 +331,7 @@
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">"</TextBlock>
-                    <TextBox></TextBox>
+                    <TextBox Text="{Binding Tekst, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     <TextBlock Style="{StaticResource TekstKlocka}">"</TextBlock>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
@@ -347,7 +347,8 @@
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Ustaw</TextBlock>
-                    <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
+                    <ComboBox SelectedItem="{Binding WybranaZmienna}"
+                              Style="{StaticResource ListaZmiennych}"></ComboBox>
                     <TextBlock Style="{StaticResource TekstKlocka}">na</TextBlock>
                 </StackPanel>
             </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
@@ -355,7 +356,8 @@
         <DataTemplate DataType="{x:Type mwkz:WartośćZmiennej}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
-                    <ComboBox Style="{StaticResource ListaZmiennych}"></ComboBox>
+                    <ComboBox SelectedItem="{Binding WybranaZmienna}"
+                              Style="{StaticResource ListaZmiennych}"></ComboBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
@@ -364,7 +366,18 @@
         <StaticResource ResourceKey="GłównyModelWidoku"></StaticResource>
     </Window.DataContext>
     <Grid>
-        <DockPanel LastChildFill="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top">
+            <MenuItem Command="{Binding KomendaStartuProgramu}"
+                      Header="Start"></MenuItem>
+        </Menu>
+        <DockPanel Grid.Row="1"
+                   LastChildFill="True">
             <TabControl TabStripPlacement="Left"
                         Width="200">
                 <TabItem Header="Logika">
@@ -414,6 +427,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
                 </Grid.RowDefinitions>
                 <ScrollViewer Grid.Row="0"
                               VerticalScrollBarVisibility="Visible">
@@ -435,6 +449,8 @@
                             TickPlacement="BottomRight"
                             Value="{Binding Powiększenie}"></Slider>
                 </DockPanel>
+                <TextBlock Grid.Row="2"
+                           Text="{Binding Konsola.Zawartość}"></TextBlock>
             </Grid>
         </DockPanel>
     </Grid>

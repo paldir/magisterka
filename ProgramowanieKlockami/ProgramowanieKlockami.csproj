@@ -88,6 +88,7 @@
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Napis.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Wyświetl.cs" />
+    <Compile Include="ModelWidoku\Konsola.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzeciąganieZPrzybornika.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówPionowych.cs" />

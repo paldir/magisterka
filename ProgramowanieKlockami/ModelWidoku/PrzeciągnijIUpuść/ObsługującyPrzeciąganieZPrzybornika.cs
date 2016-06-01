@@ -25,7 +25,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
         public void StartDrag(IDragInfo dragInfo)
         {
             dragInfo.Effects = DragDropEffects.Copy;
-            Klocek klocek = (Klocek) Activator.CreateInstance(dragInfo.SourceItem.GetType());
+            Klocek klocek = (Klocek) ((Klocek) dragInfo.SourceItem).Clone();
             klocek.ZPrzybornika = true;
             dragInfo.Data = klocek;
         }
