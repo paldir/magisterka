@@ -304,16 +304,9 @@
                                           Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
                         </Grid>
                         <StackPanel VerticalAlignment="Center">
-                            <ComboBox SelectedItem="{Binding ZnakPorównania}">
-                                <ComboBox.Items>
-                                    <ComboBoxItem IsSelected="True">=</ComboBoxItem>
-                                    <ComboBoxItem>!=</ComboBoxItem>
-                                    <ComboBoxItem>&lt;</ComboBoxItem>
-                                    <ComboBoxItem>&lt;=</ComboBoxItem>
-                                    <ComboBoxItem>&gt;</ComboBoxItem>
-                                    <ComboBoxItem>&gt;=</ComboBoxItem>
-                                </ComboBox.Items>
-                            </ComboBox>
+                            <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                      ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=ZnakiPorównania}"
+                                      SelectedItem="{Binding ZnakPorównania}"></ComboBox>
                         </StackPanel>
                         <Grid Margin="5">
                             <ItemsControl Background="White"

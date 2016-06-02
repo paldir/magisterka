@@ -98,6 +98,13 @@
     <Compile Include="ModelWidoku\Zmienna.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\UstawZmienną.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\WartośćZmiennej.cs" />
+    <Compile Include="ModelWidoku\ZnakiPorównania\IZnakPorównania.cs" />
+    <Compile Include="ModelWidoku\ZnakiPorównania\Mniejszy.cs" />
+    <Compile Include="ModelWidoku\ZnakiPorównania\MniejszyRówny.cs" />
+    <Compile Include="ModelWidoku\ZnakiPorównania\Nierówny.cs" />
+    <Compile Include="ModelWidoku\ZnakiPorównania\Równy.cs" />
+    <Compile Include="ModelWidoku\ZnakiPorównania\Większy.cs" />
+    <Compile Include="ModelWidoku\ZnakiPorównania\WiększyRówny.cs" />
     <Compile Include="Widok\GłówneOkno.xaml.cs">
       <DependentUpon>GłówneOkno.xaml</DependentUpon>
     </Compile>

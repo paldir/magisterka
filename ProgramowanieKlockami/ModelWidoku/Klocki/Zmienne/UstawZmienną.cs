@@ -12,8 +12,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
 
         public override void Wykonaj()
         {
-            if ((WybranaZmienna != null) && (Wartość != null))
-                WybranaZmienna.Wartość = Wartość[0].Zwróć();
+            KlocekZwracającyWartość wartość = Wartość[0];
+
+            if ((WybranaZmienna != null) && (wartość != null))
+                WybranaZmienna.Wartość = wartość.Zwróć();
         }
     }
 }

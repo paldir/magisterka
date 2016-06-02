@@ -7,5 +7,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         public override Brush Kolor => Kolory.Logika;
         public override string Nazwa => "Jeżeli";
         public override string Opis => "Jeśli wartość jest prawdziwa, wykonuje instrukcje.";
+
+        public override void Wykonaj()
+        {
+            object wartośćWarunku = Wartość[0]?.Zwróć();
+
+            if (wartośćWarunku is bool && (bool) wartośćWarunku)
+                base.Wykonaj();
+        }
     }
 }

@@ -10,6 +10,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public string Tekst { get; set; }
 
+        public Napis()
+        {
+            Tekst = string.Empty;
+        }
+
         public override object Zwróć()
         {
             return Tekst;
