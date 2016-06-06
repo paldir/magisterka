@@ -71,10 +71,10 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
             KomendaStartuProgramu = new Komenda(RozpocznijWykonywanieProgramu);
-            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) { MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy };
+            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) {MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy};
             KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
-            KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) { MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy };
+            KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) {MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy};
             ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
             ObsługującyPrzenoszenieKlockówPionowych = new ObsługującyPrzenoszenieKlockówPionowych();
             ObsługującyPrzenoszenieKlockówZwracającychWartość = new ObsługującyPrzenoszenieKlockówZwracającychWartość();

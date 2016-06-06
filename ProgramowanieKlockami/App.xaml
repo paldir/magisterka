@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="Widok/GłówneOkno.xaml">
     <Application.Resources>
-        <Style x:Key="GridKlockaZGórnąDziurką" TargetType="Grid" BasedOn="{StaticResource GridKlocka}">
+        <Style x:Key="GridKlockaZGórnąDziurką"
+               TargetType="Grid"
+               BasedOn="{StaticResource GridKlocka}">
             <Setter Property="OpacityMask">
                 <Setter.Value>
-                    <DrawingBrush Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute">
+                    <DrawingBrush Stretch="None"
+                                  AlignmentX="Left"
+                                  AlignmentY="Top"
+                                  ViewboxUnits="Absolute">
                         <DrawingBrush.Drawing>
                             <DrawingGroup>
                                 <GeometryDrawing Brush="Black">
@@ -16,7 +21,9 @@
                                                 <RectangleGeometry Rect="0,0,99999999,99999999"></RectangleGeometry>
                                             </CombinedGeometry.Geometry1>
                                             <CombinedGeometry.Geometry2>
-                                                <EllipseGeometry Center="25, 2" RadiusX="5" RadiusY="5"></EllipseGeometry>
+                                                <EllipseGeometry Center="25, 2"
+                                                                 RadiusX="5"
+                                                                 RadiusY="5"></EllipseGeometry>
                                             </CombinedGeometry.Geometry2>
                                         </CombinedGeometry>
                                     </GeometryDrawing.Geometry>
@@ -27,10 +34,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="GridKlockaZLewąDziurką" TargetType="Grid" BasedOn="{StaticResource GridKlocka}">
+        <Style x:Key="GridKlockaZLewąDziurką"
+               TargetType="Grid"
+               BasedOn="{StaticResource GridKlocka}">
             <Setter Property="OpacityMask">
                 <Setter.Value>
-                    <DrawingBrush Stretch="None" AlignmentX="Left" AlignmentY="Top" ViewboxUnits="Absolute">
+                    <DrawingBrush Stretch="None"
+                                  AlignmentX="Left"
+                                  AlignmentY="Top"
+                                  ViewboxUnits="Absolute">
                         <DrawingBrush.Drawing>
                             <DrawingGroup>
                                 <GeometryDrawing Brush="Black">
@@ -40,7 +52,9 @@
                                                 <RectangleGeometry Rect="0,0,99999999,99999999"></RectangleGeometry>
                                             </CombinedGeometry.Geometry1>
                                             <CombinedGeometry.Geometry2>
-                                                <EllipseGeometry Center="2, 30" RadiusX="5.5" RadiusY="5.5"></EllipseGeometry>
+                                                <EllipseGeometry Center="2, 30"
+                                                                 RadiusX="5.5"
+                                                                 RadiusY="5.5"></EllipseGeometry>
                                             </CombinedGeometry.Geometry2>
                                         </CombinedGeometry>
                                     </GeometryDrawing.Geometry>
@@ -51,63 +65,101 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="Cypek" TargetType="Ellipse">
-            <Setter Property="Width" Value="10"></Setter>
-            <Setter Property="Height" Value="10"></Setter>
+        <Style x:Key="Cypek"
+               TargetType="Ellipse">
+            <Setter Property="Width"
+                    Value="10"></Setter>
+            <Setter Property="Height"
+                    Value="10"></Setter>
         </Style>
-        <Style x:Key="DolnyCypek" TargetType="Ellipse" BasedOn="{StaticResource Cypek}">
-            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Style x:Key="DolnyCypek"
+               TargetType="Ellipse"
+               BasedOn="{StaticResource Cypek}">
+            <Setter Property="VerticalAlignment"
+                    Value="Bottom"></Setter>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"></Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="20" Y="7"></TranslateTransform>
+                    <TranslateTransform X="20"
+                                        Y="7"></TranslateTransform>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="PrawyCypek" TargetType="Ellipse" BasedOn="{StaticResource Cypek}">
-            <Setter Property="VerticalAlignment" Value="Top"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Style x:Key="PrawyCypek"
+               TargetType="Ellipse"
+               BasedOn="{StaticResource Cypek}">
+            <Setter Property="VerticalAlignment"
+                    Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment"
+                    Value="Right"></Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="7" Y="20"></TranslateTransform>
+                    <TranslateTransform X="7"
+                                        Y="20"></TranslateTransform>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="PrawyCypekWewnętrzny" TargetType="Ellipse" BasedOn="{StaticResource Cypek}">
-            <Setter Property="VerticalAlignment" Value="Top"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Style x:Key="PrawyCypekWewnętrzny"
+               TargetType="Ellipse"
+               BasedOn="{StaticResource Cypek}">
+            <Setter Property="VerticalAlignment"
+                    Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"></Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="2" Y="31"></TranslateTransform>
+                    <TranslateTransform X="2"
+                                        Y="31"></TranslateTransform>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="DolnyCypekWewnętrzny" TargetType="Ellipse" BasedOn="{StaticResource Cypek}">
-            <Setter Property="VerticalAlignment" Value="Top"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Style x:Key="DolnyCypekWewnętrzny"
+               TargetType="Ellipse"
+               BasedOn="{StaticResource Cypek}">
+            <Setter Property="VerticalAlignment"
+                    Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"></Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="26" Y="-3"></TranslateTransform>
+                    <TranslateTransform X="26"
+                                        Y="-3"></TranslateTransform>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="Obramowanie" TargetType="Border">
-            <Setter Property="BorderThickness" Value="5"></Setter>
+        <Style x:Key="Obramowanie"
+               TargetType="Border">
+            <Setter Property="BorderThickness"
+                    Value="5"></Setter>
         </Style>
-        <Style x:Key="WewnętrzneObramowanie" TargetType="Border" BasedOn="{StaticResource Obramowanie}">
-            <Setter Property="Background" Value="White"></Setter>
+        <Style x:Key="WewnętrzneObramowanie"
+               TargetType="Border"
+               BasedOn="{StaticResource Obramowanie}">
+            <Setter Property="Background"
+                    Value="White"></Setter>
         </Style>
-        <Style x:Key="StackPanelKlocka" TargetType="StackPanel">
-            <Setter Property="Orientation" Value="Horizontal"></Setter>
+        <Style x:Key="StackPanelKlocka"
+               TargetType="StackPanel">
+            <Setter Property="Orientation"
+                    Value="Horizontal"></Setter>
         </Style>
-        <Style x:Key="StackPanelKlockaNiekońcowego" TargetType="StackPanel" BasedOn="{StaticResource StackPanelKlocka}">
-            <Setter Property="Margin" Value="10"></Setter>
+        <Style x:Key="StackPanelKlockaNiekońcowego"
+               TargetType="StackPanel"
+               BasedOn="{StaticResource StackPanelKlocka}">
+            <Setter Property="Margin"
+                    Value="10"></Setter>
         </Style>
-        <Style x:Key="StackPanelKlockaKońcowego" TargetType="StackPanel" BasedOn="{StaticResource StackPanelKlocka}">
-            <Setter Property="Margin" Value="5"></Setter>
+        <Style x:Key="StackPanelKlockaKońcowego"
+               TargetType="StackPanel"
+               BasedOn="{StaticResource StackPanelKlocka}">
+            <Setter Property="Margin"
+                    Value="5"></Setter>
         </Style>
-        <Style x:Key="TekstKlocka" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"></Setter>
+        <Style x:Key="TekstKlocka"
+               TargetType="TextBlock">
+            <Setter Property="Foreground"
+                    Value="White"></Setter>
         </Style>
     </Application.Resources>
 </Application>

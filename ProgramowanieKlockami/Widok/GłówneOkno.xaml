@@ -45,6 +45,8 @@
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyPrzenoszenieKlockówPionowych}"></Setter>
             <Setter Property="dd:DragDrop.DropHandler"
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówPionowych}"></Setter>
+            <Setter Property="Margin"
+                    Value="1"></Setter>
             <Setter Property="MinHeight"
                     Value="10"></Setter>
         </Style>
@@ -63,33 +65,141 @@
             <Setter Property="Margin"
                     Value="1"></Setter>
         </Style>
-        <Style x:Key="PanelKlockaPionowego"
-               TargetType="Panel"
-               BasedOn="{StaticResource PanelKlocka}">
-            <Setter Property="ContextMenu"
-                    Value="{StaticResource MenuKontekstoweKlockaPionowego}"></Setter>
-        </Style>
-        <Style x:Key="PanelKlockaZwracającegoWartość"
-               TargetType="Panel"
-               BasedOn="{StaticResource PanelKlocka}">
-            <Setter Property="ContextMenu"
-                    Value="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"></Setter>
-        </Style>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
-        <ControlTemplate x:Key="KlocekPionowySzablon"
-                         TargetType="k:KlocekPionowyKontrolka">
-            <StackPanel Orientation="Horizontal">
-                <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                      Style="{StaticResource PanelKlockaPionowego}">
-                    <ContentPresenter></ContentPresenter>
-                </Grid>
-            </StackPanel>
-        </ControlTemplate>
         <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon"
                          TargetType="k:KlocekPionowyPrzyjmującyWartośćKontrolka">
             <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Margin="1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="3">
+                            <ContentPresenter></ContentPresenter>
+                        </Border>
+                    </StackPanel>
+                    <ItemsControl Grid.Column="1"
+                                  Grid.Row="0"
+                                  ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
+                                  Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
+                </Grid>
+            </StackPanel>
+        </ControlTemplate>
+        <ControlTemplate x:Key="KlocekPionowyZZawartościąSzablon"
+                         TargetType="k:KlocekPionowyZZawartościąKontrolka">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="13"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="0"
+                          Margin="1,1,0,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="3,3,0,0"></Border>
+                    </Grid>
+                    <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Margin="0,1,1,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="0,3,3,3">
+                            <ContentPresenter></ContentPresenter>
+                        </Border>
+                    </StackPanel>
+                    <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="0"
+                          Grid.Row="1"
+                          Margin="1,0,0,0"
+                          MinHeight="20"
+                          Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="3,0,0,0"></Border>
+                    </Grid>
+                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                            BorderThickness="3,0,0,0"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"
+                                      Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
+                    </Border>
+                    <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="0"
+                          Grid.Row="2"
+                          Margin="1,0,0,1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="3,0,0,3"></Border>
+                    </Grid>
+                    <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="1"
+                          Grid.Row="2"
+                          Margin="0,0,1,1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                BorderThickness="0,3,3,3"></Border>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </ControlTemplate>
+        <ControlTemplate x:Key="KlocekZwracającyWartośćSzablon"
+                         TargetType="k:KlocekZwracającyWartośćKontrolka">
+            <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                      Style="{StaticResource PanelKlockaPionowego}">
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
+                      Margin="1">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -101,180 +211,6 @@
                         <ContentPresenter></ContentPresenter>
                     </Border>
                 </Grid>
-                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
-                              Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
-            </StackPanel>
-        </ControlTemplate>
-        <ControlTemplate x:Key="KlocekPionowyZZawartościąSzablon"
-                         TargetType="k:KlocekPionowyZZawartościąKontrolka">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="0,0,0,1">
-                    <StackPanel ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
-                                Orientation="Horizontal">
-                        <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                                    Margin="1,1,1,0"
-                                    Orientation="Horizontal">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseDown">
-                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
-                                                           CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                    BorderThickness="3,3,3,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <Grid MinWidth="6"></Grid>
-                                    <Grid>
-                                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                                BorderThickness="0,0,0,3">
-                                            <ContentPresenter HorizontalAlignment="Center"></ContentPresenter>
-                                        </Border>
-                                    </Grid>
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
-                    </StackPanel>
-                    <DockPanel LastChildFill="True"
-                               Margin="1,0,0,0"
-                               Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
-                        <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                              ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
-                              MinWidth="12">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseDown">
-                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
-                                                           CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                    BorderThickness="3,0"></Border>
-                        </Grid>
-                        <StackPanel Margin="1,1,0,5">
-                            <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"
-                                          Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
-                        </StackPanel>
-                    </DockPanel>
-                    <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
-                                HorizontalAlignment="Left"
-                                Margin="1,0,0,0"
-                                Orientation="Horizontal">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="PreviewMouseDown">
-                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
-                                                       CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                BorderThickness="3,0,3,3">
-                            <StackPanel Orientation="Horizontal">
-                                <Grid MinWidth="6"></Grid>
-                                <Grid MinHeight="9"
-                                      Width="40">
-                                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                            BorderThickness="0,3,0,0"></Border>
-                                </Grid>
-                            </StackPanel>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </ControlTemplate>
-        <ControlTemplate x:Key="KlocekPionowyZZawartościąPrzyjmującyWartośćSzablon"
-                         TargetType="k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Margin="0,0,0,1">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                                    ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
-                                    Margin="1,1,1,0"
-                                    Orientation="Horizontal">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseDown">
-                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
-                                                           CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                    BorderThickness="3,3,3,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <Grid MinWidth="6"></Grid>
-                                    <Grid>
-                                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                                BorderThickness="0,0,0,3">
-                                            <ContentPresenter HorizontalAlignment="Center"></ContentPresenter>
-                                        </Border>
-                                    </Grid>
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
-                        <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
-                    </StackPanel>
-                    <DockPanel LastChildFill="True"
-                               Margin="1,0,0,0"
-                               Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
-                        <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                              ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
-                              MinWidth="12">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseDown">
-                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
-                                                           CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                    BorderThickness="3,0"></Border>
-                        </Grid>
-                        <StackPanel Margin="1,1,0,5">
-                            <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"
-                                          Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
-                        </StackPanel>
-                    </DockPanel>
-                    <StackPanel Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
-                                HorizontalAlignment="Left"
-                                Margin="1,0,0,0"
-                                Orientation="Horizontal">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="PreviewMouseDown">
-                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
-                                                       CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                BorderThickness="3,0,3,3">
-                            <StackPanel Orientation="Horizontal">
-                                <Grid MinWidth="6"></Grid>
-                                <Grid MinHeight="9"
-                                      Width="40">
-                                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                            BorderThickness="0,3,0,0"></Border>
-                                </Grid>
-                            </StackPanel>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
-            </StackPanel>
-        </ControlTemplate>
-        <ControlTemplate x:Key="KlocekZwracającyWartośćSzablon"
-                         TargetType="k:KlocekZwracającyWartośćKontrolka">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel>
-                    <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                          Style="{StaticResource PanelKlockaZwracającegoWartość}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="PreviewMouseDown">
-                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
-                                                       CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                                BorderThickness="3">
-                            <ContentPresenter></ContentPresenter>
-                        </Border>
-                    </Grid>
-                </StackPanel>
             </StackPanel>
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwki:RozpoczęcieProgramu}">
@@ -285,11 +221,166 @@
             </k:KlocekPionowyZZawartościąKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkl:Jeżeli}">
-            <k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyZZawartościąPrzyjmującyWartośćSzablon}">
-                <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
-                    <TextBlock Style="{StaticResource TekstKlocka}">Jeżeli</TextBlock>
-                </StackPanel>
-            </k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka>
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="13"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="{Binding Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="0"
+                          Margin="1,1,0,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding KolorObramowania}"
+                                BorderThickness="3,3,0,0"></Border>
+                    </Grid>
+                    <Border BorderBrush="{Binding KolorObramowania}"
+                            BorderThickness="0,3,3,3"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Margin="0,1,1,0">
+                        <StackPanel Background="{Binding Kolor}"
+                                    ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewMouseDown">
+                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                           CommandParameter="{Binding}"></i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
+                                <TextBlock Style="{StaticResource TekstKlocka}">Jeżeli</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <ItemsControl Grid.Column="2"
+                                  Grid.Row="0"
+                                  ItemsSource="{Binding Wartość}"
+                                  Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
+                    <Grid Background="{Binding Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="0"
+                          Grid.Row="1"
+                          Margin="1,0,0,0"
+                          MinHeight="20"
+                          Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding KolorObramowania}"
+                                BorderThickness="3,0,0,0"></Border>
+                    </Grid>
+                    <Border BorderBrush="{Binding KolorObramowania}"
+                            BorderThickness="3,0,0,0"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <ItemsControl ItemsSource="{Binding Zawartość}"
+                                      Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
+                    </Border>
+                    <Grid Background="{Binding Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="0"
+                          Grid.Row="2"
+                          Margin="1,0,0,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding KolorObramowania}"
+                                BorderThickness="3,0,0,0"></Border>
+                    </Grid>
+                    <StackPanel Background="{Binding Kolor}"
+                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Margin="0,0,1,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding KolorObramowania}"
+                                BorderThickness="0,3,3,3">
+                            <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
+                                <TextBlock Style="{StaticResource TekstKlocka}">w przeciwnym razie</TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                    <Grid Background="{Binding Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="0"
+                          Grid.Row="3"
+                          Margin="1,0,0,0"
+                          MinHeight="20"
+                          Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding KolorObramowania}"
+                                BorderThickness="3,0,0,0"></Border>
+                    </Grid>
+                    <Border BorderBrush="{Binding KolorObramowania}"
+                            BorderThickness="3,0,0,0"
+                            Grid.Column="1"
+                            Grid.Row="3"
+                            Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        <ItemsControl ItemsSource="{Binding AlternatywnaZawartość}"
+                                      Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}">
+                        </ItemsControl>
+                    </Border>
+                    <Grid Background="{Binding Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="0"
+                          Grid.Row="4"
+                          Margin="1,0,0,1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding KolorObramowania}"
+                                BorderThickness="3,0,0,3"></Border>
+                    </Grid>
+                    <Grid Background="{Binding Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          Grid.Column="1"
+                          Grid.Row="4"
+                          Margin="0,0,1,1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding KolorObramowania}"
+                                BorderThickness="0,3,3,3"></Border>
+                    </Grid>
+                </Grid>
+            </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkl:Porównanie}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
@@ -424,12 +515,16 @@
                 </Grid.RowDefinitions>
                 <ScrollViewer Grid.Row="0"
                               VerticalScrollBarVisibility="Visible">
-                    <ContentControl Content="{Binding RozpoczęcieProgramu}">
-                        <ContentControl.LayoutTransform>
-                            <ScaleTransform ScaleX="{Binding Powiększenie}"
-                                            ScaleY="{Binding Powiększenie}"></ScaleTransform>
-                        </ContentControl.LayoutTransform>
-                    </ContentControl>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <ContentControl Content="{Binding RozpoczęcieProgramu}">
+                                <ContentControl.LayoutTransform>
+                                    <ScaleTransform ScaleX="{Binding Powiększenie}"
+                                                    ScaleY="{Binding Powiększenie}"></ScaleTransform>
+                                </ContentControl.LayoutTransform>
+                            </ContentControl>
+                        </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
                 <DockPanel Grid.Row="1"
                            LastChildFill="True">

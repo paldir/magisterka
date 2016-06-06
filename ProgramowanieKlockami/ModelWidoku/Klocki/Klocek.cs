@@ -56,6 +56,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             }
         }
 
+        protected Klocek()
+        {
+            PosiadaSkupienie = false;
+        }
+
         public virtual object Clone()
         {
             return Activator.CreateInstance(GetType());
