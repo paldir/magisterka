@@ -147,8 +147,12 @@
         <Style x:Key="StackPanelKlockaNiekońcowego"
                TargetType="StackPanel"
                BasedOn="{StaticResource StackPanelKlocka}">
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"></Setter>
             <Setter Property="Margin"
                     Value="10"></Setter>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"></Setter>
         </Style>
         <Style x:Key="StackPanelKlockaKońcowego"
                TargetType="StackPanel"

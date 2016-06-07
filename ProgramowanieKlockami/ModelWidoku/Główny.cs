@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
@@ -20,6 +21,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Konsola Konsola { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
+        public IEnumerable<Klocek> KlockiMatematyczne { get; }
         public IEnumerable<Klocek> KlockiTekstowe { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaPrzejęciaSkupienia { get; }
@@ -71,10 +73,10 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
             KomendaStartuProgramu = new Komenda(RozpocznijWykonywanieProgramu);
-            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) {MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy};
+            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) { MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy };
             KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
-            KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) {MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy};
+            KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) { MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy };
             ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
             ObsługującyPrzenoszenieKlockówPionowych = new ObsługującyPrzenoszenieKlockówPionowych();
             ObsługującyPrzenoszenieKlockówZwracającychWartość = new ObsługującyPrzenoszenieKlockówZwracającychWartość();
@@ -103,7 +105,13 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlockiLogiczne = new Klocek[]
             {
                 new Jeżeli(),
-                new Porównanie {ZnakPorównania = ZnakiPorównania.First()}
+                new Porównanie {ZnakPorównania = ZnakiPorównania.First()},
+                new Prawda()
+            };
+
+            KlockiMatematyczne = new Klocek[]
+            {
+                new Stała()
             };
 
             KlockiTekstowe = new Klocek[]

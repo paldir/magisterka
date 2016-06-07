@@ -83,7 +83,10 @@
     <Compile Include="ModelWidoku\Klocki\KlocekPionowyZZawartością.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekPionowyZZawartościąPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\Kolory.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\Fałsz.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Jeżeli.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\Prawda.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\Stała.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Napis.cs" />
