@@ -83,9 +83,8 @@
     <Compile Include="ModelWidoku\Klocki\KlocekPionowyZZawartością.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekPionowyZZawartościąPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\Kolory.cs" />
-    <Compile Include="ModelWidoku\Klocki\Logika\Fałsz.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\StałaLogiczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Jeżeli.cs" />
-    <Compile Include="ModelWidoku\Klocki\Logika\Prawda.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\Stała.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
@@ -98,6 +97,9 @@
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówZwracającychWartość.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanieKlockówZwracającychWartość.cs" />
+    <Compile Include="ModelWidoku\StałeLogiczne\Fałsz.cs" />
+    <Compile Include="ModelWidoku\StałeLogiczne\IStałaLogiczna.cs" />
+    <Compile Include="ModelWidoku\StałeLogiczne\Prawda.cs" />
     <Compile Include="ModelWidoku\Zmienna.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\UstawZmienną.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\WartośćZmiennej.cs" />

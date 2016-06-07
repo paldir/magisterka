@@ -13,7 +13,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public ObservableCollection<KlocekZwracającyWartość> Wartość1 { get; set; }
         public ObservableCollection<KlocekZwracającyWartość> Wartość2 { get; set; }
-        public IZnakPorównania ZnakPorównania { get; set; }
+        public IZnakPorównania WybranyZnakPorównania { get; set; }
 
         public Porównanie()
         {
@@ -24,7 +24,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         public override object Clone()
         {
             Porównanie nowyObiekt = (Porównanie) base.Clone();
-            nowyObiekt.ZnakPorównania = ZnakPorównania;
+            nowyObiekt.WybranyZnakPorównania = WybranyZnakPorównania;
 
             return nowyObiekt;
         }
@@ -37,7 +37,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
             if ((wartość1 == null) || (wartość2 == null))
                 return false;
 
-            return ZnakPorównania.Porównaj((IComparable) wartość1.Zwróć(), (IComparable) wartość2.Zwróć());
+            return WybranyZnakPorównania.Porównaj((IComparable) wartość1.Zwróć(), (IComparable) wartość2.Zwróć());
         }
     }
 }

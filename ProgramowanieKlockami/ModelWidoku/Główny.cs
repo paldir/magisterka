@@ -10,6 +10,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
+using ProgramowanieKlockami.ModelWidoku.StałeLogiczne;
 using ProgramowanieKlockami.ModelWidoku.ZnakiPorównania;
 
 namespace ProgramowanieKlockami.ModelWidoku
@@ -36,6 +37,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
+        public IEnumerable<IStałaLogiczna> StałeLogiczne { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IZnakPorównania> ZnakiPorównania { get; }
 
@@ -86,6 +88,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
             Zmienne = new ObservableCollection<Zmienna>();
 
+            StałeLogiczne = new IStałaLogiczna[]
+            {
+                new Prawda(),
+                new Fałsz()
+            };
+
             ZnakiPorównania = new IZnakPorównania[]
             {
                 new Równy(),
@@ -105,8 +113,8 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlockiLogiczne = new Klocek[]
             {
                 new Jeżeli(),
-                new Porównanie {ZnakPorównania = ZnakiPorównania.First()},
-                new Prawda()
+                new Porównanie {WybranyZnakPorównania = ZnakiPorównania.First()},
+                new StałaLogiczna {WybranaStałaLogiczna = StałeLogiczne.First()}
             };
 
             KlockiMatematyczne = new Klocek[]
