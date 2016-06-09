@@ -1,5 +1,5 @@
 ﻿using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.StałeLogiczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProgramowanieKlockami.ModelWidoku.ZnakiPorównania
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania
 {
     public interface IZnakPorównania
     {

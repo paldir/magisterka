@@ -1,4 +1,4 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.StałeLogiczne
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne
 {
     public class Fałsz : IStałaLogiczna
     {

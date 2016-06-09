@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.ZnakiPorównania;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
@@ -37,7 +37,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
             if ((wartość1 == null) || (wartość2 == null))
                 return false;
 
-            return WybranyZnakPorównania.Porównaj((IComparable) wartość1.Zwróć(), (IComparable) wartość2.Zwróć());
+            object obiekt1 = wartość1.Zwróć();
+            object obiekt2 = wartość2.Zwróć();
+
+            return (obiekt1.GetType() == obiekt2.GetType()) && WybranyZnakPorównania.Porównaj((IComparable) obiekt1, (IComparable) obiekt2);
         }
     }
 }

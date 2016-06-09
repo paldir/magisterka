@@ -6,12 +6,13 @@ using System.Runtime.CompilerServices;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
-using ProgramowanieKlockami.ModelWidoku.StałeLogiczne;
-using ProgramowanieKlockami.ModelWidoku.ZnakiPorównania;
 
 namespace ProgramowanieKlockami.ModelWidoku
 {
@@ -19,6 +20,7 @@ namespace ProgramowanieKlockami.ModelWidoku
     {
         private Klocek _klocekPosiadającySkupienie;
 
+        public IEnumerable<IDziałanieLogiczne> DziałaniaLogiczne { get; }
         public Konsola Konsola { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
@@ -88,6 +90,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
             Zmienne = new ObservableCollection<Zmienna>();
 
+            DziałaniaLogiczne = new IDziałanieLogiczne[]
+            {
+                new Koniunkcja(),
+                new Alternatywa()
+            };
+
             StałeLogiczne = new IStałaLogiczna[]
             {
                 new Prawda(),
@@ -113,8 +121,10 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlockiLogiczne = new Klocek[]
             {
                 new Jeżeli(),
+                new Negacja(),
                 new Porównanie {WybranyZnakPorównania = ZnakiPorównania.First()},
-                new StałaLogiczna {WybranaStałaLogiczna = StałeLogiczne.First()}
+                new StałaLogiczna {WybranaStałaLogiczna = StałeLogiczne.First()},
+                new WarunekZłożony {WybraneDziałanie = DziałaniaLogiczne.First()}
             };
 
             KlockiMatematyczne = new Klocek[]

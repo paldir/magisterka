@@ -61,10 +61,17 @@
             <Setter Property="dd:DragDrop.DropHandler"
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówZwracającychWartość}"></Setter>
         </Style>
-        <Style x:Key="PanelKlocka"
-               TargetType="Panel">
+        <Style x:Key="MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość"
+               BasedOn="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"
+               TargetType="ItemsControl">
+            <Setter Property="Background"
+                    Value="White"></Setter>
             <Setter Property="Margin"
                     Value="1"></Setter>
+            <Setter Property="MinHeight"
+                    Value="20"></Setter>
+            <Setter Property="MinWidth"
+                    Value="10"></Setter>
         </Style>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon"
@@ -204,6 +211,28 @@
                         <ContentPresenter></ContentPresenter>
                     </Border>
                 </Grid>
+            </StackPanel>
+        </ControlTemplate>
+        <ControlTemplate x:Key="KlocekZwracającyWartośćPrzyjmującyWartośćSzablon"
+                         TargetType="k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka">
+            <StackPanel Orientation="Horizontal">
+                <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
+                      Margin="1">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                            BorderThickness="3"
+                            VerticalAlignment="Center">
+                        <ContentPresenter></ContentPresenter>
+                    </Border>
+                </Grid>
+                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
+                              Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
             </StackPanel>
         </ControlTemplate>
         <DataTemplate DataType="{x:Type mwki:RozpoczęcieProgramu}">
@@ -378,32 +407,33 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkl:Negacja}">
+            <k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćPrzyjmującyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">~</TextBlock>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type mwkl:Porównanie}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Grid Margin="5">
-                            <ItemsControl Background="White"
-                                          ItemsSource="{Binding Wartość1}"
-                                          Margin="1"
-                                          MinHeight="20"
-                                          MinWidth="10"
-                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
-                        </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Margin="5">
                         <StackPanel VerticalAlignment="Center">
-                            <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
-                                      ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=ZnakiPorównania}"
-                                      SelectedItem="{Binding WybranyZnakPorównania}"></ComboBox>
+                            <ItemsControl ItemsSource="{Binding Wartość1}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
                         </StackPanel>
-                        <Grid Margin="5">
-                            <ItemsControl Background="White"
-                                          ItemsSource="{Binding Wartość2}"
-                                          Margin="1"
-                                          MinHeight="20"
-                                          MinWidth="10"
-                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
-                        </Grid>
+                    </Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=ZnakiPorównania}"
+                                  SelectedItem="{Binding WybranyZnakPorównania}"></ComboBox>
                     </StackPanel>
+                    <Grid Margin="5">
+                        <StackPanel VerticalAlignment="Center">
+                            <ItemsControl ItemsSource="{Binding Wartość2}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
@@ -413,6 +443,29 @@
                     <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                               ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=StałeLogiczne}"
                               SelectedItem="{Binding WybranaStałaLogiczna}"></ComboBox>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkl:WarunekZłożony}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Margin="5">
+                        <StackPanel VerticalAlignment="Center">
+                            <ItemsControl ItemsSource="{Binding Wartość1}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=DziałaniaLogiczne}"
+                                  SelectedItem="{Binding WybraneDziałanie}"></ComboBox>
+                    </StackPanel>
+                    <Grid Margin="5">
+                        <StackPanel VerticalAlignment="Center">
+                            <ItemsControl ItemsSource="{Binding Wartość2}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>

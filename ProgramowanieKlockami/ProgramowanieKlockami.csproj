@@ -75,6 +75,7 @@
     <Compile Include="Kontrolki\KlocekPionowyZZawartościąKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekZwracającyWartośćKontrolka.cs" />
+    <Compile Include="Kontrolki\KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="ModelWidoku\Główny.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekPionowy.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekZwracającyWartość.cs" />
@@ -82,9 +83,15 @@
     <Compile Include="ModelWidoku\Klocki\KlocekPionowyPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekPionowyZZawartością.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekPionowyZZawartościąPrzyjmującyWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\KlocekZwracającyWartośćPrzyjmującyWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\Kolory.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\DziałaniaLogiczne\Alternatywa.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\DziałaniaLogiczne\IDziałanieLogiczne.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\DziałaniaLogiczne\Koniunkcja.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\Negacja.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\StałaLogiczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Jeżeli.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\WarunekZłożony.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\Stała.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
@@ -97,19 +104,19 @@
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówZwracającychWartość.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanieKlockówZwracającychWartość.cs" />
-    <Compile Include="ModelWidoku\StałeLogiczne\Fałsz.cs" />
-    <Compile Include="ModelWidoku\StałeLogiczne\IStałaLogiczna.cs" />
-    <Compile Include="ModelWidoku\StałeLogiczne\Prawda.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\StałeLogiczne\Fałsz.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\StałeLogiczne\IStałaLogiczna.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\StałeLogiczne\Prawda.cs" />
     <Compile Include="ModelWidoku\Zmienna.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\UstawZmienną.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\WartośćZmiennej.cs" />
-    <Compile Include="ModelWidoku\ZnakiPorównania\IZnakPorównania.cs" />
-    <Compile Include="ModelWidoku\ZnakiPorównania\Mniejszy.cs" />
-    <Compile Include="ModelWidoku\ZnakiPorównania\MniejszyRówny.cs" />
-    <Compile Include="ModelWidoku\ZnakiPorównania\Nierówny.cs" />
-    <Compile Include="ModelWidoku\ZnakiPorównania\Równy.cs" />
-    <Compile Include="ModelWidoku\ZnakiPorównania\Większy.cs" />
-    <Compile Include="ModelWidoku\ZnakiPorównania\WiększyRówny.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\IZnakPorównania.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\Mniejszy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\MniejszyRówny.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\Nierówny.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\Równy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\Większy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\WiększyRówny.cs" />
     <Compile Include="Widok\GłówneOkno.xaml.cs">
       <DependentUpon>GłówneOkno.xaml</DependentUpon>
     </Compile>
