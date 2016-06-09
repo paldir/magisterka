@@ -10,6 +10,8 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
@@ -21,7 +23,8 @@ namespace ProgramowanieKlockami.ModelWidoku
         private Klocek _klocekPosiadającySkupienie;
 
         public IEnumerable<IDziałanieLogiczne> DziałaniaLogiczne { get; }
-        public Konsola Konsola { get; }
+        public IEnumerable<IDziałanieMatematyczne> DziałaniaMatematyczne { get; }
+        public IEnumerable<Klocek> KlockiDotyczącePętli { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
         public IEnumerable<Klocek> KlockiMatematyczne { get; }
@@ -33,6 +36,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaUsunięciaKlockaZwracającegoWartość { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
         public Komenda KomendaZwinięciaRozwinięciaKlockaZZawartością { get; }
+        public Konsola Konsola { get; }
         public ObsługującyPrzeciąganieZPrzybornika ObsługującyPrzeciąganieZPrzybornika { get; }
         public ObsługującyPrzenoszenieKlockówPionowych ObsługującyPrzenoszenieKlockówPionowych { get; }
         public ObsługującyPrzenoszenieKlockówZwracającychWartość ObsługującyPrzenoszenieKlockówZwracającychWartość { get; }
@@ -96,6 +100,15 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Alternatywa()
             };
 
+            DziałaniaMatematyczne = new IDziałanieMatematyczne[]
+            {
+                new Dodawanie(),
+                new Odejmowanie(),
+                new Mnożenie(),
+                new Dzielenie(),
+                new Potęgowanie()
+            };
+
             StałeLogiczne = new IStałaLogiczna[]
             {
                 new Prawda(),
@@ -110,6 +123,12 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new MniejszyRówny(),
                 new Większy(),
                 new WiększyRówny()
+            };
+
+            KlockiDotyczącePętli = new Klocek[]
+            {
+                new Dopóki(),
+                new Odliczanie()
             };
 
             KlockiDotycząceZmiennych = new Klocek[]
@@ -129,7 +148,8 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiMatematyczne = new Klocek[]
             {
-                new Stała()
+                new Stała(),
+                new WynikDziałania {WybraneDziałanieMatematyczne = DziałaniaMatematyczne.First()}
             };
 
             KlockiTekstowe = new Klocek[]

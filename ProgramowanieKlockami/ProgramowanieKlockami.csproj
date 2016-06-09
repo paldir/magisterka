@@ -92,7 +92,16 @@
     <Compile Include="ModelWidoku\Klocki\Logika\StałaLogiczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Jeżeli.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\WarunekZłożony.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\IDziałanieMatematyczne.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Mnożenie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Dzielenie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Odejmowanie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Dodawanie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Potęgowanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\Stała.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\WynikDziałania.cs" />
+    <Compile Include="ModelWidoku\Klocki\Pętle\Dopóki.cs" />
+    <Compile Include="ModelWidoku\Klocki\Pętle\Odliczanie.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Napis.cs" />
