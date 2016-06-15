@@ -49,11 +49,18 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
                         funkcjaPorównująca = (a, b) => false;
 
                     for (double i = (double) początek; funkcjaPorównująca(i, (double) koniec); i += iterator)
-                    {
-                        WybranaZmienna.Wartość = i;
+                        if (PrzerwanieWykonywania)
+                        {
+                            ZresetujFlagęPrzerwaniaWykonywania(this);
 
-                        base.Wykonaj();
-                    }
+                            break;
+                        }
+                        else
+                        {
+                            WybranaZmienna.Wartość = i;
+
+                            base.Wykonaj();
+                        }
                 }
             }
         }

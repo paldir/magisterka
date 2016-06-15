@@ -129,7 +129,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new Dopóki(),
                 new Odliczanie(),
-                new Przerwij()
+                new PrzerwaniePętli()
             };
 
             KlockiDotycząceZmiennych = new Klocek[]

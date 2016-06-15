@@ -659,10 +659,10 @@
                 </StackPanel>
             </k:KlocekPionowyZZawartościąKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkp:Przerwij}">
+        <DataTemplate DataType="{x:Type mwkp:PrzerwaniePętli}">
             <k:KlocekPionowyKontrolka Template="{StaticResource KlocekPionowySzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
-                    <TextBlock Style="{StaticResource TekstKlocka}">Przerwij</TextBlock>
+                    <TextBlock Style="{StaticResource TekstKlocka}">Przerwij pętlę</TextBlock>
                 </StackPanel>
             </k:KlocekPionowyKontrolka>
         </DataTemplate>

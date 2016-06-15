@@ -15,7 +15,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
             if (wartość?.Zwróć() is bool)
                 while ((bool) wartość.Zwróć())
-                    base.Wykonaj();
+                    if (PrzerwanieWykonywania)
+                    {
+                        ZresetujFlagęPrzerwaniaWykonywania(this);
+
+                        break;
+                    }
+                    else
+                        base.Wykonaj();
         }
     }
 }

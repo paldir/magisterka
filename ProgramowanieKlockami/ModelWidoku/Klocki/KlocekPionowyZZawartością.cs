@@ -1,4 +1,6 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki
+﻿using System.Linq;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyZZawartością : KlocekPionowy
     {
@@ -30,13 +32,17 @@
         {
             foreach (KlocekPionowy klocekPionowy in Zawartość)
                 if (PrzerwanieWykonywania)
-                {
-                    PrzerwanieWykonywania = false;
-
                     break;
-                }
                 else
                     klocekPionowy.Wykonaj();
+        }
+
+        public static void ZresetujFlagęPrzerwaniaWykonywania(KlocekPionowyZZawartością klocekPionowyZZawartością)
+        {
+            klocekPionowyZZawartością.PrzerwanieWykonywania = false;
+
+            foreach (KlocekPionowyZZawartością klocek in klocekPionowyZZawartością.Zawartość.Where(k => k is KlocekPionowyZZawartością).Cast<KlocekPionowyZZawartością>())
+                ZresetujFlagęPrzerwaniaWykonywania(klocek);
         }
     }
 }

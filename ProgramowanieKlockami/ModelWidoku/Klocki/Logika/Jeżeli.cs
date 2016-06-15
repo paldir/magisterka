@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
@@ -9,11 +8,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         public override string Nazwa => "Jeżeli";
         public override string Opis => "Jeśli wartość jest prawdziwa, wykonuje instrukcje.";
 
-        public ObservableCollection<KlocekPionowy> AlternatywnaZawartość { get; }
+        public ZawartośćKlockaPionowegoZZawartością AlternatywnaZawartość { get; }
 
         public Jeżeli()
         {
-            AlternatywnaZawartość = new ObservableCollection<KlocekPionowy>();
+            AlternatywnaZawartość = new ZawartośćKlockaPionowegoZZawartością();
         }
 
         public override void Wykonaj()
@@ -25,13 +24,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
             else
                 foreach (KlocekPionowy klocekPionowy in AlternatywnaZawartość)
                     if (PrzerwanieWykonywania)
-                    {
-                        PrzerwanieWykonywania = false;
-
                         break;
-                    }
                     else
                         klocekPionowy.Wykonaj();
+
+            PrzerwanieWykonywania = false;
         }
     }
 }
