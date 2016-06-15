@@ -128,7 +128,8 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlockiDotyczącePętli = new Klocek[]
             {
                 new Dopóki(),
-                new Odliczanie()
+                new Odliczanie(),
+                new Przerwij()
             };
 
             KlockiDotycząceZmiennych = new Klocek[]
@@ -193,7 +194,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         {
             KlocekPionowy usuwanyKlocek = _klocekPosiadającySkupienie as KlocekPionowy;
 
-            return usuwanyKlocek?.MiejsceUmieszczenia != null;
+            return usuwanyKlocek?.Rodzic != null;
         }
 
         private bool SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy()
@@ -205,8 +206,8 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void UsuńKlocekPionowy()
         {
-            KlocekPionowy usuwanyKlocek = (KlocekPionowy)_klocekPosiadającySkupienie;
-            ObservableCollection<KlocekPionowy> miejsceUmieszczenia = usuwanyKlocek.MiejsceUmieszczenia;
+            KlocekPionowy usuwanyKlocek = (KlocekPionowy) _klocekPosiadającySkupienie;
+            ZawartośćKlockaPionowegoZZawartością miejsceUmieszczenia = usuwanyKlocek.Rodzic.Zawartość;
 
             miejsceUmieszczenia?.Remove(usuwanyKlocek);
         }

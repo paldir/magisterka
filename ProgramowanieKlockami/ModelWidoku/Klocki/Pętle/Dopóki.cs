@@ -2,6 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
+    [Pętla]
     public class Dopóki : KlocekPionowyZZawartościąPrzyjmującyWartość
     {
         public override Brush Kolor => Kolory.Pętle;

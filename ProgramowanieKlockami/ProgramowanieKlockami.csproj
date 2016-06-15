@@ -102,6 +102,9 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\WynikDziałania.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Dopóki.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Odliczanie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Pętle\Przerwij.cs" />
+    <Compile Include="ModelWidoku\Klocki\Pętle\PętlaAttribute.cs" />
+    <Compile Include="ModelWidoku\Klocki\ZawartośćKlockaPionowegoZZawartością.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Napis.cs" />

@@ -75,6 +75,25 @@
                     Value="10"></Setter>
         </Style>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
+        <ControlTemplate x:Key="KlocekPionowySzablon"
+                         TargetType="k:KlocekPionowyKontrolka">
+            <StackPanel Orientation="Horizontal">
+                <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      Margin="1">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                   CommandParameter="{Binding}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                            BorderThickness="3">
+                        <ContentPresenter></ContentPresenter>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </ControlTemplate>
         <ControlTemplate x:Key="KlocekPionowyPrzyjmującyWartośćSzablon"
                          TargetType="k:KlocekPionowyPrzyjmującyWartośćKontrolka">
             <StackPanel Orientation="Horizontal">
@@ -639,6 +658,13 @@
                     </Grid>
                 </StackPanel>
             </k:KlocekPionowyZZawartościąKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkp:Przerwij}">
+            <k:KlocekPionowyKontrolka Template="{StaticResource KlocekPionowySzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Przerwij</TextBlock>
+                </StackPanel>
+            </k:KlocekPionowyKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkt:Napis}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">

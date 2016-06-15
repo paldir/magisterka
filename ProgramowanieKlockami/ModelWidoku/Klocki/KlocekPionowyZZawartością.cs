@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
-
-namespace ProgramowanieKlockami.ModelWidoku.Klocki
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyZZawartością : KlocekPionowy
     {
-        public ObservableCollection<KlocekPionowy> Zawartość { get; }
+        public ZawartośćKlockaPionowegoZZawartością Zawartość { get; }
+
+        public bool PrzerwanieWykonywania { get; set; }
 
         private bool _rozwinięty;
 
@@ -22,14 +22,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         protected KlocekPionowyZZawartością()
         {
-            Zawartość = new ObservableCollection<KlocekPionowy>();
+            Zawartość = new ZawartośćKlockaPionowegoZZawartością {KlocekPionowyZZawartością = this};
             Rozwinięty = true;
         }
 
         public override void Wykonaj()
         {
             foreach (KlocekPionowy klocekPionowy in Zawartość)
-                klocekPionowy.Wykonaj();
+                if (PrzerwanieWykonywania)
+                {
+                    PrzerwanieWykonywania = false;
+
+                    break;
+                }
+                else
+                    klocekPionowy.Wykonaj();
         }
     }
 }

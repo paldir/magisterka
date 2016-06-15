@@ -1,8 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
+    [Pętla]
     public class Odliczanie : KlocekPionowyZZawartością
     {
         public override Brush Kolor => Kolory.Pętle;
@@ -37,23 +39,26 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
                 if (początek is double && koniec is double && okres is double)
                 {
                     double iterator = (double) okres;
+                    Func<double, double, bool> funkcjaPorównująca;
 
                     if (iterator < 0)
-                        for (double i = (double) początek; i >= (double) koniec; i += (double) okres)
-                        {
-                            WybranaZmienna.Wartość = i;
-
-                            base.Wykonaj();
-                        }
+                        funkcjaPorównująca = SprawdźCzyPierwszaLiczbaJestWiększaRównaOdDrugiej;
                     else if (iterator > 0)
-                        for (double i = (double) początek; i <= (double) koniec; i += (double) okres)
-                        {
-                            WybranaZmienna.Wartość = i;
+                        funkcjaPorównująca = SprawdźCzyPierwszaLiczbaJestMniejszaRównaOdDrugiej;
+                    else
+                        funkcjaPorównująca = (a, b) => false;
 
-                            base.Wykonaj();
-                        }
+                    for (double i = (double) początek; funkcjaPorównująca(i, (double) koniec); i += iterator)
+                    {
+                        WybranaZmienna.Wartość = i;
+
+                        base.Wykonaj();
+                    }
                 }
             }
         }
+
+        private static bool SprawdźCzyPierwszaLiczbaJestWiększaRównaOdDrugiej(double a, double b) => a >= b;
+        private static bool SprawdźCzyPierwszaLiczbaJestMniejszaRównaOdDrugiej(double a, double b) => a <= b;
     }
 }

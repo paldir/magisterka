@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using GongSolutions.Wpf.DragDrop;
+﻿using GongSolutions.Wpf.DragDrop;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
@@ -8,9 +7,9 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
     {
         public override void Drop(IDropInfo dropInfo)
         {
-            ObservableCollection<KlocekPionowy> docelowaKolekcja = (ObservableCollection<KlocekPionowy>) dropInfo.TargetCollection;
+            ZawartośćKlockaPionowegoZZawartością docelowaKolekcja = (ZawartośćKlockaPionowegoZZawartością) dropInfo.TargetCollection;
             KlocekPionowy upuszczanyKlocek = (KlocekPionowy) dropInfo.Data;
-            upuszczanyKlocek.MiejsceUmieszczenia = docelowaKolekcja;
+            upuszczanyKlocek.Rodzic = docelowaKolekcja.KlocekPionowyZZawartością;
             upuszczanyKlocek.ZPrzybornika = false;
 
             docelowaKolekcja.Insert(dropInfo.InsertIndex, upuszczanyKlocek);
