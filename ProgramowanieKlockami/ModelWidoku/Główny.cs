@@ -11,6 +11,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
@@ -26,6 +27,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public IEnumerable<IDziałanieLogiczne> DziałaniaLogiczne { get; }
         public IEnumerable<IDziałanieMatematyczne> DziałaniaMatematyczne { get; }
+        public IEnumerable<IFunkcjaMatematyczna> FunkcjeMatematyczne { get; }
         public IEnumerable<Klocek> KlockiDotyczącePętli { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
@@ -107,6 +109,17 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Potęgowanie()
             };
 
+            FunkcjeMatematyczne = new IFunkcjaMatematyczna[]
+            {
+                new PierwiastekKwadratowy(),
+                new WartośćBezwzględna(),
+                new WartośćOdwrotna(),
+                new LogarytmNaturalny(),
+                new LogarytmOPodstawie10(),
+                new FunkcjaEksponencjalna(),
+                new PotęgaOPodstawie10()
+            };
+
             StałeLogiczne = new IStałaLogiczna[]
             {
                 new Prawda(),
@@ -148,6 +161,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiMatematyczne = new Klocek[]
             {
+                new FunkcjaMatematyczna {WybranaFunkcjaMatematyczna = FunkcjeMatematyczne.First()},
                 new Stała(),
                 new WynikDziałania {WybraneDziałanieMatematyczne = DziałaniaMatematyczne.First()}
             };

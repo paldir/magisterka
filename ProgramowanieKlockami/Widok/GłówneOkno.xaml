@@ -590,6 +590,15 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkm:FunkcjaMatematyczna}">
+            <k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćPrzyjmującyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                              ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=FunkcjeMatematyczne}"
+                              SelectedItem="{Binding WybranaFunkcjaMatematyczna}"></ComboBox>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type mwkm:Stała}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">

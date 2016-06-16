@@ -98,6 +98,15 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Odejmowanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Dodawanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Potęgowanie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjaMatematyczna.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\LogarytmNaturalny.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\LogarytmOPodstawie10.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\FunkcjaEksponencjalna.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\PotęgaOPodstawie10.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\WartośćBezwzględna.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\IFunkcjaMatematyczna.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\PierwiastekKwadratowy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\WartośćOdwrotna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\Stała.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\WynikDziałania.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Dopóki.cs" />
