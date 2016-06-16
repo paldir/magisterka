@@ -7,13 +7,15 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class Klocek : ICloneable, INotifyPropertyChanged
     {
+        private bool _aktywny;
+        private Brush _kolorObramowania;
+        private bool _posiadaSkupienie;
+
         public abstract Brush Kolor { get; }
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
 
         public bool ZPrzybornika { get; set; }
-
-        private bool _aktywny;
 
         public bool Aktywny
         {
@@ -27,8 +29,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             }
         }
 
-        private Brush _kolorObramowania;
-
         public Brush KolorObramowania
         {
             get { return _kolorObramowania; }
@@ -40,8 +40,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 OnPropertyChanged();
             }
         }
-
-        private bool _posiadaSkupienie;
 
         public bool PosiadaSkupienie
         {

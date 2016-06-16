@@ -4,11 +4,10 @@ namespace ProgramowanieKlockami.ModelWidoku
 {
     public class Zmienna
     {
+        private string _nazwa;
         private readonly ObservableCollection<Zmienna> _zmienne;
 
         public object Wartość { get; set; }
-
-        private string _nazwa;
 
         public string Nazwa
         {

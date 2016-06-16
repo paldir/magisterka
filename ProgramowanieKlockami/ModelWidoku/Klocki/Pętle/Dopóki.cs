@@ -2,12 +2,13 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
-    [Pętla]
-    public class Dopóki : KlocekPionowyZZawartościąPrzyjmującyWartość
+    public class Dopóki : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
     {
         public override Brush Kolor => Kolory.Pętle;
         public override string Nazwa => "Pętla dopóki";
         public override string Opis => "Dopóki wartość jest prawdziwa, wykonuje instrukcje.";
+
+        public PowódSkoku PowódSkoku { get; set; }
 
         public override void Wykonaj()
         {
@@ -15,14 +16,20 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
             if (wartość?.Zwróć() is bool)
                 while ((bool) wartość.Zwróć())
-                    if (PrzerwanieWykonywania)
+                {
+                    ZresetujRekurencyjnieFlagęSkokuWPętli(this);
+
+                    if (PowódSkoku == PowódSkoku.PrzerwaniePętli)
                     {
-                        ZresetujFlagęPrzerwaniaWykonywania(this);
+                        PowódSkoku = PowódSkoku.Brak;
 
                         break;
                     }
-                    else
-                        base.Wykonaj();
+
+                    PowódSkoku = PowódSkoku.Brak;
+
+                    base.Wykonaj();
+                }
         }
     }
 }

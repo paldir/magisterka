@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
-    public class PrzerwaniePętli : KlocekPionowy
+    public abstract class SkokWPętli : KlocekPionowy
     {
+        private readonly PowódSkoku _powódSkoku;
+
         public override Brush Kolor => Kolory.Pętle;
-        public override string Nazwa => "Przerwanie pętli";
-        public override string Opis => "Przerywa wykonywanie pętli.";
+
+        protected SkokWPętli(PowódSkoku powódSkoku)
+        {
+            _powódSkoku = powódSkoku;
+        }
 
         public override void Wykonaj()
         {
@@ -19,15 +23,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
             {
                 klockiDoPrzerwania.Add(rodzic);
 
-                if (Attribute.IsDefined(rodzic.GetType(), typeof(PętlaAttribute)))
+                IPętla pętla = rodzic as IPętla;
+
+                if (pętla != null)
+                {
+                    pętla.PowódSkoku = _powódSkoku;
+
                     break;
+                }
 
                 rodzic = rodzic.Rodzic;
             }
 
             if (rodzic != null)
                 foreach (KlocekPionowyZZawartością klocek in klockiDoPrzerwania)
-                    klocek.PrzerwanieWykonywania = true;
+                    klocek.SkokPętli = true;
         }
     }
 }

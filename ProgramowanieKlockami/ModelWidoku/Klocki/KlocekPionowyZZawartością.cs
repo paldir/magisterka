@@ -4,11 +4,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyZZawartością : KlocekPionowy
     {
+        private bool _rozwinięty;
+
         public ZawartośćKlockaPionowegoZZawartością Zawartość { get; }
 
-        public bool PrzerwanieWykonywania { get; set; }
-
-        private bool _rozwinięty;
+        public bool SkokPętli { get; set; }
 
         public bool Rozwinięty
         {
@@ -31,18 +31,18 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public override void Wykonaj()
         {
             foreach (KlocekPionowy klocekPionowy in Zawartość)
-                if (PrzerwanieWykonywania)
+                if (SkokPętli)
                     break;
                 else
                     klocekPionowy.Wykonaj();
         }
 
-        public static void ZresetujFlagęPrzerwaniaWykonywania(KlocekPionowyZZawartością klocekPionowyZZawartością)
+        public static void ZresetujRekurencyjnieFlagęSkokuWPętli(KlocekPionowyZZawartością klocekPionowyZZawartością)
         {
-            klocekPionowyZZawartością.PrzerwanieWykonywania = false;
+            klocekPionowyZZawartością.SkokPętli = false;
 
             foreach (KlocekPionowyZZawartością klocek in klocekPionowyZZawartością.Zawartość.Where(k => k is KlocekPionowyZZawartością).Cast<KlocekPionowyZZawartością>())
-                ZresetujFlagęPrzerwaniaWykonywania(klocek);
+                ZresetujRekurencyjnieFlagęSkokuWPętli(klocek);
         }
     }
 }

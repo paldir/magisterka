@@ -23,12 +23,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
                 base.Wykonaj();
             else
                 foreach (KlocekPionowy klocekPionowy in AlternatywnaZawartość)
-                    if (PrzerwanieWykonywania)
+                    if (SkokPętli)
                         break;
                     else
                         klocekPionowy.Wykonaj();
-
-            PrzerwanieWykonywania = false;
         }
     }
 }

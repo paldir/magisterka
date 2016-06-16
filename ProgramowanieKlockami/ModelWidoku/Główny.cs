@@ -21,6 +21,8 @@ namespace ProgramowanieKlockami.ModelWidoku
     public class Główny : INotifyPropertyChanged
     {
         private Klocek _klocekPosiadającySkupienie;
+        private string _nazwaNowejZmiennej;
+        private double _powiększenie;
 
         public IEnumerable<IDziałanieLogiczne> DziałaniaLogiczne { get; }
         public IEnumerable<IDziałanieMatematyczne> DziałaniaMatematyczne { get; }
@@ -47,8 +49,6 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IZnakPorównania> ZnakiPorównania { get; }
 
-        private string _nazwaNowejZmiennej;
-
         public string NazwaNowejZmiennej
         {
             get { return _nazwaNowejZmiennej; }
@@ -60,8 +60,6 @@ namespace ProgramowanieKlockami.ModelWidoku
                 OnPropertyChanged();
             }
         }
-
-        private double _powiększenie;
 
         public double Powiększenie
         {
@@ -129,7 +127,8 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new Dopóki(),
                 new Odliczanie(),
-                new PrzerwaniePętli()
+                new PominięcieIteracji(),
+                new Przerwanie()
             };
 
             KlockiDotycząceZmiennych = new Klocek[]

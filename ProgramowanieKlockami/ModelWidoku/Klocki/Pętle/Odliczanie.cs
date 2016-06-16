@@ -4,8 +4,7 @@ using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
-    [Pętla]
-    public class Odliczanie : KlocekPionowyZZawartością
+    public class Odliczanie : KlocekPionowyZZawartością, IPętla
     {
         public override Brush Kolor => Kolory.Pętle;
         public override string Nazwa => "Pętla odliczająca";
@@ -15,6 +14,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
         public ObservableCollection<KlocekZwracającyWartość> Od { get; }
         public ObservableCollection<KlocekZwracającyWartość> Interwał { get; }
 
+        public PowódSkoku PowódSkoku { get; set; }
         public Zmienna WybranaZmienna { get; set; }
 
         public Odliczanie()
@@ -49,18 +49,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
                         funkcjaPorównująca = (a, b) => false;
 
                     for (double i = (double) początek; funkcjaPorównująca(i, (double) koniec); i += iterator)
-                        if (PrzerwanieWykonywania)
+                    {
+                        ZresetujRekurencyjnieFlagęSkokuWPętli(this);
+
+                        if (PowódSkoku == PowódSkoku.PrzerwaniePętli)
                         {
-                            ZresetujFlagęPrzerwaniaWykonywania(this);
+                            PowódSkoku = PowódSkoku.Brak;
 
                             break;
                         }
-                        else
-                        {
-                            WybranaZmienna.Wartość = i;
 
-                            base.Wykonaj();
-                        }
+                        PowódSkoku = PowódSkoku.Brak;
+                        WybranaZmienna.Wartość = i;
+
+                        base.Wykonaj();
+                    }
                 }
             }
         }
