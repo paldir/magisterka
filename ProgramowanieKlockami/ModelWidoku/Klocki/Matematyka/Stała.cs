@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
@@ -7,6 +8,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Stała";
         public override string Opis => "Zwraca liczbę.";
+        public override Type ZwracanyTyp => typeof(double);
 
         public double Liczba { get; set; }
 

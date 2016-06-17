@@ -10,6 +10,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public Konsola Konsola { get; set; }
 
+        public Wyświetl() : base(typeof(object))
+        {
+        }
+
         public override object Clone()
         {
             Wyświetl nowyKlocek = (Wyświetl) base.Clone();

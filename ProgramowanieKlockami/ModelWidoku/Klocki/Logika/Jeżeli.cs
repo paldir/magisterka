@@ -10,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public ZawartośćKlockaPionowegoZZawartością AlternatywnaZawartość { get; }
 
-        public Jeżeli()
+        public Jeżeli() : base(typeof(bool))
         {
             AlternatywnaZawartość = new ZawartośćKlockaPionowegoZZawartością();
         }

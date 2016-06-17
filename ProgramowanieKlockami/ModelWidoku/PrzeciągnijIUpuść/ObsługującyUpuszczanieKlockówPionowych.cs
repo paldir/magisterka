@@ -1,11 +1,28 @@
-﻿using GongSolutions.Wpf.DragDrop;
+﻿using System.Windows;
+using GongSolutions.Wpf.DragDrop;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 {
-    public class ObsługującyUpuszczanieKlockówPionowych : ObsługującyUpuszczanie<KlocekPionowy>
+    public class ObsługującyUpuszczanieKlockówPionowych : IDropTarget
     {
-        public override void Drop(IDropInfo dropInfo)
+        public void DragOver(IDropInfo dropInfo)
+        {
+            KlocekPionowy upuszczanyKlocek = dropInfo.Data as KlocekPionowy;
+            DragDropEffects efektUpuszczenia;
+
+            if (upuszczanyKlocek == null)
+                efektUpuszczenia = DragDropEffects.None;
+            else
+            {
+                efektUpuszczenia = upuszczanyKlocek.ZPrzybornika ? DragDropEffects.Copy : DragDropEffects.Move;
+                dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
+            }
+
+            dropInfo.Effects = efektUpuszczenia;
+        }
+
+        public void Drop(IDropInfo dropInfo)
         {
             ZawartośćKlockaPionowegoZZawartością docelowaKolekcja = (ZawartośćKlockaPionowegoZZawartością) dropInfo.TargetCollection;
             KlocekPionowy upuszczanyKlocek = (KlocekPionowy) dropInfo.Data;

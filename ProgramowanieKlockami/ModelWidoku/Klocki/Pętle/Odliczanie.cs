@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
@@ -10,18 +9,18 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
         public override string Nazwa => "Pętla odliczająca";
         public override string Opis => "Za pomocą zmiennej odlicza od wartości początkowej do końcowej dodając stałą liczbę. Każda iteracja powoduje wykonanie instrukcji.";
 
-        public ObservableCollection<KlocekZwracającyWartość> Do { get; }
-        public ObservableCollection<KlocekZwracającyWartość> Od { get; }
-        public ObservableCollection<KlocekZwracającyWartość> Interwał { get; }
+        public WartośćKlockaPrzyjmującegoWartość Do { get; }
+        public WartośćKlockaPrzyjmującegoWartość Od { get; }
+        public WartośćKlockaPrzyjmującegoWartość Interwał { get; }
 
         public PowódSkoku PowódSkoku { get; set; }
         public Zmienna WybranaZmienna { get; set; }
 
         public Odliczanie()
         {
-            Do = new ObservableCollection<KlocekZwracającyWartość> {null};
-            Od = new ObservableCollection<KlocekZwracającyWartość> {null};
-            Interwał = new ObservableCollection<KlocekZwracającyWartość> {null};
+            Do = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
+            Od = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
+            Interwał = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
         }
 
         public override void Wykonaj()

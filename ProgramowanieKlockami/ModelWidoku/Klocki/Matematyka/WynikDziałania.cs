@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
 using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
@@ -9,15 +9,16 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Wynik działania";
         public override string Opis => "Zwraca wynik działania matematycznego.";
+        public override Type ZwracanyTyp => typeof(double);
 
-        public ObservableCollection<KlocekZwracającyWartość> Wartość1 { get; set; }
-        public ObservableCollection<KlocekZwracającyWartość> Wartość2 { get; set; }
+        public WartośćKlockaPrzyjmującegoWartość Wartość1 { get; set; }
+        public WartośćKlockaPrzyjmującegoWartość Wartość2 { get; set; }
         public IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double> WybraneDziałanieMatematyczne { get; set; }
 
         public WynikDziałania()
         {
-            Wartość1 = new ObservableCollection<KlocekZwracającyWartość> {null};
-            Wartość2 = new ObservableCollection<KlocekZwracającyWartość> {null};
+            Wartość1 = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
+            Wartość2 = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
         }
 
         public override object Clone()

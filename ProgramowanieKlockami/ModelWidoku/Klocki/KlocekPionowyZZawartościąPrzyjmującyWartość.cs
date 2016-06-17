@@ -1,14 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyZZawartościąPrzyjmującyWartość : KlocekPionowyZZawartością
     {
-        public ObservableCollection<KlocekZwracającyWartość> Wartość { get; }
+        public WartośćKlockaPrzyjmującegoWartość Wartość { get; }
 
-        protected KlocekPionowyZZawartościąPrzyjmującyWartość()
+        protected KlocekPionowyZZawartościąPrzyjmującyWartość(Type przyjmowanyTyp)
         {
-            Wartość = new ObservableCollection<KlocekZwracającyWartość> {null};
+            Wartość = new WartośćKlockaPrzyjmującegoWartość(przyjmowanyTyp);
         }
     }
 }

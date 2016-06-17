@@ -10,6 +10,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
         public PowódSkoku PowódSkoku { get; set; }
 
+        public Dopóki() : base(typeof(bool))
+        {
+        }
+
         public override void Wykonaj()
         {
             KlocekZwracającyWartość wartość = Wartość[0];

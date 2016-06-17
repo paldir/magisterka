@@ -10,6 +10,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
 
         public Zmienna WybranaZmienna { get; set; }
 
+        public UstawZmienną() : base(typeof(object))
+        {
+        }
+
         public override void Wykonaj()
         {
             KlocekZwracającyWartość wartość = Wartość[0];

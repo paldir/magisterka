@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
@@ -8,6 +9,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         public override Brush Kolor => Kolory.Logika;
         public override string Nazwa => "StałaLogiczna";
         public override string Opis => "Zwraca fałsz.";
+        public override Type ZwracanyTyp => typeof(bool);
 
         public IOpcjaZwracającaWartość<bool> WybranaStałaLogiczna { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
@@ -8,8 +9,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Funkcja matematyczna";
         public override string Opis => "Zwraca wartość wybranej funkcji matematycznej.";
+        public override Type ZwracanyTyp => typeof(double);
 
         public IOpcjaZwracającaWartośćNaPodstawieParametru<double, double> WybranaFunkcjaMatematyczna { get; set; }
+
+        public FunkcjaMatematyczna() : base(typeof(double))
+        {
+        }
 
         public override object Clone()
         {

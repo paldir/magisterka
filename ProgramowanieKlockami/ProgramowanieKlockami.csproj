@@ -117,6 +117,7 @@
     <Compile Include="ModelWidoku\Klocki\Pętle\PowódSkoku.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Przerwanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\SkokWPętli.cs" />
+    <Compile Include="ModelWidoku\Klocki\WartośćKlockaPrzyjmującegoWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\ZawartośćKlockaPionowegoZZawartością.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />
@@ -127,7 +128,6 @@
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówPionowych.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówZwracającychWartość.cs" />
-    <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanieKlockówZwracającychWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\StałeLogiczne\Fałsz.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\StałeLogiczne\Prawda.cs" />
