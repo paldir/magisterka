@@ -1,11 +1,12 @@
 ﻿using System;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania
 {
-    public class Nierówny : IZnakPorównania
+    public class Nierówny : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>
     {
         public string ReprezentacjaTekstowa => "!=";
 
-        public bool Porównaj(IComparable x, IComparable y) => x.CompareTo(y) != 0;
+        public bool Zwróć(IComparable x, IComparable y) => x.CompareTo(y) != 0;
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
@@ -25,9 +27,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         private string _nazwaNowejZmiennej;
         private double _powiększenie;
 
-        public IEnumerable<IDziałanieLogiczne> DziałaniaLogiczne { get; }
-        public IEnumerable<IDziałanieMatematyczne> DziałaniaMatematyczne { get; }
-        public IEnumerable<IFunkcjaMatematyczna> FunkcjeMatematyczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>> DziałaniaLogiczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>> DziałaniaMatematyczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
         public IEnumerable<Klocek> KlockiDotyczącePętli { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
@@ -47,9 +49,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
-        public IEnumerable<IStałaLogiczna> StałeLogiczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
-        public IEnumerable<IZnakPorównania> ZnakiPorównania { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>> ZnakiPorównania { get; }
 
         public string NazwaNowejZmiennej
         {
@@ -94,13 +96,13 @@ namespace ProgramowanieKlockami.ModelWidoku
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
             Zmienne = new ObservableCollection<Zmienna>();
 
-            DziałaniaLogiczne = new IDziałanieLogiczne[]
+            DziałaniaLogiczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>[]
             {
                 new Koniunkcja(),
                 new Alternatywa()
             };
 
-            DziałaniaMatematyczne = new IDziałanieMatematyczne[]
+            DziałaniaMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>[]
             {
                 new Dodawanie(),
                 new Odejmowanie(),
@@ -109,7 +111,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Potęgowanie()
             };
 
-            FunkcjeMatematyczne = new IFunkcjaMatematyczna[]
+            FunkcjeMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
             {
                 new PierwiastekKwadratowy(),
                 new WartośćBezwzględna(),
@@ -120,13 +122,13 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new PotęgaOPodstawie10()
             };
 
-            StałeLogiczne = new IStałaLogiczna[]
+            StałeLogiczne = new IOpcjaZwracającaWartość<bool>[]
             {
                 new Prawda(),
                 new Fałsz()
             };
 
-            ZnakiPorównania = new IZnakPorównania[]
+            ZnakiPorównania = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>[]
             {
                 new Równy(),
                 new Nierówny(),

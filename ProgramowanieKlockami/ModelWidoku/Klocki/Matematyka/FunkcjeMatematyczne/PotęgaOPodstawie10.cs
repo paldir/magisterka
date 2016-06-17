@@ -1,11 +1,12 @@
 ﻿using System;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class PotęgaOPodstawie10 : IFunkcjaMatematyczna
+    public class PotęgaOPodstawie10 : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
         public string ReprezentacjaTekstowa => "10^";
 
-        public double ObliczWartość(double x) => Math.Pow(10, x);
+        public double Zwróć(double x) => Math.Pow(10, x);
     }
 }

@@ -1,9 +1,11 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
+﻿using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class WartośćOdwrotna : IFunkcjaMatematyczna
+    public class WartośćOdwrotna : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
         public string ReprezentacjaTekstowa => "-";
 
-        public double ObliczWartość(double x) => -x;
+        public double Zwróć(double x) => -x;
     }
 }

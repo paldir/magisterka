@@ -1,11 +1,12 @@
 ﻿using System;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class LogarytmOPodstawie10 : IFunkcjaMatematyczna
+    public class LogarytmOPodstawie10 : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
         public string ReprezentacjaTekstowa => "Log10";
 
-        public double ObliczWartość(double x) => Math.Log10(x);
+        public double Zwróć(double x) => Math.Log10(x);
     }
 }

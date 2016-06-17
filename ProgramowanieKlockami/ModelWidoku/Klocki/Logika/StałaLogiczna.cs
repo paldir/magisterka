@@ -1,5 +1,5 @@
 ﻿using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
@@ -9,11 +9,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         public override string Nazwa => "StałaLogiczna";
         public override string Opis => "Zwraca fałsz.";
 
-        public IStałaLogiczna WybranaStałaLogiczna { get; set; }
+        public IOpcjaZwracającaWartość<bool> WybranaStałaLogiczna { get; set; }
 
         public override object Zwróć()
         {
-            return WybranaStałaLogiczna.WartośćLogiczna;
+            return WybranaStałaLogiczna.Wartość;
         }
 
         public override object Clone()

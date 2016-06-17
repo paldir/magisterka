@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
@@ -13,7 +13,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public ObservableCollection<KlocekZwracającyWartość> Wartość1 { get; set; }
         public ObservableCollection<KlocekZwracającyWartość> Wartość2 { get; set; }
-        public IZnakPorównania WybranyZnakPorównania { get; set; }
+        public IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable> WybranyZnakPorównania { get; set; }
 
         public Porównanie()
         {
@@ -40,7 +40,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
             object obiekt1 = wartość1.Zwróć();
             object obiekt2 = wartość2.Zwróć();
 
-            return (obiekt1.GetType() == obiekt2.GetType()) && WybranyZnakPorównania.Porównaj((IComparable) obiekt1, (IComparable) obiekt2);
+            return (obiekt1.GetType() == obiekt2.GetType()) && WybranyZnakPorównania.Zwróć((IComparable) obiekt1, (IComparable) obiekt2);
         }
     }
 }

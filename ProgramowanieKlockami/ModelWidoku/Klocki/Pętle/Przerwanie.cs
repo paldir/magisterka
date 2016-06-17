@@ -1,6 +1,4 @@
-﻿using System.Windows.Media;
-
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
     public class Przerwanie : SkokWPętli
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
@@ -12,7 +12,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public ObservableCollection<KlocekZwracającyWartość> Wartość1 { get; set; }
         public ObservableCollection<KlocekZwracającyWartość> Wartość2 { get; set; }
-        public IDziałanieLogiczne WybraneDziałanie { get; set; }
+        public IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool> WybraneDziałanie { get; set; }
 
         public WarunekZłożony()
         {
@@ -42,7 +42,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
             if (!(warunek1 is bool) || !(warunek2 is bool))
                 return false;
 
-            return WybraneDziałanie.Wykonaj((bool) warunek1, (bool) warunek2);
+            return WybraneDziałanie.Zwróć((bool) warunek1, (bool) warunek2);
         }
     }
 }

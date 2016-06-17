@@ -1,11 +1,12 @@
 ﻿using System;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class LogarytmNaturalny : IFunkcjaMatematyczna
+    public class LogarytmNaturalny : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
         public string ReprezentacjaTekstowa => "Ln";
 
-        public double ObliczWartość(double x) => Math.Log(x);
+        public double Zwróć(double x) => Math.Log(x);
     }
 }

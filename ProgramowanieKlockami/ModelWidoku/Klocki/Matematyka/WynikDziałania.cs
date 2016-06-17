@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
@@ -12,7 +12,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         public ObservableCollection<KlocekZwracającyWartość> Wartość1 { get; set; }
         public ObservableCollection<KlocekZwracającyWartość> Wartość2 { get; set; }
-        public IDziałanieMatematyczne WybraneDziałanieMatematyczne { get; set; }
+        public IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double> WybraneDziałanieMatematyczne { get; set; }
 
         public WynikDziałania()
         {
@@ -42,7 +42,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
             if (!(liczba1 is double) || !(liczba2 is double))
                 return 0;
 
-            return WybraneDziałanieMatematyczne.Wykonaj((double) liczba1, (double) liczba2);
+            return WybraneDziałanieMatematyczne.Zwróć((double) liczba1, (double) liczba2);
         }
     }
 }

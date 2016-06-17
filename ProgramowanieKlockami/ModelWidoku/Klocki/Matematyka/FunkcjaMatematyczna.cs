@@ -1,5 +1,5 @@
 ﻿using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
@@ -9,7 +9,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         public override string Nazwa => "Funkcja matematyczna";
         public override string Opis => "Zwraca wartość wybranej funkcji matematycznej.";
 
-        public IFunkcjaMatematyczna WybranaFunkcjaMatematyczna { get; set; }
+        public IOpcjaZwracającaWartośćNaPodstawieParametru<double, double> WybranaFunkcjaMatematyczna { get; set; }
 
         public override object Clone()
         {
@@ -26,7 +26,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
             object wartość = klocekZwracającyWartość?.Zwróć();
 
             if (wartość is double)
-                return WybranaFunkcjaMatematyczna.ObliczWartość((double) wartość);
+                return WybranaFunkcjaMatematyczna.Zwróć((double) wartość);
 
             return 0;
         }

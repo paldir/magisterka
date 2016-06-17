@@ -1,11 +1,12 @@
 ﻿using System;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class PierwiastekKwadratowy : IFunkcjaMatematyczna
+    public class PierwiastekKwadratowy : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
         public string ReprezentacjaTekstowa => "Pierwiastek kwadratowy z";
 
-        public double ObliczWartość(double x) => Math.Sqrt(x);
+        public double Zwróć(double x) => Math.Sqrt(x);
     }
 }

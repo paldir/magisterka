@@ -1,11 +1,12 @@
 ﻿using System;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class FunkcjaEksponencjalna : IFunkcjaMatematyczna
+    public class FunkcjaEksponencjalna : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
         public string ReprezentacjaTekstowa => "e^";
 
-        public double ObliczWartość(double x) => Math.Exp(x);
+        public double Zwróć(double x) => Math.Exp(x);
     }
 }

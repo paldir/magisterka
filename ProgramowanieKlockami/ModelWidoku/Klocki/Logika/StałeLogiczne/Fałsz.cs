@@ -1,8 +1,10 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne
+﻿using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne
 {
-    public class Fałsz : IStałaLogiczna
+    public class Fałsz : IOpcjaZwracającaWartość<bool>
     {
         public string ReprezentacjaTekstowa => "fałsz";
-        public bool WartośćLogiczna => false;
+        public bool Wartość => false;
     }
 }

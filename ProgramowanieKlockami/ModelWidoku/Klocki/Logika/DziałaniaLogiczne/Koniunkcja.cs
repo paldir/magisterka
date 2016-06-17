@@ -1,9 +1,11 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne
+﻿using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne
 {
-    public class Koniunkcja : IDziałanieLogiczne
+    public class Koniunkcja : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>
     {
         public string ReprezentacjaTekstowa => "i";
 
-        public bool Wykonaj(bool a, bool b) => a && b;
+        public bool Zwróć(bool a, bool b) => a && b;
     }
 }

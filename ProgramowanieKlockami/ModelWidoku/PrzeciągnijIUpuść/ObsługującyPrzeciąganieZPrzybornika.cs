@@ -1,5 +1,4 @@
 ﻿using GongSolutions.Wpf.DragDrop;
-using System;
 using System.Windows;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 
