@@ -104,6 +104,7 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Dodawanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Potęgowanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjaMatematyczna.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjaTrygonometryczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\LogarytmNaturalny.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\LogarytmOPodstawie10.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\FunkcjaEksponencjalna.cs" />
@@ -111,6 +112,12 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\WartośćBezwzględna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\PierwiastekKwadratowy.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\WartośćOdwrotna.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\ArcusCosinus.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\ArcusSinus.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\ArcusTangens.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Cosinus.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Sinus.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Tangens.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\Stała.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\WynikDziałania.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Dopóki.cs" />

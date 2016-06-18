@@ -14,6 +14,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeTrygonometryczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
@@ -30,6 +31,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>> DziałaniaLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>> DziałaniaMatematyczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeTrygonometryczne { get; }
         public IEnumerable<Klocek> KlockiDotyczącePętli { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
@@ -122,6 +124,16 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new PotęgaOPodstawie10()
             };
 
+            FunkcjeTrygonometryczne = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
+            {
+                new Sinus(),
+                new Cosinus(),
+                new Tangens(),
+                new ArcusSinus(),
+                new ArcusCosinus(),
+                new ArcusTangens()
+            };
+
             StałeLogiczne = new IOpcjaZwracającaWartość<bool>[]
             {
                 new Prawda(),
@@ -164,6 +176,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlockiMatematyczne = new Klocek[]
             {
                 new FunkcjaMatematyczna {WybranaOpcja = FunkcjeMatematyczne.First()},
+                new FunkcjaTrygonometryczna() {WybranaOpcja = FunkcjeTrygonometryczne.First()},
                 new Stała(),
                 new WynikDziałania {WybranaOpcja = DziałaniaMatematyczne.First()}
             };
