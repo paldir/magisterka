@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using GongSolutions.Wpf.DragDrop;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 
@@ -11,14 +12,15 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             KlocekZwracającyWartość upuszczanyKlocek = dropInfo.Data as KlocekZwracającyWartość;
             WartośćKlockaPrzyjmującegoWartość wartośćKlockaPrzyjmującegoWartość = (WartośćKlockaPrzyjmującegoWartość) dropInfo.TargetCollection;
             DragDropEffects efektUpuszczenia;
+            Type zwracanyTyp = upuszczanyKlocek?.ZwracanyTyp;
 
-            if ((upuszczanyKlocek == null) || (wartośćKlockaPrzyjmującegoWartość.PrzyjmowanyTyp != upuszczanyKlocek.ZwracanyTyp))
-                efektUpuszczenia = DragDropEffects.None;
-            else
+            if ((upuszczanyKlocek != null) && ((zwracanyTyp == null) || wartośćKlockaPrzyjmującegoWartość.PrzyjmowanyTyp.IsAssignableFrom(zwracanyTyp)))
             {
                 efektUpuszczenia = upuszczanyKlocek.ZPrzybornika ? DragDropEffects.Copy : DragDropEffects.Move;
                 dropInfo.DropTargetAdorner = DropTargetAdorners.Highlight;
             }
+            else
+                efektUpuszczenia = DragDropEffects.None;
 
             dropInfo.Effects = efektUpuszczenia;
         }
