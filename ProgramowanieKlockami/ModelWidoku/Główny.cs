@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
-using ProgramowanieKlockami.ModelWidoku.Klocki.KonfiguracjaKlocków.KonfiguracjaKlockówZwracającychWartość;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
@@ -156,16 +156,16 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new Jeżeli(),
                 new Negacja(),
-                new Porównanie {WybranyZnakPorównania = ZnakiPorównania.First()},
-                new StałaLogiczna {WybranaStałaLogiczna = StałeLogiczne.First()},
-                new WarunekZłożony {WybraneDziałanie = DziałaniaLogiczne.First()}
+                new Porównanie {WybranaOpcja = ZnakiPorównania.First()},
+                new StałaLogiczna {WybranaOpcja = StałeLogiczne.First()},
+                new WarunekZłożony {WybranaOpcja = DziałaniaLogiczne.First()}
             };
 
             KlockiMatematyczne = new Klocek[]
             {
-                new FunkcjaMatematyczna {WybranaFunkcjaMatematyczna = FunkcjeMatematyczne.First()},
+                new FunkcjaMatematyczna {WybranaOpcja = FunkcjeMatematyczne.First()},
                 new Stała(),
-                new WynikDziałania {WybraneDziałanieMatematyczne = DziałaniaMatematyczne.First()}
+                new WynikDziałania {WybranaOpcja = DziałaniaMatematyczne.First()}
             };
 
             KlockiTekstowe = new Klocek[]

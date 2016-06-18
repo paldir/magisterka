@@ -547,7 +547,7 @@
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                                   ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=ZnakiPorównania}"
-                                  SelectedItem="{Binding WybranyZnakPorównania}"></ComboBox>
+                                  SelectedItem="{Binding WybranaOpcja}"></ComboBox>
                     </StackPanel>
                     <Grid Margin="5">
                         <StackPanel VerticalAlignment="Center">
@@ -563,7 +563,7 @@
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                               ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=StałeLogiczne}"
-                              SelectedItem="{Binding WybranaStałaLogiczna}"></ComboBox>
+                              SelectedItem="{Binding WybranaOpcja}"></ComboBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
@@ -579,7 +579,7 @@
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                                   ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=DziałaniaLogiczne}"
-                                  SelectedItem="{Binding WybraneDziałanie}"></ComboBox>
+                                  SelectedItem="{Binding WybranaOpcja}"></ComboBox>
                     </StackPanel>
                     <Grid Margin="5">
                         <StackPanel VerticalAlignment="Center">
@@ -595,7 +595,7 @@
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                               ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=FunkcjeMatematyczne}"
-                              SelectedItem="{Binding WybranaFunkcjaMatematyczna}"></ComboBox>
+                              SelectedItem="{Binding WybranaOpcja}"></ComboBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
@@ -618,7 +618,7 @@
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                                   ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=DziałaniaMatematyczne}"
-                                  SelectedItem="{Binding WybraneDziałanieMatematyczne}"></ComboBox>
+                                  SelectedItem="{Binding WybranaOpcja}"></ComboBox>
                     </StackPanel>
                     <Grid Margin="5">
                         <StackPanel VerticalAlignment="Center">

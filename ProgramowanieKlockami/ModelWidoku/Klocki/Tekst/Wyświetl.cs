@@ -24,10 +24,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public override void Wykonaj()
         {
-            object zwróconyObiekt = Wartość[0].Zwróć();
+            object wartość = Wartość[0]?.Zwróć();
 
-            if (zwróconyObiekt != null)
-                Konsola.DodajLinię(zwróconyObiekt.ToString());
+            if (wartość != null)
+                Konsola.DodajLinię(wartość.ToString());
         }
     }
 }
