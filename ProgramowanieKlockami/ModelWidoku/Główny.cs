@@ -12,9 +12,11 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.CechyLiczby;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeTrygonometryczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
@@ -28,6 +30,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         private string _nazwaNowejZmiennej;
         private double _powiększenie;
 
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>> DziałaniaLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>> DziałaniaMatematyczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
@@ -52,6 +55,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>> ZnakiPorównania { get; }
 
@@ -98,6 +102,15 @@ namespace ProgramowanieKlockami.ModelWidoku
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
             Zmienne = new ObservableCollection<Zmienna>();
 
+            CechyLiczby = new IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>[]
+            {
+                new Parzystość(),
+                new Nieparzystość(),
+                new Całkowitość(),
+                new Dodatniość(),
+                new Ujemność()
+            };
+
             DziałaniaLogiczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>[]
             {
                 new Koniunkcja(),
@@ -140,6 +153,16 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Fałsz()
             };
 
+            StałeMatematyczne = new IOpcjaZwracającaWartość<double>[]
+            {
+                new Pi(),
+                new LiczbaE(),
+                new LiczbaPhi(),
+                new PierwiastekZDwóch(),
+                new PierwiastekZJednejDrugiej(),
+                new Nieskończoność()
+            };
+
             ZnakiPorównania = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>[]
             {
                 new Równy(),
@@ -176,9 +199,11 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlockiMatematyczne = new Klocek[]
             {
                 new FunkcjaMatematyczna {WybranaOpcja = FunkcjeMatematyczne.First()},
-                new FunkcjaTrygonometryczna() {WybranaOpcja = FunkcjeTrygonometryczne.First()},
-                new Stała(),
-                new WynikDziałania {WybranaOpcja = DziałaniaMatematyczne.First()}
+                new FunkcjaTrygonometryczna {WybranaOpcja = FunkcjeTrygonometryczne.First()},
+                new StałaLiczbowa(),
+                new StałaMatematyczna {WybranaOpcja = StałeMatematyczne.First()},
+                new WynikDziałania {WybranaOpcja = DziałaniaMatematyczne.First()},
+                new WystępowanieCechyLiczby {WybranaOpcja = CechyLiczby.First()}
             };
 
             KlockiTekstowe = new Klocek[]

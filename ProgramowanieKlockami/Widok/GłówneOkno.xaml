@@ -608,10 +608,19 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkm:Stała}">
+        <DataTemplate DataType="{x:Type mwkm:StałaLiczbowa}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <TextBox Text="{Binding Liczba, StringFormat=F, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkm:StałaMatematyczna}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                              ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=StałeMatematyczne}"
+                              SelectedItem="{Binding WybranaOpcja}"></ComboBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
@@ -635,6 +644,24 @@
                                           Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
                         </StackPanel>
                     </Grid>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkm:WystępowanieCechyLiczby}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <Grid Margin="5">
+                        <StackPanel VerticalAlignment="Center">
+                            <ItemsControl ItemsSource="{Binding Wartość}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Style="{StaticResource TekstKlocka}">jest</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=CechyLiczby}"
+                                  SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                    </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
