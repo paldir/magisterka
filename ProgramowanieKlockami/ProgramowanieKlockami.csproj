@@ -108,6 +108,7 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Odejmowanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Dodawanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Potęgowanie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Modulo.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjaMatematyczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjaTrygonometryczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\LogarytmNaturalny.cs" />
@@ -123,7 +124,12 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Cosinus.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Sinus.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Tangens.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\LosowaLiczbaCałkowitaZZakresu.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\LosowyUłamek.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\PodzielnośćLiczbyPrzezLiczbę.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\SposobyZaokrąglania\Zaokrąglanie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\SposobyZaokrąglania\ZaokrąglanieWDół.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\SposobyZaokrąglania\ZaokrąglanieWGórę.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\StałaLiczbowa.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\StałaMatematyczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\StałeMatematyczne\LiczbaE.cs" />
@@ -134,6 +140,7 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\StałeMatematyczne\PierwiastekZJednejDrugiej.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\WynikDziałania.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\WystępowanieCechyLiczby.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\ZaokrąglonaLiczba.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\ZmianaWartościZmiennejOLiczbę.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Dopóki.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\IPętla.cs" />

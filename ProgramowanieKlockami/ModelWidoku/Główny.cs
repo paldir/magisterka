@@ -16,6 +16,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.CechyLiczby;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeTrygonometryczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.SposobyZaokrąglania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
@@ -54,6 +55,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> SposobyZaokrąglania { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
@@ -123,7 +125,8 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Odejmowanie(),
                 new Mnożenie(),
                 new Dzielenie(),
-                new Potęgowanie()
+                new Potęgowanie(),
+                new Modulo()
             };
 
             FunkcjeMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
@@ -145,6 +148,13 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new ArcusSinus(),
                 new ArcusCosinus(),
                 new ArcusTangens()
+            };
+
+            SposobyZaokrąglania = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
+            {
+                new Zaokrąglanie(),
+                new ZaokrąglanieWGórę(),
+                new ZaokrąglanieWDół()
             };
 
             StałeLogiczne = new IOpcjaZwracającaWartość<bool>[]
@@ -200,11 +210,14 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new FunkcjaMatematyczna {WybranaOpcja = FunkcjeMatematyczne.First()},
                 new FunkcjaTrygonometryczna {WybranaOpcja = FunkcjeTrygonometryczne.First()},
+                new LosowaLiczbaCałkowitaZZakresu(),
+                new LosowyUłamek(),
                 new PodzielnośćLiczbyPrzezLiczbę(),
                 new StałaLiczbowa(),
                 new StałaMatematyczna {WybranaOpcja = StałeMatematyczne.First()},
                 new WynikDziałania {WybranaOpcja = DziałaniaMatematyczne.First()},
                 new WystępowanieCechyLiczby {WybranaOpcja = CechyLiczby.First()},
+                new ZaokrąglonaLiczba {WybranaOpcja = SposobyZaokrąglania.First()},
                 new ZmianaWartościZmiennejOLiczbę()
             };
 

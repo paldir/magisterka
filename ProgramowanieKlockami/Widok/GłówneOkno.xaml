@@ -606,6 +606,29 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkm:LosowaLiczbaCałkowitaZZakresu}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Całkowita liczba losowa od</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <ItemsControl ItemsSource="{Binding Liczba1}"
+                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource TekstKlocka}">do</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <ItemsControl ItemsSource="{Binding Liczba2}"
+                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                    </StackPanel>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkm:LosowyUłamek}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Losowy ułamek</TextBlock>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type mwkm:PodzielnośćLiczbyPrzezLiczbę}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
@@ -675,6 +698,18 @@
                     </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkm:ZaokrąglonaLiczba}">
+            <k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćPrzyjmującyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=SposobyZaokrąglania}"
+                                  SelectedItem="{Binding WybranaOpcja}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkm:ZmianaWartościZmiennejOLiczbę}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
@@ -787,7 +822,8 @@
         </Menu>
         <DockPanel Grid.Row="1"
                    LastChildFill="True">
-            <TabControl TabStripPlacement="Left" Width="375">
+            <TabControl TabStripPlacement="Left"
+                        Width="375">
                 <TabItem Header="Logika">
                     <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
                                   dd:DragDrop.IsDragSource="True"
@@ -822,7 +858,8 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource PoleTekstoweKlocka}" Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
+                                    <TextBox Style="{StaticResource PoleTekstoweKlocka}"
+                                             Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
                                     <Button Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaZmiennej}"
                                             CommandParameter="{Binding}">Usuń</Button>
                                 </StackPanel>
