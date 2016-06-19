@@ -141,6 +141,8 @@
         </Style>
         <Style x:Key="StackPanelKlocka"
                TargetType="StackPanel">
+            <Setter Property="Margin"
+                    Value="5"></Setter>
             <Setter Property="Orientation"
                     Value="Horizontal"></Setter>
         </Style>
@@ -149,23 +151,19 @@
                BasedOn="{StaticResource StackPanelKlocka}">
             <Setter Property="HorizontalAlignment"
                     Value="Center"></Setter>
-            <Setter Property="Margin"
-                    Value="10"></Setter>
             <Setter Property="VerticalAlignment"
                     Value="Center"></Setter>
         </Style>
         <Style x:Key="StackPanelKlockaKońcowego"
                TargetType="StackPanel"
                BasedOn="{StaticResource StackPanelKlocka}">
-            <Setter Property="Margin"
-                    Value="5"></Setter>
         </Style>
         <Style x:Key="TekstKlocka"
                TargetType="TextBlock">
             <Setter Property="Foreground"
                     Value="White"></Setter>
             <Setter Property="Margin"
-                    Value="3,0"></Setter>
+                    Value="2,0"></Setter>
             <Setter Property="VerticalAlignment"
                     Value="Center"></Setter>
         </Style>

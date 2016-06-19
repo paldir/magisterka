@@ -123,6 +123,7 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Cosinus.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Sinus.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeTrygonometryczne\Tangens.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\PodzielnośćLiczbyPrzezLiczbę.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\StałaLiczbowa.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\StałaMatematyczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\StałeMatematyczne\LiczbaE.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\StałeMatematyczne\PierwiastekZJednejDrugiej.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\WynikDziałania.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\WystępowanieCechyLiczby.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\ZmianaWartościZmiennejOLiczbę.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Dopóki.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\IPętla.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Odliczanie.cs" />

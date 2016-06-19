@@ -200,10 +200,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new FunkcjaMatematyczna {WybranaOpcja = FunkcjeMatematyczne.First()},
                 new FunkcjaTrygonometryczna {WybranaOpcja = FunkcjeTrygonometryczne.First()},
+                new PodzielnośćLiczbyPrzezLiczbę(),
                 new StałaLiczbowa(),
                 new StałaMatematyczna {WybranaOpcja = StałeMatematyczne.First()},
                 new WynikDziałania {WybranaOpcja = DziałaniaMatematyczne.First()},
-                new WystępowanieCechyLiczby {WybranaOpcja = CechyLiczby.First()}
+                new WystępowanieCechyLiczby {WybranaOpcja = CechyLiczby.First()},
+                new ZmianaWartościZmiennejOLiczbę()
             };
 
             KlockiTekstowe = new Klocek[]
