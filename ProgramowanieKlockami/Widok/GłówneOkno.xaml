@@ -25,6 +25,7 @@
                       Header="Usuń"></MenuItem>
         </ContextMenu>
         <Style x:Key="ListaZmiennych"
+               BasedOn="{StaticResource RozwijanaListaKlocka}"
                TargetType="ComboBox">
             <Setter Property="ItemsSource"
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=Zmienne}"></Setter>
@@ -68,7 +69,7 @@
             <Setter Property="Background"
                     Value="White"></Setter>
             <Setter Property="Margin"
-                    Value="2,0"></Setter>
+                    Value="2"></Setter>
             <Setter Property="MinHeight"
                     Value="20"></Setter>
             <Setter Property="MinWidth"
@@ -545,7 +546,8 @@
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                                   ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=ZnakiPorównania}"
-                                  SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                                  SelectedItem="{Binding WybranaOpcja}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <ItemsControl ItemsSource="{Binding Wartość2}"
@@ -559,7 +561,8 @@
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                               ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=StałeLogiczne}"
-                              SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                              SelectedItem="{Binding WybranaOpcja}"
+                              Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
@@ -573,7 +576,8 @@
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                                   ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=DziałaniaLogiczne}"
-                                  SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                                  SelectedItem="{Binding WybranaOpcja}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <ItemsControl ItemsSource="{Binding Wartość2}"
@@ -587,7 +591,8 @@
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                               ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=FunkcjeMatematyczne}"
-                              SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                              SelectedItem="{Binding WybranaOpcja}"
+                              Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
@@ -596,7 +601,8 @@
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                               ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=FunkcjeTrygonometryczne}"
-                              SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                              SelectedItem="{Binding WybranaOpcja}"
+                              Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
@@ -618,7 +624,8 @@
         <DataTemplate DataType="{x:Type mwkm:StałaLiczbowa}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
-                    <TextBox Text="{Binding Liczba, StringFormat=F, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBox Style="{StaticResource PoleTekstoweKlocka}"
+                             Text="{Binding Liczba, StringFormat=F, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
@@ -627,7 +634,8 @@
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                               ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=StałeMatematyczne}"
-                              SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                              SelectedItem="{Binding WybranaOpcja}"
+                              Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
@@ -641,7 +649,8 @@
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                                   ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=DziałaniaMatematyczne}"
-                                  SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                                  SelectedItem="{Binding WybranaOpcja}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <ItemsControl ItemsSource="{Binding Wartość2}"
@@ -661,7 +670,8 @@
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
                                   ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=CechyLiczby}"
-                                  SelectedItem="{Binding WybranaOpcja}"></ComboBox>
+                                  SelectedItem="{Binding WybranaOpcja}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
@@ -729,7 +739,8 @@
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">"</TextBlock>
-                    <TextBox Text="{Binding Treść, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBox Style="{StaticResource PoleTekstoweKlocka}"
+                             Text="{Binding Treść, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                     <TextBlock Style="{StaticResource TekstKlocka}">"</TextBlock>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
@@ -776,7 +787,7 @@
         </Menu>
         <DockPanel Grid.Row="1"
                    LastChildFill="True">
-            <TabControl TabStripPlacement="Left">
+            <TabControl TabStripPlacement="Left" Width="375">
                 <TabItem Header="Logika">
                     <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
                                   dd:DragDrop.IsDragSource="True"
@@ -811,7 +822,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
+                                    <TextBox Style="{StaticResource PoleTekstoweKlocka}" Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
                                     <Button Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaZmiennej}"
                                             CommandParameter="{Binding}">Usuń</Button>
                                 </StackPanel>
