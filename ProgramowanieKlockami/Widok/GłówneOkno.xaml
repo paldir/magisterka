@@ -24,6 +24,32 @@
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaZwracającegoWartość}"
                       Header="Usuń"></MenuItem>
         </ContextMenu>
+        <Style x:Key="DolnyCypekKlockaPionowego"
+               TargetType="Rectangle">
+            <Setter Property="Height"
+                    Value="5"></Setter>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"></Setter>
+            <Setter Property="VerticalAlignment"
+                    Value="Bottom"></Setter>
+            <Setter Property="Width"
+                    Value="6"></Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="6"
+                                        Y="5"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DolnyCypekKlockaPionowegoZZawartością"
+               BasedOn="{StaticResource DolnyCypekKlockaPionowego}"
+               TargetType="Rectangle">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="11" Y="5"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="ListaZmiennych"
                BasedOn="{StaticResource RozwijanaListaKlocka}"
                TargetType="ComboBox">
@@ -31,6 +57,32 @@
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=Zmienne}"></Setter>
             <Setter Property="DisplayMemberPath"
                     Value="Nazwa"></Setter>
+        </Style>
+        <Style x:Key="MiejsceNaDolnyCypekKlockaPionowego" TargetType="Grid">
+            <Setter Property="OpacityMask">
+                <Setter.Value>
+                    <DrawingBrush AlignmentX="Left"
+                                  AlignmentY="Top"
+                                  Stretch="None">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="Black">
+                                    <GeometryDrawing.Geometry>
+                                        <CombinedGeometry GeometryCombineMode="Exclude">
+                                            <CombinedGeometry.Geometry1>
+                                                <RectangleGeometry Rect="0,0,99999999,99999999"></RectangleGeometry>
+                                            </CombinedGeometry.Geometry1>
+                                            <CombinedGeometry.Geometry2>
+                                                <RectangleGeometry Rect="5,-3,8,8"></RectangleGeometry>
+                                            </CombinedGeometry.Geometry2>
+                                        </CombinedGeometry>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="MiejsceUpuszczaniaKlocków"
                TargetType="ItemsControl">
@@ -81,7 +133,8 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
-                      Margin="1">
+                      Margin="1"
+                      Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -92,6 +145,9 @@
                             BorderThickness="3">
                         <ContentPresenter></ContentPresenter>
                     </Border>
+                    <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                               Style="{StaticResource DolnyCypekKlockaPionowego}">
+                    </Rectangle>
                 </Grid>
             </StackPanel>
         </ControlTemplate>
@@ -100,7 +156,8 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
-                      Margin="1">
+                      Margin="1"
+                      Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -111,6 +168,9 @@
                             BorderThickness="3">
                         <ContentPresenter></ContentPresenter>
                     </Border>
+                    <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                               Style="{StaticResource DolnyCypekKlockaPionowego}">
+                    </Rectangle>
                 </Grid>
                 <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
                               Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
@@ -118,7 +178,7 @@
         </ControlTemplate>
         <ControlTemplate x:Key="KlocekPionowyZZawartościąSzablon"
                          TargetType="k:KlocekPionowyZZawartościąKontrolka">
-            <Grid>
+            <Grid Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -156,6 +216,9 @@
                                 BorderThickness="0,3,3,3">
                             <ContentPresenter></ContentPresenter>
                         </Border>
+                        <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                                   Style="{StaticResource DolnyCypekKlockaPionowegoZZawartością}">
+                        </Rectangle>
                     </Grid>
                 </StackPanel>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
@@ -195,6 +258,9 @@
                     </i:Interaction.Triggers>
                     <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                             BorderThickness="3,0,0,3"></Border>
+                    <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
+                               Style="{StaticResource DolnyCypekKlockaPionowego}">
+                    </Rectangle>
                 </Grid>
                 <StackPanel Grid.Column="1"
                             Grid.Row="2"
