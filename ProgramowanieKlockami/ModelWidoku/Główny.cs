@@ -227,10 +227,9 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Wyświetl {Konsola = Konsola}
             };
 
-            Odliczanie o = new Odliczanie();
-            o.Zawartość.Add(new Przerwanie());
-            RozpoczęcieProgramu.Zawartość.Add(o);
-            RozpoczęcieProgramu.Zawartość.Add(new PominięcieIteracji());
+            Wyświetl w = new Wyświetl();
+            w.Wartość[0] = new Napis();
+            RozpoczęcieProgramu.Zawartość.Add(w);
         }
 
         private void DodajZmienną()
