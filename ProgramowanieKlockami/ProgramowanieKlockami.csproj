@@ -92,6 +92,10 @@
     <Compile Include="ModelWidoku\Klocki\KlockiZwracająceWartośćNaPodstawieWyboruOpcji\IOpcjaZwracającaWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\KlockiZwracająceWartośćNaPodstawieWyboruOpcji\IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów.cs" />
     <Compile Include="ModelWidoku\Klocki\KlockiZwracająceWartośćNaPodstawieWyboruOpcji\IOpcjaZwracającaWartośćNaPodstawieParametru.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\LiczbaElementówNaLiście.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\DodanieDoListy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\ListaPowtórzonegoElementu.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\PustaLista.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\DziałaniaLogiczne\Alternatywa.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\DziałaniaLogiczne\Koniunkcja.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Negacja.cs" />

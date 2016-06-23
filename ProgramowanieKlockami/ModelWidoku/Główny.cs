@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
@@ -36,6 +37,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>> DziałaniaMatematyczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeTrygonometryczne { get; }
+        public IEnumerable<Klocek> KlockiDotycząceList { get; }
         public IEnumerable<Klocek> KlockiDotyczącePętli { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
         public IEnumerable<Klocek> KlockiLogiczne { get; }
@@ -181,6 +183,14 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new MniejszyRówny(),
                 new Większy(),
                 new WiększyRówny()
+            };
+
+            KlockiDotycząceList = new Klocek[]
+            {
+                new DodanieDoListy(),
+                new LiczbaElementówNaLiście(),
+                new ListaPowtórzonegoElementu(),
+                new PustaLista()
             };
 
             KlockiDotyczącePętli = new Klocek[]
