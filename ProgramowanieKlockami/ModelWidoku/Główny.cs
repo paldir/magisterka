@@ -226,10 +226,6 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Napis(),
                 new Wyświetl {Konsola = Konsola}
             };
-
-            Wyświetl w = new Wyświetl();
-            w.Wartość[0] = new Napis();
-            RozpoczęcieProgramu.Zawartość.Add(w);
         }
 
         private void DodajZmienną()

@@ -41,6 +41,18 @@
             <Setter Property="Width"
                     Value="5"></Setter>
         </Style>
+        <Style x:Key="BocznyCypekWewnętrzny"
+               BasedOn="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"
+               TargetType="Rectangle">
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"></Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="0"
+                                        Y="8"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="DolnyCypekKlockaPionowego"
                TargetType="Rectangle">
             <Setter Property="Height"
@@ -166,12 +178,12 @@
                TargetType="ItemsControl">
             <Setter Property="Background"
                     Value="White"></Setter>
-            <Setter Property="Margin"
-                    Value="2"></Setter>
             <Setter Property="MinHeight"
                     Value="20"></Setter>
             <Setter Property="MinWidth"
                     Value="10"></Setter>
+            <Setter Property="Padding"
+                    Value="1"></Setter>
         </Style>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowySzablon"
@@ -463,7 +475,8 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
-                      Margin="1" Style="{StaticResource MiejsceNaBocznyCypekKlockaPionowego}">
+                      Margin="1"
+                      Style="{StaticResource MiejsceNaBocznyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -676,8 +689,12 @@
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Wartość1}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Wartość1}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
@@ -686,8 +703,12 @@
                                   Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Wartość2}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Wartość2}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
@@ -706,8 +727,12 @@
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Wartość1}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Wartość1}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
@@ -716,8 +741,12 @@
                                   Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Wartość2}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Wartość2}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
@@ -747,13 +776,21 @@
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Całkowita liczba losowa od</TextBlock>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Liczba1}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Liczba1}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                     <TextBlock Style="{StaticResource TekstKlocka}">do</TextBlock>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Liczba2}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Liczba2}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
@@ -769,13 +806,21 @@
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Liczba1}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Liczba1}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                     <TextBlock Style="{StaticResource TekstKlocka}">jest podzielna przez</TextBlock>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Liczba2}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Liczba2}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
@@ -802,8 +847,12 @@
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Wartość1}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Wartość1}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
@@ -812,8 +861,12 @@
                                   Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Wartość2}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Wartość2}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
@@ -822,8 +875,12 @@
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Wartość}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Wartość}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                     <TextBlock Style="{StaticResource TekstKlocka}">jest</TextBlock>
                     <StackPanel VerticalAlignment="Center">
@@ -876,18 +933,30 @@
                     </StackPanel>
                     <TextBlock Style="{StaticResource TekstKlocka}">od</TextBlock>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Od}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Od}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                     <TextBlock Style="{StaticResource TekstKlocka}">do</TextBlock>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Do}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Do}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                     <TextBlock Style="{StaticResource TekstKlocka}">dodając</TextBlock>
                     <StackPanel VerticalAlignment="Center">
-                        <ItemsControl ItemsSource="{Binding Interwał}"
-                                      Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Interwał}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
             </k:KlocekPionowyZZawartościąKontrolka>

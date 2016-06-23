@@ -44,10 +44,16 @@
         </Style>
         <Style x:Key="RozwijanaListaKlocka"
                TargetType="ComboBox">
-            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="Margin"
+                    Value="2"></Setter>
         </Style>
         <Style x:Key="PoleTekstoweKlocka"
                TargetType="TextBox">
+            <Setter Property="Margin"
+                    Value="2"></Setter>
+        </Style>
+        <Style x:Key="GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość"
+               TargetType="Grid">
             <Setter Property="Margin"
                     Value="2"></Setter>
         </Style>
