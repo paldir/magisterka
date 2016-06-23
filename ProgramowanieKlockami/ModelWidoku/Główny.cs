@@ -190,7 +190,8 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new DodanieDoListy(),
                 new LiczbaElementówNaLiście(),
                 new ListaPowtórzonegoElementu(),
-                new PustaLista()
+                new PustaLista(),
+                new PustośćListy()
             };
 
             KlockiDotyczącePętli = new Klocek[]

@@ -553,6 +553,21 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkli:PustośćListy}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <StackPanel VerticalAlignment="Center">
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Lista}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource TekstKlocka}">jest pusta</TextBlock>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type mwklo:Jeżeli}">
             <Grid Margin="0,1,0,0"
                   Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
