@@ -13,5 +13,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
             Add(null);
         }
+
+        public T Zwróć<T>()
+        {
+            return this[0].Zwróć<T>();
+        }
     }
 }

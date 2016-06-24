@@ -4,9 +4,16 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
 {
     public abstract class KlocekZwracającyWartośćNaPodstawieOpcji<T> : KlocekZwracającyWartość
     {
+        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new WartośćKlockaPrzyjmującegoWartość[0];
+
         public override Type ZwracanyTyp => typeof(T);
 
         public IOpcjaZwracającaWartość<T> WybranaOpcja { get; set; }
+
+        protected override object ZwróćNiebezpiecznie()
+        {
+            return WybranaOpcja.Wartość;
+        }
 
         public override object Clone()
         {
@@ -14,11 +21,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
             kopia.WybranaOpcja = WybranaOpcja;
 
             return kopia;
-        }
-
-        public override object Zwróć()
-        {
-            return WybranaOpcja.Wartość;
         }
     }
 }

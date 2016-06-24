@@ -14,6 +14,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         {
         }
 
+        protected override object ZwróćNiebezpiecznie()
+        {
+            return !Wartość.Zwróć<bool>();
+        }
+
         public override object Zwróć()
         {
             KlocekZwracającyWartość wartość = Wartość[0];

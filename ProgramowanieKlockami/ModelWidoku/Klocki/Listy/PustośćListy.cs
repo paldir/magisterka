@@ -6,6 +6,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
     public class PustośćListy : KlocekZwracającyWartość
     {
+        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new[] {Lista};
+
         public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Sprawdzenie pustości listy";
         public override string Opis => "Zwraca prawdę, jeśli lista jest pusta.";
@@ -18,12 +20,9 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             Lista = new WartośćKlockaPrzyjmującegoWartość(typeof(List<object>));
         }
 
-        public override object Zwróć()
+        protected override object ZwróćNiebezpiecznie()
         {
-            KlocekZwracającyWartość klocekZwracającyWartość = Lista[0];
-            object lista = klocekZwracającyWartość?.Zwróć();
-
-            return (lista as List<object>)?.Count == 0;
+            return Lista.Zwróć<List<object>>().Count == 0;
         }
     }
 }

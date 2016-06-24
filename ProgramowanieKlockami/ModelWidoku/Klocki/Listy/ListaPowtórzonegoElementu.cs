@@ -7,6 +7,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
     public class ListaPowtórzonegoElementu : KlocekZwracającyWartość
     {
+        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new[] {Element, Liczba};
+
         public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Lista złożona z powtórzonego elementu";
         public override string Opis => "Tworzy listę zawierającą wybrany element powtórzony określoną liczbę razy.";
@@ -21,22 +23,9 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             Liczba = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
         }
 
-        public override object Zwróć()
+        protected override object ZwróćNiebezpiecznie()
         {
-            KlocekZwracającyWartość klocekElementu = Element[0];
-            KlocekZwracającyWartość klocekLiczby = Liczba[0];
-
-            if ((klocekElementu == null) || (klocekLiczby == null))
-                return new List<object>();
-
-            object liczba = klocekLiczby.Zwróć();
-
-            if (!(liczba is double))
-                return new List<object>();
-
-            object element = klocekElementu.Zwróć();
-
-            return new List<object>(Enumerable.Repeat(element, (int) Math.Round((double) liczba)));
+            return new List<object>(Enumerable.Repeat(Element.Zwróć<object>(), (int)Math.Round(Liczba.Zwróć<double>())));
         }
     }
 }

@@ -15,16 +15,9 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         {
         }
 
-        public override object Zwróć()
+        protected override object ZwróćNiebezpiecznie()
         {
-            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
-
-            object lista = klocekZwracającyWartość?.Zwróć();
-
-            if (!(lista is List<object>))
-                return 0;
-
-            return ((List<object>) lista).Count;
+            return Wartość.Zwróć<List<object>>().Count;
         }
     }
 }

@@ -12,28 +12,17 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
         {
         }
 
+        protected override object ZwróćNiebezpiecznie()
+        {
+            return WybranaOpcja.Zwróć(Wartość.Zwróć<TParametr>());
+        }
+
         public override object Clone()
         {
             KlocekZwracającyWartośćNaPodstawieOpcjiIParametru<TZwracanaWartość, TParametr> kopia = (KlocekZwracającyWartośćNaPodstawieOpcjiIParametru<TZwracanaWartość, TParametr>) base.Clone();
             kopia.WybranaOpcja = WybranaOpcja;
 
             return kopia;
-        }
-
-        public override object Zwróć()
-        {
-            TZwracanaWartość domyślnaWartość = default(TZwracanaWartość);
-            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
-
-            if (klocekZwracającyWartość == null)
-                return domyślnaWartość;
-
-            object wartość = klocekZwracającyWartość.Zwróć();
-
-            if (!(wartość is TParametr))
-                return domyślnaWartość;
-
-            return WybranaOpcja.Zwróć((TParametr) wartość);
         }
     }
 }

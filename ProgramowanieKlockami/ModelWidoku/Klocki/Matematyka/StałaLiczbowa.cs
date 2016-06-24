@@ -5,6 +5,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
     public class StałaLiczbowa : KlocekZwracającyWartość
     {
+        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new WartośćKlockaPrzyjmującegoWartość[0];
+
         public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Stała liczbowa";
         public override string Opis => "Zwraca liczbę.";
@@ -12,9 +14,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         public double Liczba { get; set; }
 
-        public override object Zwróć()
-        {
-            return Liczba;
-        }
+        protected override object ZwróćNiebezpiecznie() => Liczba;
+
+        public override object Zwróć() => Liczba;
     }
 }

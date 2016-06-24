@@ -5,6 +5,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
     public class Napis : KlocekZwracającyWartość
     {
+        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new WartośćKlockaPrzyjmującegoWartość[0];
+
         public override Brush Kolor => Kolory.Tekst;
         public override string Nazwa => "Napis";
         public override string Opis => "Zwraca literę, słowo lub linię tekstu.";
@@ -17,9 +19,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
             Treść = string.Empty;
         }
 
-        public override object Zwróć()
-        {
-            return Treść;
-        }
+        protected override object ZwróćNiebezpiecznie() => Treść;
     }
 }
