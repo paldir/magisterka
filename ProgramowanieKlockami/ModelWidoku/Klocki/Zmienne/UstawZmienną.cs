@@ -19,7 +19,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
             KlocekZwracającyWartość wartość = Wartość[0];
 
             if ((WybranaZmienna != null) && (wartość != null))
-                WybranaZmienna.Wartość = wartość.Zwróć();
+                WybranaZmienna.Wartość = wartość.Zwróć<object>();
         }
     }
 }

@@ -21,10 +21,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
             if ((klocekZwracającyWartość != null) && (WybranaZmienna != null))
             {
                 object wartośćZmiennej = WybranaZmienna.Wartość;
-                object wartość = klocekZwracającyWartość.Zwróć();
+                double wartość = klocekZwracającyWartość.Zwróć<double>();
 
-                if (wartość is double && wartośćZmiennej is double)
-                    WybranaZmienna.Wartość = (double) wartośćZmiennej + (double) wartość;
+                if (wartośćZmiennej is double)
+                    WybranaZmienna.Wartość = (double) wartośćZmiennej + wartość;
             }
         }
     }

@@ -29,40 +29,35 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
             KlocekZwracającyWartość @do = Do[0];
             KlocekZwracającyWartość interwał = Interwał[0];
 
-            if ((od != null) && (@do != null) && (interwał != null))
+            if ((WybranaZmienna != null) && (od != null) && (@do != null) && (interwał != null))
             {
-                object początek = od.Zwróć();
-                object koniec = @do.Zwróć();
-                object okres = interwał.Zwróć();
+                double początek = od.Zwróć<double>();
+                double koniec = @do.Zwróć<double>();
+                double okres = interwał.Zwróć<double>();
+                Func<double, double, bool> funkcjaPorównująca;
 
-                if (początek is double && koniec is double && okres is double)
+                if (okres < 0)
+                    funkcjaPorównująca = SprawdźCzyPierwszaLiczbaJestWiększaRównaOdDrugiej;
+                else if (okres > 0)
+                    funkcjaPorównująca = SprawdźCzyPierwszaLiczbaJestMniejszaRównaOdDrugiej;
+                else
+                    funkcjaPorównująca = (a, b) => false;
+
+                for (double i = początek; funkcjaPorównująca(i, koniec); i += okres)
                 {
-                    double iterator = (double) okres;
-                    Func<double, double, bool> funkcjaPorównująca;
+                    ZresetujRekurencyjnieFlagęSkokuWPętli(this);
 
-                    if (iterator < 0)
-                        funkcjaPorównująca = SprawdźCzyPierwszaLiczbaJestWiększaRównaOdDrugiej;
-                    else if (iterator > 0)
-                        funkcjaPorównująca = SprawdźCzyPierwszaLiczbaJestMniejszaRównaOdDrugiej;
-                    else
-                        funkcjaPorównująca = (a, b) => false;
-
-                    for (double i = (double) początek; funkcjaPorównująca(i, (double) koniec); i += iterator)
+                    if (PowódSkoku == PowódSkoku.PrzerwaniePętli)
                     {
-                        ZresetujRekurencyjnieFlagęSkokuWPętli(this);
-
-                        if (PowódSkoku == PowódSkoku.PrzerwaniePętli)
-                        {
-                            PowódSkoku = PowódSkoku.Brak;
-
-                            break;
-                        }
-
                         PowódSkoku = PowódSkoku.Brak;
-                        WybranaZmienna.Wartość = i;
 
-                        base.Wykonaj();
+                        break;
                     }
+
+                    PowódSkoku = PowódSkoku.Brak;
+                    WybranaZmienna.Wartość = i;
+
+                    base.Wykonaj();
                 }
             }
         }

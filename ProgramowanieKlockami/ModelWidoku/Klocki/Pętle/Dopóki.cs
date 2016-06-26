@@ -16,24 +16,26 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
         public override void Wykonaj()
         {
-            KlocekZwracającyWartość wartość = Wartość[0];
+            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
 
-            if (wartość?.Zwróć() is bool)
-                while ((bool) wartość.Zwróć())
+            if (klocekZwracającyWartość == null)
+                return;
+
+            while (klocekZwracającyWartość.Zwróć<bool>())
+            {
+                ZresetujRekurencyjnieFlagęSkokuWPętli(this);
+
+                if (PowódSkoku == PowódSkoku.PrzerwaniePętli)
                 {
-                    ZresetujRekurencyjnieFlagęSkokuWPętli(this);
-
-                    if (PowódSkoku == PowódSkoku.PrzerwaniePętli)
-                    {
-                        PowódSkoku = PowódSkoku.Brak;
-
-                        break;
-                    }
-
                     PowódSkoku = PowódSkoku.Brak;
 
-                    base.Wykonaj();
+                    break;
                 }
+
+                PowódSkoku = PowódSkoku.Brak;
+
+                base.Wykonaj();
+            }
         }
     }
 }

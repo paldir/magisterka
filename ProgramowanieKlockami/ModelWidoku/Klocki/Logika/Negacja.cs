@@ -18,17 +18,5 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         {
             return !Wartość.Zwróć<bool>();
         }
-
-        public override object Zwróć()
-        {
-            KlocekZwracającyWartość wartość = Wartość[0];
-
-            object warunek = wartość?.Zwróć();
-
-            if (!(warunek is bool))
-                return false;
-
-            return !(bool) warunek;
-        }
     }
 }

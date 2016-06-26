@@ -20,7 +20,5 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         }
 
         protected override object ZwróćNiebezpiecznie() => Los.NextDouble();
-
-        public override object Zwróć() => Los.NextDouble();
     }
 }

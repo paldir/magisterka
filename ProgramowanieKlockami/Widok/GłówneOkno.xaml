@@ -49,7 +49,7 @@
                     Value="Left"></Setter>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <TranslateTransform X="0"
+                    <TranslateTransform X="1"
                                         Y="8"></TranslateTransform>
                 </Setter.Value>
             </Setter>
@@ -173,6 +173,8 @@
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyPrzenoszenieKlockówZwracającychWartość}"></Setter>
             <Setter Property="dd:DragDrop.DropHandler"
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyUpuszczanieKlockówZwracającychWartość}"></Setter>
+            <Setter Property="Margin"
+                    Value="1,0"></Setter>
         </Style>
         <Style x:Key="MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość"
                BasedOn="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"
@@ -184,7 +186,7 @@
             <Setter Property="MinWidth"
                     Value="10"></Setter>
             <Setter Property="Padding"
-                    Value="1"></Setter>
+                    Value="2"></Setter>
         </Style>
         <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowySzablon"
@@ -234,6 +236,7 @@
                                Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
                 </Grid>
                 <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
+                              Margin="1"
                               Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
             </StackPanel>
         </ControlTemplate>
@@ -457,7 +460,7 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
-                      Margin="1"
+                      Margin="0"
                       Style="{StaticResource MiejsceNaBocznyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
@@ -477,7 +480,7 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
-                      Margin="1"
+                      Margin="0,0,1,0"
                       Style="{StaticResource MiejsceNaBocznyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
@@ -486,8 +489,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
-                            BorderThickness="3"
-                            VerticalAlignment="Center">
+                            BorderThickness="3">
                         <ContentPresenter></ContentPresenter>
                     </Border>
                     <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"

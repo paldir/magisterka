@@ -17,9 +17,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public override void Wykonaj()
         {
-            object wartośćWarunku = Wartość[0]?.Zwróć();
+            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
 
-            if (wartośćWarunku is bool && (bool) wartośćWarunku)
+            if (klocekZwracającyWartość == null)
+                return;
+
+            bool wartośćWarunku = klocekZwracającyWartość.Zwróć<bool>();
+
+            if (wartośćWarunku)
                 base.Wykonaj();
             else
                 foreach (KlocekPionowy klocekPionowy in AlternatywnaZawartość)

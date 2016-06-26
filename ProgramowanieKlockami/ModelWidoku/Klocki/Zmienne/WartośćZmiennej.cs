@@ -18,10 +18,5 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
         {
             return WybranaZmienna?.Wartość;
         }
-
-        public override object Zwróć()
-        {
-            return WybranaZmienna?.Wartość;
-        }
     }
 }

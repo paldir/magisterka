@@ -15,7 +15,5 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         public double Liczba { get; set; }
 
         protected override object ZwróćNiebezpiecznie() => Liczba;
-
-        public override object Zwróć() => Liczba;
     }
 }
