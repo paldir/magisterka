@@ -35,22 +35,23 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public T Zwróć<T>()
         {
             object zwróconaWartość = Zwróć();
+            Type typDocelowy = typeof(T);
 
-            try
+            if (zwróconaWartość != null)
             {
-                return (T) Convert.ChangeType(zwróconaWartość, typeof(T));
-            }
-            catch (InvalidCastException)
-            {
+                if (typDocelowy.IsInstanceOfType(zwróconaWartość))
+                    return (T) zwróconaWartość;
+
                 try
                 {
-                    return (T) zwróconaWartość;
+                    return (T) Convert.ChangeType(zwróconaWartość, typDocelowy);
                 }
                 catch (InvalidCastException)
                 {
-                    return default(T);
                 }
             }
+
+            return Activator.CreateInstance<T>();
         }
     }
 }

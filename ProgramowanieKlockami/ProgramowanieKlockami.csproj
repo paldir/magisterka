@@ -114,6 +114,8 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Dodawanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Potęgowanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczne\Modulo.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\DziałaniaMatematyczneNaLiście\SumaListy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Matematyka\WynikDziałaniaMatematycznegoNaLiście.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjaMatematyczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjaTrygonometryczna.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\FunkcjeMatematyczne\LogarytmNaturalny.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="ModelWidoku\Klocki\Matematyka\WystępowanieCechyLiczby.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\ZaokrąglonaLiczba.cs" />
     <Compile Include="ModelWidoku\Klocki\Matematyka\ZmianaWartościZmiennejOLiczbę.cs" />
+    <Compile Include="ModelWidoku\Klocki\Pętle\DlaKażdegoElementu.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Dopóki.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\IPętla.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Odliczanie.cs" />

@@ -15,6 +15,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.CechyLiczby;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczneNaLiście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeTrygonometryczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.SposobyZaokrąglania;
@@ -35,6 +36,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>> DziałaniaLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>> DziałaniaMatematyczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, List<object>>> DziałaniaMatematyczneNaLiście { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeTrygonometryczne { get; }
         public IEnumerable<Klocek> KlockiDotycząceList { get; }
@@ -131,6 +133,11 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Modulo()
             };
 
+            DziałaniaMatematyczneNaLiście = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, List<object>>[]
+            {
+                new SumaListy(),
+            };
+
             FunkcjeMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
             {
                 new PierwiastekKwadratowy(),
@@ -196,6 +203,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiDotyczącePętli = new Klocek[]
             {
+                new DlaKażdegoElementu(),
                 new Dopóki(),
                 new Odliczanie(),
                 new PominięcieIteracji(),
@@ -227,6 +235,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new StałaLiczbowa(),
                 new StałaMatematyczna {WybranaOpcja = StałeMatematyczne.First()},
                 new WynikDziałania {WybranaOpcja = DziałaniaMatematyczne.First()},
+                new WynikDziałaniaMatematycznegoNaLiście {WybranaOpcja = DziałaniaMatematyczneNaLiście.First()},
                 new WystępowanieCechyLiczby {WybranaOpcja = CechyLiczby.First()},
                 new ZaokrąglonaLiczba {WybranaOpcja = SposobyZaokrąglania.First()},
                 new ZmianaWartościZmiennejOLiczbę()
@@ -265,6 +274,9 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void RozpocznijWykonywanieProgramu()
         {
+            foreach (Zmienna zmienna in Zmienne)
+                zmienna.Wartość = null;
+
             Konsola.Czyść();
             RozpoczęcieProgramu.Wykonaj();
         }
