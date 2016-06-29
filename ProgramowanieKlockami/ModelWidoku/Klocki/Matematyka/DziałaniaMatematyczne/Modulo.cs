@@ -2,7 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne
 {
-    public class Modulo : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>
+    public class Modulo : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>
     {
         public string ReprezentacjaTekstowa => "modulo";
 

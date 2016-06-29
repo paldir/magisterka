@@ -5,7 +5,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
 {
     public class WartośćZmiennej : KlocekZwracającyWartość
     {
-        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new WartośćKlockaPrzyjmującegoWartość[0];
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 
         public override Brush Kolor => Kolory.Zmienne;
         public override string Nazwa => "Wartość zmiennej";

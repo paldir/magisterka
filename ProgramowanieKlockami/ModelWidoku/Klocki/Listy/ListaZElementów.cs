@@ -11,14 +11,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
     {
         private uint _liczbaElementów;
 
-        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new WartośćKlockaPrzyjmującegoWartość[0];
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 
         public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Inicjalizacja listy";
         public override string Opis => "Tworzy listę złożoną z dowolnej liczby elementów.";
         public override Type ZwracanyTyp => typeof(List<object>);
 
-        public ObservableCollection<WartośćKlockaPrzyjmującegoWartość> Elementy { get; }
+        public ObservableCollection<WartośćWewnętrznegoKlockaZwracającegoWartość> Elementy { get; }
 
         public uint LiczbaElementów
         {
@@ -32,7 +32,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
                 if (aktualnaLiczbaElementów < LiczbaElementów)
                     for (int i = aktualnaLiczbaElementów; i < LiczbaElementów; i++)
                     {
-                        WartośćKlockaPrzyjmującegoWartość wartośćKlockaPrzyjmującegoWartość = new WartośćKlockaPrzyjmującegoWartość(typeof(object));
+                        WartośćWewnętrznegoKlockaZwracającegoWartość wartośćKlockaPrzyjmującegoWartość = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(object));
 
                         Elementy.Add(wartośćKlockaPrzyjmującegoWartość);
                     }
@@ -44,14 +44,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public ListaZElementów()
         {
-            Elementy = new ObservableCollection<WartośćKlockaPrzyjmującegoWartość>();
+            Elementy = new ObservableCollection<WartośćWewnętrznegoKlockaZwracającegoWartość>();
         }
 
         protected override object ZwróćNiebezpiecznie()
         {
             List<object> lista = new List<object>();
 
-            foreach (WartośćKlockaPrzyjmującegoWartość wartośćKlockaPrzyjmującegoWartość in Elementy)
+            foreach (WartośćWewnętrznegoKlockaZwracającegoWartość wartośćKlockaPrzyjmującegoWartość in Elementy)
             {
                 KlocekZwracającyWartość klocekZwracającyWartość = wartośćKlockaPrzyjmującegoWartość[0];
 

@@ -25,10 +25,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
         public override void Wykonaj()
         {
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
-            string wartość = klocekZwracającyWartość?.Zwróć<string>();
+            object wartość = klocekZwracającyWartość?.Zwróć<object>();
 
             if (wartość != null)
-                Konsola.DodajLinię(wartość);
+                Konsola.DodajLinię(wartość.ToString());
         }
     }
 }

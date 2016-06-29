@@ -4,13 +4,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekZwracającyWartośćPrzyjmującyWartość : KlocekZwracającyWartość
     {
-        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new[] {Wartość};
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Wartość};
 
-        public WartośćKlockaPrzyjmującegoWartość Wartość { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Wartość { get; }
 
         protected KlocekZwracającyWartośćPrzyjmującyWartość(Type przyjmowanyTyp)
         {
-            Wartość = new WartośćKlockaPrzyjmującegoWartość(przyjmowanyTyp);
+            Wartość = new WartośćWewnętrznegoKlockaZwracającegoWartość(przyjmowanyTyp);
         }
     }
 }

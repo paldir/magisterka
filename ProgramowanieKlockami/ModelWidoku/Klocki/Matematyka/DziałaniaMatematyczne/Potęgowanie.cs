@@ -3,7 +3,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne
 {
-    public class Potęgowanie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>
+    public class Potęgowanie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>
     {
         public string ReprezentacjaTekstowa => "^";
 

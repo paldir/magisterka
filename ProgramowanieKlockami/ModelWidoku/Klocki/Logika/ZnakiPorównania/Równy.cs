@@ -3,7 +3,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania
 {
-    public class Równy : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>
+    public class Równy : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>
     {
         public string ReprezentacjaTekstowa => "==";
 

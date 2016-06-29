@@ -2,7 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne
 {
-    public class Dzielenie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>
+    public class Dzielenie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>
     {
         public string ReprezentacjaTekstowa => "/";
 

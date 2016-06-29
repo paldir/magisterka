@@ -3,7 +3,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania
 {
-    public class WiększyRówny : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>
+    public class WiększyRówny : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>
     {
         public string ReprezentacjaTekstowa => ">=";
 

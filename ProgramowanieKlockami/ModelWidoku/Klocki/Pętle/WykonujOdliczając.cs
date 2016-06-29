@@ -9,18 +9,18 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
         public override string Nazwa => "Pętla odliczająca";
         public override string Opis => "Za pomocą zmiennej odlicza od wartości początkowej do końcowej dodając stałą liczbę. Każda iteracja powoduje wykonanie instrukcji.";
 
-        public WartośćKlockaPrzyjmującegoWartość Do { get; }
-        public WartośćKlockaPrzyjmującegoWartość Od { get; }
-        public WartośćKlockaPrzyjmującegoWartość Interwał { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Do { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Od { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Interwał { get; }
 
         public PowódSkoku PowódSkoku { get; set; }
         public Zmienna WybranaZmienna { get; set; }
 
         public WykonujOdliczając()
         {
-            Do = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
-            Od = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
-            Interwał = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
+            Do = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Od = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Interwał = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
         public override void Wykonaj()

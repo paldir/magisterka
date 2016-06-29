@@ -3,7 +3,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
-    public class WynikDziałania : KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów<double, double>
+    public class WynikDziałania : KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów<double, double, double>
     {
         public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Wynik działania";

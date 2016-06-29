@@ -7,15 +7,15 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
     {
         private static readonly Random Los;
 
-        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new[] {Liczba1, Liczba2};
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Liczba1, Liczba2};
 
         public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Liczba losowa z zakresu";
         public override string Opis => "Zwraca liczbę losową z zakresu";
         public override Type ZwracanyTyp => typeof(double);
 
-        public WartośćKlockaPrzyjmującegoWartość Liczba1 { get; }
-        public WartośćKlockaPrzyjmującegoWartość Liczba2 { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Liczba1 { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Liczba2 { get; }
 
         static LosowaLiczbaCałkowitaZZakresu()
         {
@@ -24,8 +24,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         public LosowaLiczbaCałkowitaZZakresu()
         {
-            Liczba1 = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
-            Liczba2 = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
+            Liczba1 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Liczba2 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
         protected override object ZwróćNiebezpiecznie()

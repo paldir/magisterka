@@ -4,7 +4,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
 {
     public abstract class KlocekZwracającyWartośćNaPodstawieOpcji<T> : KlocekZwracającyWartość
     {
-        protected override WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące => new WartośćKlockaPrzyjmującegoWartość[0];
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 
         public override Type ZwracanyTyp => typeof(T);
 

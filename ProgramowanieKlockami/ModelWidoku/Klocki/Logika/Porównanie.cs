@@ -4,7 +4,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
-    public class Porównanie : KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów<bool, IComparable>
+    public class Porównanie : KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów<bool, IComparable, IComparable>
     {
         public override Brush Kolor => Kolory.Logika;
         public override string Nazwa => "Porównanie";

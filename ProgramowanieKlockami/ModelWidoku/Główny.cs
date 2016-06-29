@@ -8,6 +8,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaLiście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne;
@@ -34,8 +35,8 @@ namespace ProgramowanieKlockami.ModelWidoku
         private double _powiększenie;
 
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>> DziałaniaLogiczne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>> DziałaniaMatematyczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>> DziałaniaLogiczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>> DziałaniaMatematyczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, List<object>>> DziałaniaMatematyczneNaLiście { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeTrygonometryczne { get; }
@@ -62,8 +63,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> SposobyZaokrąglania { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, List<object>, object>> WystąpieniaElementuNaLiście { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>> ZnakiPorównania { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>> ZnakiPorównania { get; }
 
         public string NazwaNowejZmiennej
         {
@@ -117,13 +119,13 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Ujemność()
             };
 
-            DziałaniaLogiczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool>[]
+            DziałaniaLogiczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>[]
             {
                 new Koniunkcja(),
                 new Alternatywa()
             };
 
-            DziałaniaMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>[]
+            DziałaniaMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>[]
             {
                 new Dodawanie(),
                 new Odejmowanie(),
@@ -185,7 +187,13 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Nieskończoność()
             };
 
-            ZnakiPorównania = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable>[]
+            WystąpieniaElementuNaLiście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, List<object>, object>[]
+            {
+                new PierwszeWystąpienie(),
+                new OstatnieWystąpienie()
+            };
+
+            ZnakiPorównania = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>[]
             {
                 new Równy(),
                 new Nierówny(),
@@ -198,7 +206,10 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlockiDotycząceList = new Klocek[]
             {
                 new DodajDoListy(),
+                new UsuńElementZListy(),
 
+                new ElementListyOIndeksie(),
+                new IndeksElementuNaLiście {WybranaOpcja = WystąpieniaElementuNaLiście.First()},
                 new LiczbaElementówNaLiście(),
                 new ListaPowtórzonegoElementu(),
                 new ListaZElementów(),
@@ -261,7 +272,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             if (!string.IsNullOrEmpty(NazwaNowejZmiennej) && (zmienna == null))
             {
-                Zmienne.Add(new Zmienna(Zmienne) { Nazwa = NazwaNowejZmiennej });
+                Zmienne.Add(new Zmienna(Zmienne) {Nazwa = NazwaNowejZmiennej});
 
                 NazwaNowejZmiennej = null;
             }
@@ -272,7 +283,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             if (_klocekPosiadającySkupienie != null)
                 _klocekPosiadającySkupienie.PosiadaSkupienie = false;
 
-            Klocek klocek = (Klocek)obiektKlocka;
+            Klocek klocek = (Klocek) obiektKlocka;
             klocek.PosiadaSkupienie = true;
             _klocekPosiadającySkupienie = klocek;
             KomendaUsunięciaKlockaPionowego.MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy;
@@ -312,20 +323,20 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void UsuńKlocekZwracającyWartość()
         {
-            KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość)_klocekPosiadającySkupienie;
+            KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość) _klocekPosiadającySkupienie;
             usuwanyKlocek.MiejsceUmieszczenia[0] = null;
         }
 
         private void UsuńZmienną(object zmiennaDoUsunięcia)
         {
-            Zmienna zmienna = (Zmienna)zmiennaDoUsunięcia;
+            Zmienna zmienna = (Zmienna) zmiennaDoUsunięcia;
 
             Zmienne.Remove(zmienna);
         }
 
         private void ZwińRozwińKlocekZZawartością()
         {
-            KlocekPionowyZZawartością klocek = (KlocekPionowyZZawartością)_klocekPosiadającySkupienie;
+            KlocekPionowyZZawartością klocek = (KlocekPionowyZZawartością) _klocekPosiadającySkupienie;
             klocek.Rozwinięty = !klocek.Rozwinięty;
         }
 

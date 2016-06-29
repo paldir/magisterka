@@ -4,15 +4,15 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekZwracającyWartość : Klocek
     {
-        protected abstract WartośćKlockaPrzyjmującegoWartość[] KlockiKonfigurujące { get; }
+        protected abstract WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące { get; }
 
         public abstract Type ZwracanyTyp { get; }
 
-        public WartośćKlockaPrzyjmującegoWartość MiejsceUmieszczenia { get; set; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość MiejsceUmieszczenia { get; set; }
 
         private object Zwróć()
         {
-            foreach (WartośćKlockaPrzyjmującegoWartość wartośćKlocka in KlockiKonfigurujące)
+            foreach (WartośćWewnętrznegoKlockaZwracającegoWartość wartośćKlocka in KlockiKonfigurujące)
             {
                 KlocekZwracającyWartość klocekZwracającyWartość = wartośćKlocka[0];
 

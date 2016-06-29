@@ -4,11 +4,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyZZawartościąPrzyjmującyWartość : KlocekPionowyZZawartością
     {
-        public WartośćKlockaPrzyjmującegoWartość Wartość { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Wartość { get; }
 
         protected KlocekPionowyZZawartościąPrzyjmującyWartość(Type przyjmowanyTyp)
         {
-            Wartość = new WartośćKlockaPrzyjmującegoWartość(przyjmowanyTyp);
+            Wartość = new WartośćWewnętrznegoKlockaZwracającegoWartość(przyjmowanyTyp);
         }
     }
 }

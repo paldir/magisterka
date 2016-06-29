@@ -3,7 +3,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
-    public class WarunekZłożony : KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów<bool, bool>
+    public class WarunekZłożony : KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów<bool, bool, bool>
     {
         public override Brush Kolor => Kolory.Logika;
         public override string Nazwa => "Warunek złożony";

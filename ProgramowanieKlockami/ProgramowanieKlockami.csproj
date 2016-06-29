@@ -92,12 +92,17 @@
     <Compile Include="ModelWidoku\Klocki\KlockiZwracająceWartośćNaPodstawieWyboruOpcji\IOpcjaZwracającaWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\KlockiZwracająceWartośćNaPodstawieWyboruOpcji\IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów.cs" />
     <Compile Include="ModelWidoku\Klocki\KlockiZwracająceWartośćNaPodstawieWyboruOpcji\IOpcjaZwracającaWartośćNaPodstawieParametru.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\ElementListyOIndeksie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\IndeksElementuNaLiście.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\LiczbaElementówNaLiście.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\DodajDoListy.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\ListaPowtórzonegoElementu.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\ListaZElementów.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\PustaLista.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\PustośćListy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\UsuńElementZListy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\WystąpieniaElementuNaLiście\OstatnieWystąpienie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\WystąpieniaElementuNaLiście\PierwszeWystąpienie.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\DziałaniaLogiczne\Alternatywa.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\DziałaniaLogiczne\Koniunkcja.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Negacja.cs" />
@@ -161,7 +166,7 @@
     <Compile Include="ModelWidoku\Klocki\Pętle\PowódSkoku.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Przerwanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\SkokWPętli.cs" />
-    <Compile Include="ModelWidoku\Klocki\WartośćKlockaPrzyjmującegoWartość.cs" />
+    <Compile Include="ModelWidoku\Klocki\WartośćWewnętrznegoKlockaZwracającegoWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\ZawartośćKlockaPionowegoZZawartością.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\Porównanie.cs" />

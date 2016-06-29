@@ -2,7 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne
 {
-    public class Odejmowanie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double>
+    public class Odejmowanie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>
     {
         public string ReprezentacjaTekstowa => "-";
 
