@@ -2,7 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
-    public class Jeżeli : KlocekPionowyZZawartościąPrzyjmującyWartość
+    public class WykonajJeżeli : KlocekPionowyZZawartościąPrzyjmującyWartość
     {
         public override Brush Kolor => Kolory.Logika;
         public override string Nazwa => "Jeżeli";
@@ -10,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public ZawartośćKlockaPionowegoZZawartością AlternatywnaZawartość { get; }
 
-        public Jeżeli() : base(typeof(bool))
+        public WykonajJeżeli() : base(typeof(bool))
         {
             AlternatywnaZawartość = new ZawartośćKlockaPionowegoZZawartością();
         }

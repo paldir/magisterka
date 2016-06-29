@@ -168,7 +168,7 @@
                BasedOn="{StaticResource MiejsceUpuszczaniaKlocków}"
                TargetType="ItemsControl">
             <Setter Property="MinWidth"
-                    Value="5"></Setter>
+                    Value="20"></Setter>
             <Setter Property="dd:DragDrop.DragHandler"
                     Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObsługującyPrzenoszenieKlockówZwracającychWartość}"></Setter>
             <Setter Property="dd:DragDrop.DropHandler"
@@ -183,8 +183,6 @@
                     Value="White"></Setter>
             <Setter Property="MinHeight"
                     Value="20"></Setter>
-            <Setter Property="MinWidth"
-                    Value="10"></Setter>
             <Setter Property="Padding"
                     Value="2"></Setter>
         </Style>
@@ -506,7 +504,7 @@
                 </StackPanel>
             </k:KlocekPionowyZZawartościąKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkli:DodanieDoListy}">
+        <DataTemplate DataType="{x:Type mwkli:DodajDoListy}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Do</TextBlock>
@@ -548,6 +546,53 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkli:ListaZElementów}">
+            <k:KlocekZwracającyWartośćKontrolka>
+                <StackPanel Orientation="Horizontal">
+                    <Grid Background="{Binding Kolor}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
+                          Margin="0,0,1,0"
+                          Style="{StaticResource MiejsceNaBocznyCypekKlockaPionowego}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDown">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
+                                                       CommandParameter="{Binding}"></i:InvokeCommandAction>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Border BorderBrush="{Binding KolorObramowania}"
+                                BorderThickness="3">
+                            <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                                <TextBlock Style="{StaticResource TekstKlocka}">Lista złożona z</TextBlock>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBox Style="{StaticResource PoleTekstoweKlocka}"
+                                             Text="{Binding LiczbaElementów}"></TextBox>
+                                </StackPanel>
+                                <TextBlock Style="{StaticResource TekstKlocka}">elementów</TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <ItemsControl ItemsSource="{Binding Elementy}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,1">
+                                    <ItemsControl ItemsSource="{Binding}"
+                                                  MinHeight="20"
+                                                  Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
+                                    <Rectangle Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type k:KlocekZwracającyWartośćKontrolka}}, Path=Kontekst.KolorObramowania}"
+                                               HorizontalAlignment="Left"
+                                               Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}">
+                                        <Rectangle.RenderTransform>
+                                            <TranslateTransform X="-1"
+                                                                Y="6"></TranslateTransform>
+                                        </Rectangle.RenderTransform>
+                                    </Rectangle>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type mwkli:PustaLista}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
@@ -570,7 +615,7 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwklo:Jeżeli}">
+        <DataTemplate DataType="{x:Type mwklo:WykonajJeżeli}">
             <Grid Margin="0,1,0,0"
                   Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
                 <Grid.RowDefinitions>
@@ -986,7 +1031,7 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkm:ZmianaWartościZmiennejOLiczbę}">
+        <DataTemplate DataType="{x:Type mwkm:ZmieńWartośćZmiennejOLiczbę}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Zmień wartość</TextBlock>
@@ -998,7 +1043,7 @@
                 </StackPanel>
             </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkp:DlaKażdegoElementu}">
+        <DataTemplate DataType="{x:Type mwkp:WykonajDlaKażdegoElementu}">
             <k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyZZawartościąPrzyjmującyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Dla każdego elementu</TextBlock>
@@ -1010,14 +1055,14 @@
                 </StackPanel>
             </k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkp:Dopóki}">
+        <DataTemplate DataType="{x:Type mwkp:WykonujDopóki}">
             <k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyZZawartościąPrzyjmującyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Powtarzaj dopóki</TextBlock>
                 </StackPanel>
             </k:KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkp:Odliczanie}">
+        <DataTemplate DataType="{x:Type mwkp:WykonujOdliczając}">
             <k:KlocekPionowyZZawartościąKontrolka Template="{StaticResource KlocekPionowyZZawartościąSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Odlicz za pomocą</TextBlock>

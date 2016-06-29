@@ -2,7 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
-    public class Dopóki : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
+    public class WykonujDopóki : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
     {
         public override Brush Kolor => Kolory.Pętle;
         public override string Nazwa => "Pętla dopóki";
@@ -10,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
         public PowódSkoku PowódSkoku { get; set; }
 
-        public Dopóki() : base(typeof(bool))
+        public WykonujDopóki() : base(typeof(bool))
         {
         }
 

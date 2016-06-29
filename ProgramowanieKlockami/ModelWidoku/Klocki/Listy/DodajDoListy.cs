@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
-    public class DodanieDoListy : KlocekPionowyPrzyjmującyWartość
+    public class DodajDoListy : KlocekPionowyPrzyjmującyWartość
     {
         public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Dodanie elementu do listy";
@@ -11,7 +11,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public Zmienna WybranaZmienna { get; set; }
 
-        public DodanieDoListy() : base(typeof(object))
+        public DodajDoListy() : base(typeof(object))
         {
         }
 

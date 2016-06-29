@@ -2,7 +2,7 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
-    public class ZmianaWartościZmiennejOLiczbę : KlocekPionowyPrzyjmującyWartość
+    public class ZmieńWartośćZmiennejOLiczbę : KlocekPionowyPrzyjmującyWartość
     {
         public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Zmiana wartości zmiennej o liczbę";
@@ -10,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         public Zmienna WybranaZmienna { get; set; }
 
-        public ZmianaWartościZmiennejOLiczbę() : base(typeof(double))
+        public ZmieńWartośćZmiennejOLiczbę() : base(typeof(double))
         {
         }
 

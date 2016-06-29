@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
-    public class DlaKażdegoElementu : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
+    public class WykonajDlaKażdegoElementu : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
     {
         public override Brush Kolor => Kolory.Pętle;
         public override string Nazwa => "Dla każdego elementu listy";
@@ -12,7 +12,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
         public PowódSkoku PowódSkoku { get; set; }
         public Zmienna WybranaZmienna { get; set; }
 
-        public DlaKażdegoElementu() : base(typeof(List<object>))
+        public WykonajDlaKażdegoElementu() : base(typeof(List<object>))
         {
         }
 

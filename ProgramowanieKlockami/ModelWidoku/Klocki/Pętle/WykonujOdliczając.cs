@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
-    public class Odliczanie : KlocekPionowyZZawartością, IPętla
+    public class WykonujOdliczając : KlocekPionowyZZawartością, IPętla
     {
         public override Brush Kolor => Kolory.Pętle;
         public override string Nazwa => "Pętla odliczająca";
@@ -16,7 +16,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
         public PowódSkoku PowódSkoku { get; set; }
         public Zmienna WybranaZmienna { get; set; }
 
-        public Odliczanie()
+        public WykonujOdliczając()
         {
             Do = new WartośćKlockaPrzyjmującegoWartość(typeof(double));
             Od = new WartośćKlockaPrzyjmującegoWartość(typeof(double));

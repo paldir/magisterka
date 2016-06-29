@@ -136,6 +136,9 @@ namespace ProgramowanieKlockami.ModelWidoku
             DziałaniaMatematyczneNaLiście = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, List<object>>[]
             {
                 new SumaListy(),
+                new MinimumListy(),
+                new MaksimumListy(),
+                new ŚredniaListy()
             };
 
             FunkcjeMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
@@ -194,18 +197,20 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiDotycząceList = new Klocek[]
             {
-                new DodanieDoListy(),
+                new DodajDoListy(),
+
                 new LiczbaElementówNaLiście(),
                 new ListaPowtórzonegoElementu(),
+                new ListaZElementów(),
                 new PustaLista(),
                 new PustośćListy()
             };
 
             KlockiDotyczącePętli = new Klocek[]
             {
-                new DlaKażdegoElementu(),
-                new Dopóki(),
-                new Odliczanie(),
+                new WykonajDlaKażdegoElementu(),
+                new WykonujDopóki(),
+                new WykonujOdliczając(),
                 new PominięcieIteracji(),
                 new Przerwanie()
             };
@@ -218,7 +223,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiLogiczne = new Klocek[]
             {
-                new Jeżeli(),
+                new WykonajJeżeli(),
                 new Negacja(),
                 new Porównanie {WybranaOpcja = ZnakiPorównania.First()},
                 new StałaLogiczna {WybranaOpcja = StałeLogiczne.First()},
@@ -227,6 +232,8 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiMatematyczne = new Klocek[]
             {
+                new ZmieńWartośćZmiennejOLiczbę(),
+
                 new FunkcjaMatematyczna {WybranaOpcja = FunkcjeMatematyczne.First()},
                 new FunkcjaTrygonometryczna {WybranaOpcja = FunkcjeTrygonometryczne.First()},
                 new LosowaLiczbaCałkowitaZZakresu(),
@@ -238,13 +245,13 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WynikDziałaniaMatematycznegoNaLiście {WybranaOpcja = DziałaniaMatematyczneNaLiście.First()},
                 new WystępowanieCechyLiczby {WybranaOpcja = CechyLiczby.First()},
                 new ZaokrąglonaLiczba {WybranaOpcja = SposobyZaokrąglania.First()},
-                new ZmianaWartościZmiennejOLiczbę()
             };
 
             KlockiTekstowe = new Klocek[]
             {
+                new Wyświetl {Konsola = Konsola},
+
                 new Napis(),
-                new Wyświetl {Konsola = Konsola}
             };
         }
 
