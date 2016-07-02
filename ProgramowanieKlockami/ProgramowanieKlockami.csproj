@@ -98,8 +98,12 @@
     <Compile Include="ModelWidoku\Klocki\Listy\DodajDoListy.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\ListaPowtórzonegoElementu.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\ListaZElementów.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\ModyfikujElementListy.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\PustaLista.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\PustośćListy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\TypyModyfikacjiElementuListy\ITypUstawieniaElementuListy.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\TypyModyfikacjiElementuListy\UstawienieElementu.cs" />
+    <Compile Include="ModelWidoku\Klocki\Listy\TypyModyfikacjiElementuListy\WstawienieElementu.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\UsuńElementZListy.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\WystąpieniaElementuNaLiście\OstatnieWystąpienie.cs" />
     <Compile Include="ModelWidoku\Klocki\Listy\WystąpieniaElementuNaLiście\PierwszeWystąpienie.cs" />

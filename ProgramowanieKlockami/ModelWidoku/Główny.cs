@@ -8,6 +8,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.TypyModyfikacjiElementuListy;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaLiście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
@@ -63,6 +64,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> SposobyZaokrąglania { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
+        public IEnumerable<ITypUstawieniaElementuListy> TypyModyfikacjiElementuListy { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, List<object>, object>> WystąpieniaElementuNaLiście { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>> ZnakiPorównania { get; }
@@ -187,6 +189,12 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Nieskończoność()
             };
 
+            TypyModyfikacjiElementuListy = new ITypUstawieniaElementuListy[]
+            {
+                new UstawienieElementu(),
+                new WstawienieElementu()
+            };
+
             WystąpieniaElementuNaLiście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, List<object>, object>[]
             {
                 new PierwszeWystąpienie(),
@@ -207,6 +215,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new DodajDoListy(),
                 new UsuńElementZListy(),
+                new ModyfikujElementListy {WybranyTypModyfikacjiListy = TypyModyfikacjiElementuListy.First()},
 
                 new ElementListyOIndeksie(),
                 new IndeksElementuNaLiście {WybranaOpcja = WystąpieniaElementuNaLiście.First()},

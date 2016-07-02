@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
@@ -28,7 +29,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
             object wartość = klocekZwracającyWartość?.Zwróć<object>();
 
             if (wartość != null)
+            {
+                if (wartość is List<object>)
+                    wartość = string.Join(", ", (List<object>) wartość);
+
                 Konsola.DodajLinię(wartość.ToString());
+            }
         }
     }
 }
