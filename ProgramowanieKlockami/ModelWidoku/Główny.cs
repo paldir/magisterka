@@ -8,6 +8,8 @@ using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.PorządkiSortowaniaListy;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SposobySortowaniaListy;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.TypyModyfikacjiElementuListy;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaLiście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
@@ -60,7 +62,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObsługującyPrzenoszenieKlockówZwracającychWartość ObsługującyPrzenoszenieKlockówZwracającychWartość { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
+        public IEnumerable<IPorządekSortowania> PorządkiSortowania { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
+        public IEnumerable<ISposóbSortowaniaListy> SposobySortowaniaListy { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> SposobyZaokrąglania { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
@@ -166,6 +170,18 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new ArcusTangens()
             };
 
+            PorządkiSortowania = new IPorządekSortowania[]
+            {
+                new SortowanieRosnąco(),
+                new SortowanieMalejąco()
+            };
+
+            SposobySortowaniaListy = new ISposóbSortowaniaListy[]
+            {
+                new SortowanieLiczbowe(),
+                new SortowanieAlfabetyczne()
+            };
+
             SposobyZaokrąglania = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
             {
                 new Zaokrąglanie(),
@@ -222,6 +238,12 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new LiczbaElementówNaLiście(),
                 new ListaPowtórzonegoElementu(),
                 new ListaZElementów(),
+                new Podlista(),
+                new PosortowanaLista
+                {
+                    WybranyPorządekSortowania = PorządkiSortowania.First(),
+                    WybranySposóbSortowania = SposobySortowaniaListy.First()
+                },
                 new PustaLista(),
                 new PustośćListy()
             };

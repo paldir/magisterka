@@ -572,7 +572,7 @@
         <DataTemplate DataType="{x:Type mwkli:LiczbaElementówNaLiście}">
             <k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćPrzyjmującyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
-                    <TextBlock Style="{StaticResource TekstKlocka}">Liczba wartości na</TextBlock>
+                    <TextBlock Style="{StaticResource TekstKlocka}">Liczba elementów na</TextBlock>
                 </StackPanel>
             </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
@@ -620,7 +620,7 @@
                                 <TextBlock Style="{StaticResource TekstKlocka}">Lista złożona z</TextBlock>
                                 <StackPanel VerticalAlignment="Center">
                                     <TextBox Style="{StaticResource PoleTekstoweKlocka}"
-                                             Text="{Binding LiczbaElementów}"></TextBox>
+                                             Text="{Binding LiczbaElementów, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                 </StackPanel>
                                 <TextBlock Style="{StaticResource TekstKlocka}">elementów</TextBlock>
                             </StackPanel>
@@ -681,6 +681,58 @@
                     </StackPanel>
                 </StackPanel>
             </k:KlocekPionowyKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkli:Podlista}">
+            <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Z listy</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Lista}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource TekstKlocka}">pobierz podlistę od elementu nr</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Indeks1}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource TekstKlocka}">do elementu nr</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <Grid Style="{StaticResource GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość}">
+                            <ItemsControl ItemsSource="{Binding Indeks2}"
+                                          Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartośćWKlockuZwracającymWartość}"></ItemsControl>
+                            <Rectangle Fill="{Binding Kolor}"
+                                       Style="{StaticResource BocznyCypekWewnętrzny}"></Rectangle>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkli:PosortowanaLista}">
+            <k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćPrzyjmującyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Posortuj</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=SposobySortowaniaListy}"
+                                  SelectedItem="{Binding WybranySposóbSortowania}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=PorządkiSortowania}"
+                                  SelectedItem="{Binding WybranyPorządekSortowania}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>
         <DataTemplate DataType="{x:Type mwkli:PustaLista}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
