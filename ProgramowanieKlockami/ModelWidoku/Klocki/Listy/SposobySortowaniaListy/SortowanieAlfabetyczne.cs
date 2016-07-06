@@ -7,12 +7,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SposobySortowaniaListy
     {
         public string ReprezentacjaTekstowa => "alfabetycznie";
 
-        public List<object> Uporządkuj(List<object> lista, bool rosnąco)
+        public ZmiennaTypuListowego Uporządkuj(ZmiennaTypuListowego lista, bool rosnąco)
         {
             IEnumerable<string> kolekcja = lista.Select(x => x.ToString());
             kolekcja = rosnąco ? kolekcja.OrderBy(x => x) : kolekcja.OrderByDescending(x => x);
 
-            return kolekcja.Cast<object>().ToList();
+            return new ZmiennaTypuListowego(kolekcja);
         }
     }
 }

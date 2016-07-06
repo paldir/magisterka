@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
-    public class WynikDziałaniaMatematycznegoNaLiście : KlocekZwracającyWartośćNaPodstawieOpcjiIParametru<double, List<object>>
+    public class WynikDziałaniaMatematycznegoNaLiście : KlocekZwracającyWartośćNaPodstawieOpcjiIParametru<double, ZmiennaTypuListowego>
     {
         public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Działanie matematyczne na liście";

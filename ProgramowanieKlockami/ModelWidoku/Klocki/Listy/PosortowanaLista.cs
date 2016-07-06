@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.PorządkiSortowaniaListy;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SposobySortowaniaListy;
@@ -11,12 +10,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Posortowana lista";
         public override string Opis => "Zwraca posortowaną kopię listy.";
-        public override Type ZwracanyTyp => typeof(List<object>);
+        public override Type ZwracanyTyp => typeof(ZmiennaTypuListowego);
 
         public IPorządekSortowania WybranyPorządekSortowania { get; set; }
         public ISposóbSortowaniaListy WybranySposóbSortowania { get; set; }
 
-        public PosortowanaLista() : base(typeof(List<object>))
+        public PosortowanaLista() : base(typeof(ZmiennaTypuListowego))
         {
         }
 
@@ -31,7 +30,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         protected override object ZwróćNiebezpiecznie()
         {
-            List<object> lista = Wartość.Zwróć<List<object>>();
+            ZmiennaTypuListowego lista = Wartość.Zwróć<ZmiennaTypuListowego>();
 
             return WybranySposóbSortowania.Uporządkuj(lista, WybranyPorządekSortowania.Rosnąco);
         }

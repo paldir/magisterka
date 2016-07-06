@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczneNaLiście
 {
-    public class ŚredniaListy : IOpcjaZwracającaWartośćNaPodstawieParametru<double, List<object>>
+    public class ŚredniaListy : IOpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>
     {
         public string ReprezentacjaTekstowa => "Średnia";
 
-        public double Zwróć(List<object> x)
+        public double Zwróć(ZmiennaTypuListowego x)
         {
             double suma = 0;
             int liczbaElementów = 0;

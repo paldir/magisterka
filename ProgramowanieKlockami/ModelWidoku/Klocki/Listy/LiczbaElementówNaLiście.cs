@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
@@ -11,13 +10,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override string Opis => "Zwraca liczbę elementów na liście";
         public override Type ZwracanyTyp => typeof(double);
 
-        public LiczbaElementówNaLiście() : base(typeof(List<object>))
+        public LiczbaElementówNaLiście() : base(typeof(ZmiennaTypuListowego))
         {
         }
 
         protected override object ZwróćNiebezpiecznie()
         {
-            return Wartość.Zwróć<List<object>>().Count;
+            return Wartość.Zwróć<ZmiennaTypuListowego>().Count;
         }
     }
 }

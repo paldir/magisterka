@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
@@ -17,7 +16,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public override void Wykonaj()
         {
-            List<object> lista = WybranaZmienna?.Wartość as List<object>;
+            ZmiennaTypuListowego lista = WybranaZmienna?.Wartość as ZmiennaTypuListowego;
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
 
             if ((lista != null) && (klocekZwracającyWartość != null))

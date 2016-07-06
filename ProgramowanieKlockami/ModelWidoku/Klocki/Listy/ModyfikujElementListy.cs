@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.TypyModyfikacjiElementuListy;
 
@@ -35,7 +34,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         {
             if (WybranaZmienna != null)
             {
-                List<object> lista = WybranaZmienna.Wartość as List<object>;
+                ZmiennaTypuListowego lista = WybranaZmienna.Wartość as ZmiennaTypuListowego;
                 KlocekZwracającyWartość klocekIndeksu = Indeks[0];
                 KlocekZwracającyWartość klocekWartości = Wartość[0];
 

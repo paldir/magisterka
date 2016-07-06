@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
@@ -25,7 +24,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
             if ((WybranaZmienna != null) && (klocekIndeksu != null))
             {
-                List<object> lista = WybranaZmienna.Wartość as List<object>;
+                ZmiennaTypuListowego lista = WybranaZmienna.Wartość as ZmiennaTypuListowego;
 
                 if (lista != null)
                 {

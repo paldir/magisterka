@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
@@ -17,12 +16,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public PustośćListy()
         {
-            Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(List<object>));
+            Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(ZmiennaTypuListowego));
         }
 
         protected override object ZwróćNiebezpiecznie()
         {
-            return Lista.Zwróć<List<object>>().Count == 0;
+            return Lista.Zwróć<ZmiennaTypuListowego>().Count == 0;
         }
     }
 }

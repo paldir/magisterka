@@ -40,7 +40,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>> DziałaniaLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>> DziałaniaMatematyczne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, List<object>>> DziałaniaMatematyczneNaLiście { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>> DziałaniaMatematyczneNaLiście { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeTrygonometryczne { get; }
         public IEnumerable<Klocek> KlockiDotycząceList { get; }
@@ -69,7 +69,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
         public IEnumerable<ITypUstawieniaElementuListy> TypyModyfikacjiElementuListy { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, List<object>, object>> WystąpieniaElementuNaLiście { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>> WystąpieniaElementuNaLiście { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>> ZnakiPorównania { get; }
 
@@ -141,7 +141,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Modulo()
             };
 
-            DziałaniaMatematyczneNaLiście = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, List<object>>[]
+            DziałaniaMatematyczneNaLiście = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>[]
             {
                 new SumaListy(),
                 new MinimumListy(),
@@ -211,7 +211,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WstawienieElementu()
             };
 
-            WystąpieniaElementuNaLiście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, List<object>, object>[]
+            WystąpieniaElementuNaLiście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>[]
             {
                 new PierwszeWystąpienie(),
                 new OstatnieWystąpienie()
@@ -291,6 +291,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             KlockiTekstowe = new Klocek[]
             {
+                new DodajTekst(),
                 new Wyświetl {Konsola = Konsola},
 
                 new Napis(),

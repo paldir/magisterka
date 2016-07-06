@@ -178,6 +178,7 @@
     <Compile Include="ModelWidoku\Klocki\Pętle\PowódSkoku.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\Przerwanie.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\SkokWPętli.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\DodajTekst.cs" />
     <Compile Include="ModelWidoku\Klocki\WartośćWewnętrznegoKlockaZwracającegoWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\ZawartośćKlockaPionowegoZZawartością.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\Równy.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\Większy.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\ZnakiPorównania\WiększyRówny.cs" />
+    <Compile Include="ModelWidoku\ZmiennaTypuListowego.cs" />
     <Compile Include="Widok\GłówneOkno.xaml.cs">
       <DependentUpon>GłówneOkno.xaml</DependentUpon>
     </Compile>

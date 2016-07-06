@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
@@ -11,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Podlista";
         public override string Opis => "Z istniejącej listy kopiuje fragment i zwraca jako nową listę.";
-        public override Type ZwracanyTyp => typeof(List<object>);
+        public override Type ZwracanyTyp => typeof(ZmiennaTypuListowego);
 
         public WartośćWewnętrznegoKlockaZwracającegoWartość Lista { get; }
         public WartośćWewnętrznegoKlockaZwracającegoWartość Indeks1 { get; }
@@ -19,14 +18,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public Podlista()
         {
-            Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(List<object>));
+            Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(ZmiennaTypuListowego));
             Indeks1 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
             Indeks2 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
         protected override object ZwróćNiebezpiecznie()
         {
-            List<object> lista = Lista.Zwróć<List<object>>();
+            ZmiennaTypuListowego lista = Lista.Zwróć<ZmiennaTypuListowego>();
             int indeks1 = (int) Math.Round(Indeks1.Zwróć<double>());
             int indeks2 = (int) Math.Round(Indeks2.Zwróć<double>());
             int liczbaElementów = lista.Count;

@@ -1275,6 +1275,18 @@
                 </StackPanel>
             </k:KlocekPionowyKontrolka>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkt:DodajTekst}">
+            <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Do</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox SelectedItem="{Binding WybranaZmienna}"
+                                  Style="{StaticResource ListaZmiennych}"></ComboBox>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource TekstKlocka}">dodaj tekst</TextBlock>
+                </StackPanel>
+            </k:KlocekPionowyPrzyjmującyWartośćKontrolka>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type mwkt:Napis}">
             <k:KlocekZwracającyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">

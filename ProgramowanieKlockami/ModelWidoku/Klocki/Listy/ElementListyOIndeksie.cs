@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
@@ -18,14 +17,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public ElementListyOIndeksie()
         {
-            Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(List<object>));
+            Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(ZmiennaTypuListowego));
             Indeks = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
         protected override object ZwróćNiebezpiecznie()
         {
             int indeks = (int) Math.Round(Indeks.Zwróć<double>());
-            List<object> lista = Lista.Zwróć<List<object>>();
+            ZmiennaTypuListowego lista = Lista.Zwróć<ZmiennaTypuListowego>();
 
             return (indeks >= 0) && (indeks < lista.Count) ? lista[indeks] : null;
         }

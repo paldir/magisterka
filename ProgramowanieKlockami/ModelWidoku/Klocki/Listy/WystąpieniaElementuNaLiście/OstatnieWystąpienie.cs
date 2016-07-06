@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
+﻿using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaLiście
 {
-    public class OstatnieWystąpienie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, List<object>, object>
+    public class OstatnieWystąpienie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>
     {
         public string ReprezentacjaTekstowa => "ostatnie";
 
-        public double Zwróć(List<object> a, object b) => a.LastIndexOf(b);
+        public double Zwróć(ZmiennaTypuListowego a, object b) => a.LastIndexOf(b);
     }
 }

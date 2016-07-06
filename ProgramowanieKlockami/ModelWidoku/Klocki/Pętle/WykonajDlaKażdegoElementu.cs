@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
@@ -12,7 +11,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
         public PowódSkoku PowódSkoku { get; set; }
         public Zmienna WybranaZmienna { get; set; }
 
-        public WykonajDlaKażdegoElementu() : base(typeof(List<object>))
+        public WykonajDlaKażdegoElementu() : base(typeof(ZmiennaTypuListowego))
         {
         }
 
@@ -22,7 +21,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
             if ((klocekZwracającyWartość != null) && (WybranaZmienna != null))
             {
-                List<object> lista = klocekZwracającyWartość.Zwróć<List<object>>();
+                ZmiennaTypuListowego lista = klocekZwracającyWartość.Zwróć<ZmiennaTypuListowego>();
 
                 foreach (object element in lista)
                 {
