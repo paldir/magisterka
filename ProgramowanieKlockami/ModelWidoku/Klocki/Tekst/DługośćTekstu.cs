@@ -1,0 +1,24 @@
+﻿using System;
+using System.Windows.Media;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
+{
+    public class DługośćTekstu : KlocekZwracającyWartośćPrzyjmującyWartość
+    {
+        public override Brush Kolor => Kolory.Tekst;
+        public override string Nazwa => "Długość tekstu";
+        public override string Opis => "Zwraca liczbę znaków tekstu.";
+        public override Type ZwracanyTyp => typeof(double);
+
+        public DługośćTekstu() : base(typeof(object))
+        {
+        }
+
+        protected override object ZwróćNiebezpiecznie()
+        {
+            string napis = Wartość.Zwróć<object>().ToString();
+
+            return napis.Length;
+        }
+    }
+}

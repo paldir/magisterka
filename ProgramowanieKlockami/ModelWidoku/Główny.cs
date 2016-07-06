@@ -26,6 +26,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.SposobyZaokrąglania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.RodzajeSzukaniaTekstuWTekście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
 
@@ -63,6 +64,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
         public IEnumerable<IPorządekSortowania> PorządkiSortowania { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object,object>> RodzajeSzukaniaTekstuWTekście { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public IEnumerable<ISposóbSortowaniaListy> SposobySortowaniaListy { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> SposobyZaokrąglania { get; }
@@ -174,6 +176,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new SortowanieRosnąco(),
                 new SortowanieMalejąco()
+            };
+
+            RodzajeSzukaniaTekstuWTekście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>[]
+            {
+                new PierwszeWystąpienieTekstuWTekście(),
+                new OstatnieWystąpienieTekstuWTekście()
             };
 
             SposobySortowaniaListy = new ISposóbSortowaniaListy[]
@@ -294,7 +302,11 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new DodajTekst(),
                 new Wyświetl {Konsola = Konsola},
 
+                new DługośćTekstu(),
+                new IndeksTekstuWTekście {WybranaOpcja = RodzajeSzukaniaTekstuWTekście.First()},
+                new LiteraTekstu(),
                 new Napis(),
+                new PustośćTekstu()
             };
         }
 
