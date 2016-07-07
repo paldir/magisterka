@@ -27,6 +27,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.RodzajeSzukaniaTekstuWTekście;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.WielkościLiter;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
 
@@ -64,13 +65,14 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
         public IEnumerable<IPorządekSortowania> PorządkiSortowania { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object,object>> RodzajeSzukaniaTekstuWTekście { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>> RodzajeSzukaniaTekstuWTekście { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public IEnumerable<ISposóbSortowaniaListy> SposobySortowaniaListy { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> SposobyZaokrąglania { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
         public IEnumerable<ITypUstawieniaElementuListy> TypyModyfikacjiElementuListy { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>> WielkościLiter { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>> WystąpieniaElementuNaLiście { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>> ZnakiPorównania { get; }
@@ -219,6 +221,12 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WstawienieElementu()
             };
 
+            WielkościLiter = new IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>[]
+            {
+                new WielkieLitery(),
+                new MałeLitery()
+            };
+
             WystąpieniaElementuNaLiście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>[]
             {
                 new PierwszeWystąpienie(),
@@ -306,8 +314,9 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new IndeksTekstuWTekście {WybranaOpcja = RodzajeSzukaniaTekstuWTekście.First()},
                 new LiteraTekstu(),
                 new Napis(),
-                new Podciąg(), 
-                new PustośćTekstu()
+                new Podciąg(),
+                new PustośćTekstu(),
+                new TekstOWielkościLiter {WybranaOpcja = WielkościLiter.First()}
             };
         }
 

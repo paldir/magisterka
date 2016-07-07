@@ -1407,6 +1407,20 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkt:TekstOWielkościLiter}">
+            <k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćPrzyjmującyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Na</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=WielkościLiter}"
+                                  SelectedItem="{Binding WybranaOpcja}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource TekstKlocka}">litery</TextBlock>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type mwkt:Wyświetl}">
             <k:KlocekPionowyPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekPionowyPrzyjmującyWartośćSzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">

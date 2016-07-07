@@ -186,6 +186,9 @@
     <Compile Include="ModelWidoku\Klocki\Tekst\PustośćTekstu.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\RodzajeSzukaniaTekstuWTekście\OstatnieWystąpienieTekstuWTekście.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\RodzajeSzukaniaTekstuWTekście\PierwszeWystąpienieTekstuWTekście.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\TekstOWielkościLiter.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\WielkościLiter\MałeLitery.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\WielkościLiter\WielkieLitery.cs" />
     <Compile Include="ModelWidoku\Klocki\WartośćWewnętrznegoKlockaZwracającegoWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\ZawartośćKlockaPionowegoZZawartością.cs" />
     <Compile Include="ModelWidoku\Komenda.cs" />
