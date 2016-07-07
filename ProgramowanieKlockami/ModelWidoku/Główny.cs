@@ -306,6 +306,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new IndeksTekstuWTekście {WybranaOpcja = RodzajeSzukaniaTekstuWTekście.First()},
                 new LiteraTekstu(),
                 new Napis(),
+                new Podciąg(), 
                 new PustośćTekstu()
             };
         }

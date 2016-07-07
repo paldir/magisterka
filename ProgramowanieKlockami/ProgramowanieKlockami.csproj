@@ -182,6 +182,7 @@
     <Compile Include="ModelWidoku\Klocki\Tekst\DługośćTekstu.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\IndeksTekstuWTekście.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\LiteraTekstu.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\Podciąg.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\PustośćTekstu.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\RodzajeSzukaniaTekstuWTekście\OstatnieWystąpienieTekstuWTekście.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\RodzajeSzukaniaTekstuWTekście\PierwszeWystąpienieTekstuWTekście.cs" />
