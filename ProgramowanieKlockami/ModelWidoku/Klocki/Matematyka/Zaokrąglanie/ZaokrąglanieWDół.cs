@@ -1,7 +1,7 @@
 ﻿using System;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.SposobyZaokrąglania
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.Zaokrąglanie
 {
     public class ZaokrąglanieWDół : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {

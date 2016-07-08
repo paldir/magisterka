@@ -8,9 +8,9 @@ using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.PorządkiSortowaniaListy;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SposobySortowaniaListy;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.TypyModyfikacjiElementuListy;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SortowanieListy;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaLiście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne;
@@ -22,11 +22,12 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczneNaLiście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeTrygonometryczne;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.SposobyZaokrąglania;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.Zaokrąglanie;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.RodzajeSzukaniaTekstuWTekście;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.ObcinanieSpacji;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.SzukanieTekstuWTekście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.WielkościLiter;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
@@ -59,21 +60,22 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaUsunięciaZmiennej { get; }
         public Komenda KomendaZwinięciaRozwinięciaKlockaZZawartością { get; }
         public Konsola Konsola { get; }
+        public IEnumerable<ITypUstawieniaElementuListy> ModyfikacjeElementuListy { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<object,object>> ObcinaniaSpacji { get; }
         public ObsługującyPrzeciąganieZPrzybornika ObsługującyPrzeciąganieZPrzybornika { get; }
         public ObsługującyPrzenoszenieKlockówPionowych ObsługującyPrzenoszenieKlockówPionowych { get; }
         public ObsługującyPrzenoszenieKlockówZwracającychWartość ObsługującyPrzenoszenieKlockówZwracającychWartość { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
         public IEnumerable<IPorządekSortowania> PorządkiSortowania { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>> RodzajeSzukaniaTekstuWTekście { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
-        public IEnumerable<ISposóbSortowaniaListy> SposobySortowaniaListy { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> SposobyZaokrąglania { get; }
+        public IEnumerable<ISposóbSortowaniaListy> SortowaniaListy { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
-        public IEnumerable<ITypUstawieniaElementuListy> TypyModyfikacjiElementuListy { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>> SzukaniaTekstuWTekście { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>> WielkościLiter { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>> WystąpieniaElementuNaLiście { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> ZaokrąglaniaLiczby { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>> ZnakiPorównania { get; }
 
@@ -174,29 +176,29 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new ArcusTangens()
             };
 
+            ModyfikacjeElementuListy = new ITypUstawieniaElementuListy[]
+            {
+                new UstawienieElementu(),
+                new WstawienieElementu()
+            };
+
+            ObcinaniaSpacji = new IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>[]
+            {
+                new ObcinanieSpacjiZObuStron(),
+                new ObcinanieSpacjiZLewejStrony(),
+                new ObcinanieSpacjiZPrawejStrony()
+            };
+
             PorządkiSortowania = new IPorządekSortowania[]
             {
                 new SortowanieRosnąco(),
                 new SortowanieMalejąco()
             };
 
-            RodzajeSzukaniaTekstuWTekście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>[]
-            {
-                new PierwszeWystąpienieTekstuWTekście(),
-                new OstatnieWystąpienieTekstuWTekście()
-            };
-
-            SposobySortowaniaListy = new ISposóbSortowaniaListy[]
+            SortowaniaListy = new ISposóbSortowaniaListy[]
             {
                 new SortowanieLiczbowe(),
                 new SortowanieAlfabetyczne()
-            };
-
-            SposobyZaokrąglania = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
-            {
-                new Zaokrąglanie(),
-                new ZaokrąglanieWGórę(),
-                new ZaokrąglanieWDół()
             };
 
             StałeLogiczne = new IOpcjaZwracającaWartość<bool>[]
@@ -215,10 +217,10 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Nieskończoność()
             };
 
-            TypyModyfikacjiElementuListy = new ITypUstawieniaElementuListy[]
+            SzukaniaTekstuWTekście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>[]
             {
-                new UstawienieElementu(),
-                new WstawienieElementu()
+                new PierwszeWystąpienieTekstuWTekście(),
+                new OstatnieWystąpienieTekstuWTekście()
             };
 
             WielkościLiter = new IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>[]
@@ -231,6 +233,13 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new PierwszeWystąpienie(),
                 new OstatnieWystąpienie()
+            };
+
+            ZaokrąglaniaLiczby = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
+            {
+                new Zaokrąglanie(),
+                new ZaokrąglanieWGórę(),
+                new ZaokrąglanieWDół()
             };
 
             ZnakiPorównania = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>[]
@@ -247,7 +256,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 new DodajDoListy(),
                 new UsuńElementZListy(),
-                new ModyfikujElementListy {WybranyTypModyfikacjiListy = TypyModyfikacjiElementuListy.First()},
+                new ModyfikujElementListy {WybranyTypModyfikacjiListy = ModyfikacjeElementuListy.First()},
 
                 new ElementListyOIndeksie(),
                 new IndeksElementuNaLiście {WybranaOpcja = WystąpieniaElementuNaLiście.First()},
@@ -258,7 +267,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new PosortowanaLista
                 {
                     WybranyPorządekSortowania = PorządkiSortowania.First(),
-                    WybranySposóbSortowania = SposobySortowaniaListy.First()
+                    WybranySposóbSortowania = SortowaniaListy.First()
                 },
                 new PustaLista(),
                 new PustośćListy()
@@ -302,7 +311,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WynikDziałania {WybranaOpcja = DziałaniaMatematyczne.First()},
                 new WynikDziałaniaMatematycznegoNaLiście {WybranaOpcja = DziałaniaMatematyczneNaLiście.First()},
                 new WystępowanieCechyLiczby {WybranaOpcja = CechyLiczby.First()},
-                new ZaokrąglonaLiczba {WybranaOpcja = SposobyZaokrąglania.First()},
+                new ZaokrąglonaLiczba {WybranaOpcja = ZaokrąglaniaLiczby.First()},
             };
 
             KlockiTekstowe = new Klocek[]
@@ -311,12 +320,13 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Wyświetl {Konsola = Konsola},
 
                 new DługośćTekstu(),
-                new IndeksTekstuWTekście {WybranaOpcja = RodzajeSzukaniaTekstuWTekście.First()},
+                new IndeksTekstuWTekście {WybranaOpcja = SzukaniaTekstuWTekście.First()},
                 new LiteraTekstu(),
                 new Napis(),
                 new Podciąg(),
                 new PustośćTekstu(),
-                new TekstOWielkościLiter {WybranaOpcja = WielkościLiter.First()}
+                new TekstOWielkościLiter {WybranaOpcja = WielkościLiter.First()},
+                new TekstZObciętymiSpacjami {WybranaOpcja = ObcinaniaSpacji.First()}
             };
         }
 

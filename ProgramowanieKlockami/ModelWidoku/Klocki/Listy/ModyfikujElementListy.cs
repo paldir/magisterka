@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.TypyModyfikacjiElementuListy;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {

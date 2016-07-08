@@ -1,4 +1,4 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.TypyModyfikacjiElementuListy
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy
 {
     public class UstawienieElementu : ITypUstawieniaElementuListy
     {

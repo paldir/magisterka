@@ -1,4 +1,4 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SposobySortowaniaListy
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SortowanieListy
 {
     public interface ISposóbSortowaniaListy
     {

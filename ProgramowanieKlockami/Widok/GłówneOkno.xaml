@@ -658,7 +658,7 @@
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
-                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=TypyModyfikacjiElementuListy}"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=ModyfikacjeElementuListy}"
                                   SelectedItem="{Binding WybranyTypModyfikacjiListy}"
                                   Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
@@ -721,7 +721,7 @@
                     <TextBlock Style="{StaticResource TekstKlocka}">Posortuj</TextBlock>
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
-                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=SposobySortowaniaListy}"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=SortowaniaListy}"
                                   SelectedItem="{Binding WybranySposóbSortowania}"
                                   Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
@@ -1185,7 +1185,7 @@
                 <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
-                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=SposobyZaokrąglania}"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=ZaokrąglaniaLiczby}"
                                   SelectedItem="{Binding WybranaOpcja}"
                                   Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
@@ -1309,7 +1309,7 @@
                     <TextBlock Style="{StaticResource TekstKlocka}">znajdź</TextBlock>
                     <StackPanel VerticalAlignment="Center">
                         <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
-                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=RodzajeSzukaniaTekstuWTekście}"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=SzukaniaTekstuWTekście}"
                                   SelectedItem="{Binding WybranaOpcja}"
                                   Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
@@ -1418,6 +1418,19 @@
                                   Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
                     </StackPanel>
                     <TextBlock Style="{StaticResource TekstKlocka}">litery</TextBlock>
+                </StackPanel>
+            </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type mwkt:TekstZObciętymiSpacjami}">
+            <k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka Template="{StaticResource KlocekZwracającyWartośćPrzyjmującyWartośćSzablon}">
+                <StackPanel Style="{StaticResource StackPanelKlockaKońcowego}">
+                    <TextBlock Style="{StaticResource TekstKlocka}">Usuń spacje z</TextBlock>
+                    <StackPanel VerticalAlignment="Center">
+                        <ComboBox DisplayMemberPath="ReprezentacjaTekstowa"
+                                  ItemsSource="{Binding Source={StaticResource GłównyModelWidoku}, Path=ObcinaniaSpacji}"
+                                  SelectedItem="{Binding WybranaOpcja}"
+                                  Style="{StaticResource RozwijanaListaKlocka}"></ComboBox>
+                    </StackPanel>
                 </StackPanel>
             </k:KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka>
         </DataTemplate>

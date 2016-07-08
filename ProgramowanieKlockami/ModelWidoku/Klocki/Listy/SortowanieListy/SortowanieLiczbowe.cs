@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SposobySortowaniaListy
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SortowanieListy
 {
     public class SortowanieLiczbowe : ISposóbSortowaniaListy
     {

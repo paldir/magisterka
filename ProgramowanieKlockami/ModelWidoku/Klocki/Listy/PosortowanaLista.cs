@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.PorządkiSortowaniaListy;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SposobySortowaniaListy;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SortowanieListy;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {

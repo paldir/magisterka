@@ -1,7 +1,7 @@
 ﻿using System;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.RodzajeSzukaniaTekstuWTekście
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.SzukanieTekstuWTekście
 {
     public class PierwszeWystąpienieTekstuWTekście : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>
     {
