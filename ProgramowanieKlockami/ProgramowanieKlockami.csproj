@@ -185,6 +185,10 @@
     <Compile Include="ModelWidoku\Klocki\Tekst\ObcinanieSpacji\ObcinanieSpacjiZLewejStrony.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\ObcinanieSpacji\ObcinanieSpacjiZObuStron.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\ObcinanieSpacji\ObcinanieSpacjiZPrawejStrony.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\PobieranieTekstu\IPobieranieTekstu.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\PobieranieTekstu\PobieranieTekstuLiczbowego.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\PobieranieTekstu\PobieranieTekstuTekstowego.cs" />
+    <Compile Include="ModelWidoku\Klocki\Tekst\PobranyTekst.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\Podciąg.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\PustośćTekstu.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\SzukanieTekstuWTekście\OstatnieWystąpienieTekstuWTekście.cs" />

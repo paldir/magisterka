@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
@@ -27,6 +28,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.Zaokrąglanie;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Pętle;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.ObcinanieSpacji;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.PobieranieTekstu;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.SzukanieTekstuWTekście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.WielkościLiter;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
@@ -39,6 +41,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         private Klocek _klocekPosiadającySkupienie;
         private string _nazwaNowejZmiennej;
         private double _powiększenie;
+        private Thread _wątekDebugowania;
 
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>> DziałaniaLogiczne { get; }
@@ -58,15 +61,17 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaUsunięciaKlockaPionowego { get; }
         public Komenda KomendaUsunięciaKlockaZwracającegoWartość { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
+        public Komenda KomendaZamknięciaOkna { get; }
         public Komenda KomendaZwinięciaRozwinięciaKlockaZZawartością { get; }
         public Konsola Konsola { get; }
         public IEnumerable<ITypUstawieniaElementuListy> ModyfikacjeElementuListy { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<object,object>> ObcinaniaSpacji { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>> ObcinaniaSpacji { get; }
         public ObsługującyPrzeciąganieZPrzybornika ObsługującyPrzeciąganieZPrzybornika { get; }
         public ObsługującyPrzenoszenieKlockówPionowych ObsługującyPrzenoszenieKlockówPionowych { get; }
         public ObsługującyPrzenoszenieKlockówZwracającychWartość ObsługującyPrzenoszenieKlockówZwracającychWartość { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
+        public IEnumerable<IPobieranieTekstu> PobieraniaTekstu { get; }
         public IEnumerable<IPorządekSortowania> PorządkiSortowania { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public IEnumerable<ISposóbSortowaniaListy> SortowaniaListy { get; }
@@ -112,6 +117,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) {MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy};
             KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
+            KomendaZamknięciaOkna = new Komenda(ZamknijOkno);
             KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) {MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy};
             ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
             ObsługującyPrzenoszenieKlockówPionowych = new ObsługującyPrzenoszenieKlockówPionowych();
@@ -187,6 +193,12 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new ObcinanieSpacjiZObuStron(),
                 new ObcinanieSpacjiZLewejStrony(),
                 new ObcinanieSpacjiZPrawejStrony()
+            };
+
+            PobieraniaTekstu = new IPobieranieTekstu[]
+            {
+                new PobieranieTekstuTekstowego(),
+                new PobieranieTekstuLiczbowego()
             };
 
             PorządkiSortowania = new IPorządekSortowania[]
@@ -323,6 +335,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new IndeksTekstuWTekście {WybranaOpcja = SzukaniaTekstuWTekście.First()},
                 new LiteraTekstu(),
                 new Napis(),
+                new PobranyTekst {WybranaOpcja = PobieraniaTekstu.First()},
                 new Podciąg(),
                 new PustośćTekstu(),
                 new TekstOWielkościLiter {WybranaOpcja = WielkościLiter.First()},
@@ -360,7 +373,11 @@ namespace ProgramowanieKlockami.ModelWidoku
                 zmienna.Wartość = null;
 
             Konsola.Czyść();
-            RozpoczęcieProgramu.Wykonaj();
+            _wątekDebugowania?.Abort();
+
+            _wątekDebugowania = new Thread(RozpoczęcieProgramu.Wykonaj);
+
+            _wątekDebugowania.Start();
         }
 
         private bool SprawdźCzyMożnaUsunąćKlocekPionowy()
@@ -396,6 +413,11 @@ namespace ProgramowanieKlockami.ModelWidoku
             Zmienna zmienna = (Zmienna) zmiennaDoUsunięcia;
 
             Zmienne.Remove(zmienna);
+        }
+
+        private void ZamknijOkno()
+        {
+            _wątekDebugowania?.Abort();
         }
 
         private void ZwińRozwińKlocekZZawartością()

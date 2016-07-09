@@ -20,9 +20,14 @@ namespace ProgramowanieKlockami.ModelWidoku
             }
         }
 
+        public Konsola()
+        {
+            Zawartość = string.Empty;
+        }
+
         public void Czyść()
         {
-            Zawartość = null;
+            Zawartość = string.Empty;
         }
 
         public void DodajLinię(string linia)
