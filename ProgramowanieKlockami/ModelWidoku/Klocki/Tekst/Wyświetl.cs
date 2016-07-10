@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {

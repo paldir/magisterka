@@ -1630,7 +1630,19 @@
                 </DockPanel>
                 <ScrollViewer Grid.Row="2"
                               VerticalScrollBarVisibility="Visible">
-                    <TextBlock Text="{Binding Konsola.Zawartość}"></TextBlock>
+                    <ItemsControl ItemsSource="{Binding Konsola.LinieKonsoli}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBox IsEnabled="{Binding Edytowalna}"
+                                         Text="{Binding Zawartość}">
+                                    <TextBox.InputBindings>
+                                        <KeyBinding Command="{Binding KomendaWyłączeniaEdytowalności}"
+                                                    Key="Enter"></KeyBinding>
+                                    </TextBox.InputBindings>
+                                </TextBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </ScrollViewer>
             </Grid>
         </DockPanel>

@@ -32,6 +32,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.PobieranieTekstu;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.SzukanieTekstuWTekście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.WielkościLiter;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
+using ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
 
 namespace ProgramowanieKlockami.ModelWidoku
@@ -335,7 +336,11 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new IndeksTekstuWTekście {WybranaOpcja = SzukaniaTekstuWTekście.First()},
                 new LiteraTekstu(),
                 new Napis(),
-                new PobranyTekst {WybranaOpcja = PobieraniaTekstu.First()},
+                new PobranyTekst
+                {
+                    Konsola = Konsola,
+                    WybranaOpcja = PobieraniaTekstu.First()
+                },
                 new Podciąg(),
                 new PustośćTekstu(),
                 new TekstOWielkościLiter {WybranaOpcja = WielkościLiter.First()},
@@ -372,7 +377,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             foreach (Zmienna zmienna in Zmienne)
                 zmienna.Wartość = null;
 
-            Konsola.Czyść();
+            Konsola.LinieKonsoli.Clear();
             _wątekDebugowania?.Abort();
 
             _wątekDebugowania = new Thread(RozpoczęcieProgramu.Wykonaj);
