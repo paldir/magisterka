@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli
 {
@@ -8,6 +9,8 @@ namespace ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli
         private bool _edytowalna;
 
         public Komenda KomendaWyłączeniaEdytowalności { get; }
+
+        public AutoResetEvent Semafor { get; set; }
 
         public bool Edytowalna
         {
@@ -31,6 +34,8 @@ namespace ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli
         private void WyłączEdytowalność()
         {
             Edytowalna = false;
+
+            Semafor?.Set();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

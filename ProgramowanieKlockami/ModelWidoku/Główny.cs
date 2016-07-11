@@ -56,6 +56,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<Klocek> KlockiLogiczne { get; }
         public IEnumerable<Klocek> KlockiMatematyczne { get; }
         public IEnumerable<Klocek> KlockiTekstowe { get; }
+        public Komenda KomendaDodaniaUsunięciaPunktuPrzerwania { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaPrzejęciaSkupienia { get; }
         public Komenda KomendaStartuProgramu { get; }
@@ -112,6 +113,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Główny()
         {
             Konsola = new Konsola();
+            KomendaDodaniaUsunięciaPunktuPrzerwania = new Komenda(DodajUsuńPunktPrzerwania);
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
             KomendaStartuProgramu = new Komenda(RozpocznijWykonywanieProgramu);
@@ -346,6 +348,12 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new TekstOWielkościLiter {WybranaOpcja = WielkościLiter.First()},
                 new TekstZObciętymiSpacjami {WybranaOpcja = ObcinaniaSpacji.First()}
             };
+        }
+
+        private void DodajUsuńPunktPrzerwania()
+        {
+            KlocekPionowy klocekPionowy = (KlocekPionowy) _klocekPosiadającySkupienie;
+            klocekPionowy.PunktPrzerwania = !klocekPionowy.PunktPrzerwania;
         }
 
         private void DodajZmienną()

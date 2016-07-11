@@ -24,14 +24,15 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
         protected override object ZwróćNiebezpiecznie()
         {
             string wiadomość = Wartość.Zwróć<object>().ToString();
+            AutoResetEvent semafor = new AutoResetEvent(false);
 
             Konsola.DodajLinię(wiadomość);
             Konsola.DodajPoleTekstowe();
 
             LiniaKonsoli ostatniaLinia = Konsola.LinieKonsoli.Last();
+            ostatniaLinia.Semafor = semafor;
 
-            while (ostatniaLinia.Edytowalna)
-                Thread.Sleep(100);
+            semafor.WaitOne();
 
             return WybranaOpcja.Konwertuj(ostatniaLinia.Zawartość);
         }
