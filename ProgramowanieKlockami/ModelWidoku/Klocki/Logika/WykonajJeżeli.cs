@@ -1,10 +1,7 @@
-﻿using System.Windows.Media;
-
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
     public class WykonajJeżeli : KlocekPionowyZZawartościąPrzyjmującyWartość
     {
-        public override Brush Kolor => Kolory.Logika;
         public override string Nazwa => "Jeżeli";
         public override string Opis => "Jeśli wartość jest prawdziwa, wykonuje instrukcje.";
 
@@ -13,6 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         public WykonajJeżeli() : base(typeof(bool))
         {
             AlternatywnaZawartość = new ZawartośćKlockaPionowegoZZawartością();
+            Kolor = Kolory.Logika;
         }
 
         public override void Wykonaj()

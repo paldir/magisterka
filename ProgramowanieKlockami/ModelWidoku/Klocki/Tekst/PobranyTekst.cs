@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.PobieranieTekstu;
 using ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli;
 
@@ -9,7 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
     public class PobranyTekst : KlocekZwracającyWartośćPrzyjmującyWartość
     {
-        public override Brush Kolor => Kolory.Tekst;
         public override string Nazwa => "Pobrany tekst";
         public override string Opis => "Pobiera od użytkownika tekst/liczbę.";
         public override Type ZwracanyTyp => typeof(object);
@@ -19,6 +17,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public PobranyTekst() : base(typeof(object))
         {
+            Kolor = Kolory.Tekst;
         }
 
         protected override object ZwróćNiebezpiecznie()

@@ -1,10 +1,7 @@
-﻿using System.Windows.Media;
-
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
-    public class DodajTekst : KlocekPionowyPrzyjmującyWartość
+    public sealed class DodajTekst : KlocekPionowyPrzyjmującyWartość
     {
-        public override Brush Kolor => Kolory.Tekst;
         public override string Nazwa => "Dodaj tekst";
         public override string Opis => "Dodaje tekst do zmiennej.";
 
@@ -12,6 +9,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public DodajTekst() : base(typeof(object))
         {
+            Kolor = Kolory.Tekst;
         }
 
         public override void Wykonaj()

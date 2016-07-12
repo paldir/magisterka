@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
@@ -7,7 +6,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Indeks1, Indeks2, Tekst};
 
-        public override Brush Kolor => Kolory.Tekst;
         public override string Nazwa => "Podciąg";
         public override string Opis => "Zwraca określony fragment tekstu.";
         public override Type ZwracanyTyp => typeof(object);
@@ -20,6 +18,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
         {
             Indeks1 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
             Indeks2 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Kolor = Kolory.Tekst;
             Tekst = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(object));
         }
 

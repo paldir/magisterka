@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
@@ -10,7 +9,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 
-        public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Inicjalizacja listy";
         public override string Opis => "Tworzy listę złożoną z dowolnej liczby elementów.";
         public override Type ZwracanyTyp => typeof(ZmiennaTypuListowego);
@@ -42,6 +40,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public ListaZElementów()
         {
             Elementy = new ObservableCollection<WartośćWewnętrznegoKlockaZwracającegoWartość>();
+            Kolor = Kolory.Listy;
         }
 
         protected override object ZwróćNiebezpiecznie()

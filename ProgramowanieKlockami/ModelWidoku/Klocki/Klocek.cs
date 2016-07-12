@@ -11,10 +11,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         private Brush _kolorObramowania;
         private bool _posiadaSkupienie;
 
-        public abstract Brush Kolor { get; }
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
 
+        public Brush Kolor { get; protected set; }
         public bool ZPrzybornika { get; set; }
 
         public bool Aktywny

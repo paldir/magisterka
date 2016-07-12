@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
@@ -9,7 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 
-        public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Losowy ułamek";
         public override string Opis => "Zwraca losowy ułamek pomiędzy 0 a 1.";
         public override Type ZwracanyTyp => typeof(double);
@@ -17,6 +15,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         static LosowyUłamek()
         {
             Los = new Random();
+        }
+
+        public LosowyUłamek()
+        {
+            Kolor = Kolory.Matematyka;
         }
 
         protected override object ZwróćNiebezpiecznie() => Los.NextDouble();

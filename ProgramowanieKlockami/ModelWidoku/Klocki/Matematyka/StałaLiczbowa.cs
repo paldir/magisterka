@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
@@ -7,12 +6,16 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 
-        public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Stała liczbowa";
         public override string Opis => "Zwraca liczbę.";
         public override Type ZwracanyTyp => typeof(double);
 
         public double Liczba { get; set; }
+
+        public StałaLiczbowa()
+        {
+            Kolor = Kolory.Matematyka;
+        }
 
         protected override object ZwróćNiebezpiecznie() => Liczba;
     }

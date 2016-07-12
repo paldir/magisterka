@@ -1,10 +1,7 @@
-﻿using System.Windows.Media;
-
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
     public class WykonujDopóki : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
     {
-        public override Brush Kolor => Kolory.Pętle;
         public override string Nazwa => "Pętla dopóki";
         public override string Opis => "Dopóki wartość jest prawdziwa, wykonuje instrukcje.";
 
@@ -12,6 +9,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
         public WykonujDopóki() : base(typeof(bool))
         {
+            Kolor = Kolory.Pętle;
         }
 
         public override void Wykonaj()

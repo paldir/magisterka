@@ -1,11 +1,9 @@
-﻿using System.Windows.Media;
-using ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli;
+﻿using ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
     public class Wyświetl : KlocekPionowyPrzyjmującyWartość
     {
-        public override Brush Kolor => Kolory.Tekst;
         public override string Nazwa => "Wyświetl";
         public override string Opis => "Wyświetla tekst, liczbę lub inną wartość.";
 
@@ -13,6 +11,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public Wyświetl() : base(typeof(object))
         {
+            Kolor = Kolory.Tekst;
         }
 
         public override object Clone()

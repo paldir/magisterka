@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
@@ -7,7 +6,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Lista, Indeks};
 
-        public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Element listy o indeksie";
         public override string Opis => "Zwraca element listy o podanym indeksie.";
         public override Type ZwracanyTyp => typeof(object);
@@ -17,8 +15,9 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public ElementListyOIndeksie()
         {
-            Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(ZmiennaTypuListowego));
             Indeks = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Kolor = Kolory.Listy;
+            Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(ZmiennaTypuListowego));
         }
 
         protected override object ZwróćNiebezpiecznie()

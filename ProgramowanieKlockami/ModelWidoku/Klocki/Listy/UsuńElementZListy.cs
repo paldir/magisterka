@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
     public class UsuńElementZListy : KlocekPionowy
     {
-        public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Usunięcie elementu listy";
         public override string Opis => "Usuwa z lity element o podanym indeksie.";
 
@@ -16,6 +14,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public UsuńElementZListy()
         {
             Indeks = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Kolor = Kolory.Listy;
         }
 
         public override void Wykonaj()

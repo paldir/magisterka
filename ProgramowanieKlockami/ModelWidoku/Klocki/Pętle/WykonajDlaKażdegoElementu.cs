@@ -1,10 +1,7 @@
-﻿using System.Windows.Media;
-
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
     public class WykonajDlaKażdegoElementu : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
     {
-        public override Brush Kolor => Kolory.Pętle;
         public override string Nazwa => "Dla każdego elementu listy";
         public override string Opis => "Ustawia wartość wybranej zmiennej na kolejne elementy listy.";
 
@@ -13,6 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
         public WykonajDlaKażdegoElementu() : base(typeof(ZmiennaTypuListowego))
         {
+            Kolor = Kolory.Pętle;
         }
 
         public override void Wykonaj()

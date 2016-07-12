@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
@@ -7,7 +6,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Liczba1, Liczba2};
 
-        public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Podzielność liczby przez liczbę";
         public override string Opis => "Zwraca prawdę, jeśli pierwsza liczba jest podzielna przez drugą.";
         public override Type ZwracanyTyp => typeof(bool);
@@ -17,6 +15,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         public PodzielnośćLiczbyPrzezLiczbę()
         {
+            Kolor = Kolory.Matematyka;
             Liczba1 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
             Liczba2 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }

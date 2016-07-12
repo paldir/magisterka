@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
@@ -7,7 +6,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Indeks, Tekst};
 
-        public override Brush Kolor => Kolory.Tekst;
         public override string Nazwa => "Litera tekstu";
         public override string Opis => "Zwraca literę z podanej pozycji.";
         public override Type ZwracanyTyp => typeof(object);
@@ -18,6 +16,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
         public LiteraTekstu()
         {
             Indeks = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Kolor = Kolory.Tekst;
             Tekst = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(object));
         }
 

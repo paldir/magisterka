@@ -1,10 +1,7 @@
-﻿using System.Windows.Media;
-
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
     public class ZmieńWartośćZmiennejOLiczbę : KlocekPionowyPrzyjmującyWartość
     {
-        public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Zmiana wartości zmiennej o liczbę";
         public override string Opis => "Zmienia wartość zmiennej o liczbę";
 
@@ -12,6 +9,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         public ZmieńWartośćZmiennejOLiczbę() : base(typeof(double))
         {
+            Kolor = Kolory.Matematyka;
         }
 
         public override void Wykonaj()

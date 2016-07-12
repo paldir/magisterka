@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
     public class WykonujOdliczając : KlocekPionowyZZawartością, IPętla
     {
-        public override Brush Kolor => Kolory.Pętle;
         public override string Nazwa => "Pętla odliczająca";
         public override string Opis => "Za pomocą zmiennej odlicza od wartości początkowej do końcowej dodając stałą liczbę. Każda iteracja powoduje wykonanie instrukcji.";
 
@@ -19,6 +17,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
         public WykonujOdliczając()
         {
             Do = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Kolor = Kolory.Pętle;
             Od = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
             Interwał = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }

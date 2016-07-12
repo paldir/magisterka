@@ -350,6 +350,21 @@ namespace ProgramowanieKlockami.ModelWidoku
             };
         }
 
+        private static void ResetujTrybDebugowania(KlocekPionowyZZawartością klocekPionowyZZawartością)
+        {
+            klocekPionowyZZawartością.Debugowanie = false;
+
+            foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
+            {
+                klocekPionowy.Debugowanie = false;
+
+                KlocekPionowyZZawartością wewnętrznyKlocekPionowyZZawartością = klocekPionowy as KlocekPionowyZZawartością;
+
+                if (wewnętrznyKlocekPionowyZZawartością != null)
+                    ResetujTrybDebugowania(wewnętrznyKlocekPionowyZZawartością);
+            }
+        }
+
         private void DodajUsuńPunktPrzerwania()
         {
             KlocekPionowy klocekPionowy = (KlocekPionowy) _klocekPosiadającySkupienie;
@@ -385,6 +400,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             foreach (Zmienna zmienna in Zmienne)
                 zmienna.Wartość = null;
 
+            ResetujTrybDebugowania(RozpoczęcieProgramu);
             Konsola.LinieKonsoli.Clear();
             _wątekDebugowania?.Abort();
 

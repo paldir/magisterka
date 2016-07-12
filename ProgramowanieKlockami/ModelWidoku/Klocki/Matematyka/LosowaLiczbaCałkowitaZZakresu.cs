@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 {
@@ -9,7 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Liczba1, Liczba2};
 
-        public override Brush Kolor => Kolory.Matematyka;
         public override string Nazwa => "Liczba losowa z zakresu";
         public override string Opis => "Zwraca liczbę losową z zakresu";
         public override Type ZwracanyTyp => typeof(double);
@@ -24,6 +22,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         public LosowaLiczbaCałkowitaZZakresu()
         {
+            Kolor = Kolory.Matematyka;
             Liczba1 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
             Liczba2 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }

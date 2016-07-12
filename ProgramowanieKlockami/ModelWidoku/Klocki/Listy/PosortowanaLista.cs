@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.PorządkiSortowaniaListy;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SortowanieListy;
 
@@ -7,7 +6,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
     public class PosortowanaLista : KlocekZwracającyWartośćPrzyjmującyWartość
     {
-        public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Posortowana lista";
         public override string Opis => "Zwraca posortowaną kopię listy.";
         public override Type ZwracanyTyp => typeof(ZmiennaTypuListowego);
@@ -17,6 +15,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public PosortowanaLista() : base(typeof(ZmiennaTypuListowego))
         {
+            Kolor = Kolory.Listy;
         }
 
         public override object Clone()

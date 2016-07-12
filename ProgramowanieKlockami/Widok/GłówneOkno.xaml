@@ -835,7 +835,7 @@
                     <Border BorderBrush="{Binding KolorObramowania}"
                             BorderThickness="3,3,0,0"></Border>
                     <Ellipse Style="{StaticResource PunktPrzerwania}"
-                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Ellipse>
+                             Visibility="{Binding PunktPrzerwania, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Ellipse>
                 </Grid>
                 <StackPanel Grid.Column="1"
                             Grid.Row="0"

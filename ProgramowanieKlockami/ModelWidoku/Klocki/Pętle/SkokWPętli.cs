@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
@@ -7,11 +6,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
     {
         private readonly PowódSkoku _powódSkoku;
 
-        public override Brush Kolor => Kolory.Pętle;
-
         protected SkokWPętli(PowódSkoku powódSkoku)
         {
             _powódSkoku = powódSkoku;
+            Kolor = Kolory.Pętle;
         }
 
         public override void Wykonaj()

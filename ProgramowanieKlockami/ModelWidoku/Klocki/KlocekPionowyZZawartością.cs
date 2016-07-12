@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Threading;
+using Brush = System.Windows.Media.Brush;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -34,7 +36,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 if (SkokPętli)
                     break;
                 else
+                {
+                    if (klocekPionowy.PunktPrzerwania)
+                        Thread.Sleep(3000);
+
                     klocekPionowy.Wykonaj();
+                }
         }
 
         public static void ZresetujRekurencyjnieFlagęSkokuWPętli(KlocekPionowyZZawartością klocekPionowyZZawartością)

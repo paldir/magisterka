@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
     public class ModyfikujElementListy : KlocekPionowy
     {
-        public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Modyfikacja elementu listy";
         public override string Opis => "Ustawia element listy albo wstawia go w określone miejsce.";
 
@@ -19,6 +17,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public ModyfikujElementListy()
         {
             Indeks = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
+            Kolor = Kolory.Listy;
             Wartość = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(object));
         }
 

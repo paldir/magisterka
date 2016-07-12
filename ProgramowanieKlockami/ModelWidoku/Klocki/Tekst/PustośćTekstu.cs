@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
@@ -7,7 +6,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Tekst};
 
-        public override Brush Kolor => Kolory.Tekst;
         public override string Nazwa => "Pustość tekstu";
         public override string Opis => "Zwraca prawdę, jeśli liczba znaków w tekście wynosi 0.";
         public override Type ZwracanyTyp => typeof(bool);
@@ -16,6 +14,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public PustośćTekstu()
         {
+            Kolor = Kolory.Tekst;
             Tekst = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(object));
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
@@ -7,7 +6,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Lista};
 
-        public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Sprawdzenie pustości listy";
         public override string Opis => "Zwraca prawdę, jeśli lista jest pusta.";
         public override Type ZwracanyTyp => typeof(bool);
@@ -16,6 +14,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public PustośćListy()
         {
+            Kolor = Kolory.Listy;
             Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(ZmiennaTypuListowego));
         }
 

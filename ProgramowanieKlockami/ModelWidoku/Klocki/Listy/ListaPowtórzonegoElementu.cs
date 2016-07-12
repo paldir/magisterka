@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Windows.Media;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
@@ -8,7 +7,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Element, Liczba};
 
-        public override Brush Kolor => Kolory.Listy;
         public override string Nazwa => "Lista złożona z powtórzonego elementu";
         public override string Opis => "Tworzy listę zawierającą wybrany element powtórzony określoną liczbę razy.";
         public override Type ZwracanyTyp => typeof(ZmiennaTypuListowego);
@@ -19,6 +17,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public ListaPowtórzonegoElementu()
         {
             Element = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(object));
+            Kolor = Kolory.Listy;
             Liczba = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
