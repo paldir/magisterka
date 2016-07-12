@@ -1524,8 +1524,12 @@
         <Menu Grid.Row="0"
               HorizontalAlignment="Left"
               VerticalAlignment="Top">
-            <MenuItem Command="{Binding KomendaStartuProgramu}"
-                      Header="Start"></MenuItem>
+            <MenuItem Header="Debugowanie">
+                <MenuItem Command="{Binding KomendaStartuProgramu}"
+                          Header="Start"></MenuItem>
+                <MenuItem Command="{Binding KomendaKontynuacjiWykonywania}"
+                          Header="Kontynuuj"></MenuItem>
+            </MenuItem>
         </Menu>
         <DockPanel Grid.Row="1"
                    LastChildFill="True">

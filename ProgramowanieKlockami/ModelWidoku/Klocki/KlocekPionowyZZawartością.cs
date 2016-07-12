@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading;
-using Brush = System.Windows.Media.Brush;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -10,6 +9,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         public ZawartośćKlockaPionowegoZZawartością Zawartość { get; }
 
+        public AutoResetEvent Semafor { get; set; }
         public bool SkokPętli { get; set; }
 
         public bool Rozwinięty
@@ -37,10 +37,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                     break;
                 else
                 {
+                    klocekPionowy.AktualnieWykonywany = true;
+
                     if (klocekPionowy.PunktPrzerwania)
-                        Thread.Sleep(3000);
+                        Semafor.WaitOne();
 
                     klocekPionowy.Wykonaj();
+
+                    klocekPionowy.AktualnieWykonywany = false;
                 }
         }
 

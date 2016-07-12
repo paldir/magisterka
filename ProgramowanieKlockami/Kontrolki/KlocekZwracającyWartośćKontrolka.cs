@@ -4,6 +4,5 @@ namespace ProgramowanieKlockami.Kontrolki
 {
     public class KlocekZwracającyWartośćKontrolka : KlocekKontrolka<KlocekZwracającyWartość>
     {
-        public override KlocekZwracającyWartość Kontekst => (KlocekZwracającyWartość) DataContext;
     }
 }

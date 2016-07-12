@@ -4,6 +4,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public static class Kolory
     {
+        public static readonly Brush AktualnieWykonywany = Brushes.DarkGoldenrod;
         public static readonly Brush Funkcje = Brushes.PaleVioletRed;
         public static readonly Brush Listy = Brushes.DarkViolet;
         public static readonly Brush Logika = Brushes.Blue;

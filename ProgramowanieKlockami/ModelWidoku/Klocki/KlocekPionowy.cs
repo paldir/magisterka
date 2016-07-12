@@ -5,7 +5,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
     public abstract class KlocekPionowy : Klocek
     {
         private bool _aktualnieWykonywany;
-        private Brush _kolorPierwotny;
         private bool _punktPrzerwania;
 
         public bool Debugowanie { get; set; }
@@ -18,12 +17,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             set
             {
                 _aktualnieWykonywany = value;
-
-                if (AktualnieWykonywany)
-                {
-                    _kolorPierwotny = Kolor;
-
-                }
+                Kolor = KolorObramowania = AktualnieWykonywany ? Kolory.AktualnieWykonywany : KolorPierwotny;
             }
         }
 

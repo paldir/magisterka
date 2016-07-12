@@ -39,9 +39,11 @@ namespace ProgramowanieKlockami.ModelWidoku
 {
     public class Główny : INotifyPropertyChanged
     {
+        private bool _debugowanie;
         private Klocek _klocekPosiadającySkupienie;
         private string _nazwaNowejZmiennej;
         private double _powiększenie;
+        private readonly AutoResetEvent _semafor;
         private Thread _wątekDebugowania;
 
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
@@ -58,6 +60,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<Klocek> KlockiTekstowe { get; }
         public Komenda KomendaDodaniaUsunięciaPunktuPrzerwania { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
+        public Komenda KomendaKontynuacjiWykonywania { get; }
         public Komenda KomendaPrzejęciaSkupienia { get; }
         public Komenda KomendaStartuProgramu { get; }
         public Komenda KomendaUsunięciaKlockaPionowego { get; }
@@ -86,6 +89,18 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>> ZnakiPorównania { get; }
 
+        public bool Debugowanie
+        {
+            get { return _debugowanie; }
+
+            private set
+            {
+                _debugowanie = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         public string NazwaNowejZmiennej
         {
             get { return _nazwaNowejZmiennej; }
@@ -112,9 +127,11 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public Główny()
         {
+            _semafor = new AutoResetEvent(false);
             Konsola = new Konsola();
             KomendaDodaniaUsunięciaPunktuPrzerwania = new Komenda(DodajUsuńPunktPrzerwania);
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
+            KomendaKontynuacjiWykonywania = new Komenda(KontynuujWykonywanie);
             KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
             KomendaStartuProgramu = new Komenda(RozpocznijWykonywanieProgramu);
             KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) {MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy};
@@ -369,6 +386,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         {
             KlocekPionowy klocekPionowy = (KlocekPionowy) _klocekPosiadającySkupienie;
             klocekPionowy.PunktPrzerwania = !klocekPionowy.PunktPrzerwania;
+            klocekPionowy.Rodzic.Semafor = _semafor;
         }
 
         private void DodajZmienną()
@@ -381,6 +399,11 @@ namespace ProgramowanieKlockami.ModelWidoku
 
                 NazwaNowejZmiennej = null;
             }
+        }
+
+        private void KontynuujWykonywanie()
+        {
+                _semafor.Set();
         }
 
         private void PrzejmijSkupienie(object obiektKlocka)
@@ -404,7 +427,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             Konsola.LinieKonsoli.Clear();
             _wątekDebugowania?.Abort();
 
-            _wątekDebugowania = new Thread(RozpoczęcieProgramu.Wykonaj);
+            _wątekDebugowania = new Thread(WykonujProgram);
 
             _wątekDebugowania.Start();
         }
@@ -442,6 +465,15 @@ namespace ProgramowanieKlockami.ModelWidoku
             Zmienna zmienna = (Zmienna) zmiennaDoUsunięcia;
 
             Zmienne.Remove(zmienna);
+        }
+
+        private void WykonujProgram()
+        {
+            Debugowanie = true;
+
+            RozpoczęcieProgramu.Wykonaj();
+
+            Debugowanie = false;
         }
 
         private void ZamknijOkno()
