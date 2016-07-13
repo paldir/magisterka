@@ -30,6 +30,10 @@ namespace ProgramowanieKlockami.ModelWidoku
             set
             {
                 _wartość = value;
+                ZmiennaTypuListowego zmiennaTypuListowego = Wartość as ZmiennaTypuListowego;
+
+                if (zmiennaTypuListowego != null)
+                    zmiennaTypuListowego.CollectionChanged += ZmiennaTypuListowego_CollectionChanged;
 
                 OnPropertyChanged();
             }
@@ -38,6 +42,11 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Zmienna(ObservableCollection<Zmienna> zmienne)
         {
             _zmienne = zmienne;
+        }
+
+        private void ZmiennaTypuListowego_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged("Wartość");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

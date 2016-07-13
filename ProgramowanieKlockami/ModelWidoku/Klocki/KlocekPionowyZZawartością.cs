@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -9,7 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         public ZawartośćKlockaPionowegoZZawartością Zawartość { get; }
 
-        public Semafor Semafor { get; set; }
         public bool SkokPętli { get; set; }
 
         public bool Rozwinięty
@@ -37,10 +35,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                     break;
                 else
                 {
+                    if (klocekPionowy.PunktPrzerwania)
+                        Debugowanie = true;
+
                     klocekPionowy.AktualnieWykonywany = true;
 
                     if (klocekPionowy.PunktPrzerwania)
-                        Semafor.Opuść();
+                        klocekPionowy.Semafor.Opuść();
 
                     klocekPionowy.Wykonaj();
 

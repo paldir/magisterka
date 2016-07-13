@@ -1,4 +1,5 @@
-﻿using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
+﻿using System.Linq;
+using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaLiście
 {
@@ -6,6 +7,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaL
     {
         public string ReprezentacjaTekstowa => "ostatnie";
 
-        public double Zwróć(ZmiennaTypuListowego a, object b) => a.LastIndexOf(b);
+        public double Zwróć(ZmiennaTypuListowego a, object b) => a.ToList().LastIndexOf(b);
     }
 }

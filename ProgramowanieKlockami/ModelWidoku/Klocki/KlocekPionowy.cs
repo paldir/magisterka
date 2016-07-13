@@ -5,10 +5,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
     public abstract class KlocekPionowy : Klocek
     {
         private bool _aktualnieWykonywany;
+        private bool _debugowanie;
         private bool _punktPrzerwania;
 
-        public bool Debugowanie { get; set; }
         public KlocekPionowyZZawartością Rodzic { get; set; }
+        public Semafor Semafor { get; set; }
 
         public bool AktualnieWykonywany
         {
@@ -17,7 +18,25 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             set
             {
                 _aktualnieWykonywany = value;
-                Kolor = KolorObramowania = AktualnieWykonywany ? Kolory.AktualnieWykonywany : KolorPierwotny;
+                Kolor = KolorObramowania = AktualnieWykonywany && Debugowanie ? Kolory.AktualnieWykonywany : KolorPierwotny;
+
+                if (AktualnieWykonywany && (Rodzic != null))
+                    Rodzic.AktualnieWykonywany = false;
+            }
+        }
+
+        public bool Debugowanie
+        {
+            get { return _debugowanie; }
+
+            set
+            {
+                _debugowanie = value;
+                KlocekPionowyZZawartością klocekPionowyZZawartością = this as KlocekPionowyZZawartością;
+
+                if (klocekPionowyZZawartością != null)
+                    foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
+                        klocekPionowy.Debugowanie = value;
             }
         }
 

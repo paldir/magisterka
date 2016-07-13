@@ -135,6 +135,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             set
             {
                 _wPunkciePrzerwania = value;
+                RozpoczęcieProgramu.Debugowanie = value;
 
                 OnPropertyChanged();
             }
@@ -399,26 +400,15 @@ namespace ProgramowanieKlockami.ModelWidoku
             }
         }
 
-        private static void UstawDebugowanie(KlocekPionowyZZawartością klocekPionowyZZawartością, bool wartość)
-        {
-            klocekPionowyZZawartością.AktualnieWykonywany = wartość;
-
-            foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
-            {
-                klocekPionowy.AktualnieWykonywany = wartość;
-
-                KlocekPionowyZZawartością wewnętrznyKlocekPionowyZZawartością = klocekPionowy as KlocekPionowyZZawartością;
-
-                if (wewnętrznyKlocekPionowyZZawartością != null)
-                    UstawDebugowanie(wewnętrznyKlocekPionowyZZawartością, wartość);
-            }
-        }
-
         private void DodajUsuńPunktPrzerwania()
         {
             KlocekPionowy klocekPionowy = (KlocekPionowy) _klocekPosiadającySkupienie;
-            klocekPionowy.PunktPrzerwania = !klocekPionowy.PunktPrzerwania;
-            klocekPionowy.Rodzic.Semafor = _semafor;
+
+            if (klocekPionowy.Rodzic != null)
+            {
+                klocekPionowy.Semafor = _semafor;
+                klocekPionowy.PunktPrzerwania = !klocekPionowy.PunktPrzerwania;
+            }
         }
 
         private void DodajZmienną()
@@ -522,12 +512,11 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void ZatrzymajDebugowanie()
         {
+            _wątekDebugowania?.Abort();
+            ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
+
             Debugowanie = false;
             WPunkciePrzerwania = false;
-
-            _semafor.Podnieś();
-            ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
-            _wątekDebugowania?.Abort();
         }
 
         private void ZwińRozwińKlocekZZawartością()

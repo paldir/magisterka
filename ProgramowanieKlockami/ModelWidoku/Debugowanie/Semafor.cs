@@ -1,30 +1,28 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Threading;
 
 namespace ProgramowanieKlockami.ModelWidoku.Debugowanie
 {
     public class Semafor
     {
-        private readonly AutoResetEvent _semafor;
-        private bool _opuszczony;
+        private int _liczbaOpuszczeń;
+        private int _liczbaPodniesień;
+        private AutoResetEvent _semafor;
 
-        public bool Opuszczony
-        {
-            get { return _opuszczony; }
-
-            private set { _opuszczony = value; }
-        }
+        public bool Opuszczony { get; private set; }
 
         public Semafor()
         {
-            _semafor = new AutoResetEvent(false);
+            Resetuj();
         }
 
         public void Opuść()
         {
+            if (_liczbaOpuszczeń != _liczbaPodniesień)
+                Resetuj();
+
             Opuszczony = true;
+            _liczbaOpuszczeń++;
 
             OnSemaforOpuszczony(new EventArgs());
             _semafor.WaitOne();
@@ -32,9 +30,22 @@ namespace ProgramowanieKlockami.ModelWidoku.Debugowanie
 
         public void Podnieś()
         {
-            if (!_semafor.WaitOne(0))
+            if (_liczbaOpuszczeń == _liczbaPodniesień + 1)
+            {
                 _semafor.Set();
 
+                Opuszczony = false;
+                _liczbaPodniesień++;
+            }
+            else
+                Resetuj();
+        }
+
+
+        private void Resetuj()
+        {
+            _semafor = new AutoResetEvent(false);
+            _liczbaPodniesień = _liczbaOpuszczeń = 0;
             Opuszczony = false;
         }
 

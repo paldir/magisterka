@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
@@ -48,7 +49,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             if (indeks2 >= liczbaElementów)
                 indeks2 = liczbaElementów - 1;
 
-            return lista.GetRange(indeks1, indeks2 - indeks1 + 1);
+            return new ZmiennaTypuListowego(lista.Skip(indeks1).Take(indeks2 - indeks1 + 1));
         }
     }
 }
