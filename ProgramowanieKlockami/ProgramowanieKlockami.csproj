@@ -77,6 +77,7 @@
     <Compile Include="Kontrolki\KlocekPionowyZZawartościąPrzyjmującyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekZwracającyWartośćKontrolka.cs" />
     <Compile Include="Kontrolki\KlocekZwracającyWartośćPrzyjmującyWartośćKontrolka.cs" />
+    <Compile Include="ModelWidoku\Debugowanie\Semafor.cs" />
     <Compile Include="ModelWidoku\Główny.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekPionowy.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekZwracającyWartość.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="ModelWidoku\Klocki\Tekst\Wyświetl.cs" />
     <Compile Include="ModelWidoku\KonfiguracjaKonsoli\Konsola.cs" />
     <Compile Include="ModelWidoku\KonfiguracjaKonsoli\LiniaKonsoli.cs" />
+    <Compile Include="ModelWidoku\Konwertery\WartośćLogicznaNaOdwrotnośćKonwerter.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzeciąganieZPrzybornika.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówPionowych.cs" />

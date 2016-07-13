@@ -24,7 +24,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                         continue;
                 }
 
-                return Activator.CreateInstance(ZwracanyTyp);
+                return ZwracanyTyp == typeof(object) ? string.Empty : Activator.CreateInstance(ZwracanyTyp);
             }
 
             return ZwróćNiebezpiecznie();

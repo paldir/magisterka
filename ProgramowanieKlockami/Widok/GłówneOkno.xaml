@@ -5,6 +5,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:k="clr-namespace:ProgramowanieKlockami.Kontrolki"
         xmlns:mw="clr-namespace:ProgramowanieKlockami.ModelWidoku"
+        xmlns:mwk="clr-namespace:ProgramowanieKlockami.ModelWidoku.Konwertery"
         xmlns:mwki="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Inne"
         xmlns:mwkli="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Listy"
         xmlns:mwklo="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Logika"
@@ -211,7 +212,7 @@
             <Setter Property="Width"
                     Value="7"></Setter>
         </Style>
-        <BooleanToVisibilityConverter x:Key="BooleanNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
+        <BooleanToVisibilityConverter x:Key="WartośćLogicznaNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowySzablon"
                          TargetType="k:KlocekPionowyKontrolka">
             <StackPanel Orientation="Horizontal">
@@ -233,7 +234,7 @@
                                Style="{StaticResource DolnyCypekKlockaPionowego}">
                     </Rectangle>
                     <Ellipse Style="{StaticResource PunktPrzerwania}"
-                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Ellipse>
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Ellipse>
                 </Grid>
             </StackPanel>
         </ControlTemplate>
@@ -259,7 +260,7 @@
                     <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                                Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
                     <Ellipse Style="{StaticResource PunktPrzerwania}"
-                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Ellipse>
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Ellipse>
                 </Grid>
                 <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
                               Margin="1"
@@ -290,7 +291,7 @@
                     <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                             BorderThickness="3,3,0,0"></Border>
                     <Ellipse Style="{StaticResource PunktPrzerwania}"
-                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Ellipse>
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Ellipse>
                 </Grid>
                 <StackPanel Grid.Column="1"
                             Grid.Row="0"
@@ -310,7 +311,7 @@
                         </Border>
                         <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                                    Style="{StaticResource DolnyCypekKlockaPionowegoZZawartością}"
-                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                         </Rectangle>
                     </Grid>
                 </StackPanel>
@@ -320,7 +321,7 @@
                       Grid.Row="1"
                       Margin="1,0,0,0"
                       MinHeight="20"
-                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -334,7 +335,7 @@
                         BorderThickness="3,0,0,0"
                         Grid.Column="1"
                         Grid.Row="1"
-                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                     <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
                 </Border>
@@ -399,7 +400,7 @@
                     <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                             BorderThickness="3,3,0,0"></Border>
                     <Ellipse Style="{StaticResource PunktPrzerwania}"
-                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Ellipse>
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Ellipse>
                 </Grid>
                 <StackPanel Grid.Column="1"
                             Grid.Row="0"
@@ -419,7 +420,7 @@
                         </Border>
                         <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                                    Style="{StaticResource DolnyCypekKlockaPionowegoZZawartością}"
-                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Rectangle>
+                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Rectangle>
                         <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                                    Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
                     </Grid>
@@ -432,7 +433,7 @@
                       Grid.Row="1"
                       Margin="1,0,0,0"
                       MinHeight="20"
-                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -446,7 +447,7 @@
                         BorderThickness="3,0,0,0"
                         Grid.Column="1"
                         Grid.Row="1"
-                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                     <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Zawartość}"
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
                 </Border>
@@ -835,7 +836,7 @@
                     <Border BorderBrush="{Binding KolorObramowania}"
                             BorderThickness="3,3,0,0"></Border>
                     <Ellipse Style="{StaticResource PunktPrzerwania}"
-                             Visibility="{Binding PunktPrzerwania, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Ellipse>
+                             Visibility="{Binding PunktPrzerwania, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Ellipse>
                 </Grid>
                 <StackPanel Grid.Column="1"
                             Grid.Row="0"
@@ -858,7 +859,7 @@
                         </Border>
                         <Rectangle Fill="{Binding KolorObramowania}"
                                    Style="{StaticResource DolnyCypekKlockaPionowegoZZawartością}"
-                                   Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Rectangle>
+                                   Visibility="{Binding Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Rectangle>
                         <Rectangle Fill="{Binding KolorObramowania}"
                                    Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
                     </Grid>
@@ -871,7 +872,7 @@
                       Grid.Row="1"
                       Margin="1,0,0,0"
                       MinHeight="20"
-                      Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                      Visibility="{Binding Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -885,7 +886,7 @@
                         BorderThickness="3,0,0,0"
                         Grid.Column="1"
                         Grid.Row="1"
-                        Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        Visibility="{Binding Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                     <ItemsControl ItemsSource="{Binding Zawartość}"
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
                 </Border>
@@ -924,7 +925,7 @@
                         </Border>
                         <Rectangle Fill="{Binding KolorObramowania}"
                                    Style="{StaticResource DolnyCypekKlockaPionowegoZZawartością}"
-                                   Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}"></Rectangle>
+                                   Visibility="{Binding Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Rectangle>
                     </Grid>
                 </StackPanel>
                 <Grid Background="{Binding Kolor}"
@@ -933,7 +934,7 @@
                       Grid.Row="3"
                       Margin="1,0,0,0"
                       MinHeight="20"
-                      Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                      Visibility="{Binding Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -947,7 +948,7 @@
                         BorderThickness="3,0,0,0"
                         Grid.Column="1"
                         Grid.Row="3"
-                        Visibility="{Binding Rozwinięty, Converter={StaticResource BooleanNaWidocznośćKonwerter}}">
+                        Visibility="{Binding Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                     <ItemsControl ItemsSource="{Binding AlternatywnaZawartość}"
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}">
                     </ItemsControl>
@@ -1507,6 +1508,7 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
+        <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
     </Window.Resources>
     <Window.DataContext>
         <StaticResource ResourceKey="GłównyModelWidoku"></StaticResource>
@@ -1526,9 +1528,14 @@
               VerticalAlignment="Top">
             <MenuItem Header="Debugowanie">
                 <MenuItem Command="{Binding KomendaStartuProgramu}"
-                          Header="Start"></MenuItem>
+                          Header="Start"
+                          IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
                 <MenuItem Command="{Binding KomendaKontynuacjiWykonywania}"
-                          Header="Kontynuuj"></MenuItem>
+                          Header="Kontynuuj"
+                          IsEnabled="{Binding WPunkciePrzerwania}"></MenuItem>
+                <MenuItem Command="{Binding KomendaZatrzymaniaDebugowania}"
+                          Header="Zatrzymaj"
+                          IsEnabled="{Binding Debugowanie}"></MenuItem>
             </MenuItem>
         </Menu>
         <DockPanel Grid.Row="1"
@@ -1615,11 +1622,16 @@
                              SelectionMode="Single">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{StaticResource PoleTekstoweKlocka}"
-                                             Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
-                                    <Button Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaZmiennej}"
-                                            CommandParameter="{Binding}">Usuń</Button>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox Style="{StaticResource PoleTekstoweKlocka}"
+                                                 Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
+                                        <Button Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaZmiennej}"
+                                                CommandParameter="{Binding}">Usuń</Button>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Wartość}"></TextBlock>
+                                    </StackPanel>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -1646,7 +1658,8 @@
                               VerticalScrollBarVisibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
-                            <ContentControl Content="{Binding RozpoczęcieProgramu}">
+                            <ContentControl Content="{Binding RozpoczęcieProgramu}"
+                                            IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
                                 <ContentControl.LayoutTransform>
                                     <ScaleTransform ScaleX="{Binding Powiększenie}"
                                                     ScaleY="{Binding Powiększenie}"></ScaleTransform>

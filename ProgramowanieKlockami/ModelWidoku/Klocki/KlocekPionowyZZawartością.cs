@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using System.Threading;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -9,7 +9,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         public ZawartośćKlockaPionowegoZZawartością Zawartość { get; }
 
-        public AutoResetEvent Semafor { get; set; }
+        public Semafor Semafor { get; set; }
         public bool SkokPętli { get; set; }
 
         public bool Rozwinięty
@@ -40,7 +40,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                     klocekPionowy.AktualnieWykonywany = true;
 
                     if (klocekPionowy.PunktPrzerwania)
-                        Semafor.WaitOne();
+                        Semafor.Opuść();
 
                     klocekPionowy.Wykonaj();
 

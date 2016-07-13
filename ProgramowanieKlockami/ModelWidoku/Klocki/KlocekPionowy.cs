@@ -1,4 +1,4 @@
-﻿using System.Windows.Media;
+﻿using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {

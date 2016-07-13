@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji;
@@ -43,8 +44,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         private Klocek _klocekPosiadającySkupienie;
         private string _nazwaNowejZmiennej;
         private double _powiększenie;
-        private readonly AutoResetEvent _semafor;
+        private readonly Semafor _semafor;
         private Thread _wątekDebugowania;
+        private bool _wPunkciePrzerwania;
 
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>> DziałaniaLogiczne { get; }
@@ -67,6 +69,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaUsunięciaKlockaZwracającegoWartość { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
         public Komenda KomendaZamknięciaOkna { get; }
+        public Komenda KomendaZatrzymaniaDebugowania { get; }
         public Komenda KomendaZwinięciaRozwinięciaKlockaZZawartością { get; }
         public Konsola Konsola { get; }
         public IEnumerable<ITypUstawieniaElementuListy> ModyfikacjeElementuListy { get; }
@@ -125,9 +128,21 @@ namespace ProgramowanieKlockami.ModelWidoku
             }
         }
 
+        public bool WPunkciePrzerwania
+        {
+            get { return _wPunkciePrzerwania; }
+
+            set
+            {
+                _wPunkciePrzerwania = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         public Główny()
         {
-            _semafor = new AutoResetEvent(false);
+            _semafor = new Semafor();
             Konsola = new Konsola();
             KomendaDodaniaUsunięciaPunktuPrzerwania = new Komenda(DodajUsuńPunktPrzerwania);
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
@@ -138,6 +153,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
             KomendaZamknięciaOkna = new Komenda(ZamknijOkno);
+            KomendaZatrzymaniaDebugowania = new Komenda(ZatrzymajDebugowanie);
             KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) {MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy};
             ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
             ObsługującyPrzenoszenieKlockówPionowych = new ObsługującyPrzenoszenieKlockówPionowych();
@@ -147,6 +163,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             Powiększenie = 1;
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
             Zmienne = new ObservableCollection<Zmienna>();
+            _semafor.SemaforOpuszczony += _semafor_SemaforOpuszczony;
 
             CechyLiczby = new IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>[]
             {
@@ -367,18 +384,33 @@ namespace ProgramowanieKlockami.ModelWidoku
             };
         }
 
-        private static void ResetujTrybDebugowania(KlocekPionowyZZawartością klocekPionowyZZawartością)
+        private static void ResetujFlagęAktualnegoWykonywania(KlocekPionowyZZawartością klocekPionowyZZawartością)
         {
-            klocekPionowyZZawartością.Debugowanie = false;
+            klocekPionowyZZawartością.AktualnieWykonywany = false;
 
             foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
             {
-                klocekPionowy.Debugowanie = false;
+                klocekPionowy.AktualnieWykonywany = false;
 
                 KlocekPionowyZZawartością wewnętrznyKlocekPionowyZZawartością = klocekPionowy as KlocekPionowyZZawartością;
 
                 if (wewnętrznyKlocekPionowyZZawartością != null)
-                    ResetujTrybDebugowania(wewnętrznyKlocekPionowyZZawartością);
+                    ResetujFlagęAktualnegoWykonywania(wewnętrznyKlocekPionowyZZawartością);
+            }
+        }
+
+        private static void UstawDebugowanie(KlocekPionowyZZawartością klocekPionowyZZawartością, bool wartość)
+        {
+            klocekPionowyZZawartością.AktualnieWykonywany = wartość;
+
+            foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
+            {
+                klocekPionowy.AktualnieWykonywany = wartość;
+
+                KlocekPionowyZZawartością wewnętrznyKlocekPionowyZZawartością = klocekPionowy as KlocekPionowyZZawartością;
+
+                if (wewnętrznyKlocekPionowyZZawartością != null)
+                    UstawDebugowanie(wewnętrznyKlocekPionowyZZawartością, wartość);
             }
         }
 
@@ -403,7 +435,9 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void KontynuujWykonywanie()
         {
-                _semafor.Set();
+            _semafor.Podnieś();
+
+            WPunkciePrzerwania = false;
         }
 
         private void PrzejmijSkupienie(object obiektKlocka)
@@ -423,13 +457,18 @@ namespace ProgramowanieKlockami.ModelWidoku
             foreach (Zmienna zmienna in Zmienne)
                 zmienna.Wartość = null;
 
-            ResetujTrybDebugowania(RozpoczęcieProgramu);
+            ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
             Konsola.LinieKonsoli.Clear();
             _wątekDebugowania?.Abort();
 
             _wątekDebugowania = new Thread(WykonujProgram);
 
             _wątekDebugowania.Start();
+        }
+
+        private void _semafor_SemaforOpuszczony(object sender, EventArgs e)
+        {
+            WPunkciePrzerwania = true;
         }
 
         private bool SprawdźCzyMożnaUsunąćKlocekPionowy()
@@ -478,6 +517,16 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void ZamknijOkno()
         {
+            _wątekDebugowania?.Abort();
+        }
+
+        private void ZatrzymajDebugowanie()
+        {
+            Debugowanie = false;
+            WPunkciePrzerwania = false;
+
+            _semafor.Podnieś();
+            ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
             _wątekDebugowania?.Abort();
         }
 
