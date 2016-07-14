@@ -28,6 +28,7 @@
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaZwracającegoWartość}"
                       Header="Usuń"></MenuItem>
         </ContextMenu>
+        <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <Style x:Key="BocznyCypekKlockaPrzyjmującegoWartość"
                TargetType="Rectangle">
             <Setter Property="Height"
@@ -187,6 +188,13 @@
             <Setter Property="MinHeight"
                     Value="20"></Setter>
             <Setter Property="Padding"
+                    Value="2"></Setter>
+        </Style>
+        <Style x:Key="PoleTekstoweKlocka"
+               TargetType="TextBox">
+            <Setter Property="IsEnabled"
+                    Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></Setter>
+            <Setter Property="Margin"
                     Value="2"></Setter>
         </Style>
         <Style x:Key="PunktPrzerwania"
@@ -1508,7 +1516,6 @@
                 </StackPanel>
             </k:KlocekZwracającyWartośćKontrolka>
         </DataTemplate>
-        <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
     </Window.Resources>
     <Window.DataContext>
         <StaticResource ResourceKey="GłównyModelWidoku"></StaticResource>
@@ -1541,114 +1548,136 @@
         <DockPanel Grid.Row="1"
                    LastChildFill="True">
             <TabControl TabStripPlacement="Left"
-                        Width="475">
+                        Width="300">
                 <TabItem Header="Listy">
-                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                  dd:DragDrop.IsDragSource="True"
-                                  ItemsSource="{Binding KlockiDotycząceList}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ContentPresenter Content="{Binding}"
-                                                  Margin="0,3"></ContentPresenter>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      ItemsSource="{Binding KlockiDotycząceList}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{Binding}"
+                                                      Margin="0,3"></ContentPresenter>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Logika">
-                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                  dd:DragDrop.IsDragSource="True"
-                                  ItemsSource="{Binding KlockiLogiczne}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ContentPresenter Content="{Binding}"
-                                                  Margin="0,3"></ContentPresenter>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      ItemsSource="{Binding KlockiLogiczne}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{Binding}"
+                                                      Margin="0,3"></ContentPresenter>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Matematyka">
-                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                  dd:DragDrop.IsDragSource="True"
-                                  ItemsSource="{Binding KlockiMatematyczne}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ContentPresenter Content="{Binding}"
-                                                  Margin="0,3"></ContentPresenter>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      ItemsSource="{Binding KlockiMatematyczne}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{Binding}"
+                                                      Margin="0,3"></ContentPresenter>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Pętle">
-                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                  dd:DragDrop.IsDragSource="True"
-                                  ItemsSource="{Binding KlockiDotyczącePętli}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ContentPresenter Content="{Binding}"
-                                                  Margin="0,3"></ContentPresenter>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      ItemsSource="{Binding KlockiDotyczącePętli}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{Binding}"
+                                                      Margin="0,3"></ContentPresenter>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Tekst">
-                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                  dd:DragDrop.IsDragSource="True"
-                                  ItemsSource="{Binding KlockiTekstowe}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ContentPresenter Content="{Binding}"
-                                                  Margin="0,3"></ContentPresenter>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      ItemsSource="{Binding KlockiTekstowe}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{Binding}"
+                                                      Margin="0,3"></ContentPresenter>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Zmienne">
-                    <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                  dd:DragDrop.IsDragSource="True"
-                                  ItemsSource="{Binding KlockiDotycząceZmiennych}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ContentPresenter Content="{Binding}"
-                                                  Margin="0,3"></ContentPresenter>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                      dd:DragDrop.IsDragSource="True"
+                                      ItemsSource="{Binding KlockiDotycząceZmiennych}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{Binding}"
+                                                      Margin="0,3"></ContentPresenter>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </TabItem>
             </TabControl>
-            <GroupBox Header="Zmienne">
-                <StackPanel>
-                    <ListBox IsSynchronizedWithCurrentItem="True"
-                             ItemsSource="{Binding Zmienne}"
-                             SelectionMode="Single">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBox Style="{StaticResource PoleTekstoweKlocka}"
-                                                 Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
-                                        <Button Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaZmiennej}"
-                                                CommandParameter="{Binding}">Usuń</Button>
+            <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                          Width="200">
+                <GroupBox Header="Zmienne">
+                    <StackPanel>
+                        <ListBox IsSynchronizedWithCurrentItem="True"
+                                 ItemsSource="{Binding Zmienne}"
+                                 SelectionMode="Single">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <StackPanel.ToolTip>
+                                            <TextBlock Text="{Binding Wartość}"
+                                                       TextWrapping="Wrap"></TextBlock>
+                                        </StackPanel.ToolTip>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
+                                                     Style="{StaticResource PoleTekstoweKlocka}"
+                                                     Text="{Binding Path=Nazwa, UpdateSourceTrigger=LostFocus}"></TextBox>
+                                            <Button Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaZmiennej}"
+                                                    CommandParameter="{Binding}"
+                                                    IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">Usuń</Button>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Visibility="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                                            <TextBlock Text="{Binding Wartość}"></TextBlock>
+                                        </StackPanel>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Visibility="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
-                                        <TextBlock Text="{Binding Wartość}"></TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <StackPanel Orientation="Horizontal">
-                        <Label>Nowa:</Label>
-                        <TextBox Text="{Binding NazwaNowejZmiennej, UpdateSourceTrigger=PropertyChanged}"
-                                 Width="50">
-                            <TextBox.InputBindings>
-                                <KeyBinding Command="{Binding KomendaDodaniaZmiennej}"
-                                            Key="Enter"></KeyBinding>
-                            </TextBox.InputBindings>
-                        </TextBox>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Nowa:</Label>
+                            <TextBox IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
+                                     Text="{Binding NazwaNowejZmiennej, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="50">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Command="{Binding KomendaDodaniaZmiennej}"
+                                                Key="Enter"></KeyBinding>
+                                </TextBox.InputBindings>
+                            </TextBox>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </GroupBox>
+                </GroupBox>
+            </ScrollViewer>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
@@ -1660,8 +1689,7 @@
                               VerticalScrollBarVisibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
-                            <ContentControl Content="{Binding RozpoczęcieProgramu}"
-                                            IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
+                            <ContentControl Content="{Binding RozpoczęcieProgramu}">
                                 <ContentControl.LayoutTransform>
                                     <ScaleTransform ScaleX="{Binding Powiększenie}"
                                                     ScaleY="{Binding Powiększenie}"></ScaleTransform>
