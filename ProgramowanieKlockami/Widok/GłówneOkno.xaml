@@ -1574,96 +1574,98 @@
         </Menu>
         <DockPanel Grid.Row="1"
                    LastChildFill="True">
-            <TabControl TabStripPlacement="Left"
-                        Width="300">
-                <TabItem Header="Listy">
-                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                      dd:DragDrop.IsDragSource="True"
-                                      ItemsSource="{Binding KlockiDotycząceList}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{Binding}"
-                                                      Margin="0,3"></ContentPresenter>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem Header="Logika">
-                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                      dd:DragDrop.IsDragSource="True"
-                                      ItemsSource="{Binding KlockiLogiczne}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{Binding}"
-                                                      Margin="0,3"></ContentPresenter>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem Header="Matematyka">
-                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                      dd:DragDrop.IsDragSource="True"
-                                      ItemsSource="{Binding KlockiMatematyczne}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{Binding}"
-                                                      Margin="0,3"></ContentPresenter>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem Header="Pętle">
-                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                      dd:DragDrop.IsDragSource="True"
-                                      ItemsSource="{Binding KlockiDotyczącePętli}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{Binding}"
-                                                      Margin="0,3"></ContentPresenter>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem Header="Tekst">
-                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                      dd:DragDrop.IsDragSource="True"
-                                      ItemsSource="{Binding KlockiTekstowe}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{Binding}"
-                                                      Margin="0,3"></ContentPresenter>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem Header="Zmienne">
-                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                        <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
-                                      dd:DragDrop.IsDragSource="True"
-                                      ItemsSource="{Binding KlockiDotycząceZmiennych}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <ContentPresenter Content="{Binding}"
-                                                      Margin="0,3"></ContentPresenter>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </TabItem>
-            </TabControl>
-            <ScrollViewer HorizontalScrollBarVisibility="Visible"
-                          Width="200">
-                <GroupBox Header="Zmienne">
+            <GroupBox Header="Przybornik">
+                <TabControl TabStripPlacement="Left"
+                            Width="300">
+                    <TabItem Header="Listy">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                            <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                          dd:DragDrop.IsDragSource="True"
+                                          ItemsSource="{Binding KlockiDotycząceList}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}"
+                                                          Margin="0,3"></ContentPresenter>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Logika">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                            <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                          dd:DragDrop.IsDragSource="True"
+                                          ItemsSource="{Binding KlockiLogiczne}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}"
+                                                          Margin="0,3"></ContentPresenter>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Matematyka">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                            <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                          dd:DragDrop.IsDragSource="True"
+                                          ItemsSource="{Binding KlockiMatematyczne}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}"
+                                                          Margin="0,3"></ContentPresenter>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Pętle">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                            <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                          dd:DragDrop.IsDragSource="True"
+                                          ItemsSource="{Binding KlockiDotyczącePętli}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}"
+                                                          Margin="0,3"></ContentPresenter>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Tekst">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                            <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                          dd:DragDrop.IsDragSource="True"
+                                          ItemsSource="{Binding KlockiTekstowe}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}"
+                                                          Margin="0,3"></ContentPresenter>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Zmienne">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                            <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                          dd:DragDrop.IsDragSource="True"
+                                          ItemsSource="{Binding KlockiDotycząceZmiennych}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding}"
+                                                          Margin="0,3"></ContentPresenter>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
+            </GroupBox>
+            <GroupBox Header="Zmienne">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                              Width="200">
                     <StackPanel>
                         <ListBox IsSynchronizedWithCurrentItem="True"
                                  ItemsSource="{Binding Zmienne}"
@@ -1703,9 +1705,13 @@
                             </TextBox>
                         </StackPanel>
                     </StackPanel>
-                </GroupBox>
-            </ScrollViewer>
+                </ScrollViewer>
+            </GroupBox>
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -1726,7 +1732,19 @@
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>
-                <DockPanel Grid.Row="1"
+                <GroupBox Grid.Column="1"
+                          Grid.Row="0"
+                          Header="Schowek">
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                        <StackPanel>
+                            <ContentControl Content="{Binding RozpoczęcieProgramu}"
+                                            IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></ContentControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                </GroupBox>
+                <DockPanel Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Grid.Row="1"
                            LastChildFill="True">
                     <Slider AutoToolTipPlacement="TopLeft"
                             AutoToolTipPrecision="2"
@@ -1737,7 +1755,9 @@
                             TickPlacement="BottomRight"
                             Value="{Binding Powiększenie}"></Slider>
                 </DockPanel>
-                <ScrollViewer Grid.Row="2"
+                <ScrollViewer Grid.Column="0"
+                              Grid.ColumnSpan="2"
+                              Grid.Row="2"
                               VerticalScrollBarVisibility="Visible">
                     <ItemsControl ItemsSource="{Binding Konsola.LinieKonsoli}">
                         <ItemsControl.ItemTemplate>

@@ -24,10 +24,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             if (zmiennaTypuListowego == null)
                 return 1;
 
-            if (this.SequenceEqual(zmiennaTypuListowego))
-                return 0;
-
-            return -1;
+            return this.SequenceEqual(zmiennaTypuListowego) ? 0 : Count.CompareTo(zmiennaTypuListowego.Count);
         }
     }
 }

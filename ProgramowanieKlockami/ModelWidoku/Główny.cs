@@ -437,7 +437,10 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             if (!string.IsNullOrEmpty(NazwaNowejZmiennej) && (zmienna == null))
             {
-                Zmienne.Add(new Zmienna(Zmienne) {Nazwa = NazwaNowejZmiennej});
+                Zmienna nowaZmienna = new Zmienna(Zmienne) {Nazwa = NazwaNowejZmiennej};
+                List<string> nazwyZmiennych = Zmienne.Select(z => z.Nazwa).Concat(new[] {NazwaNowejZmiennej}).OrderBy(n => n).ToList();
+
+                Zmienne.Insert(nazwyZmiennych.IndexOf(NazwaNowejZmiennej), nowaZmienna);
 
                 NazwaNowejZmiennej = null;
             }
