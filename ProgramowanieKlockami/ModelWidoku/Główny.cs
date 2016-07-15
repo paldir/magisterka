@@ -90,7 +90,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>> WystąpieniaElementuNaLiście { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> ZaokrąglaniaLiczby { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>> ZnakiPorównania { get; }
+        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, object, object>> ZnakiPorównania { get; }
 
         public bool Debugowanie
         {
@@ -150,12 +150,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaKontynuacjiWykonywania = new Komenda(KontynuujWykonywanie);
             KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
             KomendaStartuProgramu = new Komenda(RozpocznijWykonywanieProgramu);
-            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy) {MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy};
+            KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy);
             KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
             KomendaZamknięciaOkna = new Komenda(ZamknijOkno);
             KomendaZatrzymaniaDebugowania = new Komenda(ZatrzymajDebugowanie);
-            KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością) {MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy};
+            KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością);
             ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
             ObsługującyPrzenoszenieKlockówPionowych = new ObsługującyPrzenoszenieKlockówPionowych();
             ObsługującyPrzenoszenieKlockówZwracającychWartość = new ObsługującyPrzenoszenieKlockówZwracającychWartość();
@@ -292,7 +292,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new ZaokrąglanieWDół()
             };
 
-            ZnakiPorównania = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>[]
+            ZnakiPorównania = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, object, object>[]
             {
                 new Równy(),
                 new Nierówny(),
@@ -400,9 +400,29 @@ namespace ProgramowanieKlockami.ModelWidoku
             }
         }
 
-        private void DodajUsuńPunktPrzerwania()
+        private static void UsuńKlocekPionowy(object obiektKlocka)
         {
-            KlocekPionowy klocekPionowy = (KlocekPionowy) _klocekPosiadającySkupienie;
+            KlocekPionowy usuwanyKlocek = (KlocekPionowy) obiektKlocka;
+            ZawartośćKlockaPionowegoZZawartością miejsceUmieszczenia = usuwanyKlocek.Rodzic?.Zawartość;
+
+            miejsceUmieszczenia?.Remove(usuwanyKlocek);
+        }
+
+        private static void UsuńKlocekZwracającyWartość(object obiektKlocka)
+        {
+            KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość) obiektKlocka;
+            usuwanyKlocek.MiejsceUmieszczenia[0] = null;
+        }
+
+        private static void ZwińRozwińKlocekZZawartością(object obiektKlocka)
+        {
+            KlocekPionowyZZawartością klocek = (KlocekPionowyZZawartością) obiektKlocka;
+            klocek.Rozwinięty = !klocek.Rozwinięty;
+        }
+
+        private void DodajUsuńPunktPrzerwania(object obiektKlocka)
+        {
+            KlocekPionowy klocekPionowy = (KlocekPionowy) obiektKlocka;
 
             if (klocekPionowy.Rodzic != null)
             {
@@ -438,8 +458,6 @@ namespace ProgramowanieKlockami.ModelWidoku
             Klocek klocek = (Klocek) obiektKlocka;
             klocek.PosiadaSkupienie = true;
             _klocekPosiadającySkupienie = klocek;
-            KomendaUsunięciaKlockaPionowego.MożnaWykonać = SprawdźCzyMożnaUsunąćKlocekPionowy;
-            KomendaZwinięciaRozwinięciaKlockaZZawartością.MożnaWykonać = SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy;
         }
 
         private void RozpocznijWykonywanieProgramu()
@@ -459,34 +477,6 @@ namespace ProgramowanieKlockami.ModelWidoku
         private void _semafor_SemaforOpuszczony(object sender, EventArgs e)
         {
             WPunkciePrzerwania = true;
-        }
-
-        private bool SprawdźCzyMożnaUsunąćKlocekPionowy()
-        {
-            KlocekPionowy usuwanyKlocek = _klocekPosiadającySkupienie as KlocekPionowy;
-
-            return usuwanyKlocek?.Rodzic != null;
-        }
-
-        private bool SprawdźCzyMożnaZwinąćRozwinąćKlocekPionowy()
-        {
-            KlocekPionowyZZawartością klocek = _klocekPosiadającySkupienie as KlocekPionowyZZawartością;
-
-            return klocek != null;
-        }
-
-        private void UsuńKlocekPionowy()
-        {
-            KlocekPionowy usuwanyKlocek = (KlocekPionowy) _klocekPosiadającySkupienie;
-            ZawartośćKlockaPionowegoZZawartością miejsceUmieszczenia = usuwanyKlocek.Rodzic.Zawartość;
-
-            miejsceUmieszczenia?.Remove(usuwanyKlocek);
-        }
-
-        private void UsuńKlocekZwracającyWartość()
-        {
-            KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość) _klocekPosiadającySkupienie;
-            usuwanyKlocek.MiejsceUmieszczenia[0] = null;
         }
 
         private void UsuńZmienną(object zmiennaDoUsunięcia)
@@ -517,12 +507,6 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             Debugowanie = false;
             WPunkciePrzerwania = false;
-        }
-
-        private void ZwińRozwińKlocekZZawartością()
-        {
-            KlocekPionowyZZawartością klocek = (KlocekPionowyZZawartością) _klocekPosiadającySkupienie;
-            klocek.Rozwinięty = !klocek.Rozwinięty;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.ZnakiPorównania
 {
-    public class MniejszyRówny : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, IComparable, IComparable>
+    public class MniejszyRówny : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, object, object>
     {
         public string ReprezentacjaTekstowa => "<=";
 
-        public bool Zwróć(IComparable x, IComparable y) => x.CompareTo(y) <= 0;
+        public bool Zwróć(object x, object y) => ((IComparable) x).CompareTo(y) <= 0;
     }
 }

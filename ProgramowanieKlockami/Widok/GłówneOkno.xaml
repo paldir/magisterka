@@ -16,19 +16,33 @@
         Title="GłówneOkno">
     <Window.Resources>
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
+        <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaPionowego}"
-                      Header="Usuń"></MenuItem>
+                      CommandParameter="{Binding}"
+                      Header="Usuń"
+                      IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaDodaniaUsunięciaPunktuPrzerwania}"
+                      CommandParameter="{Binding}"
+                      Header="Dodaj/usuń punkt przerwania"></MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="MenuKontekstoweKlockaPionowegoZZawartością">
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaPionowego}"
+                      CommandParameter="{Binding}"
+                      Header="Usuń"
+                      IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaZwinięciaRozwinięciaKlockaZZawartością}"
+                      CommandParameter="{Binding}"
                       Header="Zwiń/rozwiń"></MenuItem>
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaDodaniaUsunięciaPunktuPrzerwania}"
+                      CommandParameter="{Binding}"
                       Header="Dodaj/usuń punkt przerwania"></MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="MenuKontekstoweKlockaZwracającegoWartość">
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaZwracającegoWartość}"
+                      CommandParameter="{Binding}"
                       Header="Usuń"></MenuItem>
         </ContextMenu>
-        <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <Style x:Key="BocznyCypekKlockaPrzyjmującegoWartość"
                TargetType="Rectangle">
             <Setter Property="Height"
@@ -190,13 +204,6 @@
             <Setter Property="Padding"
                     Value="2"></Setter>
         </Style>
-        <Style x:Key="PoleTekstoweKlocka"
-               TargetType="TextBox">
-            <Setter Property="IsEnabled"
-                    Value="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></Setter>
-            <Setter Property="Margin"
-                    Value="2"></Setter>
-        </Style>
         <Style x:Key="PunktPrzerwania"
                TargetType="Ellipse">
             <Setter Property="Fill"
@@ -226,6 +233,7 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Margin="1"
                       Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
@@ -251,6 +259,7 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Margin="1"
                       Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
@@ -288,7 +297,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Margin="1,1,0,0">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
@@ -305,7 +315,8 @@
                             Grid.Row="0"
                             Orientation="Horizontal">
                     <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.ShowOnDisabled="True"
                           Margin="0,1,1,0">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewMouseDown">
@@ -324,7 +335,8 @@
                     </Grid>
                 </StackPanel>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="1"
                       Margin="1,0,0,0"
@@ -348,7 +360,8 @@
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
                 </Border>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="2"
                       Margin="1,0,0,1">
@@ -368,7 +381,8 @@
                             Grid.Row="2"
                             Orientation="Horizontal">
                     <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,1"
                           MinWidth="20">
                         <i:Interaction.Triggers>
@@ -397,7 +411,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Margin="1,0,0,0">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
@@ -414,7 +429,8 @@
                             Grid.Row="0"
                             Orientation="Horizontal">
                     <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,0">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="PreviewMouseDown">
@@ -436,7 +452,8 @@
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
                 </StackPanel>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="1"
                       Margin="1,0,0,0"
@@ -460,7 +477,8 @@
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
                 </Border>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="2"
                       Margin="1,0,0,1">
@@ -479,7 +497,8 @@
                             Grid.Row="2"
                             Orientation="Horizontal">
                     <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
-                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,1"
                           MinWidth="20">
                         <i:Interaction.Triggers>
@@ -832,7 +851,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Background="{Binding Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Margin="1,0,0,0">
                     <i:Interaction.Triggers>
@@ -853,7 +873,8 @@
                         <Border Background="{Binding Kolor}"
                                 BorderBrush="{Binding KolorObramowania}"
                                 BorderThickness="0,3,3,3"
-                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                                ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                                ContextMenuService.ShowOnDisabled="True"
                                 Width="130">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewMouseDown">
@@ -875,7 +896,8 @@
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
                 </StackPanel>
                 <Grid Background="{Binding Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="1"
                       Margin="1,0,0,0"
@@ -899,7 +921,8 @@
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówPionowych}"></ItemsControl>
                 </Border>
                 <Grid Background="{Binding Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="2"
                       Margin="1,0,0,0">
@@ -916,7 +939,8 @@
                             Grid.Row="2"
                             Orientation="Horizontal">
                     <Grid Background="{Binding Kolor}"
-                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,0"
                           Width="130">
                         <i:Interaction.Triggers>
@@ -937,7 +961,8 @@
                     </Grid>
                 </StackPanel>
                 <Grid Background="{Binding Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="3"
                       Margin="1,0,0,0"
@@ -962,7 +987,8 @@
                     </ItemsControl>
                 </Border>
                 <Grid Background="{Binding Kolor}"
-                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="4"
                       Margin="1,0,0,1">
@@ -981,7 +1007,8 @@
                             Grid.Row="4"
                             Orientation="Horizontal">
                     <Grid Background="{Binding Kolor}"
-                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                          ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,1"
                           MinWidth="20">
                         <i:Interaction.Triggers>
@@ -1689,7 +1716,8 @@
                               VerticalScrollBarVisibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel>
-                            <ContentControl Content="{Binding RozpoczęcieProgramu}">
+                            <ContentControl Content="{Binding RozpoczęcieProgramu}"
+                                            IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
                                 <ContentControl.LayoutTransform>
                                     <ScaleTransform ScaleX="{Binding Powiększenie}"
                                                     ScaleY="{Binding Powiększenie}"></ScaleTransform>

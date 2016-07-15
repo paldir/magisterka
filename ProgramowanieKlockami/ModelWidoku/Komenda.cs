@@ -7,9 +7,12 @@ namespace ProgramowanieKlockami.ModelWidoku
     {
         private readonly Action _akcja;
         private readonly Action<object> _akcjaZParametrem;
-        private Func<bool> _możnaWykonać;
+        private Func<object, bool> _możnaWykonać;
 
-        public Func<bool> MożnaWykonać
+        /// <summary>
+        /// Relikt przeszłości
+        /// </summary>
+        private Func<object, bool> MożnaWykonać
         {
             get { return _możnaWykonać; }
 
@@ -24,18 +27,18 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda(Action akcja)
         {
             _akcja = akcja;
-            MożnaWykonać = () => true;
+            MożnaWykonać = a => true;
         }
 
         public Komenda(Action<object> akcja)
         {
             _akcjaZParametrem = akcja;
-            MożnaWykonać = () => true;
+            MożnaWykonać = a => true;
         }
 
         public bool CanExecute(object parameter)
         {
-            return MożnaWykonać();
+            return MożnaWykonać(parameter);
         }
 
         public event EventHandler CanExecuteChanged;
