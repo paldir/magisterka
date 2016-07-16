@@ -1547,6 +1547,16 @@
     <Window.DataContext>
         <StaticResource ResourceKey="GłównyModelWidoku"></StaticResource>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding KomendaStartuProgramu}"
+                    Key="F4"></KeyBinding>
+        <KeyBinding Command="{Binding KomendaKontynuacjiWykonywania}"
+                    Key="F5"></KeyBinding>
+        <KeyBinding Command="{Binding KomendaZatrzymaniaDebugowania}"
+                    Key="F7"></KeyBinding>
+        <KeyBinding Command="{Binding KomendaWykonaniaNastępnegoKroku}"
+                    Key="F10"></KeyBinding>
+    </Window.InputBindings>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding KomendaZamknięciaOkna}"></i:InvokeCommandAction>
@@ -1563,15 +1573,19 @@
             <MenuItem Header="Debugowanie">
                 <MenuItem Command="{Binding KomendaStartuProgramu}"
                           Header="Start"
+                          InputGestureText="F4"
                           IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
                 <MenuItem Command="{Binding KomendaKontynuacjiWykonywania}"
                           Header="Kontynuuj"
+                          InputGestureText="F5"
                           IsEnabled="{Binding WPunkciePrzerwania}"></MenuItem>
                 <MenuItem Command="{Binding KomendaZatrzymaniaDebugowania}"
                           Header="Zatrzymaj"
+                          InputGestureText="F7"
                           IsEnabled="{Binding Debugowanie}"></MenuItem>
                 <MenuItem Command="{Binding KomendaWykonaniaNastępnegoKroku}"
                           Header="Wykonaj krok"
+                          InputGestureText="F10"
                           IsEnabled="{Binding WPunkciePrzerwania}"></MenuItem>
             </MenuItem>
         </Menu>

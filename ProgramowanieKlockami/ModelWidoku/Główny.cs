@@ -452,10 +452,13 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void KontynuujWykonywanie()
         {
-            WPunkciePrzerwania = false;
-            RozpoczęcieProgramu.KrokPoKroku = false;
+            if (WPunkciePrzerwania)
+            {
+                WPunkciePrzerwania = false;
+                RozpoczęcieProgramu.KrokPoKroku = false;
 
-            _semafor.Podnieś();
+                _semafor.Podnieś();
+            }
         }
 
         private void PrzejmijSkupienie(object obiektKlocka)
@@ -470,16 +473,19 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void RozpocznijWykonywanieProgramu()
         {
-            foreach (Zmienna zmienna in Zmienne)
-                zmienna.Wartość = null;
+            if (!Debugowanie)
+            {
+                foreach (Zmienna zmienna in Zmienne)
+                    zmienna.Wartość = null;
 
-            ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
-            Konsola.LinieKonsoli.Clear();
-            _wątekDebugowania?.Abort();
+                ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
+                Konsola.LinieKonsoli.Clear();
+                _wątekDebugowania?.Abort();
 
-            _wątekDebugowania = new Thread(WykonujProgram);
+                _wątekDebugowania = new Thread(WykonujProgram);
 
-            _wątekDebugowania.Start();
+                _wątekDebugowania.Start();
+            }
         }
 
         private void _semafor_SemaforOpuszczony(object sender, EventArgs e)
@@ -496,9 +502,12 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void WykonajNastępnyKrok()
         {
-            RozpoczęcieProgramu.KrokPoKroku = true;
+            if (WPunkciePrzerwania)
+            {
+                RozpoczęcieProgramu.KrokPoKroku = true;
 
-            _semafor.Podnieś();
+                _semafor.Podnieś();
+            }
         }
 
         private void WykonujProgram()
@@ -518,11 +527,14 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void ZatrzymajDebugowanie()
         {
-            _wątekDebugowania?.Abort();
-            ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
+            if (Debugowanie)
+            {
+                _wątekDebugowania?.Abort();
+                ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
 
-            Debugowanie = false;
-            WPunkciePrzerwania = false;
+                Debugowanie = false;
+                WPunkciePrzerwania = false;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
