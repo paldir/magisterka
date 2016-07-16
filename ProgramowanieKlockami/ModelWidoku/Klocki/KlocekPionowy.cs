@@ -6,10 +6,11 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
     {
         private bool _aktualnieWykonywany;
         private bool _debugowanie;
+        private bool _krokPoKroku;
         private bool _punktPrzerwania;
+        private Semafor _semafor;
 
         public KlocekPionowyZZawartością Rodzic { get; set; }
-        public Semafor Semafor { get; set; }
 
         public bool AktualnieWykonywany
         {
@@ -40,6 +41,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             }
         }
 
+        public bool KrokPoKroku
+        {
+            get { return _krokPoKroku; }
+
+            set
+            {
+                _krokPoKroku = value;
+                KlocekPionowyZZawartością klocekPionowyZZawartością = this as KlocekPionowyZZawartością;
+
+                if (klocekPionowyZZawartością != null)
+                    foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
+                        klocekPionowy.KrokPoKroku = value;
+            }
+        }
+
         public bool PunktPrzerwania
         {
             get { return _punktPrzerwania; }
@@ -49,6 +65,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 _punktPrzerwania = value;
 
                 OnPropertyChanged();
+            }
+        }
+
+        public Semafor Semafor
+        {
+            get { return _semafor; }
+
+            set
+            {
+                _semafor = value;
+                KlocekPionowyZZawartością klocekPionowyZZawartością = this as KlocekPionowyZZawartością;
+
+                if (klocekPionowyZZawartością != null)
+                    foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
+                        klocekPionowy.Semafor = value;
             }
         }
 

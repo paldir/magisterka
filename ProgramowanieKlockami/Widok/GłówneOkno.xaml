@@ -1570,6 +1570,9 @@
                 <MenuItem Command="{Binding KomendaZatrzymaniaDebugowania}"
                           Header="Zatrzymaj"
                           IsEnabled="{Binding Debugowanie}"></MenuItem>
+                <MenuItem Command="{Binding KomendaWykonaniaNastępnegoKroku}"
+                          Header="Wykonaj krok"
+                          IsEnabled="{Binding WPunkciePrzerwania}"></MenuItem>
             </MenuItem>
         </Menu>
         <DockPanel Grid.Row="1"
@@ -1737,7 +1740,7 @@
                           Header="Schowek">
                     <ScrollViewer HorizontalScrollBarVisibility="Visible">
                         <StackPanel>
-                            <ContentControl Content="{Binding RozpoczęcieProgramu}"
+                            <ContentControl Content="{Binding}"
                                             IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></ContentControl>
                         </StackPanel>
                     </ScrollViewer>

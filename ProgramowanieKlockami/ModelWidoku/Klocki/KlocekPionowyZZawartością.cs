@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -36,12 +37,19 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 else
                 {
                     if (klocekPionowy.PunktPrzerwania)
-                        Debugowanie = true;
+                    {
+                        KlocekPionowyZZawartością klocekPionowyZZawartością = this;
+
+                        while (!(klocekPionowyZZawartością is RozpoczęcieProgramu))
+                            klocekPionowyZZawartością = klocekPionowyZZawartością.Rodzic;
+
+                        klocekPionowyZZawartością.Debugowanie = true;
+                    }
 
                     klocekPionowy.AktualnieWykonywany = true;
 
-                    if (klocekPionowy.PunktPrzerwania)
-                        klocekPionowy.Semafor.Opuść();
+                    if (klocekPionowy.PunktPrzerwania || klocekPionowy.KrokPoKroku)
+                        Semafor.Opuść();
 
                     klocekPionowy.Wykonaj();
 

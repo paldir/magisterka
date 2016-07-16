@@ -68,6 +68,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaUsunięciaKlockaPionowego { get; }
         public Komenda KomendaUsunięciaKlockaZwracającegoWartość { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
+        public Komenda KomendaWykonaniaNastępnegoKroku { get; }
         public Komenda KomendaZamknięciaOkna { get; }
         public Komenda KomendaZatrzymaniaDebugowania { get; }
         public Komenda KomendaZwinięciaRozwinięciaKlockaZZawartością { get; }
@@ -135,7 +136,9 @@ namespace ProgramowanieKlockami.ModelWidoku
             set
             {
                 _wPunkciePrzerwania = value;
-                RozpoczęcieProgramu.Debugowanie = value;
+
+                if (!RozpoczęcieProgramu.Debugowanie == WPunkciePrzerwania)
+                    RozpoczęcieProgramu.Debugowanie = WPunkciePrzerwania;
 
                 OnPropertyChanged();
             }
@@ -153,6 +156,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy);
             KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
+            KomendaWykonaniaNastępnegoKroku = new Komenda(WykonajNastępnyKrok);
             KomendaZamknięciaOkna = new Komenda(ZamknijOkno);
             KomendaZatrzymaniaDebugowania = new Komenda(ZatrzymajDebugowanie);
             KomendaZwinięciaRozwinięciaKlockaZZawartością = new Komenda(ZwińRozwińKlocekZZawartością);
@@ -426,8 +430,8 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             if (klocekPionowy.Rodzic != null)
             {
-                klocekPionowy.Semafor = _semafor;
                 klocekPionowy.PunktPrzerwania = !klocekPionowy.PunktPrzerwania;
+                RozpoczęcieProgramu.Semafor = _semafor;
             }
         }
 
@@ -448,9 +452,10 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void KontynuujWykonywanie()
         {
-            _semafor.Podnieś();
-
             WPunkciePrzerwania = false;
+            RozpoczęcieProgramu.KrokPoKroku = false;
+
+            _semafor.Podnieś();
         }
 
         private void PrzejmijSkupienie(object obiektKlocka)
@@ -489,6 +494,13 @@ namespace ProgramowanieKlockami.ModelWidoku
             Zmienne.Remove(zmienna);
         }
 
+        private void WykonajNastępnyKrok()
+        {
+            RozpoczęcieProgramu.KrokPoKroku = true;
+
+            _semafor.Podnieś();
+        }
+
         private void WykonujProgram()
         {
             Debugowanie = true;
@@ -496,6 +508,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             RozpoczęcieProgramu.Wykonaj();
 
             Debugowanie = false;
+            WPunkciePrzerwania = false;
         }
 
         private void ZamknijOkno()
