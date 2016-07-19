@@ -63,6 +63,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaDodaniaUsunięciaPunktuPrzerwania { get; }
         public Komenda KomendaDodaniaZmiennej { get; }
         public Komenda KomendaKontynuacjiWykonywania { get; }
+        public Komenda KomendaKopiowaniaKlocka { get; }
         public Komenda KomendaPrzejęciaSkupienia { get; }
         public Komenda KomendaStartuProgramu { get; }
         public Komenda KomendaUsunięciaKlockaPionowego { get; }
@@ -153,6 +154,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaDodaniaUsunięciaPunktuPrzerwania = new Komenda(DodajUsuńPunktPrzerwania);
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaKontynuacjiWykonywania = new Komenda(KontynuujWykonywanie);
+            KomendaKopiowaniaKlocka = new Komenda(KopiujKlocek);
             KomendaPrzejęciaSkupienia = new Komenda(PrzejmijSkupienie);
             KomendaStartuProgramu = new Komenda(RozpocznijWykonywanieProgramu);
             KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy);
@@ -465,6 +467,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             }
         }
 
+        private void KopiujKlocek(object obiektKlocka)
+        {
+            Schowek.RemoveAt(0);
+            Schowek.Add((Klocek) ((Klocek) obiektKlocka).Clone());
+        }
+
         private void PrzejmijSkupienie(object obiektKlocka)
         {
             if (_klocekPosiadającySkupienie != null)
@@ -532,7 +540,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 UsuńKlocekZwracającyWartość(obiektKlocka);
 
             Schowek.RemoveAt(0);
-            Schowek.Add((Klocek) obiektKlocka);
+            Schowek.Add((Klocek) ((Klocek) obiektKlocka).Clone());
         }
 
         private void ZamknijOkno()

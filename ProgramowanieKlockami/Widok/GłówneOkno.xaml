@@ -18,6 +18,10 @@
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
         <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaKopiowaniaKlocka}"
+                      CommandParameter="{Binding}"
+                      Header="Kopiuj"
+                      IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaWycięciaKlocka}"
                       CommandParameter="{Binding}"
                       Header="Wytnij"
@@ -31,6 +35,10 @@
                       Header="Dodaj/usuń punkt przerwania"></MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowegoZZawartością">
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaKopiowaniaKlocka}"
+                      CommandParameter="{Binding}"
+                      Header="Kopiuj"
+                      IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaWycięciaKlocka}"
                       CommandParameter="{Binding}"
                       Header="Wytnij"
@@ -47,6 +55,10 @@
                       Header="Dodaj/usuń punkt przerwania"></MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="MenuKontekstoweKlockaZwracającegoWartość">
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaKopiowaniaKlocka}"
+                      CommandParameter="{Binding}"
+                      Header="Kopiuj"
+                      IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaWycięciaKlocka}"
                       CommandParameter="{Binding}"
                       Header="Wytnij"
@@ -215,6 +227,21 @@
                     Value="20"></Setter>
             <Setter Property="Padding"
                     Value="2"></Setter>
+        </Style>
+        <Style x:Key="PasekStanu"
+               TargetType="Rectangle">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie}"
+                             Value="False">
+                    <Setter Property="Fill"
+                            Value="CornflowerBlue"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie}"
+                             Value="True" >
+                    <Setter Property="Fill"
+                            Value="DarkOrange"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="PunktPrzerwania"
                TargetType="Ellipse">
@@ -1578,6 +1605,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0"
               HorizontalAlignment="Left"
@@ -1746,21 +1774,38 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="100"></RowDefinition>
                 </Grid.RowDefinitions>
-                <ScrollViewer Grid.Row="0"
-                              HorizontalScrollBarVisibility="Visible"
-                              VerticalScrollBarVisibility="Visible">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel>
-                            <ContentControl Content="{Binding RozpoczęcieProgramu}"
-                                            IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
-                                <ContentControl.LayoutTransform>
-                                    <ScaleTransform ScaleX="{Binding Powiększenie}"
-                                                    ScaleY="{Binding Powiększenie}"></ScaleTransform>
-                                </ContentControl.LayoutTransform>
-                            </ContentControl>
-                        </StackPanel>
-                    </StackPanel>
-                </ScrollViewer>
+                <GroupBox Grid.Row="0"
+                          Header="Kod">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                                      VerticalScrollBarVisibility="Visible">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <ContentControl Content="{Binding RozpoczęcieProgramu}"
+                                                    IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
+                                        <ContentControl.LayoutTransform>
+                                            <ScaleTransform ScaleX="{Binding Powiększenie}"
+                                                            ScaleY="{Binding Powiększenie}"></ScaleTransform>
+                                        </ContentControl.LayoutTransform>
+                                    </ContentControl>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Slider AutoToolTipPlacement="TopLeft"
+                                AutoToolTipPrecision="2"
+                                Grid.Row="1"
+                                IsSnapToTickEnabled="True"
+                                Maximum="4"
+                                Minimum="0.25"
+                                TickFrequency="0.25"
+                                TickPlacement="BottomRight"
+                                Value="{Binding Powiększenie}"></Slider>
+                    </Grid>
+                </GroupBox>
                 <GroupBox Grid.Column="1"
                           Grid.Row="0"
                           Header="Schowek">
@@ -1773,38 +1818,31 @@
                         </StackPanel>
                     </ScrollViewer>
                 </GroupBox>
-                <DockPanel Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Grid.Row="1"
-                           LastChildFill="True">
-                    <Slider AutoToolTipPlacement="TopLeft"
-                            AutoToolTipPrecision="2"
-                            IsSnapToTickEnabled="True"
-                            Maximum="4"
-                            Minimum="0.25"
-                            TickFrequency="0.25"
-                            TickPlacement="BottomRight"
-                            Value="{Binding Powiększenie}"></Slider>
-                </DockPanel>
-                <ScrollViewer Grid.Column="0"
-                              Grid.ColumnSpan="2"
-                              Grid.Row="2"
-                              VerticalScrollBarVisibility="Visible">
-                    <ItemsControl ItemsSource="{Binding Konsola.LinieKonsoli}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <TextBox IsEnabled="{Binding Edytowalna}"
-                                         Text="{Binding Zawartość, UpdateSourceTrigger=PropertyChanged}">
-                                    <TextBox.InputBindings>
-                                        <KeyBinding Command="{Binding KomendaWyłączeniaEdytowalności}"
-                                                    Key="Enter"></KeyBinding>
-                                    </TextBox.InputBindings>
-                                </TextBox>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                <GroupBox Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Grid.Row="2"
+                          Header="Konsola">
+                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                        <ItemsControl ItemsSource="{Binding Konsola.LinieKonsoli}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBox IsEnabled="{Binding Edytowalna}"
+                                             Text="{Binding Zawartość, UpdateSourceTrigger=PropertyChanged}">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Command="{Binding KomendaWyłączeniaEdytowalności}"
+                                                        Key="Enter"></KeyBinding>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </GroupBox>
             </Grid>
         </DockPanel>
+        <Rectangle Grid.Row="2"
+                   Height="15"
+                   Style="{StaticResource PasekStanu}">
+        </Rectangle>
     </Grid>
 </Window>
