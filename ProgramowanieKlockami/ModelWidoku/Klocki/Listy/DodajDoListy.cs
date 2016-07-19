@@ -12,6 +12,14 @@
             Kolor = Kolory.Listy;
         }
 
+        public override object Clone()
+        {
+            DodajDoListy kopia = (DodajDoListy) base.Clone();
+            kopia.WybranaZmienna = WybranaZmienna;
+
+            return kopia;
+        }
+
         public override void Wykonaj()
         {
             ZmiennaTypuListowego lista = WybranaZmienna?.Wartość as ZmiennaTypuListowego;

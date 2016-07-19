@@ -21,5 +21,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
         {
             return WybranaZmienna?.Wartość;
         }
+
+        public override object Clone()
+        {
+            WartośćZmiennej kopia = (WartośćZmiennej) base.Clone();
+            kopia.WybranaZmienna = WybranaZmienna;
+
+            return kopia;
+        }
     }
 }

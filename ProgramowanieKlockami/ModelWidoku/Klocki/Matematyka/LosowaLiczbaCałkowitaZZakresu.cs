@@ -41,5 +41,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
             return Los.Next(liczba1, liczba2);
         }
+
+        public override object Clone()
+        {
+            LosowaLiczbaCałkowitaZZakresu kopia = (LosowaLiczbaCałkowitaZZakresu) base.Clone();
+            kopia.Liczba1[0] = (KlocekZwracającyWartość) Liczba1[0]?.Clone();
+            kopia.Liczba2[0] = (KlocekZwracającyWartość) Liczba2[0]?.Clone();
+
+            return kopia;
+        }
     }
 }

@@ -68,6 +68,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaUsunięciaKlockaPionowego { get; }
         public Komenda KomendaUsunięciaKlockaZwracającegoWartość { get; }
         public Komenda KomendaUsunięciaZmiennej { get; }
+        public Komenda KomendaWycięciaKlocka { get; }
         public Komenda KomendaWykonaniaNastępnegoKroku { get; }
         public Komenda KomendaZamknięciaOkna { get; }
         public Komenda KomendaZatrzymaniaDebugowania { get; }
@@ -83,6 +84,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IPobieranieTekstu> PobieraniaTekstu { get; }
         public IEnumerable<IPorządekSortowania> PorządkiSortowania { get; }
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
+        public ObservableCollection<Klocek> Schowek { get; }
         public IEnumerable<ISposóbSortowaniaListy> SortowaniaListy { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
         public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
@@ -156,6 +158,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             KomendaUsunięciaKlockaPionowego = new Komenda(UsuńKlocekPionowy);
             KomendaUsunięciaKlockaZwracającegoWartość = new Komenda(UsuńKlocekZwracającyWartość);
             KomendaUsunięciaZmiennej = new Komenda(UsuńZmienną);
+            KomendaWycięciaKlocka = new Komenda(WytnijKlocek);
             KomendaWykonaniaNastępnegoKroku = new Komenda(WykonajNastępnyKrok);
             KomendaZamknięciaOkna = new Komenda(ZamknijOkno);
             KomendaZatrzymaniaDebugowania = new Komenda(ZatrzymajDebugowanie);
@@ -167,6 +170,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość();
             Powiększenie = 1;
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
+            Schowek = new ObservableCollection<Klocek> {null};
             Zmienne = new ObservableCollection<Zmienna>();
             _semafor.SemaforOpuszczony += _semafor_SemaforOpuszczony;
 
@@ -518,6 +522,17 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             Debugowanie = false;
             WPunkciePrzerwania = false;
+        }
+
+        private void WytnijKlocek(object obiektKlocka)
+        {
+            if (obiektKlocka is KlocekPionowy)
+                UsuńKlocekPionowy(obiektKlocka);
+            else
+                UsuńKlocekZwracającyWartość(obiektKlocka);
+
+            Schowek.RemoveAt(0);
+            Schowek.Add((Klocek) obiektKlocka);
         }
 
         private void ZamknijOkno()

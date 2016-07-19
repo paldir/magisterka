@@ -57,5 +57,19 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
             return lista;
         }
+
+        public override object Clone()
+        {
+            ListaZElementów kopia = (ListaZElementów) base.Clone();
+            kopia.LiczbaElementów = LiczbaElementów;
+
+            for (int i = 0; i < LiczbaElementów; i++)
+            {
+                WartośćWewnętrznegoKlockaZwracającegoWartość element = Elementy[i];
+                kopia.Elementy[i] = new WartośćWewnętrznegoKlockaZwracającegoWartość(element.PrzyjmowanyTyp) {[0] = (KlocekZwracającyWartość) element[0]?.Clone()};
+            }
+
+            return kopia;
+        }
     }
 }

@@ -12,6 +12,14 @@
             Kolor = Kolory.Tekst;
         }
 
+        public override object Clone()
+        {
+            DodajTekst kopia = (DodajTekst) base.Clone();
+            kopia.WybranaZmienna = WybranaZmienna;
+
+            return kopia;
+        }
+
         public override void Wykonaj()
         {
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];

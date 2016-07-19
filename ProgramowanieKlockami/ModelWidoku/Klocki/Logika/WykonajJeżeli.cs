@@ -13,6 +13,16 @@
             Kolor = Kolory.Logika;
         }
 
+        public override object Clone()
+        {
+            WykonajJeżeli kopia = (WykonajJeżeli) base.Clone();
+
+            foreach (KlocekPionowy klocekPionowy in AlternatywnaZawartość)
+                kopia.AlternatywnaZawartość.Add((KlocekPionowy) klocekPionowy.Clone());
+
+            return kopia;
+        }
+
         public override void Wykonaj()
         {
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];

@@ -29,6 +29,16 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             Rozwinięty = true;
         }
 
+        public override object Clone()
+        {
+            KlocekPionowyZZawartością kopia = (KlocekPionowyZZawartością) base.Clone();
+
+            foreach (KlocekPionowy klocekPionowy in Zawartość)
+                kopia.Zawartość.Add((KlocekPionowy) klocekPionowy.Clone());
+
+            return kopia;
+        }
+
         public override void Wykonaj()
         {
             foreach (KlocekPionowy klocekPionowy in Zawartość)

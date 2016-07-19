@@ -17,6 +17,15 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             Kolor = Kolory.Listy;
         }
 
+        public override object Clone()
+        {
+            UsuńElementZListy kopia = (UsuńElementZListy) base.Clone();
+            kopia.Indeks[0] = (KlocekZwracającyWartość) Indeks[0]?.Clone();
+            kopia.WybranaZmienna = WybranaZmienna;
+
+            return kopia;
+        }
+
         public override void Wykonaj()
         {
             KlocekZwracającyWartość klocekIndeksu = Indeks[0];

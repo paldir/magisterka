@@ -18,6 +18,10 @@
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
         <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaWycięciaKlocka}"
+                      CommandParameter="{Binding}"
+                      Header="Wytnij"
+                      IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaPionowego}"
                       CommandParameter="{Binding}"
                       Header="Usuń"
@@ -27,6 +31,10 @@
                       Header="Dodaj/usuń punkt przerwania"></MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowegoZZawartością">
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaWycięciaKlocka}"
+                      CommandParameter="{Binding}"
+                      Header="Wytnij"
+                      IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaPionowego}"
                       CommandParameter="{Binding}"
                       Header="Usuń"
@@ -39,6 +47,10 @@
                       Header="Dodaj/usuń punkt przerwania"></MenuItem>
         </ContextMenu>
         <ContextMenu x:Key="MenuKontekstoweKlockaZwracającegoWartość">
+            <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaWycięciaKlocka}"
+                      CommandParameter="{Binding}"
+                      Header="Wytnij"
+                      IsEnabled="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></MenuItem>
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaUsunięciaKlockaZwracającegoWartość}"
                       CommandParameter="{Binding}"
                       Header="Usuń"></MenuItem>
@@ -1754,8 +1766,10 @@
                           Header="Schowek">
                     <ScrollViewer HorizontalScrollBarVisibility="Visible">
                         <StackPanel>
-                            <ContentControl Content="{Binding}"
-                                            IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"></ContentControl>
+                            <ItemsControl dd:DragDrop.DragHandler="{Binding ObsługującyPrzeciąganieZPrzybornika}"
+                                          dd:DragDrop.IsDragSource="True"
+                                          IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
+                                          ItemsSource="{Binding Schowek}"></ItemsControl>
                         </StackPanel>
                     </ScrollViewer>
                 </GroupBox>

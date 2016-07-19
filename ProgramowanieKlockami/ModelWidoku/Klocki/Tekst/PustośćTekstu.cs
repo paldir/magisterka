@@ -24,5 +24,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
             return string.IsNullOrEmpty(tekst);
         }
+
+        public override object Clone()
+        {
+            PustośćTekstu kopia = (PustośćTekstu) base.Clone();
+            kopia.Tekst[0] = (KlocekZwracającyWartość) Tekst[0]?.Clone();
+
+            return kopia;
+        }
     }
 }

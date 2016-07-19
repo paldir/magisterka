@@ -22,6 +22,17 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
             Interwał = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
+        public override object Clone()
+        {
+            WykonujOdliczając kopia = (WykonujOdliczając) base.Clone();
+            kopia.Do[0] = (KlocekZwracającyWartość) Do[0]?.Clone();
+            kopia.Od[0] = (KlocekZwracającyWartość) Od[0]?.Clone();
+            kopia.Interwał[0] = (KlocekZwracającyWartość) Interwał[0]?.Clone();
+            kopia.WybranaZmienna = WybranaZmienna;
+
+            return kopia;
+        }
+
         public override void Wykonaj()
         {
             KlocekZwracającyWartość od = Od[0];

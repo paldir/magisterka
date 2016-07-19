@@ -34,5 +34,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
             return długośćTekstu > 0 ? tekst[indeks].ToString() : string.Empty;
         }
+
+        public override object Clone()
+        {
+            LiteraTekstu kopia = (LiteraTekstu) base.Clone();
+            kopia.Indeks[0] = (KlocekZwracającyWartość) Indeks[0]?.Clone();
+            kopia.Tekst[0] = (KlocekZwracającyWartość) Tekst[0]?.Clone();
+
+            return kopia;
+        }
     }
 }

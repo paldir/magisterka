@@ -19,5 +19,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
         }
 
         protected override object ZwróćNiebezpiecznie() => Treść;
+
+        public override object Clone()
+        {
+            Napis kopia = (Napis) base.Clone();
+            kopia.Treść = (string) Treść.Clone();
+
+            return kopia;
+        }
     }
 }

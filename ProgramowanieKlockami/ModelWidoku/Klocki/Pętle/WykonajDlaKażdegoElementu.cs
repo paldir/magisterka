@@ -13,6 +13,14 @@
             Kolor = Kolory.Pętle;
         }
 
+        public override object Clone()
+        {
+            WykonajDlaKażdegoElementu kopia = (WykonajDlaKażdegoElementu) base.Clone();
+            kopia.WybranaZmienna = WybranaZmienna;
+
+            return kopia;
+        }
+
         public override void Wykonaj()
         {
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];

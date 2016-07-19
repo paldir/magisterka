@@ -24,5 +24,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         {
             return Math.Abs(Liczba1.Zwróć<double>()%Liczba2.Zwróć<double>()) < double.Epsilon*2;
         }
+
+        public override object Clone()
+        {
+            PodzielnośćLiczbyPrzezLiczbę kopia = (PodzielnośćLiczbyPrzezLiczbę) base.Clone();
+            kopia.Liczba1[0] = (KlocekZwracającyWartość) Liczba1[0]?.Clone();
+            kopia.Liczba2[0] = (KlocekZwracającyWartość) Liczba2[0]?.Clone();
+
+            return kopia;
+        }
     }
 }

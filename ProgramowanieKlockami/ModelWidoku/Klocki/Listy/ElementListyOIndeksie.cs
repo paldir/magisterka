@@ -10,8 +10,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override string Opis => "Zwraca element listy o podanym indeksie.";
         public override Type ZwracanyTyp => typeof(object);
 
-        public WartośćWewnętrznegoKlockaZwracającegoWartość Lista { get; }
         public WartośćWewnętrznegoKlockaZwracającegoWartość Indeks { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Lista { get; }
 
         public ElementListyOIndeksie()
         {
@@ -26,6 +26,15 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             ZmiennaTypuListowego lista = Lista.Zwróć<ZmiennaTypuListowego>();
 
             return (indeks >= 0) && (indeks < lista.Count) ? lista[indeks] : null;
+        }
+
+        public override object Clone()
+        {
+            ElementListyOIndeksie kopia = (ElementListyOIndeksie) base.Clone();
+            kopia.Indeks[0] = (KlocekZwracającyWartość) Indeks[0]?.Clone();
+            kopia.Lista[0] = (KlocekZwracającyWartość) Lista[0]?.Clone();
+
+            return kopia;
         }
     }
 }

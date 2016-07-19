@@ -22,5 +22,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         {
             return Lista.Zwróć<ZmiennaTypuListowego>().Count == 0;
         }
+
+        public override object Clone()
+        {
+            PustośćListy kopia = (PustośćListy) base.Clone();
+            kopia.Lista[0] = (KlocekZwracającyWartość) Lista[0]?.Clone();
+
+            return kopia;
+        }
     }
 }

@@ -11,9 +11,9 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override string Opis => "Z istniejącej listy kopiuje fragment i zwraca jako nową listę.";
         public override Type ZwracanyTyp => typeof(ZmiennaTypuListowego);
 
-        public WartośćWewnętrznegoKlockaZwracającegoWartość Lista { get; }
         public WartośćWewnętrznegoKlockaZwracającegoWartość Indeks1 { get; }
         public WartośćWewnętrznegoKlockaZwracającegoWartość Indeks2 { get; }
+        public WartośćWewnętrznegoKlockaZwracającegoWartość Lista { get; }
 
         public Podlista()
         {
@@ -50,6 +50,16 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
                 indeks2 = liczbaElementów - 1;
 
             return new ZmiennaTypuListowego(lista.Skip(indeks1).Take(indeks2 - indeks1 + 1));
+        }
+
+        public override object Clone()
+        {
+            Podlista kopia = (Podlista) base.Clone();
+            kopia.Indeks1[0] = (KlocekZwracającyWartość) Indeks1[0]?.Clone();
+            kopia.Indeks2[0] = (KlocekZwracającyWartość) Indeks2[0]?.Clone();
+            kopia.Lista[0] = (KlocekZwracającyWartość) Lista[0]?.Clone();
+
+            return kopia;
         }
     }
 }

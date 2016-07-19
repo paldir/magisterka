@@ -44,5 +44,15 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
             return tekst.Substring(indeks1, indeks2 - indeks1 + 1);
         }
+
+        public override object Clone()
+        {
+            Podciąg kopia = (Podciąg) base.Clone();
+            kopia.Indeks1[0] = (KlocekZwracającyWartość) Indeks1[0]?.Clone();
+            kopia.Indeks2[0] = (KlocekZwracającyWartość) Indeks2[0]?.Clone();
+            kopia.Tekst[0] = (KlocekZwracającyWartość) Tekst[0]?.Clone();
+
+            return kopia;
+        }
     }
 }

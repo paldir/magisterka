@@ -18,5 +18,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         }
 
         protected override object ZwróćNiebezpiecznie() => Liczba;
+
+        public override object Clone()
+        {
+            StałaLiczbowa kopia = (StałaLiczbowa) base.Clone();
+            kopia.Liczba = Liczba;
+
+            return kopia;
+        }
     }
 }

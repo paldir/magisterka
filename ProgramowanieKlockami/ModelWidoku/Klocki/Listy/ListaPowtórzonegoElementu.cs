@@ -25,5 +25,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         {
             return new ZmiennaTypuListowego(Enumerable.Repeat(Element.Zwróć<object>(), (int) Math.Round(Liczba.Zwróć<double>())));
         }
+
+        public override object Clone()
+        {
+            ListaPowtórzonegoElementu kopia = (ListaPowtórzonegoElementu) base.Clone();
+            kopia.Element[0] = (KlocekZwracającyWartość) Element[0]?.Clone();
+            kopia.Liczba[0] = (KlocekZwracającyWartość) Liczba[0]?.Clone();
+
+            return kopia;
+        }
     }
 }

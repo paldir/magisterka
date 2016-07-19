@@ -12,6 +12,14 @@
             Kolor = Kolory.Matematyka;
         }
 
+        public override object Clone()
+        {
+            ZmieńWartośćZmiennejOLiczbę kopia = (ZmieńWartośćZmiennejOLiczbę) base.Clone();
+            kopia.WybranaZmienna = WybranaZmienna;
+
+            return kopia;
+        }
+
         public override void Wykonaj()
         {
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];

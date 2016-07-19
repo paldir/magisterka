@@ -12,5 +12,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         {
             Wartość = new WartośćWewnętrznegoKlockaZwracającegoWartość(przyjmowanyTyp);
         }
+
+        public override object Clone()
+        {
+            KlocekZwracającyWartośćPrzyjmującyWartość kopia = (KlocekZwracającyWartośćPrzyjmującyWartość) base.Clone();
+            kopia.Wartość[0] = (KlocekZwracającyWartość) Wartość[0]?.Clone();
+
+            return kopia;
+        }
     }
 }
