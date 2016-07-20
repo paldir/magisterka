@@ -12,6 +12,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public static readonly Brush Pętle = Brushes.Green;
         public static readonly Brush Skupienie = Brushes.Goldenrod;
         public static readonly Brush Tekst = Brushes.LightSeaGreen;
-        public static readonly Brush Zmienne = Brushes.Red;
+        public static readonly Brush Zmienne = Brushes.DarkRed;
     }
 }

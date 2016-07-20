@@ -24,8 +24,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                         continue;
                 }
 
+                Błąd = true;
+
                 return ZwracanyTyp == typeof(object) ? string.Empty : Activator.CreateInstance(ZwracanyTyp);
             }
+
+            Błąd = false;
 
             return ZwróćNiebezpiecznie();
         }
@@ -50,6 +54,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 {
                 }
             }
+
+            Błąd = true;
 
             return Activator.CreateInstance<T>();
         }

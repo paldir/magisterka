@@ -8,6 +8,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
     public abstract class Klocek : ICloneable, INotifyPropertyChanged
     {
         private bool _aktywny;
+        private bool _błąd;
         private Brush _kolor;
         private Brush _kolorObramowania;
         private bool _posiadaSkupienie;
@@ -25,6 +26,18 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             set
             {
                 _aktywny = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        public bool Błąd
+        {
+            get { return _błąd; }
+
+            set
+            {
+                _błąd = value;
 
                 OnPropertyChanged();
             }

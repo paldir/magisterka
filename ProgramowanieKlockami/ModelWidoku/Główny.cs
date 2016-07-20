@@ -395,6 +395,20 @@ namespace ProgramowanieKlockami.ModelWidoku
             };
         }
 
+        private static void ResetujBłędy(KlocekPionowyZZawartością klocekPionowyZZawartością)
+        {
+            klocekPionowyZZawartością.Błąd = false;
+
+            foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
+            {
+                klocekPionowy.Błąd = false;
+                KlocekPionowyZZawartością wewnętrznyKlocekPionowyZZawartością = klocekPionowy as KlocekPionowyZZawartością;
+
+                if (wewnętrznyKlocekPionowyZZawartością != null)
+                    ResetujBłędy(wewnętrznyKlocekPionowyZZawartością);
+            }
+        }
+
         private static void ResetujFlagęAktualnegoWykonywania(KlocekPionowyZZawartością klocekPionowyZZawartością)
         {
             klocekPionowyZZawartością.AktualnieWykonywany = false;
@@ -469,8 +483,11 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void KopiujKlocek(object obiektKlocka)
         {
+            Klocek klocek = (Klocek) ((Klocek) obiektKlocka).Clone();
+            klocek.ZPrzybornika = true;
+
             Schowek.RemoveAt(0);
-            Schowek.Add((Klocek) ((Klocek) obiektKlocka).Clone());
+            Schowek.Add(klocek);
         }
 
         private void PrzejmijSkupienie(object obiektKlocka)
@@ -490,6 +507,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 foreach (Zmienna zmienna in Zmienne)
                     zmienna.Wartość = null;
 
+                ResetujBłędy(RozpoczęcieProgramu);
                 ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
                 Konsola.LinieKonsoli.Clear();
                 _wątekDebugowania?.Abort();
@@ -539,8 +557,11 @@ namespace ProgramowanieKlockami.ModelWidoku
             else
                 UsuńKlocekZwracającyWartość(obiektKlocka);
 
+            Klocek klocek = (Klocek) ((Klocek) obiektKlocka).Clone();
+            klocek.ZPrzybornika = true;
+
             Schowek.RemoveAt(0);
-            Schowek.Add((Klocek) ((Klocek) obiektKlocka).Clone());
+            Schowek.Add(klocek);
         }
 
         private void ZamknijOkno()

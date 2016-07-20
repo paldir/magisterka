@@ -237,7 +237,7 @@
                             Value="CornflowerBlue"></Setter>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Source={StaticResource GłównyModelWidoku}, Path=Debugowanie}"
-                             Value="True" >
+                             Value="True">
                     <Setter Property="Fill"
                             Value="DarkOrange"></Setter>
                 </DataTrigger>
@@ -266,12 +266,36 @@
             <Setter Property="Width"
                     Value="7"></Setter>
         </Style>
+        <Style x:Key="ZnakOstrzegawczy"
+               TargetType="Polygon">
+            <Setter Property="Fill"
+                    Value="Yellow"></Setter>
+            <Setter Property="HorizontalAlignment"
+                    Value="Left"></Setter>
+            <Setter Property="Points"
+                    Value="0,8 8,8 4,0"></Setter>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="6"
+                                        Y="2"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Stroke"
+                    Value="Red"></Setter>
+            <Setter Property="StrokeThickness"
+                    Value="1"></Setter>
+            <Setter Property="ToolTip"
+                    Value="Brakuje jednego lub kilku przyłączanych elementów lub zwracają one wartości nieodpowiedniuego typu."></Setter>
+            <Setter Property="VerticalAlignment"
+                    Value="Top"></Setter>
+        </Style>
         <BooleanToVisibilityConverter x:Key="WartośćLogicznaNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowySzablon"
                          TargetType="k:KlocekPionowyKontrolka">
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Margin="1"
                       Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
@@ -298,6 +322,7 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowego}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Margin="1"
                       Style="{StaticResource MiejsceNaDolnyCypekKlockaPionowego}">
@@ -337,6 +362,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Margin="1,1,0,0">
                     <i:Interaction.Triggers>
@@ -355,6 +381,7 @@
                             Orientation="Horizontal">
                     <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                           ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                           ContextMenuService.ShowOnDisabled="True"
                           Margin="0,1,1,0">
                         <i:Interaction.Triggers>
@@ -375,6 +402,7 @@
                 </StackPanel>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="1"
@@ -400,6 +428,7 @@
                 </Border>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="2"
@@ -421,6 +450,7 @@
                             Orientation="Horizontal">
                     <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                           ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                           ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,1"
                           MinWidth="20">
@@ -451,6 +481,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Margin="1,0,0,0">
                     <i:Interaction.Triggers>
@@ -469,6 +500,7 @@
                             Orientation="Horizontal">
                     <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                           ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                           ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,0">
                         <i:Interaction.Triggers>
@@ -492,6 +524,7 @@
                 </StackPanel>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="1"
@@ -517,6 +550,7 @@
                 </Border>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="2"
@@ -537,6 +571,7 @@
                             Orientation="Horizontal">
                     <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                           ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                           ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,1"
                           MinWidth="20">
@@ -557,6 +592,7 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       Margin="0"
                       Style="{StaticResource MiejsceNaBocznyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
@@ -569,6 +605,8 @@
                             BorderThickness="3">
                         <ContentPresenter></ContentPresenter>
                     </Border>
+                    <Polygon Style="{StaticResource ZnakOstrzegawczy}"
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Polygon>
                 </Grid>
             </StackPanel>
         </ControlTemplate>
@@ -577,6 +615,7 @@
             <StackPanel Orientation="Horizontal">
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
+                      ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       Margin="0,0,1,0"
                       Style="{StaticResource MiejsceNaBocznyCypekKlockaPionowego}">
                     <i:Interaction.Triggers>
@@ -591,6 +630,8 @@
                     </Border>
                     <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                                Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
+                    <Polygon Style="{StaticResource ZnakOstrzegawczy}"
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Polygon>
                 </Grid>
                 <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
                               Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
@@ -705,6 +746,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Grid Background="{Binding Kolor}"
                           ContextMenu="{StaticResource MenuKontekstoweKlockaZwracającegoWartość}"
+                          ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                           Margin="0,0,1,0"
                           Style="{StaticResource MiejsceNaBocznyCypekKlockaPionowego}">
                         <i:Interaction.Triggers>
@@ -724,6 +766,8 @@
                                 <TextBlock Style="{StaticResource TekstKlocka}">elementów</TextBlock>
                             </StackPanel>
                         </Border>
+                        <Polygon Style="{StaticResource ZnakOstrzegawczy}"
+                                 Visibility="{Binding Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Polygon>
                     </Grid>
                     <ItemsControl ItemsSource="{Binding Elementy}">
                         <ItemsControl.ItemTemplate>
@@ -891,6 +935,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Background="{Binding Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Margin="1,0,0,0">
@@ -913,6 +958,7 @@
                                 BorderBrush="{Binding KolorObramowania}"
                                 BorderThickness="0,3,3,3"
                                 ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                                ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                                 ContextMenuService.ShowOnDisabled="True"
                                 Width="130">
                             <i:Interaction.Triggers>
@@ -936,6 +982,7 @@
                 </StackPanel>
                 <Grid Background="{Binding Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="1"
@@ -961,6 +1008,7 @@
                 </Border>
                 <Grid Background="{Binding Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="2"
@@ -979,6 +1027,7 @@
                             Orientation="Horizontal">
                     <Grid Background="{Binding Kolor}"
                           ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                           ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,0"
                           Width="130">
@@ -1001,6 +1050,7 @@
                 </StackPanel>
                 <Grid Background="{Binding Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="3"
@@ -1027,6 +1077,7 @@
                 </Border>
                 <Grid Background="{Binding Kolor}"
                       ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                      ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Grid.Column="0"
                       Grid.Row="4"
@@ -1047,6 +1098,7 @@
                             Orientation="Horizontal">
                     <Grid Background="{Binding Kolor}"
                           ContextMenu="{StaticResource MenuKontekstoweKlockaPionowegoZZawartością}"
+                          ContextMenuService.IsEnabled="{Binding ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                           ContextMenuService.ShowOnDisabled="True"
                           Margin="0,0,1,1"
                           MinWidth="20">

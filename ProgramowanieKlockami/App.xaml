@@ -38,24 +38,24 @@
             <Setter Property="Foreground"
                     Value="White"></Setter>
             <Setter Property="Margin"
-                    Value="2"></Setter>
+                    Value="3,2"></Setter>
             <Setter Property="VerticalAlignment"
                     Value="Center"></Setter>
         </Style>
         <Style x:Key="RozwijanaListaKlocka"
                TargetType="ComboBox">
             <Setter Property="Margin"
-                    Value="2"></Setter>
+                    Value="3,5"></Setter>
         </Style>
         <Style x:Key="PoleTekstoweKlocka"
                TargetType="TextBox">
             <Setter Property="Margin"
-                    Value="2"></Setter>
+                    Value="3,5"></Setter>
         </Style>
         <Style x:Key="GridPrzechowującyMiejsceUpuszczaniaKlockówZwracającychWartość"
                TargetType="Grid">
             <Setter Property="Margin"
-                    Value="2"></Setter>
+                    Value="3,6"></Setter>
         </Style>
     </Application.Resources>
 </Application>
