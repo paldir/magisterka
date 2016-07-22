@@ -4,7 +4,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
     public class Podciąg : KlocekZwracającyWartość
     {
-        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Indeks1, Indeks2, Tekst};
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Tekst, Indeks1, Indeks2};
 
         public override string Nazwa => "Podciąg";
         public override string Opis => "Zwraca określony fragment tekstu.";

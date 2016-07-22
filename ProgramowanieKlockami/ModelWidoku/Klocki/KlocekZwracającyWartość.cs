@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -12,26 +14,39 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         private object Zwróć()
         {
+            BłędyKonfiguracji = new ObservableCollection<BłądKonfiguracjiKlocka>();
+
             foreach (WartośćWewnętrznegoKlockaZwracającegoWartość wartośćKlocka in KlockiKonfigurujące)
             {
                 KlocekZwracającyWartość klocekZwracającyWartość = wartośćKlocka[0];
+                Type przyjmowanyTyp = wartośćKlocka.PrzyjmowanyTyp;
 
-                if (klocekZwracającyWartość != null)
+                if (klocekZwracającyWartość == null)
+                    BłędyKonfiguracji.Add(new BłądKonfiguracjiKlocka {OczekiwanyTyp = przyjmowanyTyp});
+                else
                 {
                     object zwróconaWartość = klocekZwracającyWartość.Zwróć();
+                    Type typZwróconejWartości = zwróconaWartość?.GetType();
 
-                    if (wartośćKlocka.PrzyjmowanyTyp.IsInstanceOfType(zwróconaWartość))
-                        continue;
+                    if (!wartośćKlocka.PrzyjmowanyTyp.IsAssignableFrom(typZwróconejWartości))
+                        BłędyKonfiguracji.Add(new BłądKonfiguracjiKlocka
+                        {
+                            OczekiwanyTyp = przyjmowanyTyp,
+                            UmieszczonyTyp = typZwróconejWartości
+                        });
                 }
-
-                Błąd = true;
-
-                return ZwracanyTyp == typeof(object) ? string.Empty : Activator.CreateInstance(ZwracanyTyp);
             }
 
-            Błąd = false;
+            if (BłędyKonfiguracji.Count == 0)
+            {
+                Błąd = false;
 
-            return ZwróćNiebezpiecznie();
+                return ZwróćNiebezpiecznie();
+            }
+
+            Błąd = true;
+
+            return ZwracanyTyp == typeof(object) ? string.Empty : Activator.CreateInstance(ZwracanyTyp);
         }
 
         protected abstract object ZwróćNiebezpiecznie();

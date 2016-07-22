@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -9,6 +11,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
     {
         private bool _aktywny;
         private bool _błąd;
+        private ObservableCollection<BłądKonfiguracjiKlocka> _błędyKonfiguracji;
         private Brush _kolor;
         private Brush _kolorObramowania;
         private bool _posiadaSkupienie;
@@ -38,6 +41,18 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             set
             {
                 _błąd = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<BłądKonfiguracjiKlocka> BłędyKonfiguracji
+        {
+            get { return _błędyKonfiguracji; }
+
+            protected set
+            {
+                _błędyKonfiguracji = value;
 
                 OnPropertyChanged();
             }
@@ -89,6 +104,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         protected Klocek()
         {
+            _błędyKonfiguracji = new ObservableCollection<BłądKonfiguracjiKlocka>();
             PosiadaSkupienie = false;
         }
 

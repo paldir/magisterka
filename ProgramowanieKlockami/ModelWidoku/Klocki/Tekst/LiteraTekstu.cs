@@ -4,7 +4,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
     public class LiteraTekstu : KlocekZwracającyWartość
     {
-        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Indeks, Tekst};
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Tekst, Indeks};
 
         public override string Nazwa => "Litera tekstu";
         public override string Opis => "Zwraca literę z podanej pozycji.";

@@ -16,6 +16,7 @@
         Title="GłówneOkno">
     <Window.Resources>
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
+        <mwk:BłądKonfiguracjiKlockaNaKomunikatKonwerter x:Key="BłądKonfiguracjiKlockaNaKomunikatKonwerter"></mwk:BłądKonfiguracjiKlockaNaKomunikatKonwerter>
         <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaKopiowaniaKlocka}"
@@ -243,6 +244,11 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="PoczątkowyTekstKomunikatuOBłędzie"
+               TargetType="TextBlock">
+            <Setter Property="Text"
+                    Value="Błąd typów wartości umieszczonych w klocku:"></Setter>
+        </Style>
         <Style x:Key="PunktPrzerwania"
                TargetType="Ellipse">
             <Setter Property="Fill"
@@ -284,8 +290,6 @@
                     Value="Red"></Setter>
             <Setter Property="StrokeThickness"
                     Value="1"></Setter>
-            <Setter Property="ToolTip"
-                    Value="Brakuje jednego lub kilku przyłączanych elementów lub zwracają one wartości nieodpowiedniuego typu."></Setter>
             <Setter Property="VerticalAlignment"
                     Value="Top"></Setter>
         </Style>
@@ -606,7 +610,20 @@
                         <ContentPresenter></ContentPresenter>
                     </Border>
                     <Polygon Style="{StaticResource ZnakOstrzegawczy}"
-                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Polygon>
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                        <Polygon.ToolTip>
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
+                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.BłędyKonfiguracji}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource BłądKonfiguracjiKlockaNaKomunikatKonwerter}}"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Polygon.ToolTip>
+                    </Polygon>
                 </Grid>
             </StackPanel>
         </ControlTemplate>
@@ -631,7 +648,20 @@
                     <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                                Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
                     <Polygon Style="{StaticResource ZnakOstrzegawczy}"
-                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Polygon>
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                        <Polygon.ToolTip>
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
+                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.BłędyKonfiguracji}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource BłądKonfiguracjiKlockaNaKomunikatKonwerter}}"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Polygon.ToolTip>
+                    </Polygon>
                 </Grid>
                 <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
                               Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
