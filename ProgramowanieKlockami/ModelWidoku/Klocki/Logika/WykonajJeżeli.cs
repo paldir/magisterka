@@ -1,4 +1,6 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
+﻿using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
     public class WykonajJeżeli : KlocekPionowyZZawartościąPrzyjmującyWartość
     {
@@ -39,7 +41,26 @@
                     if (SkokPętli)
                         break;
                     else
+                    {
+                        if (klocekPionowy.PunktPrzerwania)
+                        {
+                            KlocekPionowyZZawartością klocekPionowyZZawartością = this;
+
+                            while (!(klocekPionowyZZawartością is RozpoczęcieProgramu))
+                                klocekPionowyZZawartością = klocekPionowyZZawartością.Rodzic;
+
+                            klocekPionowyZZawartością.Debugowanie = true;
+                        }
+
+                        klocekPionowy.AktualnieWykonywany = true;
+
+                        if (klocekPionowy.PunktPrzerwania || klocekPionowy.KrokPoKroku)
+                            Semafor.Opuść();
+
                         klocekPionowy.Wykonaj();
+
+                        klocekPionowy.AktualnieWykonywany = false;
+                    }
         }
     }
 }

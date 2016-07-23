@@ -14,7 +14,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         private object Zwróć()
         {
-            BłędyKonfiguracji = new ObservableCollection<BłądKonfiguracjiKlocka>();
+            Błędy = new ObservableCollection<BłądKlocka>();
 
             foreach (WartośćWewnętrznegoKlockaZwracającegoWartość wartośćKlocka in KlockiKonfigurujące)
             {
@@ -22,14 +22,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 Type przyjmowanyTyp = wartośćKlocka.PrzyjmowanyTyp;
 
                 if (klocekZwracającyWartość == null)
-                    BłędyKonfiguracji.Add(new BłądKonfiguracjiKlocka {OczekiwanyTyp = przyjmowanyTyp});
+                    Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego {OczekiwanyTyp = przyjmowanyTyp});
                 else
                 {
                     object zwróconaWartość = klocekZwracającyWartość.Zwróć();
                     Type typZwróconejWartości = zwróconaWartość?.GetType();
 
                     if (!wartośćKlocka.PrzyjmowanyTyp.IsAssignableFrom(typZwróconejWartości))
-                        BłędyKonfiguracji.Add(new BłądKonfiguracjiKlocka
+                        Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego
                         {
                             OczekiwanyTyp = przyjmowanyTyp,
                             UmieszczonyTyp = typZwróconejWartości
@@ -37,7 +37,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 }
             }
 
-            if (BłędyKonfiguracji.Count == 0)
+            if (Błędy.Count == 0)
             {
                 Błąd = false;
 
@@ -65,12 +65,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 {
                     return (T) Convert.ChangeType(zwróconaWartość, typDocelowy);
                 }
-                catch (InvalidCastException)
+                catch (Exception)
                 {
                 }
             }
-
-            Błąd = true;
 
             return Activator.CreateInstance<T>();
         }

@@ -24,6 +24,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public override void Wykonaj()
         {
+            base.Wykonaj();
+
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
             object wartość = klocekZwracającyWartość?.Zwróć<object>();
 

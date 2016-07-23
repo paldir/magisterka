@@ -22,6 +22,8 @@
 
         public override void Wykonaj()
         {
+            base.Wykonaj();
+
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
 
             if ((klocekZwracającyWartość != null) && (WybranaZmienna != null))

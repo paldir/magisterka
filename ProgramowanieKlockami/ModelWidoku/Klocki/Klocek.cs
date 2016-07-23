@@ -11,7 +11,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
     {
         private bool _aktywny;
         private bool _błąd;
-        private ObservableCollection<BłądKonfiguracjiKlocka> _błędyKonfiguracji;
+        private ObservableCollection<BłądKlocka> _błędy;
         private Brush _kolor;
         private Brush _kolorObramowania;
         private bool _posiadaSkupienie;
@@ -46,13 +46,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             }
         }
 
-        public ObservableCollection<BłądKonfiguracjiKlocka> BłędyKonfiguracji
+        public ObservableCollection<BłądKlocka> Błędy
         {
-            get { return _błędyKonfiguracji; }
+            get { return _błędy; }
 
             protected set
             {
-                _błędyKonfiguracji = value;
+                _błędy = value;
 
                 OnPropertyChanged();
             }
@@ -104,7 +104,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         protected Klocek()
         {
-            _błędyKonfiguracji = new ObservableCollection<BłądKonfiguracjiKlocka>();
+            Błędy = new ObservableCollection<BłądKlocka>();
             PosiadaSkupienie = false;
         }
 

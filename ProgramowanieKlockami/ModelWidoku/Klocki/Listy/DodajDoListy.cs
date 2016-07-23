@@ -22,6 +22,8 @@
 
         public override void Wykonaj()
         {
+            base.Wykonaj();
+
             ZmiennaTypuListowego lista = WybranaZmienna?.Wartość as ZmiennaTypuListowego;
             KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
 

@@ -16,7 +16,6 @@
         Title="GłówneOkno">
     <Window.Resources>
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
-        <mwk:BłądKonfiguracjiKlockaNaKomunikatKonwerter x:Key="BłądKonfiguracjiKlockaNaKomunikatKonwerter"></mwk:BłądKonfiguracjiKlockaNaKomunikatKonwerter>
         <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaKopiowaniaKlocka}"
@@ -247,7 +246,7 @@
         <Style x:Key="PoczątkowyTekstKomunikatuOBłędzie"
                TargetType="TextBlock">
             <Setter Property="Text"
-                    Value="Błąd typów wartości umieszczonych w klocku:"></Setter>
+                    Value="Elementy umieszczone w klocku lub do niego podłączone zwracają wartości nieodpowiednich typów."></Setter>
         </Style>
         <Style x:Key="PunktPrzerwania"
                TargetType="Ellipse">
@@ -293,6 +292,26 @@
             <Setter Property="VerticalAlignment"
                     Value="Top"></Setter>
         </Style>
+        <Style x:Key="ZnakOstrzegawczyKlockaPionowego"
+               BasedOn="{StaticResource ZnakOstrzegawczy}"
+               TargetType="Polygon">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="22"
+                                        Y="2"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ZnakOstrzegawczyKlockaPionowegoZZawartością"
+               BasedOn="{StaticResource ZnakOstrzegawczy}"
+               TargetType="Polygon">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <TranslateTransform X="12"
+                                        Y="2"></TranslateTransform>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <BooleanToVisibilityConverter x:Key="WartośćLogicznaNaWidocznośćKonwerter"></BooleanToVisibilityConverter>
         <ControlTemplate x:Key="KlocekPionowySzablon"
                          TargetType="k:KlocekPionowyKontrolka">
@@ -318,6 +337,21 @@
                     </Rectangle>
                     <Ellipse Style="{StaticResource PunktPrzerwania}"
                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Ellipse>
+                    <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowego}"
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                        <Polygon.ToolTip>
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
+                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Polygon.ToolTip>
+                    </Polygon>
                 </Grid>
             </StackPanel>
         </ControlTemplate>
@@ -346,6 +380,21 @@
                                Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
                     <Ellipse Style="{StaticResource PunktPrzerwania}"
                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.PunktPrzerwania, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Ellipse>
+                    <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowego}"
+                             Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                        <Polygon.ToolTip>
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
+                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Polygon.ToolTip>
+                    </Polygon>
                 </Grid>
                 <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
                               Margin="1"
@@ -400,8 +449,22 @@
                         </Border>
                         <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                                    Style="{StaticResource DolnyCypekKlockaPionowegoZZawartością}"
-                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
-                        </Rectangle>
+                                   Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Rectangle>
+                        <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowegoZZawartością}"
+                                 Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                            <Polygon.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
+                                    <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}"></TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Polygon.ToolTip>
+                        </Polygon>
                     </Grid>
                 </StackPanel>
                 <Grid Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Kolor}"
@@ -522,6 +585,21 @@
                                    Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Rectangle>
                         <Rectangle Fill="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.KolorObramowania}"
                                    Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
+                        <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowegoZZawartością}"
+                                 Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                            <Polygon.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
+                                    <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}"></TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Polygon.ToolTip>
+                        </Polygon>
                     </Grid>
                     <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Wartość}"
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
@@ -614,10 +692,10 @@
                         <Polygon.ToolTip>
                             <StackPanel>
                                 <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.BłędyKonfiguracji}">
+                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource BłądKonfiguracjiKlockaNaKomunikatKonwerter}}"></TextBlock>
+                                            <TextBlock Text="{Binding}"></TextBlock>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
@@ -652,10 +730,10 @@
                         <Polygon.ToolTip>
                             <StackPanel>
                                 <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.BłędyKonfiguracji}">
+                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource BłądKonfiguracjiKlockaNaKomunikatKonwerter}}"></TextBlock>
+                                            <TextBlock Text="{Binding}"></TextBlock>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
@@ -797,7 +875,20 @@
                             </StackPanel>
                         </Border>
                         <Polygon Style="{StaticResource ZnakOstrzegawczy}"
-                                 Visibility="{Binding Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Polygon>
+                                 Visibility="{Binding Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                            <Polygon.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
+                                    <ItemsControl ItemsSource="{Binding Błędy}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}"></TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Polygon.ToolTip>
+                        </Polygon>
                     </Grid>
                     <ItemsControl ItemsSource="{Binding Elementy}">
                         <ItemsControl.ItemTemplate>
@@ -1006,6 +1097,21 @@
                                    Visibility="{Binding Rozwinięty, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}"></Rectangle>
                         <Rectangle Fill="{Binding KolorObramowania}"
                                    Style="{StaticResource BocznyCypekKlockaPrzyjmującegoWartość}"></Rectangle>
+                        <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowegoZZawartością}"
+                                 Visibility="{Binding Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
+                            <Polygon.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
+                                    <ItemsControl ItemsSource="{Binding Błędy}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}"></TextBlock>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Polygon.ToolTip>
+                        </Polygon>
                     </Grid>
                     <ItemsControl ItemsSource="{Binding Wartość}"
                                   Style="{StaticResource MiejsceUpuszczaniaKlockówZwracającychWartość}"></ItemsControl>
