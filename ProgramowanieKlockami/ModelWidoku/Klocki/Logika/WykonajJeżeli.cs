@@ -1,4 +1,6 @@
-﻿using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
+﻿using System.Collections.ObjectModel;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 {
@@ -27,12 +29,22 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public override void Wykonaj()
         {
-            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
+            object obiektWarunku = Wartość[0]?.Zwróć<object>();
+            Błędy = new ObservableCollection<BłądKlocka>();
+            bool wartośćWarunku;
 
-            if (klocekZwracającyWartość == null)
-                return;
+            if (obiektWarunku is bool)
+            {
+                Błąd = false;
+                wartośćWarunku = (bool) obiektWarunku;
+            }
+            else
+            {
+                Błąd = true;
+                wartośćWarunku = false;
 
-            bool wartośćWarunku = klocekZwracającyWartość.Zwróć<bool>();
+                Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(typeof(bool), obiektWarunku?.GetType()));
+            }
 
             if (wartośćWarunku)
                 base.Wykonaj();

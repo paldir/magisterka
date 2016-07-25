@@ -1,4 +1,8 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
     public class WykonujDopóki : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
     {
@@ -14,13 +18,31 @@
 
         public override void Wykonaj()
         {
-            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
+            Błędy = new ObservableCollection<BłądKlocka>();
+            Błąd = false;
 
-            if (klocekZwracającyWartość == null)
-                return;
-
-            while (klocekZwracającyWartość.Zwróć<bool>())
+            while (true)
             {
+                object obiektWarunku = Wartość[0]?.Zwróć<object>();
+
+                if (!(obiektWarunku is bool))
+                {
+                    Błąd = true;
+
+                    //      !!!
+                    //      !!!
+                    //      !!!
+                    Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(typeof(bool), obiektWarunku?.GetType())); });
+                    //      !!!
+                    //      !!!
+                    //      !!!
+
+                    break;
+                }
+
+                if (!(bool) obiektWarunku)
+                    break;
+
                 ZresetujRekurencyjnieFlagęSkokuWPętli(this);
 
                 if (PowódSkoku == PowódSkoku.PrzerwaniePętli)

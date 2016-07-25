@@ -22,18 +22,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 Type przyjmowanyTyp = wartośćKlocka.PrzyjmowanyTyp;
 
                 if (klocekZwracającyWartość == null)
-                    Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego {OczekiwanyTyp = przyjmowanyTyp});
+                    Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(przyjmowanyTyp, null));
                 else
                 {
                     object zwróconaWartość = klocekZwracającyWartość.Zwróć();
                     Type typZwróconejWartości = zwróconaWartość?.GetType();
 
                     if (!wartośćKlocka.PrzyjmowanyTyp.IsAssignableFrom(typZwróconejWartości))
-                        Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego
-                        {
-                            OczekiwanyTyp = przyjmowanyTyp,
-                            UmieszczonyTyp = typZwróconejWartości
-                        });
+                        Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(przyjmowanyTyp, typZwróconejWartości));
                 }
             }
 

@@ -1,4 +1,7 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
+﻿using System.Collections.ObjectModel;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
     public class WykonajDlaKażdegoElementu : KlocekPionowyZZawartościąPrzyjmującyWartość, IPętla
     {
@@ -23,28 +26,43 @@
 
         public override void Wykonaj()
         {
-            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
+            object obiektListy = Wartość[0]?.Zwróć<object>();
+            Błędy = new ObservableCollection<BłądKlocka>();
+            Błąd = false;
+            ZmiennaTypuListowego lista = obiektListy as ZmiennaTypuListowego;
 
-            if ((klocekZwracającyWartość != null) && (WybranaZmienna != null))
+            if (lista == null)
             {
-                ZmiennaTypuListowego lista = klocekZwracającyWartość.Zwróć<ZmiennaTypuListowego>();
+                Błąd = true;
+                lista = new ZmiennaTypuListowego(new object[0]);
 
-                foreach (object element in lista)
+                Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(typeof(ZmiennaTypuListowego), obiektListy?.GetType()));
+            }
+
+            if (WybranaZmienna == null)
+            {
+                Błąd = true;
+
+                Błędy.Insert(0, new BłądZwiązanyZBrakiemWyboruZmiennej());
+
+                return;
+            }
+
+            foreach (object element in lista)
+            {
+                ZresetujRekurencyjnieFlagęSkokuWPętli(this);
+
+                if (PowódSkoku == PowódSkoku.PrzerwaniePętli)
                 {
-                    ZresetujRekurencyjnieFlagęSkokuWPętli(this);
-
-                    if (PowódSkoku == PowódSkoku.PrzerwaniePętli)
-                    {
-                        PowódSkoku = PowódSkoku.Brak;
-
-                        break;
-                    }
-
                     PowódSkoku = PowódSkoku.Brak;
-                    WybranaZmienna.Wartość = element;
 
-                    base.Wykonaj();
+                    break;
                 }
+
+                PowódSkoku = PowódSkoku.Brak;
+                WybranaZmienna.Wartość = element;
+
+                base.Wykonaj();
             }
         }
     }

@@ -30,11 +30,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             Type umieszczonyTyp = Wartość[0]?.Zwróć<object>().GetType();
 
             if (!oczekiwanyTyp.IsAssignableFrom(umieszczonyTyp))
-                Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego
-                {
-                    OczekiwanyTyp = oczekiwanyTyp,
-                    UmieszczonyTyp = umieszczonyTyp
-                });
+                Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(oczekiwanyTyp, umieszczonyTyp));
         }
 
         private void BłędyKonfiguracji_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

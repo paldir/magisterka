@@ -243,11 +243,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="PoczątkowyTekstKomunikatuOBłędzie"
-               TargetType="TextBlock">
-            <Setter Property="Text"
-                    Value="Elementy umieszczone w klocku lub do niego podłączone zwracają wartości nieodpowiednich typów."></Setter>
-        </Style>
         <Style x:Key="PunktPrzerwania"
                TargetType="Ellipse">
             <Setter Property="Fill"
@@ -340,16 +335,14 @@
                     <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowego}"
                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                         <Polygon.ToolTip>
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding}"></TextBlock>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
+                            <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"
+                                                   TextWrapping="Wrap"></TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </Polygon.ToolTip>
                     </Polygon>
                 </Grid>
@@ -383,16 +376,14 @@
                     <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowego}"
                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                         <Polygon.ToolTip>
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding}"></TextBlock>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
+                            <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"
+                                                   TextWrapping="Wrap"></TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </Polygon.ToolTip>
                     </Polygon>
                 </Grid>
@@ -453,16 +444,14 @@
                         <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowegoZZawartością}"
                                  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                             <Polygon.ToolTip>
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                    <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}"></TextBlock>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
+                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"
+                                                       TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </Polygon.ToolTip>
                         </Polygon>
                     </Grid>
@@ -588,16 +577,14 @@
                         <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowegoZZawartością}"
                                  Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                             <Polygon.ToolTip>
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                    <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}"></TextBlock>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
+                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"
+                                                       TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </Polygon.ToolTip>
                         </Polygon>
                     </Grid>
@@ -690,16 +677,14 @@
                     <Polygon Style="{StaticResource ZnakOstrzegawczy}"
                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                         <Polygon.ToolTip>
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding}"></TextBlock>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
+                            <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"
+                                                   TextWrapping="Wrap"></TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </Polygon.ToolTip>
                     </Polygon>
                 </Grid>
@@ -728,16 +713,14 @@
                     <Polygon Style="{StaticResource ZnakOstrzegawczy}"
                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                         <Polygon.ToolTip>
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding}"></TextBlock>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
+                            <ItemsControl ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.Błędy}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"
+                                                   TextWrapping="Wrap"></TextBlock>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </Polygon.ToolTip>
                     </Polygon>
                 </Grid>
@@ -877,16 +860,14 @@
                         <Polygon Style="{StaticResource ZnakOstrzegawczy}"
                                  Visibility="{Binding Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                             <Polygon.ToolTip>
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                    <ItemsControl ItemsSource="{Binding Błędy}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}"></TextBlock>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
+                                <ItemsControl ItemsSource="{Binding Błędy}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"
+                                                       TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </Polygon.ToolTip>
                         </Polygon>
                     </Grid>
@@ -1100,16 +1081,14 @@
                         <Polygon Style="{StaticResource ZnakOstrzegawczyKlockaPionowegoZZawartością}"
                                  Visibility="{Binding Błąd, Converter={StaticResource WartośćLogicznaNaWidocznośćKonwerter}}">
                             <Polygon.ToolTip>
-                                <StackPanel>
-                                    <TextBlock Style="{StaticResource PoczątkowyTekstKomunikatuOBłędzie}"></TextBlock>
-                                    <ItemsControl ItemsSource="{Binding Błędy}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}"></TextBlock>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </StackPanel>
+                                <ItemsControl ItemsSource="{Binding Błędy}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"
+                                                       TextWrapping="Wrap"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </Polygon.ToolTip>
                         </Polygon>
                     </Grid>

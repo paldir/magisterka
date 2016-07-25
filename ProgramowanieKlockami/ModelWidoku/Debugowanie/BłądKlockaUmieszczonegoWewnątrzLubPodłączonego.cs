@@ -2,34 +2,17 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Debugowanie
 {
-    public class BłądKlockaUmieszczonegoWewnątrzLubPodłączonego : BłądKlocka
+    public class BłądKlockaUmieszczonegoWewnątrzLubPodłączonego : BłądKlockaZwiązanyZTypami
     {
-        public Type OczekiwanyTyp { get; set; }
-        public Type UmieszczonyTyp { get; set; }
+        public BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(Type oczekiwanyTyp, Type umieszczonyTyp)
+        {
+            OczekiwanyTyp = oczekiwanyTyp;
+            UmieszczonyTyp = umieszczonyTyp;
+        }
 
         public override string ToString()
         {
-            return $"oczekiwany: {TypNaNazwę(OczekiwanyTyp)}, umieszczony: {TypNaNazwę(UmieszczonyTyp)}";
-        }
-
-        private static string TypNaNazwę(Type typ)
-        {
-            if (typ == null)
-                return "brak";
-
-            if (typ == typeof(ZmiennaTypuListowego))
-                return "lista";
-
-            if (typ == typeof(bool))
-                return "wartość logiczna";
-
-            if (typ == typeof(double))
-                return "liczba";
-
-            if (typ == typeof(string))
-                return "napis";
-
-            return typ == typeof(object) ? "dowolny" : "NIEOKREŚLONY";
+            return $"Umieszczony wewnątrz lub podłączony klocek zwraca wartość nieprawidłowego typu. Oczekiwany typ: {TypNaNazwę(OczekiwanyTyp)}, typ wartości zwracanej: {TypNaNazwę(UmieszczonyTyp)}";
         }
     }
 }
