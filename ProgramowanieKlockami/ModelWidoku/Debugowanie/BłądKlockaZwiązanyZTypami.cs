@@ -7,6 +7,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Debugowanie
         public Type OczekiwanyTyp { get; protected set; }
         public Type UmieszczonyTyp { get; protected set; }
 
+        protected BłądKlockaZwiązanyZTypami(Type oczekiwanyTyp, Type umieszczonyTyp)
+        {
+            OczekiwanyTyp = oczekiwanyTyp;
+            UmieszczonyTyp = umieszczonyTyp;
+        }
+
         protected static string TypNaNazwę(Type typ)
         {
             if (typ == null)

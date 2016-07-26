@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Threading;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
     public class ModyfikujElementListy : KlocekPionowy
     {
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Indeks, Wartość};
+
         public override string Nazwa => "Modyfikacja elementu listy";
         public override string Opis => "Ustawia element listy albo wstawia go w określone miejsce.";
 
@@ -34,19 +40,40 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public override void Wykonaj()
         {
-            if (WybranaZmienna != null)
+            Błędy = new ObservableCollection<BłądKlocka>();
+            Błąd = false;
+            Dispatcher dispatcher = Application.Current.Dispatcher;
+
+            if (WybranaZmienna == null)
             {
-                ZmiennaTypuListowego lista = WybranaZmienna.Wartość as ZmiennaTypuListowego;
-                KlocekZwracającyWartość klocekIndeksu = Indeks[0];
-                KlocekZwracającyWartość klocekWartości = Wartość[0];
+                Błąd = true;
 
-                if ((lista != null) && (klocekIndeksu != null) && (klocekWartości != null))
-                {
-                    int indeks = (int) Math.Round(klocekIndeksu.Zwróć<double>());
-                    object wartość = klocekWartości.Zwróć<object>();
+                dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZBrakiemWyboruZmiennej()); });
 
-                    WybranyTypModyfikacjiListy.ModyfikujListę(lista, indeks, wartość);
-                }
+                return;
+            }
+
+            object wartośćZmiennej = WybranaZmienna.Wartość;
+            ZmiennaTypuListowego lista = wartośćZmiennej as ZmiennaTypuListowego;
+
+            if (lista == null)
+            {
+                Błąd = true;
+
+                dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZTypemZmiennej(typeof(ZmiennaTypuListowego), wartośćZmiennej?.GetType())); });
+
+                return;
+            }
+
+            KlocekZwracającyWartość klocekIndeksu = Indeks[0];
+            KlocekZwracającyWartość klocekWartości = Wartość[0];
+
+            if ((lista != null) && (klocekIndeksu != null) && (klocekWartości != null))
+            {
+                int indeks = (int) Math.Round(klocekIndeksu.Zwróć<double>());
+                object wartość = klocekWartości.Zwróć<object>();
+
+                WybranyTypModyfikacjiListy.ModyfikujListę(lista, indeks, wartość);
             }
         }
     }

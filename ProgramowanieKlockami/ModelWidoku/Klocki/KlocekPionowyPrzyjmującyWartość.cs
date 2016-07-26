@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyPrzyjmującyWartość : KlocekPionowy
     {
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Wartość};
+
         public WartośćWewnętrznegoKlockaZwracającegoWartość Wartość { get; }
 
         protected KlocekPionowyPrzyjmującyWartość(Type przyjmowanyTyp)
@@ -30,7 +33,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             Type umieszczonyTyp = Wartość[0]?.Zwróć<object>().GetType();
 
             if (!oczekiwanyTyp.IsAssignableFrom(umieszczonyTyp))
-                Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(oczekiwanyTyp, umieszczonyTyp));
+                Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(oczekiwanyTyp, umieszczonyTyp)); });
         }
 
         private void BłędyKonfiguracji_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

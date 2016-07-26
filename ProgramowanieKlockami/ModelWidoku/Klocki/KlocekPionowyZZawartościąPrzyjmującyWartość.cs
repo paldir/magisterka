@@ -4,6 +4,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
     public abstract class KlocekPionowyZZawartościąPrzyjmującyWartość : KlocekPionowyZZawartością
     {
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Wartość};
+
         public WartośćWewnętrznegoKlockaZwracającegoWartość Wartość { get; }
 
         protected KlocekPionowyZZawartościąPrzyjmującyWartość(Type przyjmowanyTyp)

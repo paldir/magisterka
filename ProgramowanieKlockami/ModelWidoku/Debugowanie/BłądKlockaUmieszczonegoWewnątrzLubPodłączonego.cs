@@ -4,10 +4,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Debugowanie
 {
     public class BłądKlockaUmieszczonegoWewnątrzLubPodłączonego : BłądKlockaZwiązanyZTypami
     {
-        public BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(Type oczekiwanyTyp, Type umieszczonyTyp)
+        public BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(Type oczekiwanyTyp, Type umieszczonyTyp) : base(oczekiwanyTyp, umieszczonyTyp)
         {
-            OczekiwanyTyp = oczekiwanyTyp;
-            UmieszczonyTyp = umieszczonyTyp;
         }
 
         public override string ToString()

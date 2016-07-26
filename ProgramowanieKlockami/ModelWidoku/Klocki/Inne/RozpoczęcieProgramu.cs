@@ -2,6 +2,8 @@
 {
     public class RozpoczęcieProgramu : KlocekPionowyZZawartością
     {
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
+
         public override string Nazwa
         {
             get { throw new System.NotImplementedException(); }

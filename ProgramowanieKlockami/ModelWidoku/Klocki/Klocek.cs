@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Mime;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
@@ -15,6 +17,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         private Brush _kolor;
         private Brush _kolorObramowania;
         private bool _posiadaSkupienie;
+
+        protected abstract WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące { get; }
 
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
@@ -106,6 +110,25 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         {
             Błędy = new ObservableCollection<BłądKlocka>();
             PosiadaSkupienie = false;
+        }
+
+        protected void SprawdźPoprawność()
+        {
+            Błędy = new ObservableCollection<BłądKlocka>();
+            Błąd = false;
+
+            foreach (WartośćWewnętrznegoKlockaZwracającegoWartość wartośćWewnętrznegoKlockaZwracającegoWartość in KlockiKonfigurujące)
+            {
+                Type oczekiwanyTyp = wartośćWewnętrznegoKlockaZwracającegoWartość.PrzyjmowanyTyp;
+                Type umieszczonyTyp = wartośćWewnętrznegoKlockaZwracającegoWartość[0]?.Zwróć<object>()?.GetType();
+
+                if (!oczekiwanyTyp.IsAssignableFrom(umieszczonyTyp))
+                {
+                    Błąd = true;
+
+                    Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(oczekiwanyTyp, umieszczonyTyp)); });
+                }
+            }
         }
 
         public virtual object Clone()

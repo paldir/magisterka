@@ -4,6 +4,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
     public class UsuńElementZListy : KlocekPionowy
     {
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Indeks};
+
         public override string Nazwa => "Usunięcie elementu listy";
         public override string Opis => "Usuwa z lity element o podanym indeksie.";
 

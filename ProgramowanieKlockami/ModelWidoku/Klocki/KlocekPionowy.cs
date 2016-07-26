@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using ProgramowanieKlockami.ModelWidoku.Debugowanie;
+﻿using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {

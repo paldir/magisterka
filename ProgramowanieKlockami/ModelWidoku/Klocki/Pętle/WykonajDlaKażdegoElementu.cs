@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Windows;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
@@ -26,27 +26,19 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
         public override void Wykonaj()
         {
-            object obiektListy = Wartość[0]?.Zwróć<object>();
-            Błędy = new ObservableCollection<BłądKlocka>();
-            Błąd = false;
-            ZmiennaTypuListowego lista = obiektListy as ZmiennaTypuListowego;
-
-            if (lista == null)
-            {
-                Błąd = true;
-                lista = new ZmiennaTypuListowego(new object[0]);
-
-                Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(typeof(ZmiennaTypuListowego), obiektListy?.GetType()));
-            }
+            SprawdźPoprawność();
 
             if (WybranaZmienna == null)
             {
                 Błąd = true;
 
-                Błędy.Insert(0, new BłądZwiązanyZBrakiemWyboruZmiennej());
-
-                return;
+                Application.Current.Dispatcher.Invoke(delegate { Błędy.Insert(0, new BłądZwiązanyZBrakiemWyboruZmiennej()); });
             }
+
+            if (Błąd || (WybranaZmienna == null))
+                return;
+
+            ZmiennaTypuListowego lista = Wartość.Zwróć<ZmiennaTypuListowego>();
 
             foreach (object element in lista)
             {

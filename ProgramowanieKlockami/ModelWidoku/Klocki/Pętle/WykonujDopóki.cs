@@ -29,13 +29,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
                 {
                     Błąd = true;
 
-                    //      !!!
-                    //      !!!
-                    //      !!!
                     Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(typeof(bool), obiektWarunku?.GetType())); });
-                    //      !!!
-                    //      !!!
-                    //      !!!
 
                     break;
                 }

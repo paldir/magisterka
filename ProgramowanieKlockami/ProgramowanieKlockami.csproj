@@ -81,6 +81,7 @@
     <Compile Include="ModelWidoku\Debugowanie\BłądKlockaUmieszczonegoWewnątrzLubPodłączonego.cs" />
     <Compile Include="ModelWidoku\Debugowanie\BłądKlockaZwiązanyZTypami.cs" />
     <Compile Include="ModelWidoku\Debugowanie\BłądZwiązanyZBrakiemWyboruZmiennej.cs" />
+    <Compile Include="ModelWidoku\Debugowanie\BłądZwiązanyZTypemZmiennej.cs" />
     <Compile Include="ModelWidoku\Debugowanie\Semafor.cs" />
     <Compile Include="ModelWidoku\Główny.cs" />
     <Compile Include="ModelWidoku\Klocki\KlocekPionowy.cs" />

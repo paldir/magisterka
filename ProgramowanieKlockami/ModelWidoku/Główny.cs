@@ -548,6 +548,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             Debugowanie = false;
             WPunkciePrzerwania = false;
+            RozpoczęcieProgramu.KrokPoKroku = false;
         }
 
         private void WytnijKlocek(object obiektKlocka)
@@ -578,6 +579,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
                 Debugowanie = false;
                 WPunkciePrzerwania = false;
+                RozpoczęcieProgramu.KrokPoKroku = false;
             }
         }
 
