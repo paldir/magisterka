@@ -14,7 +14,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         private object Zwróć()
         {
-            SprawdźPoprawność();
+            SprawdźPoprawnośćKlockówKonfigurujących();
 
             if (Błąd)
                 return ZwracanyTyp == typeof(object) ? string.Empty : Activator.CreateInstance(ZwracanyTyp);

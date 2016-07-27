@@ -24,10 +24,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         public override void Wykonaj()
         {
-            base.Wykonaj();
+            SprawdźPoprawnośćKlockówKonfigurujących();
 
-            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
-            object wartość = klocekZwracającyWartość?.Zwróć<object>();
+            if (Błąd)
+                return;
+
+            object wartość = Wartość.Zwróć<object>();
 
             if (wartość != null)
                 Konsola.DodajLinię(wartość.ToString());

@@ -24,7 +24,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             return kopia;
         }
 
-        public override void Wykonaj()
+        /*public override void Wykonaj()
         {
             Błędy = new ObservableCollection<BłądKlocka>();
             Błędy.CollectionChanged += BłędyKonfiguracji_CollectionChanged;
@@ -34,7 +34,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
             if (!oczekiwanyTyp.IsAssignableFrom(umieszczonyTyp))
                 Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(oczekiwanyTyp, umieszczonyTyp)); });
-        }
+        }*/
 
         private void BłędyKonfiguracji_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {

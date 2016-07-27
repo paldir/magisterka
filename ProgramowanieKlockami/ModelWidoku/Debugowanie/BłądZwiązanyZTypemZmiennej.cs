@@ -8,9 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Debugowanie
         {
         }
 
-        public override string ToString()
-        {
-            throw new System.NotImplementedException();
-        }
+        public override string ToString() => $"Wybrana zmienna posiada nieprawidłowy typ. Oczekiwany typ: {TypNaNazwę(OczekiwanyTyp)}, wybrany: {TypNaNazwę(UmieszczonyTyp)}";
     }
 }

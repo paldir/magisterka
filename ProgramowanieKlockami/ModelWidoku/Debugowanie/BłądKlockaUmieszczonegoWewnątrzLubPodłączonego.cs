@@ -8,9 +8,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Debugowanie
         {
         }
 
-        public override string ToString()
-        {
-            return $"Umieszczony wewnątrz lub podłączony klocek zwraca wartość nieprawidłowego typu. Oczekiwany typ: {TypNaNazwę(OczekiwanyTyp)}, typ wartości zwracanej: {TypNaNazwę(UmieszczonyTyp)}";
-        }
+        public override string ToString() => $"Umieszczony wewnątrz lub podłączony klocek zwraca wartość nieprawidłowego typu. Oczekiwany typ: {TypNaNazwę(OczekiwanyTyp)}, typ wartości zwracanej: {TypNaNazwę(UmieszczonyTyp)}";
     }
 }

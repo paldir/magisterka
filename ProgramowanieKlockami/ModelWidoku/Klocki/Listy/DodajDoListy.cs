@@ -22,13 +22,15 @@
 
         public override void Wykonaj()
         {
-            base.Wykonaj();
+            SprawdźPoprawnośćKlockówKonfigurujących();
+            SprawdźPoprawnośćZmiennej(WybranaZmienna, typeof(ZmiennaTypuListowego));
 
-            ZmiennaTypuListowego lista = WybranaZmienna?.Wartość as ZmiennaTypuListowego;
-            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
+            if (Błąd)
+                return;
 
-            if ((lista != null) && (klocekZwracającyWartość != null))
-                lista.Add(klocekZwracającyWartość.Zwróć<object>());
+            ZmiennaTypuListowego lista = (ZmiennaTypuListowego) WybranaZmienna.Wartość;
+
+            lista.Add(Wartość.Zwróć<object>());
         }
     }
 }

@@ -27,7 +27,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public override void Wykonaj()
         {
-            SprawdźPoprawność();
+            SprawdźPoprawnośćKlockówKonfigurujących();
 
             bool warunek = (Wartość[0] != null) && Wartość.Zwróć<bool>() && !Błąd;
 

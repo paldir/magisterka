@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Threading;
-using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
@@ -40,41 +36,17 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public override void Wykonaj()
         {
-            Błędy = new ObservableCollection<BłądKlocka>();
-            Błąd = false;
-            Dispatcher dispatcher = Application.Current.Dispatcher;
+            SprawdźPoprawnośćKlockówKonfigurujących();
+            SprawdźPoprawnośćZmiennej(WybranaZmienna, typeof(ZmiennaTypuListowego));
 
-            if (WybranaZmienna == null)
-            {
-                Błąd = true;
-
-                dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZBrakiemWyboruZmiennej()); });
-
+            if (Błąd)
                 return;
-            }
 
-            object wartośćZmiennej = WybranaZmienna.Wartość;
-            ZmiennaTypuListowego lista = wartośćZmiennej as ZmiennaTypuListowego;
+            ZmiennaTypuListowego lista = (ZmiennaTypuListowego) WybranaZmienna.Wartość;
+            int indeks = (int) Math.Round(Indeks.Zwróć<double>());
+            object wartość = Wartość.Zwróć<object>();
 
-            if (lista == null)
-            {
-                Błąd = true;
-
-                dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZTypemZmiennej(typeof(ZmiennaTypuListowego), wartośćZmiennej?.GetType())); });
-
-                return;
-            }
-
-            KlocekZwracającyWartość klocekIndeksu = Indeks[0];
-            KlocekZwracającyWartość klocekWartości = Wartość[0];
-
-            if ((lista != null) && (klocekIndeksu != null) && (klocekWartości != null))
-            {
-                int indeks = (int) Math.Round(klocekIndeksu.Zwróć<double>());
-                object wartość = klocekWartości.Zwróć<object>();
-
-                WybranyTypModyfikacjiListy.ModyfikujListę(lista, indeks, wartość);
-            }
+            WybranyTypModyfikacjiListy.ModyfikujListę(lista, indeks, wartość);
         }
     }
 }

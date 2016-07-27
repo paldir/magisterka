@@ -30,20 +30,17 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public override void Wykonaj()
         {
-            KlocekZwracającyWartość klocekIndeksu = Indeks[0];
+            SprawdźPoprawnośćKlockówKonfigurujących();
+            SprawdźPoprawnośćZmiennej(WybranaZmienna, typeof(ZmiennaTypuListowego));
 
-            if ((WybranaZmienna != null) && (klocekIndeksu != null))
-            {
-                ZmiennaTypuListowego lista = WybranaZmienna.Wartość as ZmiennaTypuListowego;
+            if (Błąd)
+                return;
 
-                if (lista != null)
-                {
-                    int indeks = (int) Math.Round(klocekIndeksu.Zwróć<double>());
+            ZmiennaTypuListowego lista = (ZmiennaTypuListowego) WybranaZmienna.Wartość;
+            int indeks = (int) Math.Round(Indeks.Zwróć<double>());
 
-                    if ((indeks >= 0) && (indeks < lista.Count))
-                        lista.RemoveAt(indeks);
-                }
-            }
+            if ((indeks >= 0) && (indeks < lista.Count))
+                lista.RemoveAt(indeks);
         }
     }
 }

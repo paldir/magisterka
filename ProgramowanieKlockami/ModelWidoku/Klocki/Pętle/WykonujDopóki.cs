@@ -16,7 +16,7 @@
         {
             while (true)
             {
-                SprawdźPoprawność();
+                SprawdźPoprawnośćKlockówKonfigurujących();
 
                 if (Błąd)
                     return;

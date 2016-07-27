@@ -22,12 +22,13 @@
 
         public override void Wykonaj()
         {
-            base.Wykonaj();
+            SprawdźPoprawnośćKlockówKonfigurujących();
+            SprawdźPoprawnośćZmiennej(WybranaZmienna, null);
 
-            KlocekZwracającyWartość wartość = Wartość[0];
+            if (Błąd)
+                return;
 
-            if ((WybranaZmienna != null) && (wartość != null))
-                WybranaZmienna.Wartość = wartość.Zwróć<object>();
+            WybranaZmienna.Wartość = Wartość.Zwróć<object>();
         }
     }
 }

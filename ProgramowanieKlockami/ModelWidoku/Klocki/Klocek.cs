@@ -112,7 +112,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             PosiadaSkupienie = false;
         }
 
-        protected void SprawdźPoprawność()
+        protected void SprawdźPoprawnośćKlockówKonfigurujących()
         {
             Błędy = new ObservableCollection<BłądKlocka>();
             Błąd = false;

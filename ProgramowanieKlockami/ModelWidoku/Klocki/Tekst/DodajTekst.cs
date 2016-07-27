@@ -22,20 +22,19 @@
 
         public override void Wykonaj()
         {
-            base.Wykonaj();
+            SprawdźPoprawnośćKlockówKonfigurujących();
+            SprawdźPoprawnośćZmiennej(WybranaZmienna, null);
 
-            KlocekZwracającyWartość klocekZwracającyWartość = Wartość[0];
+            if (Błąd)
+                return;
 
-            if ((klocekZwracającyWartość != null) && (WybranaZmienna != null))
-            {
-                object wartośćZmiennej = WybranaZmienna.Wartość;
-                string zwróconaWartość = klocekZwracającyWartość.Zwróć<string>();
+            object wartośćZmiennej = WybranaZmienna.Wartość;
+            string zwróconaWartość = Wartość.Zwróć<string>();
 
-                if (wartośćZmiennej == null)
-                    wartośćZmiennej = string.Empty;
+            if (wartośćZmiennej == null)
+                wartośćZmiennej = string.Empty;
 
-                WybranaZmienna.Wartość = string.Concat(wartośćZmiennej, zwróconaWartość);
-            }
+            WybranaZmienna.Wartość = string.Concat(wartośćZmiennej, zwróconaWartość);
         }
     }
 }

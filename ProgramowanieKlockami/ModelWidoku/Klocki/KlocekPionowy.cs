@@ -1,4 +1,7 @@
-﻿using ProgramowanieKlockami.ModelWidoku.Debugowanie;
+﻿using System;
+using System.Windows;
+using System.Windows.Threading;
+using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -80,6 +83,32 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 if (klocekPionowyZZawartością != null)
                     foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
                         klocekPionowy.Semafor = value;
+            }
+        }
+
+        protected void SprawdźPoprawnośćZmiennej(Zmienna zmienna, Type typZmiennej)
+        {
+            Dispatcher dispatcher = Application.Current.Dispatcher;
+
+            if (zmienna == null)
+            {
+                Błąd = true;
+
+                dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZBrakiemWyboruZmiennej()); });
+
+                return;
+            }
+
+            if (typZmiennej != null)
+            {
+                object wartośćZmiennej = zmienna.Wartość;
+
+                if (!typZmiennej.IsInstanceOfType(wartośćZmiennej))
+                {
+                    Błąd = true;
+
+                    dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZTypemZmiennej(typeof(ZmiennaTypuListowego), wartośćZmiennej?.GetType())); });
+                }
             }
         }
 

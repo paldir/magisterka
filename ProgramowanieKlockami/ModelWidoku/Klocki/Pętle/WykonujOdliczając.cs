@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows;
-using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
@@ -39,16 +37,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
         public override void Wykonaj()
         {
-            SprawdźPoprawność();
+            SprawdźPoprawnośćKlockówKonfigurujących();
+            SprawdźPoprawnośćZmiennej(WybranaZmienna, null);
 
-            if (WybranaZmienna == null)
-            {
-                Błąd = true;
-
-                Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZBrakiemWyboruZmiennej()); });
-            }
-
-            if (Błąd || (WybranaZmienna == null))
+            if (Błąd)
                 return;
 
             double początek = Od.Zwróć<double>();
