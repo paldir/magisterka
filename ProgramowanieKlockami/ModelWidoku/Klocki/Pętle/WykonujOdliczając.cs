@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Windows;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
@@ -7,7 +6,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 {
     public class WykonujOdliczając : KlocekPionowyZZawartością, IPętla
     {
-        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Od, Do, Interwał};
 
         public override string Nazwa => "Pętla odliczająca";
         public override string Opis => "Za pomocą zmiennej odlicza od wartości początkowej do końcowej dodając stałą liczbę. Każda iteracja powoduje wykonanie instrukcji.";
@@ -40,57 +39,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
 
         public override void Wykonaj()
         {
-            object obiektOd = Od[0]?.Zwróć<object>();
-            object obiektDo = Do[0]?.Zwróć<object>();
-            object obiektInterwału = Interwał[0]?.Zwróć<object>();
-            Błędy = new ObservableCollection<BłądKlocka>();
-            Błąd = false;
-            double od;
-            double @do;
-            double interwał;
-
-            if (obiektOd is double)
-                od = (double) obiektOd;
-            else
-            {
-                Błąd = true;
-                od = 0;
-
-                Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(typeof(double), obiektOd?.GetType())); });
-            }
-
-            if (obiektDo is double)
-                @do = (double) obiektDo;
-            else
-            {
-                Błąd = true;
-                @do = 0;
-
-                Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(typeof(double), obiektDo?.GetType())); });
-            }
-
-            if (obiektInterwału is double)
-                interwał = (double) obiektInterwału;
-            else
-            {
-                Błąd = true;
-                interwał = 0;
-
-                Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądKlockaUmieszczonegoWewnątrzLubPodłączonego(typeof(double), obiektInterwału?.GetType())); });
-            }
+            SprawdźPoprawność();
 
             if (WybranaZmienna == null)
             {
                 Błąd = true;
 
                 Application.Current.Dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZBrakiemWyboruZmiennej()); });
-
-                return;
             }
 
-            double początek = od;
-            double koniec = @do;
-            double okres = interwał;
+            if (Błąd || (WybranaZmienna == null))
+                return;
+
+            double początek = Od.Zwróć<double>();
+            double koniec = Do.Zwróć<double>();
+            double okres = Interwał.Zwróć<double>();
             Func<double, double, bool> funkcjaPorównująca;
 
             if (okres < 0)
