@@ -1754,6 +1754,9 @@
         <StaticResource ResourceKey="GłównyModelWidoku"></StaticResource>
     </Window.DataContext>
     <Window.InputBindings>
+        <KeyBinding Command="{Binding KomendaPrzywróceniaStanuAplikacji}"
+                    Key="Z"
+                    Modifiers="Control"></KeyBinding>
         <KeyBinding Command="{Binding KomendaStartuProgramu}"
                     Key="F4"></KeyBinding>
         <KeyBinding Command="{Binding KomendaKontynuacjiWykonywania}"
@@ -1777,6 +1780,11 @@
         <Menu Grid.Row="0"
               HorizontalAlignment="Left"
               VerticalAlignment="Top">
+            <MenuItem Header="Edycja">
+                <MenuItem Command="{Binding KomendaPrzywróceniaStanuAplikacji}"
+                          Header="Cofnij"
+                          InputGestureText="CTRL+Z"></MenuItem>
+            </MenuItem>
             <MenuItem Header="Debugowanie">
                 <MenuItem Command="{Binding KomendaStartuProgramu}"
                           Header="Start"

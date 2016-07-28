@@ -7,6 +7,13 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 {
     public class ObsługującyUpuszczanieKlockówZwracającychWartość : IDropTarget
     {
+        private readonly Action _metodaZachowującaStanAplikacji;
+
+        public ObsługującyUpuszczanieKlockówZwracającychWartość(Action metodaZachowującaStanAplikacji)
+        {
+            _metodaZachowującaStanAplikacji = metodaZachowującaStanAplikacji;
+        }
+
         public void DragOver(IDropInfo dropInfo)
         {
             KlocekZwracającyWartość upuszczanyKlocek = dropInfo.Data as KlocekZwracającyWartość;
@@ -32,6 +39,8 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             upuszczanyKlocek.MiejsceUmieszczenia = docelowaKolekcja;
             upuszczanyKlocek.ZPrzybornika = false;
             docelowaKolekcja[0] = upuszczanyKlocek;
+
+            _metodaZachowującaStanAplikacji();
         }
     }
 }

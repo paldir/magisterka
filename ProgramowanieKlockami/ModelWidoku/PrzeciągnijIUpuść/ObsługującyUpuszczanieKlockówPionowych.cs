@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using GongSolutions.Wpf.DragDrop;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 
@@ -6,6 +7,13 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 {
     public class ObsługującyUpuszczanieKlockówPionowych : IDropTarget
     {
+        private readonly Action _metodaZachowującaStanAplikacji;
+
+        public ObsługującyUpuszczanieKlockówPionowych(Action metodaZachowującaStanAplikacji)
+        {
+            _metodaZachowującaStanAplikacji = metodaZachowującaStanAplikacji;
+        }
+
         public void DragOver(IDropInfo dropInfo)
         {
             KlocekPionowy upuszczanyKlocek = dropInfo.Data as KlocekPionowy;
@@ -30,6 +38,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             upuszczanyKlocek.ZPrzybornika = false;
 
             docelowaKolekcja.Insert(dropInfo.InsertIndex, upuszczanyKlocek);
+            _metodaZachowującaStanAplikacji();
         }
     }
 }
