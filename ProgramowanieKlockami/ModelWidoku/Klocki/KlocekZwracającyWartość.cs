@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Threading;
-using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -44,6 +40,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             }
 
             return Activator.CreateInstance<T>();
+        }
+
+        public override object Clone()
+        {
+            KlocekZwracającyWartość kopia = (KlocekZwracającyWartość) base.Clone();
+            kopia.MiejsceUmieszczenia = MiejsceUmieszczenia;
+
+            return kopia;
         }
     }
 }

@@ -34,6 +34,7 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.SzukanieTekstuWTekście;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.WielkościLiter;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne;
 using ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli;
+using ProgramowanieKlockami.ModelWidoku.PrzechowywanieStanuAplikacji;
 using ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść;
 
 namespace ProgramowanieKlockami.ModelWidoku
@@ -45,7 +46,6 @@ namespace ProgramowanieKlockami.ModelWidoku
         private string _nazwaNowejZmiennej;
         private double _powiększenie;
         private readonly Semafor _semafor;
-        private readonly Stack<StanAplikacji> _stanyAplikacji;
         private Thread _wątekDebugowania;
         private bool _wPunkciePrzerwania;
 
@@ -66,6 +66,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaKontynuacjiWykonywania { get; }
         public Komenda KomendaKopiowaniaKlocka { get; }
         public Komenda KomendaPrzejęciaSkupienia { get; }
+        public Komenda KomendaCofnięciaStanuAplikacji { get; }
         public Komenda KomendaPrzywróceniaStanuAplikacji { get; }
         public Komenda KomendaStartuProgramu { get; }
         public Komenda KomendaUsunięciaKlockaPionowego { get; }
@@ -77,6 +78,7 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaZatrzymaniaDebugowania { get; }
         public Komenda KomendaZwinięciaRozwinięciaKlockaZZawartością { get; }
         public Konsola Konsola { get; }
+        public MagazynZmian MagazynZmian { get; }
         public IEnumerable<ITypUstawieniaElementuListy> ModyfikacjeElementuListy { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>> ObcinaniaSpacji { get; }
         public ObsługującyPrzeciąganieZPrzybornika ObsługującyPrzeciąganieZPrzybornika { get; }
@@ -152,8 +154,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Główny()
         {
             _semafor = new Semafor();
-            _stanyAplikacji = new Stack<StanAplikacji>();
+            MagazynZmian = new MagazynZmian();
             Konsola = new Konsola();
+            KomendaCofnięciaStanuAplikacji = new Komenda(CofnijStanAplikacji);
             KomendaDodaniaUsunięciaPunktuPrzerwania = new Komenda(DodajUsuńPunktPrzerwania);
             KomendaDodaniaZmiennej = new Komenda(DodajZmienną);
             KomendaKontynuacjiWykonywania = new Komenda(KontynuujWykonywanie);
@@ -172,15 +175,13 @@ namespace ProgramowanieKlockami.ModelWidoku
             ObsługującyPrzeciąganieZPrzybornika = new ObsługującyPrzeciąganieZPrzybornika();
             ObsługującyPrzenoszenieKlockówPionowych = new ObsługującyPrzenoszenieKlockówPionowych();
             ObsługującyPrzenoszenieKlockówZwracającychWartość = new ObsługującyPrzenoszenieKlockówZwracającychWartość();
-            ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych(ZachowajStanAplikacji);
-            ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość(ZachowajStanAplikacji);
+            ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych(DodajDziałanie);
+            ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość(DodajDziałanie);
             Powiększenie = 1;
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
             Schowek = new ObservableCollection<Klocek> {null};
             Zmienne = new ObservableCollection<Zmienna>();
             _semafor.SemaforOpuszczony += _semafor_SemaforOpuszczony;
-
-            ZachowajStanAplikacji();
 
             CechyLiczby = new IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>[]
             {
@@ -436,6 +437,23 @@ namespace ProgramowanieKlockami.ModelWidoku
             klocek.Rozwinięty = !klocek.Rozwinięty;
         }
 
+        private void CofnijStanAplikacji()
+        {
+            MagazynZmian.Cofnij();
+            
+            /*StanAplikacji stanAplikacji = MagazynZmian.Cofnij();
+
+            RozpoczęcieProgramu.Zawartość.Clear();
+
+           foreach (KlocekPionowy klocekPionowy in stanAplikacji.Kod.Zawartość)
+                RozpoczęcieProgramu.Zawartość.Add(klocekPionowy);*/
+        }
+
+        private void DodajDziałanie(ManipulacjaKlockiem manipulacja)
+        {
+            MagazynZmian.DodajDziałanie(manipulacja);
+        }
+
         private void DodajUsuńPunktPrzerwania(object obiektKlocka)
         {
             KlocekPionowy klocekPionowy = (KlocekPionowy) obiektKlocka;
@@ -494,15 +512,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         private void PrzywróćStanAplikacji()
         {
-            if (_stanyAplikacji.Count > 1)
-                _stanyAplikacji.Pop();
-
-            StanAplikacji stanAplikacji = _stanyAplikacji.Peek();
-
-            RozpoczęcieProgramu.Zawartość.Clear();
-
-            foreach (KlocekPionowy klocekPionowy in stanAplikacji.Kod.Zawartość)
-                RozpoczęcieProgramu.Zawartość.Add(klocekPionowy);
+            MagazynZmian.Przywróć();
         }
 
         private void RozpocznijWykonywanieProgramu()
@@ -531,10 +541,16 @@ namespace ProgramowanieKlockami.ModelWidoku
         private void UsuńKlocekPionowy(object obiektKlocka)
         {
             KlocekPionowy usuwanyKlocek = (KlocekPionowy) obiektKlocka;
-            ZawartośćKlockaPionowegoZZawartością miejsceUmieszczenia = usuwanyKlocek.Rodzic?.Zawartość;
+            KlocekPionowyZZawartością klocekPionowyZZawartością = usuwanyKlocek.Rodzic;
 
-            miejsceUmieszczenia?.Remove(usuwanyKlocek);
-            ZachowajStanAplikacji();
+            if (klocekPionowyZZawartością != null)
+            {
+                ZawartośćKlockaPionowegoZZawartością miejsceUmieszczenia = klocekPionowyZZawartością.Zawartość;
+                int indeks = miejsceUmieszczenia.IndexOf(usuwanyKlocek);
+
+                miejsceUmieszczenia.RemoveAt(indeks);
+                DodajDziałanie(new ManipulacjaKlockiem(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek, indeks));
+            }
         }
 
         private void UsuńKlocekZwracającyWartość(object obiektKlocka)
@@ -542,7 +558,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość) obiektKlocka;
             usuwanyKlocek.MiejsceUmieszczenia[0] = null;
 
-            ZachowajStanAplikacji();
+            //ZachowajStanAplikacji(new UsunięcieKlockaPionowego(usuwanyKlocek, 0));
         }
 
         private void UsuńZmienną(object zmiennaDoUsunięcia)
@@ -585,12 +601,6 @@ namespace ProgramowanieKlockami.ModelWidoku
 
             Schowek.RemoveAt(0);
             Schowek.Add(klocek);
-            ZachowajStanAplikacji();
-        }
-
-        private void ZachowajStanAplikacji()
-        {
-            _stanyAplikacji.Push(new StanAplikacji(RozpoczęcieProgramu));
         }
 
         private void ZamknijOkno()

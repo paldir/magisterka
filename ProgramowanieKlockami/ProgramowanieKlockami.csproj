@@ -213,6 +213,9 @@
     <Compile Include="ModelWidoku\KonfiguracjaKonsoli\Konsola.cs" />
     <Compile Include="ModelWidoku\KonfiguracjaKonsoli\LiniaKonsoli.cs" />
     <Compile Include="ModelWidoku\Konwertery\WartośćLogicznaNaOdwrotnośćKonwerter.cs" />
+    <Compile Include="ModelWidoku\PrzechowywanieStanuAplikacji\MagazynZmian.cs" />
+    <Compile Include="ModelWidoku\PrzechowywanieStanuAplikacji\ManipulacjaKlockiem.cs" />
+    <Compile Include="ModelWidoku\PrzechowywanieStanuAplikacji\ManipulacjaKlockiemPionowym.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzeciąganieZPrzybornika.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówPionowych.cs" />
@@ -220,7 +223,6 @@
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyUpuszczanieKlockówZwracającychWartość.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\StałeLogiczne\Fałsz.cs" />
     <Compile Include="ModelWidoku\Klocki\Logika\StałeLogiczne\Prawda.cs" />
-    <Compile Include="ModelWidoku\StanAplikacji.cs" />
     <Compile Include="ModelWidoku\Zmienna.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\UstawZmienną.cs" />
     <Compile Include="ModelWidoku\Klocki\Zmienne\WartośćZmiennej.cs" />

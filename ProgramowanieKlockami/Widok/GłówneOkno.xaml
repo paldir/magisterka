@@ -1754,8 +1754,11 @@
         <StaticResource ResourceKey="GłównyModelWidoku"></StaticResource>
     </Window.DataContext>
     <Window.InputBindings>
-        <KeyBinding Command="{Binding KomendaPrzywróceniaStanuAplikacji}"
+        <KeyBinding Command="{Binding KomendaCofnięciaStanuAplikacji}"
                     Key="Z"
+                    Modifiers="Control"></KeyBinding>
+        <KeyBinding Command="{Binding KomendaPrzywróceniaStanuAplikacji}"
+                    Key="Y"
                     Modifiers="Control"></KeyBinding>
         <KeyBinding Command="{Binding KomendaStartuProgramu}"
                     Key="F4"></KeyBinding>
@@ -1781,9 +1784,14 @@
               HorizontalAlignment="Left"
               VerticalAlignment="Top">
             <MenuItem Header="Edycja">
-                <MenuItem Command="{Binding KomendaPrzywróceniaStanuAplikacji}"
+                <MenuItem Command="{Binding KomendaCofnięciaStanuAplikacji}"
                           Header="Cofnij"
-                          InputGestureText="CTRL+Z"></MenuItem>
+                          InputGestureText="CTRL+Z"
+                          IsEnabled="{Binding MagazynZmian.MożnaCofnąć}"></MenuItem>
+                <MenuItem Command="{Binding KomendaPrzywróceniaStanuAplikacji}"
+                          Header="Przywróć"
+                          InputGestureText="CTRL+Y"
+                          IsEnabled="{Binding MagazynZmian.MożnaPrzywrócić}"></MenuItem>
             </MenuItem>
             <MenuItem Header="Debugowanie">
                 <MenuItem Command="{Binding KomendaStartuProgramu}"

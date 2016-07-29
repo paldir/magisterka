@@ -2,14 +2,15 @@
 using System.Windows;
 using GongSolutions.Wpf.DragDrop;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
+using ProgramowanieKlockami.ModelWidoku.PrzechowywanieStanuAplikacji;
 
 namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 {
     public class ObsługującyUpuszczanieKlockówZwracającychWartość : IDropTarget
     {
-        private readonly Action _metodaZachowującaStanAplikacji;
+        private readonly Action<ManipulacjaKlockiem> _metodaZachowującaStanAplikacji;
 
-        public ObsługującyUpuszczanieKlockówZwracającychWartość(Action metodaZachowującaStanAplikacji)
+        public ObsługującyUpuszczanieKlockówZwracającychWartość(Action<ManipulacjaKlockiem> metodaZachowującaStanAplikacji)
         {
             _metodaZachowującaStanAplikacji = metodaZachowującaStanAplikacji;
         }
@@ -40,7 +41,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             upuszczanyKlocek.ZPrzybornika = false;
             docelowaKolekcja[0] = upuszczanyKlocek;
 
-            _metodaZachowującaStanAplikacji();
+            //_metodaZachowującaStanAplikacji();
         }
     }
 }

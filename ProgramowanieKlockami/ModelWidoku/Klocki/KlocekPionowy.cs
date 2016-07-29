@@ -113,5 +113,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         }
 
         public abstract void Wykonaj();
+
+        public override object Clone()
+        {
+            KlocekPionowy kopia = (KlocekPionowy) base.Clone();
+            kopia.Rodzic = Rodzic;
+
+            return kopia;
+        }
     }
 }
