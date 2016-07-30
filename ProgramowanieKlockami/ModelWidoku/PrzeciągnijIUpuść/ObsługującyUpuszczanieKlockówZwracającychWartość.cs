@@ -41,7 +41,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             upuszczanyKlocek.ZPrzybornika = false;
             docelowaKolekcja[0] = upuszczanyKlocek;
 
-            //_metodaZachowującaStanAplikacji();
+            _metodaZachowującaStanAplikacji(new ManipulacjaKlockiemZwracającymWartość(ManipulacjeKlockiem.Dodanie, upuszczanyKlocek));
         }
     }
 }

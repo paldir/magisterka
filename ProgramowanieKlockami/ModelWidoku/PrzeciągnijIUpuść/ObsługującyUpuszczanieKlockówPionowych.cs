@@ -8,9 +8,9 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
 {
     public class ObsługującyUpuszczanieKlockówPionowych : IDropTarget
     {
-        private readonly Action<ManipulacjaKlockiem> _metodaZachowującaStanAplikacji;
+        private readonly Action<ManipulacjaKlockiemPionowym> _metodaZachowującaStanAplikacji;
 
-        public ObsługującyUpuszczanieKlockówPionowych(Action<ManipulacjaKlockiem> metodaZachowującaStanAplikacji)
+        public ObsługującyUpuszczanieKlockówPionowych(Action<ManipulacjaKlockiemPionowym> metodaZachowującaStanAplikacji)
         {
             _metodaZachowującaStanAplikacji = metodaZachowującaStanAplikacji;
         }
@@ -40,7 +40,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             int indeks = dropInfo.InsertIndex;
 
             docelowaKolekcja.Insert(indeks, upuszczanyKlocek);
-            _metodaZachowującaStanAplikacji(new ManipulacjaKlockiem(ManipulacjeKlockiem.Dodanie, upuszczanyKlocek, indeks));
+            _metodaZachowującaStanAplikacji(new ManipulacjaKlockiemPionowym(ManipulacjeKlockiem.Dodanie, upuszczanyKlocek, indeks));
         }
     }
 }

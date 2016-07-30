@@ -212,10 +212,12 @@
     <Compile Include="ModelWidoku\Klocki\Tekst\Wyświetl.cs" />
     <Compile Include="ModelWidoku\KonfiguracjaKonsoli\Konsola.cs" />
     <Compile Include="ModelWidoku\KonfiguracjaKonsoli\LiniaKonsoli.cs" />
+    <Compile Include="ModelWidoku\Konwertery\KoniunkcjaWartościLogicznychKonwerter.cs" />
     <Compile Include="ModelWidoku\Konwertery\WartośćLogicznaNaOdwrotnośćKonwerter.cs" />
     <Compile Include="ModelWidoku\PrzechowywanieStanuAplikacji\MagazynZmian.cs" />
     <Compile Include="ModelWidoku\PrzechowywanieStanuAplikacji\ManipulacjaKlockiem.cs" />
     <Compile Include="ModelWidoku\PrzechowywanieStanuAplikacji\ManipulacjaKlockiemPionowym.cs" />
+    <Compile Include="ModelWidoku\PrzechowywanieStanuAplikacji\ManipulacjaKlockiemZwracającymWartość.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzeciąganieZPrzybornika.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenie.cs" />
     <Compile Include="ModelWidoku\PrzeciągnijIUpuść\ObsługującyPrzenoszenieKlockówPionowych.cs" />

@@ -440,16 +440,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         private void CofnijStanAplikacji()
         {
             MagazynZmian.Cofnij();
-            
-            /*StanAplikacji stanAplikacji = MagazynZmian.Cofnij();
-
-            RozpoczęcieProgramu.Zawartość.Clear();
-
-           foreach (KlocekPionowy klocekPionowy in stanAplikacji.Kod.Zawartość)
-                RozpoczęcieProgramu.Zawartość.Add(klocekPionowy);*/
         }
 
-        private void DodajDziałanie(ManipulacjaKlockiem manipulacja)
+        private void DodajDziałanie(ManipulacjaKlockiem manipulacja) 
         {
             MagazynZmian.DodajDziałanie(manipulacja);
         }
@@ -549,7 +542,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 int indeks = miejsceUmieszczenia.IndexOf(usuwanyKlocek);
 
                 miejsceUmieszczenia.RemoveAt(indeks);
-                DodajDziałanie(new ManipulacjaKlockiem(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek, indeks));
+                DodajDziałanie(new ManipulacjaKlockiemPionowym(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek, indeks));
             }
         }
 
@@ -558,7 +551,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość) obiektKlocka;
             usuwanyKlocek.MiejsceUmieszczenia[0] = null;
 
-            //ZachowajStanAplikacji(new UsunięcieKlockaPionowego(usuwanyKlocek, 0));
+            DodajDziałanie(new ManipulacjaKlockiemZwracającymWartość(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek));
         }
 
         private void UsuńZmienną(object zmiennaDoUsunięcia)

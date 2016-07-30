@@ -16,6 +16,7 @@
         Title="GłówneOkno">
     <Window.Resources>
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
+        <mwk:KoniunkcjaWartościLogicznychKonwerter x:Key="KoniunkcjaWartościLogicznychKonwerter"></mwk:KoniunkcjaWartościLogicznychKonwerter>
         <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
             <MenuItem Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaKopiowaniaKlocka}"
@@ -1786,12 +1787,26 @@
             <MenuItem Header="Edycja">
                 <MenuItem Command="{Binding KomendaCofnięciaStanuAplikacji}"
                           Header="Cofnij"
-                          InputGestureText="CTRL+Z"
-                          IsEnabled="{Binding MagazynZmian.MożnaCofnąć}"></MenuItem>
+                          InputGestureText="CTRL+Z">
+                    <MenuItem.IsEnabled>
+                        <MultiBinding Converter="{StaticResource KoniunkcjaWartościLogicznychKonwerter}">
+                            <Binding Path="MagazynZmian.MożnaCofnąć"></Binding>
+                            <Binding Converter="{StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}"
+                                     Path="Debugowanie"></Binding>
+                        </MultiBinding>
+                    </MenuItem.IsEnabled>
+                </MenuItem>
                 <MenuItem Command="{Binding KomendaPrzywróceniaStanuAplikacji}"
                           Header="Przywróć"
-                          InputGestureText="CTRL+Y"
-                          IsEnabled="{Binding MagazynZmian.MożnaPrzywrócić}"></MenuItem>
+                          InputGestureText="CTRL+Y">
+                    <MenuItem.IsEnabled>
+                        <MultiBinding Converter="{StaticResource KoniunkcjaWartościLogicznychKonwerter}">
+                            <Binding Path="MagazynZmian.MożnaPrzywrócić"></Binding>
+                            <Binding Converter="{StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}"
+                                     Path="Debugowanie"></Binding>
+                        </MultiBinding>
+                    </MenuItem.IsEnabled>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Debugowanie">
                 <MenuItem Command="{Binding KomendaStartuProgramu}"
