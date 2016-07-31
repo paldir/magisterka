@@ -542,7 +542,11 @@ namespace ProgramowanieKlockami.ModelWidoku
                 int indeks = miejsceUmieszczenia.IndexOf(usuwanyKlocek);
 
                 miejsceUmieszczenia.RemoveAt(indeks);
-                DodajDziałanie(new ManipulacjaKlockiemPionowym(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek, indeks));
+                DodajDziałanie(new ManipulacjaKlockiemPionowym(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek)
+                {
+                    IndeksDocelowy = indeks,
+                    Cel = miejsceUmieszczenia
+                });
             }
         }
 

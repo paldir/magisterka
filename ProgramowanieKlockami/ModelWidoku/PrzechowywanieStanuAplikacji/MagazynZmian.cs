@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace ProgramowanieKlockami.ModelWidoku.PrzechowywanieStanuAplikacji
 {
-    public class MagazynZmian :INotifyPropertyChanged
+    public class MagazynZmian : INotifyPropertyChanged
     {
         private int _indeksAktualnegoStanu;
         private bool _możnaCofnąć;
@@ -55,7 +55,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzechowywanieStanuAplikacji
             if (_indeksAktualnegoStanu == -1)
                 MożnaCofnąć = false;
 
-            if (_indeksAktualnegoStanu < _manipulacje.Count)
+            if (_indeksAktualnegoStanu < _manipulacje.Count - 1)
                 MożnaPrzywrócić = true;
         }
 
@@ -66,7 +66,7 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzechowywanieStanuAplikacji
 
             _manipulacje.Add(manipulacja);
 
-            _indeksAktualnegoStanu++;
+            _indeksAktualnegoStanu = _manipulacje.Count - 1;
 
             if (_indeksAktualnegoStanu >= 0)
                 MożnaCofnąć = true;

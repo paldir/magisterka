@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using GongSolutions.Wpf.DragDrop;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
@@ -37,10 +38,23 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             KlocekPionowy upuszczanyKlocek = (KlocekPionowy) dropInfo.Data;
             upuszczanyKlocek.Rodzic = docelowaKolekcja.KlocekPionowyZZawartością;
             upuszczanyKlocek.ZPrzybornika = false;
-            int indeks = dropInfo.InsertIndex;
+            int indeksDocelowy = dropInfo.InsertIndex;
+            IDragInfo informacjeOPrzeciągnięciu = dropInfo.DragInfo;
+            ZawartośćKlockaPionowegoZZawartością źródło = informacjeOPrzeciągnięciu.SourceCollection as ZawartośćKlockaPionowegoZZawartością;
+            ManipulacjaKlockiemPionowym manipulacja = new ManipulacjaKlockiemPionowym(ManipulacjeKlockiem.Dodanie, upuszczanyKlocek)
+            {
+                IndeksDocelowy = indeksDocelowy,
+                Cel = docelowaKolekcja
+            };
 
-            docelowaKolekcja.Insert(indeks, upuszczanyKlocek);
-            _metodaZachowującaStanAplikacji(new ManipulacjaKlockiemPionowym(ManipulacjeKlockiem.Dodanie, upuszczanyKlocek, indeks));
+            if (źródło != null)
+            {
+                manipulacja.IndeksŹródłowy = informacjeOPrzeciągnięciu.SourceIndex;
+                manipulacja.Źródło = źródło;
+            }
+
+            docelowaKolekcja.Insert(indeksDocelowy, upuszczanyKlocek);
+            _metodaZachowującaStanAplikacji(manipulacja);
         }
     }
 }

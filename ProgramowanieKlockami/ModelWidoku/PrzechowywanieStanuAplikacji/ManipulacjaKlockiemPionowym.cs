@@ -4,24 +4,37 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzechowywanieStanuAplikacji
 {
     public class ManipulacjaKlockiemPionowym : ManipulacjaKlockiem<KlocekPionowy>
     {
-        private readonly int _indeks;
+        public ZawartośćKlockaPionowegoZZawartością Cel { get; set; }
+        public int IndeksDocelowy { get; set; }
+        public int IndeksŹródłowy { get; set; }
+        public ZawartośćKlockaPionowegoZZawartością Źródło { get; set; }
 
-        public ManipulacjaKlockiemPionowym(ManipulacjeKlockiem rodzajManipulacji, KlocekPionowy klocekPionowy, int indeks) : base(rodzajManipulacji, klocekPionowy)
+        public ManipulacjaKlockiemPionowym(ManipulacjeKlockiem rodzajManipulacji, KlocekPionowy klocekPionowy) : base(rodzajManipulacji, klocekPionowy)
         {
-            _indeks = indeks;
         }
 
         protected override void Dodaj()
         {
-            Klocek.Rodzic.Zawartość.Insert(_indeks, Klocek);
+            Źródło?.RemoveAt(IndeksŹródłowy);
+
+            if (Cel != null)
+            {
+                Klocek.Rodzic = Cel.KlocekPionowyZZawartością;
+
+                Cel.Insert(IndeksDocelowy, Klocek);
+            }
         }
 
         protected override void Usuń()
         {
-            ZawartośćKlockaPionowegoZZawartością miejsceUmieszczenia = Klocek.Rodzic.Zawartość;
+            Cel?.RemoveAt(IndeksDocelowy);
 
-            if (_indeks < miejsceUmieszczenia.Count)
-                miejsceUmieszczenia.RemoveAt(_indeks);
+            if (Źródło != null)
+            {
+                Klocek.Rodzic = Źródło.KlocekPionowyZZawartością;
+
+                Źródło.Insert(IndeksŹródłowy, Klocek);
+            }
         }
     }
 }
