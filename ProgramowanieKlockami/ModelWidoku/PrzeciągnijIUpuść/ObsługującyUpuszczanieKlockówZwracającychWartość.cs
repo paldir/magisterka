@@ -40,8 +40,13 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzeciągnijIUpuść
             upuszczanyKlocek.MiejsceUmieszczenia = docelowaKolekcja;
             upuszczanyKlocek.ZPrzybornika = false;
             docelowaKolekcja[0] = upuszczanyKlocek;
+            ManipulacjaKlockiemZwracającymWartość manipulacja = new ManipulacjaKlockiemZwracającymWartość(ManipulacjeKlockiem.Dodanie, upuszczanyKlocek) {Cel = docelowaKolekcja};
+            WartośćWewnętrznegoKlockaZwracającegoWartość źródło = dropInfo.DragInfo.SourceCollection as WartośćWewnętrznegoKlockaZwracającegoWartość;
 
-            _metodaZachowującaStanAplikacji(new ManipulacjaKlockiemZwracającymWartość(ManipulacjeKlockiem.Dodanie, upuszczanyKlocek));
+            if (źródło != null)
+                manipulacja.Źródło = źródło;
+
+            _metodaZachowującaStanAplikacji(manipulacja);
         }
     }
 }

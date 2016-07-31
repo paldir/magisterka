@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using ProgramowanieKlockami.ModelWidoku.Klocki;
+﻿using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.ModelWidoku.PrzechowywanieStanuAplikacji
 {

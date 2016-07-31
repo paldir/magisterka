@@ -553,9 +553,10 @@ namespace ProgramowanieKlockami.ModelWidoku
         private void UsuńKlocekZwracającyWartość(object obiektKlocka)
         {
             KlocekZwracającyWartość usuwanyKlocek = (KlocekZwracającyWartość) obiektKlocka;
-            usuwanyKlocek.MiejsceUmieszczenia[0] = null;
+            WartośćWewnętrznegoKlockaZwracającegoWartość miejsceUmieszczenia = usuwanyKlocek.MiejsceUmieszczenia;
+            miejsceUmieszczenia[0] = null;
 
-            DodajDziałanie(new ManipulacjaKlockiemZwracającymWartość(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek));
+            DodajDziałanie(new ManipulacjaKlockiemZwracającymWartość(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek) {Cel = miejsceUmieszczenia});
         }
 
         private void UsuńZmienną(object zmiennaDoUsunięcia)
