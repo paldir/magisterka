@@ -20,7 +20,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
             Tekst = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(object));
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             int indeks = (int) Math.Round(Indeks.Zwróć<double>());
             string tekst = Tekst.Zwróć<object>().ToString();

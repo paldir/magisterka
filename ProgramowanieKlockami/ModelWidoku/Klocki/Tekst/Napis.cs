@@ -18,7 +18,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
             Treść = string.Empty;
         }
 
-        protected override object ZwróćNiebezpiecznie() => Treść;
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów) => Treść;
 
         public override object Clone()
         {

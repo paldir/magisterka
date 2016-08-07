@@ -17,7 +17,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
             Kolor = Kolory.Matematyka;
         }
 
-        protected override object ZwróćNiebezpiecznie() => Liczba;
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów) => Liczba;
 
         public override object Clone()
         {

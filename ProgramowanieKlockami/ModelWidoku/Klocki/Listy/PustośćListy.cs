@@ -18,7 +18,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(ZmiennaTypuListowego));
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             return Lista.Zwróć<ZmiennaTypuListowego>().Count == 0;
         }

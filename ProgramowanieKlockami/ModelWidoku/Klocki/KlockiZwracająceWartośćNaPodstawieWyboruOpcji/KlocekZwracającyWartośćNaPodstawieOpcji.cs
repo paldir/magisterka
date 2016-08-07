@@ -10,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
 
         public IOpcjaZwracającaWartość<T> WybranaOpcja { get; set; }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             return WybranaOpcja.Wartość;
         }

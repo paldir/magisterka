@@ -107,7 +107,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 {
                     Błąd = true;
 
-                    dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZTypemZmiennej(typeof(ZmiennaTypuListowego), wartośćZmiennej?.GetType())); });
+                    dispatcher.Invoke(delegate { Błędy.Add(new BłądZwiązanyZTypemZmiennej(typZmiennej, wartośćZmiennej?.GetType())); });
                 }
             }
         }

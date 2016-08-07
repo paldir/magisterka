@@ -22,6 +22,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
             Kolor = Kolory.Matematyka;
         }
 
-        protected override object ZwróćNiebezpiecznie() => Los.NextDouble();
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów) => Los.NextDouble();
     }
 }

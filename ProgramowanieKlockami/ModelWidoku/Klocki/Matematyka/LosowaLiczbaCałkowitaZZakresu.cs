@@ -27,7 +27,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
             Liczba2 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             int liczba1 = (int) Math.Ceiling(Liczba1.Zwróć<double>());
             int liczba2 = (int) Math.Ceiling(Liczba2.Zwróć<double>());

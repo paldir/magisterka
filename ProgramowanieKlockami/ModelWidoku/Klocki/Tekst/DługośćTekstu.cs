@@ -13,7 +13,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
             Kolor = Kolory.Tekst;
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             string napis = Wartość.Zwróć<object>().ToString();
 

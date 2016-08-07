@@ -13,7 +13,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             Kolor = Kolory.Listy;
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             return Wartość.Zwróć<ZmiennaTypuListowego>().Count;
         }

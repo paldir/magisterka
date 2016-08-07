@@ -8,21 +8,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         public WartośćWewnętrznegoKlockaZwracającegoWartość MiejsceUmieszczenia { get; set; }
 
-        private object Zwróć()
+        private object Zwróć(bool sprawdzanieBłędów)
         {
             SprawdźPoprawnośćKlockówKonfigurujących();
 
             if (Błąd)
                 return ZwracanyTyp == typeof(object) ? string.Empty : Activator.CreateInstance(ZwracanyTyp);
 
-            return ZwróćNiebezpiecznie();
+            return ZwróćNiebezpiecznie(sprawdzanieBłędów);
         }
 
-        protected abstract object ZwróćNiebezpiecznie();
+        protected abstract object ZwróćNiebezpiecznie(bool sprawdzanieBłędów);
 
-        public T Zwróć<T>()
+        public T Zwróć<T>(bool sprawdzanieBłędów = false)
         {
-            object zwróconaWartość = Zwróć();
+            object zwróconaWartość = Zwróć(sprawdzanieBłędów);
             Type typDocelowy = typeof(T);
 
             if (zwróconaWartość != null)

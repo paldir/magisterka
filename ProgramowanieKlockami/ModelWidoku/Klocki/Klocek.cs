@@ -120,7 +120,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             foreach (WartośćWewnętrznegoKlockaZwracającegoWartość wartośćWewnętrznegoKlockaZwracającegoWartość in KlockiKonfigurujące)
             {
                 Type oczekiwanyTyp = wartośćWewnętrznegoKlockaZwracającegoWartość.PrzyjmowanyTyp;
-                Type umieszczonyTyp = wartośćWewnętrznegoKlockaZwracającegoWartość[0]?.Zwróć<object>()?.GetType();
+                Type umieszczonyTyp = wartośćWewnętrznegoKlockaZwracającegoWartość[0]?.Zwróć<object>(true)?.GetType();
 
                 if (!oczekiwanyTyp.IsAssignableFrom(umieszczonyTyp))
                 {

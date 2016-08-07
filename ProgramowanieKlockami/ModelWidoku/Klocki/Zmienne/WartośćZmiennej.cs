@@ -17,7 +17,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne
             Kolor = Kolory.Zmienne;
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             return WybranaZmienna?.Wartość;
         }

@@ -27,7 +27,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             return kopia;
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             ZmiennaTypuListowego lista = Wartość.Zwróć<ZmiennaTypuListowego>();
 

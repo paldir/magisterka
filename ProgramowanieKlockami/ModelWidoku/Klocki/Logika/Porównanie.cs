@@ -13,10 +13,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
             Kolor = Kolory.Logika;
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             if (Wartość1.Zwróć<object>().GetType() == Wartość2.Zwróć<object>().GetType())
-                return base.ZwróćNiebezpiecznie();
+                return base.ZwróćNiebezpiecznie(sprawdzanieBłędów);
 
             return WybranaOpcja is Nierówny;
         }

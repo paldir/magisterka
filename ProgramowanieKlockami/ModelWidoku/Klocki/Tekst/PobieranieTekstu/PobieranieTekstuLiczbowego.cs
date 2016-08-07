@@ -3,6 +3,7 @@
     public class PobieranieTekstuLiczbowego : IPobieranieTekstu
     {
         public string ReprezentacjaTekstowa => "liczbę";
+        public object WartośćDomyślna => 0.0;
 
         public object Konwertuj(string x)
         {

@@ -10,7 +10,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
     {
         public override string Nazwa => "Pobrany tekst";
         public override string Opis => "Pobiera od użytkownika tekst/liczbę.";
-        public override Type ZwracanyTyp => typeof(object);
+        public override Type ZwracanyTyp => null;
 
         public Konsola Konsola { get; set; }
         public IPobieranieTekstu WybranaOpcja { get; set; }
@@ -20,9 +20,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
             Kolor = Kolory.Tekst;
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             string wiadomość = Wartość.Zwróć<object>().ToString();
+
+            if (sprawdzanieBłędów)
+                return string.Empty;
+
             AutoResetEvent semafor = new AutoResetEvent(false);
 
             Konsola.DodajLinię(wiadomość);

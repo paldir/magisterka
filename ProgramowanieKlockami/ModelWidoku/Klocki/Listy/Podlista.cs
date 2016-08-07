@@ -23,7 +23,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             Lista = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(ZmiennaTypuListowego));
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             ZmiennaTypuListowego lista = Lista.Zwróć<ZmiennaTypuListowego>();
             int indeks1 = (int) Math.Round(Indeks1.Zwróć<double>());

@@ -19,7 +19,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
             Wartość2 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(TParametr2));
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             return WybranaOpcja.Zwróć(Wartość1.Zwróć<TParametr1>(), Wartość2.Zwróć<TParametr2>());
         }

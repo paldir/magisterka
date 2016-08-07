@@ -13,7 +13,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
             Kolor = Kolory.Logika;
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             return !Wartość.Zwróć<bool>();
         }

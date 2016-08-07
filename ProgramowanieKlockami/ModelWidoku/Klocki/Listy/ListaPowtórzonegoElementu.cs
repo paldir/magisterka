@@ -21,7 +21,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             Liczba = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             return new ZmiennaTypuListowego(Enumerable.Repeat(Element.Zwróć<object>(), (int) Math.Round(Liczba.Zwróć<double>())));
         }

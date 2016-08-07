@@ -20,7 +20,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
             Liczba2 = new WartośćWewnętrznegoKlockaZwracającegoWartość(typeof(double));
         }
 
-        protected override object ZwróćNiebezpiecznie()
+        protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
             return Math.Abs(Liczba1.Zwróć<double>()%Liczba2.Zwróć<double>()) < double.Epsilon*2;
         }
