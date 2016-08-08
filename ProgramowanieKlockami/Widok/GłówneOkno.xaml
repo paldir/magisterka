@@ -1786,7 +1786,15 @@
         <Menu Grid.Row="0"
               HorizontalAlignment="Left"
               VerticalAlignment="Top">
-            <MenuItem Header="Edycja">
+            <MenuItem Header="Plik"
+                      IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
+                <MenuItem Header="Nowy"></MenuItem>
+                <MenuItem Header="Otwórz"></MenuItem>
+                <MenuItem Header="Zapisz"></MenuItem>
+                <MenuItem Header="Zapisz jako..."></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edycja"
+                      IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
                 <MenuItem Command="{Binding KomendaCofnięciaStanuAplikacji}"
                           Header="Cofnij"
                           InputGestureText="CTRL+Z">
