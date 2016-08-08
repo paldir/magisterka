@@ -37,7 +37,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
                 return;
 
             ZmiennaTypuListowego lista = (ZmiennaTypuListowego) WybranaZmienna.Wartość;
-            int indeks = (int) Math.Round(Indeks.Zwróć<double>());
+            int indeks = (int) Math.Round(Indeks.Zwróć<double>(false));
 
             if ((indeks >= 0) && (indeks < lista.Count))
                 lista.RemoveAt(indeks);

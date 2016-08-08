@@ -15,7 +15,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            if (Wartość1.Zwróć<object>().GetType() == Wartość2.Zwróć<object>().GetType())
+            if (Wartość1.Zwróć<object>(sprawdzanieBłędów).GetType() == Wartość2.Zwróć<object>(sprawdzanieBłędów).GetType())
                 return base.ZwróćNiebezpiecznie(sprawdzanieBłędów);
 
             return WybranaOpcja is Nierówny;

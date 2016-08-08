@@ -20,7 +20,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            string tekst = Tekst.Zwróć<object>().ToString();
+            string tekst = Tekst.Zwróć<object>(sprawdzanieBłędów).ToString();
 
             return string.IsNullOrEmpty(tekst);
         }

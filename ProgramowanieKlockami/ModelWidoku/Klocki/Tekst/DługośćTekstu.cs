@@ -15,7 +15,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            string napis = Wartość.Zwróć<object>().ToString();
+            string napis = Wartość.Zwróć<object>(sprawdzanieBłędów).ToString();
 
             return napis.Length;
         }

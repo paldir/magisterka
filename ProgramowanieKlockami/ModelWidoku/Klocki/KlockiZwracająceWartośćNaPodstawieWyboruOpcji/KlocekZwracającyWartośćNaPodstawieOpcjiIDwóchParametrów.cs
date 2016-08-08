@@ -21,7 +21,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            return WybranaOpcja.Zwróć(Wartość1.Zwróć<TParametr1>(), Wartość2.Zwróć<TParametr2>());
+            return WybranaOpcja.Zwróć(Wartość1.Zwróć<TParametr1>(sprawdzanieBłędów), Wartość2.Zwróć<TParametr2>(sprawdzanieBłędów));
         }
 
         public override object Clone()

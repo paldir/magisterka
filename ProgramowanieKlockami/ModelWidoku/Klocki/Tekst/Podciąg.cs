@@ -24,9 +24,9 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            string tekst = Tekst.Zwróć<object>().ToString();
-            int indeks1 = (int) Math.Round(Indeks1.Zwróć<double>());
-            int indeks2 = (int) Math.Round(Indeks2.Zwróć<double>());
+            string tekst = Tekst.Zwróć<object>(sprawdzanieBłędów).ToString();
+            int indeks1 = (int) Math.Round(Indeks1.Zwróć<double>(sprawdzanieBłędów));
+            int indeks2 = (int) Math.Round(Indeks2.Zwróć<double>(sprawdzanieBłędów));
             int długośćTekstu = tekst.Length;
 
             if (indeks1 > indeks2)

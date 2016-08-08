@@ -29,7 +29,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
         {
             SprawdźPoprawnośćKlockówKonfigurujących();
 
-            bool warunek = (Wartość[0] != null) && Wartość.Zwróć<bool>() && !Błąd;
+            bool warunek = (Wartość[0] != null) && Wartość.Zwróć<bool>(false) && !Błąd;
 
             if (warunek)
                 base.Wykonaj();

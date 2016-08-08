@@ -15,7 +15,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            return !Wartość.Zwróć<bool>();
+            return !Wartość.Zwróć<bool>(sprawdzanieBłędów);
         }
     }
 }

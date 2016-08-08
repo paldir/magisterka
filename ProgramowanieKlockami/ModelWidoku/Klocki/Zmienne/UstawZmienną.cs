@@ -28,7 +28,7 @@
             if (Błąd)
                 return;
 
-            WybranaZmienna.Wartość = Wartość.Zwróć<object>();
+            WybranaZmienna.Wartość = Wartość.Zwróć<object>(false);
         }
     }
 }

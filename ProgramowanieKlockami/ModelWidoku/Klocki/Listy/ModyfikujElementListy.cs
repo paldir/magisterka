@@ -43,8 +43,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
                 return;
 
             ZmiennaTypuListowego lista = (ZmiennaTypuListowego) WybranaZmienna.Wartość;
-            int indeks = (int) Math.Round(Indeks.Zwróć<double>());
-            object wartość = Wartość.Zwróć<object>();
+            int indeks = (int) Math.Round(Indeks.Zwróć<double>(false));
+            object wartość = Wartość.Zwróć<object>(false);
 
             WybranyTypModyfikacjiListy.ModyfikujListę(lista, indeks, wartość);
         }

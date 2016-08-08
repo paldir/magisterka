@@ -29,8 +29,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            int liczba1 = (int) Math.Ceiling(Liczba1.Zwróć<double>());
-            int liczba2 = (int) Math.Ceiling(Liczba2.Zwróć<double>());
+            int liczba1 = (int) Math.Ceiling(Liczba1.Zwróć<double>(sprawdzanieBłędów));
+            int liczba2 = (int) Math.Ceiling(Liczba2.Zwróć<double>(sprawdzanieBłędów));
 
             if (liczba1 > liczba2)
             {

@@ -30,7 +30,7 @@
 
             ZmiennaTypuListowego lista = (ZmiennaTypuListowego) WybranaZmienna.Wartość;
 
-            lista.Add(Wartość.Zwróć<object>());
+            lista.Add(Wartość.Zwróć<object>(false));
         }
     }
 }

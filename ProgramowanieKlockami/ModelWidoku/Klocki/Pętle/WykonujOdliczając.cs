@@ -43,9 +43,9 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
             if (Błąd)
                 return;
 
-            double początek = Od.Zwróć<double>();
-            double koniec = Do.Zwróć<double>();
-            double okres = Interwał.Zwróć<double>();
+            double początek = Od.Zwróć<double>(false);
+            double koniec = Do.Zwróć<double>(false);
+            double okres = Interwał.Zwróć<double>(false);
             Func<double, double, bool> funkcjaPorównująca;
 
             if (okres < 0)

@@ -22,7 +22,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            return Math.Abs(Liczba1.Zwróć<double>()%Liczba2.Zwróć<double>()) < double.Epsilon*2;
+            return Math.Abs(Liczba1.Zwróć<double>(sprawdzanieBłędów) %Liczba2.Zwróć<double>(sprawdzanieBłędów)) < double.Epsilon*2;
         }
 
         public override object Clone()

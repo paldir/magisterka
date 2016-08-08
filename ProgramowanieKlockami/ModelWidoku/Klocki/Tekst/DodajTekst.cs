@@ -29,7 +29,7 @@
                 return;
 
             object wartośćZmiennej = WybranaZmienna.Wartość;
-            string zwróconaWartość = Wartość.Zwróć<string>();
+            string zwróconaWartość = Wartość.Zwróć<string>(false);
 
             if (wartośćZmiennej == null)
                 wartośćZmiennej = string.Empty;

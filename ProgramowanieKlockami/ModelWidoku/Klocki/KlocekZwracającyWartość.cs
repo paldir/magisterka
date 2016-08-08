@@ -13,14 +13,19 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             SprawdźPoprawnośćKlockówKonfigurujących();
 
             if (Błąd)
+            {
+                if (ZwracanyTyp == null)
+                    return null;
+
                 return ZwracanyTyp == typeof(object) ? string.Empty : Activator.CreateInstance(ZwracanyTyp);
+            }
 
             return ZwróćNiebezpiecznie(sprawdzanieBłędów);
         }
 
         protected abstract object ZwróćNiebezpiecznie(bool sprawdzanieBłędów);
 
-        public T Zwróć<T>(bool sprawdzanieBłędów = false)
+        public T Zwróć<T>(bool sprawdzanieBłędów)
         {
             object zwróconaWartość = Zwróć(sprawdzanieBłędów);
             Type typDocelowy = typeof(T);

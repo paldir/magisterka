@@ -285,6 +285,8 @@
                     Value="Red"></Setter>
             <Setter Property="StrokeThickness"
                     Value="1"></Setter>
+            <Setter Property="ToolTipService.ShowOnDisabled"
+                    Value="True"></Setter>
             <Setter Property="VerticalAlignment"
                     Value="Top"></Setter>
         </Style>

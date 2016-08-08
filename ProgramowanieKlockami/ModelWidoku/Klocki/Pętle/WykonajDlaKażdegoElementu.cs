@@ -29,7 +29,7 @@
             if (Błąd)
                 return;
 
-            ZmiennaTypuListowego lista = Wartość.Zwróć<ZmiennaTypuListowego>();
+            ZmiennaTypuListowego lista = Wartość.Zwróć<ZmiennaTypuListowego>(false);
 
             foreach (object element in lista)
             {

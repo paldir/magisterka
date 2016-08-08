@@ -28,7 +28,7 @@
             if (Błąd)
                 return;
 
-            double wartość = Wartość.Zwróć<double>();
+            double wartość = Wartość.Zwróć<double>(false);
             WybranaZmienna.Wartość = (double) WybranaZmienna.Wartość + wartość;
         }
     }

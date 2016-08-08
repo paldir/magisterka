@@ -52,7 +52,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
                 KlocekZwracającyWartość klocekZwracającyWartość = wartośćKlockaPrzyjmującegoWartość[0];
 
                 if (klocekZwracającyWartość != null)
-                    lista.Add(klocekZwracającyWartość.Zwróć<object>());
+                    lista.Add(klocekZwracającyWartość.Zwróć<object>(false));
             }
 
             return lista;

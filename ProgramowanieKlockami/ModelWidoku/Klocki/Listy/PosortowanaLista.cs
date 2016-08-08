@@ -29,7 +29,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            ZmiennaTypuListowego lista = Wartość.Zwróć<ZmiennaTypuListowego>();
+            ZmiennaTypuListowego lista = Wartość.Zwróć<ZmiennaTypuListowego>(sprawdzanieBłędów);
 
             return WybranySposóbSortowania.Uporządkuj(lista, WybranyPorządekSortowania.Rosnąco);
         }

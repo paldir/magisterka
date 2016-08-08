@@ -5,6 +5,9 @@
         public string ReprezentacjaTekstowa => "tekst";
         public object WartośćDomyślna => string.Empty;
 
-        public object Konwertuj(string x) => x;
+        public object Konwertuj(string x)
+        {
+            return string.IsNullOrEmpty(x) ? string.Empty : x;
+        }
     }
 }

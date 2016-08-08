@@ -29,7 +29,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
             if (Błąd)
                 return;
 
-            object wartość = Wartość.Zwróć<object>();
+            object wartość = Wartość.Zwróć<object>(false);
 
             if (wartość != null)
                 Konsola.DodajLinię(wartość.ToString());

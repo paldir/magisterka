@@ -22,8 +22,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            int indeks = (int) Math.Round(Indeks.Zwróć<double>());
-            ZmiennaTypuListowego lista = Lista.Zwróć<ZmiennaTypuListowego>();
+            int indeks = (int) Math.Round(Indeks.Zwróć<double>(sprawdzanieBłędów));
+            ZmiennaTypuListowego lista = Lista.Zwróć<ZmiennaTypuListowego>(sprawdzanieBłędów);
 
             return (indeks >= 0) && (indeks < lista.Count) ? lista[indeks] : null;
         }

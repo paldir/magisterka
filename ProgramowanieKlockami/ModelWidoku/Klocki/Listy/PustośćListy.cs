@@ -20,7 +20,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            return Lista.Zwróć<ZmiennaTypuListowego>().Count == 0;
+            return Lista.Zwróć<ZmiennaTypuListowego>(sprawdzanieBłędów).Count == 0;
         }
 
         public override object Clone()

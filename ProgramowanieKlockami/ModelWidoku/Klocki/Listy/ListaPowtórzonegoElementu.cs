@@ -23,7 +23,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            return new ZmiennaTypuListowego(Enumerable.Repeat(Element.Zwróć<object>(), (int) Math.Round(Liczba.Zwróć<double>())));
+            return new ZmiennaTypuListowego(Enumerable.Repeat(Element.Zwróć<object>(sprawdzanieBłędów), (int) Math.Round(Liczba.Zwróć<double>(sprawdzanieBłędów))));
         }
 
         public override object Clone()

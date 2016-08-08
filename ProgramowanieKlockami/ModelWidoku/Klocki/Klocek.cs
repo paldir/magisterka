@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {

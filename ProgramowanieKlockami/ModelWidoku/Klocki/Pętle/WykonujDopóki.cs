@@ -21,7 +21,7 @@
                 if (Błąd)
                     return;
 
-                if (!Wartość.Zwróć<bool>())
+                if (!Wartość.Zwróć<bool>(false))
                     break;
 
                 ZresetujRekurencyjnieFlagęSkokuWPętli(this);

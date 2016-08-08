@@ -8,6 +8,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
     public class PobranyTekst : KlocekZwracającyWartośćPrzyjmującyWartość
     {
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
+
         public override string Nazwa => "Pobrany tekst";
         public override string Opis => "Pobiera od użytkownika tekst/liczbę.";
         public override Type ZwracanyTyp => null;
@@ -22,10 +24,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            string wiadomość = Wartość.Zwróć<object>().ToString();
+            string wiadomość = Wartość[0]?.Zwróć<object>(false).ToString();
 
             if (sprawdzanieBłędów)
-                return string.Empty;
+                return WybranaOpcja.WartośćDomyślna;
 
             AutoResetEvent semafor = new AutoResetEvent(false);
 
