@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -23,7 +22,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
 
-        public Brush KolorPierwotny { get; private set; }
+        public Brush KolorPierwotny { get; set; }
         public bool ZPrzybornika { get; set; }
 
         public bool Aktywny

@@ -92,6 +92,13 @@ namespace ProgramowanieKlockami.ModelWidoku.PrzechowywanieStanuAplikacji
                 MożnaCofnąć = true;
         }
 
+        public void Wyczyść()
+        {
+            _manipulacje.Clear();
+
+            MożnaCofnąć = MożnaPrzywrócić = false;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

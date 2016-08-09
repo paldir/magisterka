@@ -88,7 +88,6 @@ namespace ProgramowanieKlockami.ModelWidoku
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
         public IEnumerable<IPobieranieTekstu> PobieraniaTekstu { get; }
         public IEnumerable<IPorządekSortowania> PorządkiSortowania { get; }
-        public RozpoczęcieProgramu RozpoczęcieProgramu { get; }
         public ObservableCollection<Klocek> Schowek { get; }
         public IEnumerable<ISposóbSortowaniaListy> SortowaniaListy { get; }
         public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
@@ -99,6 +98,9 @@ namespace ProgramowanieKlockami.ModelWidoku
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> ZaokrąglaniaLiczby { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
         public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, object, object>> ZnakiPorównania { get; }
+
+        public RozpoczęcieProgramu RozpoczęcieProgramu { get; set; }
+        public string ŚcieżkaPliku { get; set; }
 
         public bool Debugowanie
         {
