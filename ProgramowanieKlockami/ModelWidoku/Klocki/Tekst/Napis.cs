@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Xml;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {
-    public class Napis : KlocekZwracającyWartość
+    public sealed class Napis : KlocekZwracającyWartość
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 
@@ -26,6 +27,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
             kopia.Treść = (string) Treść.Clone();
 
             return kopia;
+        }
+
+        public override void WriteXml(XmlWriter writer)
+        {
+            base.WriteXml(writer);
+            writer.WriteElementString("Treść", Treść);
+            writer.WriteEndElement();
         }
     }
 }

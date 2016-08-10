@@ -4,9 +4,9 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
-    public class ModyfikujElementListy : KlocekPionowy
+    public sealed class ModyfikujElementListy : KlocekPionowy
     {
-        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] {Indeks, Wartość};
+        protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new[] { Indeks, Wartość };
 
         public override string Nazwa => "Modyfikacja elementu listy";
         public override string Opis => "Ustawia element listy albo wstawia go w określone miejsce.";
@@ -26,9 +26,9 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         public override object Clone()
         {
-            ModyfikujElementListy kopia = (ModyfikujElementListy) base.Clone();
-            kopia.Indeks[0] = (KlocekZwracającyWartość) Indeks[0]?.Clone();
-            kopia.Wartość[0] = (KlocekZwracającyWartość) Wartość[0]?.Clone();
+            ModyfikujElementListy kopia = (ModyfikujElementListy)base.Clone();
+            kopia.Indeks[0] = (KlocekZwracającyWartość)Indeks[0]?.Clone();
+            kopia.Wartość[0] = (KlocekZwracającyWartość)Wartość[0]?.Clone();
             kopia.WybranaZmienna = WybranaZmienna;
             kopia.WybranyTypModyfikacjiListy = WybranyTypModyfikacjiListy;
 
@@ -38,7 +38,15 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override void WriteXml(XmlWriter writer)
         {
             base.WriteXml(writer);
-
+            writer.WriteStartElement("Indeks");
+            Indeks[0]?.WriteXml(writer);
+            writer.WriteEndElement();
+            writer.WriteStartElement("Wartość");
+            Wartość[0]?.WriteXml(writer);
+            writer.WriteEndElement();
+            writer.WriteElementString("WybranaZmienna", WybranaZmienna?.Nazwa);
+            writer.WriteElementString("WybranyTypModyfikacjiListy", WybranyTypModyfikacjiListy.ToString());
+            writer.WriteEndElement();
         }
 
         public override void Wykonaj()
@@ -49,8 +57,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             if (Błąd)
                 return;
 
-            ZmiennaTypuListowego lista = (ZmiennaTypuListowego) WybranaZmienna.Wartość;
-            int indeks = (int) Math.Round(Indeks.Zwróć<double>(false));
+            ZmiennaTypuListowego lista = (ZmiennaTypuListowego)WybranaZmienna.Wartość;
+            int indeks = (int)Math.Round(Indeks.Zwróć<double>(false));
             object wartość = Wartość.Zwróć<object>(false);
 
             WybranyTypModyfikacjiListy.ModyfikujListę(lista, indeks, wartość);

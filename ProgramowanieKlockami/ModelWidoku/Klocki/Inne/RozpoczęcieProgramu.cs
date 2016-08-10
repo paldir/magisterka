@@ -1,4 +1,6 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Inne
+﻿using System.Xml;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Inne
 {
     public sealed class RozpoczęcieProgramu : KlocekPionowyZZawartością
     {
@@ -17,6 +19,12 @@
         public RozpoczęcieProgramu()
         {
             Kolor = Kolory.Funkcje;
+        }
+
+        public override void WriteXml(XmlWriter writer)
+        {
+            base.WriteXml(writer);
+            writer.WriteEndElement();
         }
     }
 }

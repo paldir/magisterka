@@ -65,12 +65,7 @@ namespace ProgramowanieKlockami.Widok
 
                     pisarz.WriteStartDocument();
                     pisarz.WriteStartElement("Projekt");
-
-                    foreach (KlocekPionowy klocekPionowy in ModelWidoku.RozpoczęcieProgramu.Zawartość)
-                    {
-                        klocekPionowy.WriteXml(pisarz);
-                    }
-
+                    ModelWidoku.RozpoczęcieProgramu.WriteXml(pisarz);
                     pisarz.WriteEndElement();
                     pisarz.WriteEndDocument();
                 }

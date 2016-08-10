@@ -162,6 +162,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public virtual void WriteXml(XmlWriter writer)
         {
             writer.WriteStartElement(GetType().FullName);
+            throw new Exception("FOREACH PROEPRTY");
         }
     }
 }
