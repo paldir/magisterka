@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
@@ -32,6 +33,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             kopia.WybranyTypModyfikacjiListy = WybranyTypModyfikacjiListy;
 
             return kopia;
+        }
+
+        public override void WriteXml(XmlWriter writer)
+        {
+            base.WriteXml(writer);
+
         }
 
         public override void Wykonaj()

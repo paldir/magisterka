@@ -1,6 +1,6 @@
 ﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Inne
 {
-    public class RozpoczęcieProgramu : KlocekPionowyZZawartością
+    public sealed class RozpoczęcieProgramu : KlocekPionowyZZawartością
     {
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 

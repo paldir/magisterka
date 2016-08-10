@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public abstract class Klocek : ICloneable, INotifyPropertyChanged
+    public abstract class Klocek : ICloneable, INotifyPropertyChanged, IXmlSerializable
     {
         private bool _aktywny;
         private bool _błąd;
@@ -16,13 +21,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         private Brush _kolor;
         private Brush _kolorObramowania;
         private bool _posiadaSkupienie;
+        private List<XElement> _węzłyWłaściwości;
 
         protected abstract WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące { get; }
 
         public abstract string Nazwa { get; }
         public abstract string Opis { get; }
 
-        public Brush KolorPierwotny { get; set; }
+        public Brush KolorPierwotny { get; private set; }
         public bool ZPrzybornika { get; set; }
 
         public bool Aktywny
@@ -107,6 +113,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         protected Klocek()
         {
+            _węzłyWłaściwości = new List<XElement>();
             Błędy = new ObservableCollection<BłądKlocka>();
             PosiadaSkupienie = false;
         }
@@ -140,6 +147,21 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public void ReadXml(XmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void WriteXml(XmlWriter writer)
+        {
+            writer.WriteStartElement(GetType().FullName);
         }
     }
 }

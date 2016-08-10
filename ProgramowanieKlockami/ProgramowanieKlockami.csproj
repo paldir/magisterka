@@ -181,9 +181,9 @@
     <Compile Include="ModelWidoku\Klocki\Pętle\WykonujDopóki.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\IPętla.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\WykonujOdliczając.cs" />
-    <Compile Include="ModelWidoku\Klocki\Pętle\PominięcieIteracji.cs" />
+    <Compile Include="ModelWidoku\Klocki\Pętle\PomińIterację.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\PowódSkoku.cs" />
-    <Compile Include="ModelWidoku\Klocki\Pętle\Przerwanie.cs" />
+    <Compile Include="ModelWidoku\Klocki\Pętle\PrzerwijPętlę.cs" />
     <Compile Include="ModelWidoku\Klocki\Pętle\SkokWPętli.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\DodajTekst.cs" />
     <Compile Include="ModelWidoku\Klocki\Tekst\DługośćTekstu.cs" />

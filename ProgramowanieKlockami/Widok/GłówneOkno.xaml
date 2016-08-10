@@ -1540,14 +1540,14 @@
                 </StackPanel>
             </k:KlocekPionowyZZawartościąKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkp:PominięcieIteracji}">
+        <DataTemplate DataType="{x:Type mwkp:PomińIterację}">
             <k:KlocekPionowyKontrolka Template="{StaticResource KlocekPionowySzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Pomiń iterację</TextBlock>
                 </StackPanel>
             </k:KlocekPionowyKontrolka>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type mwkp:Przerwanie}">
+        <DataTemplate DataType="{x:Type mwkp:PrzerwijPętlę}">
             <k:KlocekPionowyKontrolka Template="{StaticResource KlocekPionowySzablon}">
                 <StackPanel Style="{StaticResource StackPanelKlockaNiekońcowego}">
                     <TextBlock Style="{StaticResource TekstKlocka}">Przerwij pętlę</TextBlock>

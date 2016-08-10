@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Threading;
+using System.Xml;
+using System.Xml.Linq;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
@@ -120,6 +123,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             kopia.Rodzic = Rodzic;
 
             return kopia;
+        }
+
+        public override void WriteXml(XmlWriter writer)
+        {
+            base.WriteXml(writer);
+
+            writer.WriteElementString("PunktPrzerwania", PunktPrzerwania.ToString());
         }
     }
 }

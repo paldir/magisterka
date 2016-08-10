@@ -347,8 +347,8 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new WykonajDlaKażdegoElementu(),
                 new WykonujDopóki(),
                 new WykonujOdliczając(),
-                new PominięcieIteracji(),
-                new Przerwanie()
+                new PomińIterację(),
+                new PrzerwijPętlę()
             };
 
             KlockiDotycząceZmiennych = new Klocek[]

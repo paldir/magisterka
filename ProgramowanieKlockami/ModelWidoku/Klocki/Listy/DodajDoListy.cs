@@ -1,6 +1,8 @@
-﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
+﻿using System.Xml;
+
+namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
-    public class DodajDoListy : KlocekPionowyPrzyjmującyWartość
+    public sealed class DodajDoListy : KlocekPionowyPrzyjmującyWartość
     {
         public override string Nazwa => "Dodanie elementu do listy";
         public override string Opis => "Dodaje element na koniec listy.";
@@ -18,6 +20,13 @@
             kopia.WybranaZmienna = WybranaZmienna;
 
             return kopia;
+        }
+
+        public override void WriteXml(XmlWriter writer)
+        {
+            base.WriteXml(writer);
+            writer.WriteElementString("WybranaZmienna", WybranaZmienna?.Nazwa);
+            writer.WriteEndElement();
         }
 
         public override void Wykonaj()

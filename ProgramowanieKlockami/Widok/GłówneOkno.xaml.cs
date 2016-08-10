@@ -1,8 +1,10 @@
-﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Forms;
+using System.Xml;
 using ProgramowanieKlockami.ModelWidoku;
+using ProgramowanieKlockami.ModelWidoku.Klocki;
 
 namespace ProgramowanieKlockami.Widok
 {
@@ -39,35 +41,73 @@ namespace ProgramowanieKlockami.Widok
         private void Zapisz_OnClick(object sender, RoutedEventArgs e)
         {
             string ścieżkaPliku = ModelWidoku.ŚcieżkaPliku;
-            string zawartośćPliku = Serializuj();
 
-            if (File.Exists(ścieżkaPliku))
-                File.WriteAllText(ścieżkaPliku, zawartośćPliku);
-            else
+            if (!File.Exists(ścieżkaPliku))
             {
-                SaveFileDialog okno = new SaveFileDialog();
+                SaveFileDialog okno = new SaveFileDialog {FileName = "test"};
 
                 if (okno.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    File.WriteAllText(ścieżkaPliku, zawartośćPliku);
+                    ścieżkaPliku = okno.FileName;
+            }
+
+            if (!string.IsNullOrEmpty(ścieżkaPliku))
+            {
+                XmlWriterSettings ustawieniaXml = new XmlWriterSettings
+                {
+                    Indent = true,
+                    NewLineOnAttributes = true
+                };
+
+                using (StreamWriter strumień = new StreamWriter(ścieżkaPliku))
+                using (XmlWriter pisarz = XmlWriter.Create(strumień, ustawieniaXml))
+                {
+                    ModelWidoku.ŚcieżkaPliku = ścieżkaPliku;
+
+                    pisarz.WriteStartDocument();
+                    pisarz.WriteStartElement("Projekt");
+
+                    foreach (KlocekPionowy klocekPionowy in ModelWidoku.RozpoczęcieProgramu.Zawartość)
+                    {
+                        klocekPionowy.WriteXml(pisarz);
+                    }
+
+                    pisarz.WriteEndElement();
+                    pisarz.WriteEndDocument();
+                }
             }
         }
 
         private void ZapiszJako_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        private string Serializuj()
+        /*private XElement Serializuj()
         {
-            BinaryFormatter serializer = new BinaryFormatter();
+            XElement root = new XElement(XName.Get("Projekt"));
 
-            using (MemoryStream strumień = new MemoryStream())
-            using (StreamReader czytacz = new StreamReader(strumień))
-            {
-                serializer.Serialize(strumień, ModelWidoku.RozpoczęcieProgramu);
 
-                return czytacz.ReadToEnd();
-            }
+            return root;
         }
+
+        private static void SerializujKlocki(XContainer węzeł, KlocekPionowyZZawartością klocekPionowyZZawartością)
+        {
+            foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
+            {
+                Type typKlockaPionowego = klocekPionowy.GetType();
+                XName nazwaKlockaPionowego = XName.Get(typKlockaPionowego.FullName);
+                XElement węzełKlockaPionowego = new XElement(nazwaKlockaPionowego);
+                KlocekPionowyZZawartością wewnętrznyKlocekPionowyZZawartością = klocekPionowy as KlocekPionowyZZawartością;
+                List<XElement> właściwościKlocka = new List<XElement>();
+                var xmlKlockaPionowego=klocekPionowy.WriteXml()
+
+                węzełKlockaPionowego.Add(właściwościKlocka);
+
+                if (wewnętrznyKlocekPionowyZZawartością != null)
+                    SerializujKlocki(węzełKlockaPionowego, wewnętrznyKlocekPionowyZZawartością);
+
+                węzeł.Add(węzełKlockaPionowego);
+            }
+        }*/
     }
 }
