@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Forms;
 using System.Xml;
@@ -58,14 +59,22 @@ namespace ProgramowanieKlockami.Widok
                     NewLineOnAttributes = true
                 };
 
-                using (StreamWriter strumień = new StreamWriter(ścieżkaPliku))
+                using (StreamWriter strumień = new StreamWriter(new FileStream(ścieżkaPliku, FileMode.Create, FileAccess.Write), Encoding.UTF8))
                 using (XmlWriter pisarz = XmlWriter.Create(strumień, ustawieniaXml))
                 {
                     ModelWidoku.ŚcieżkaPliku = ścieżkaPliku;
 
                     pisarz.WriteStartDocument();
                     pisarz.WriteStartElement("Projekt");
+                    pisarz.WriteStartElement("Klocki");
                     ModelWidoku.RozpoczęcieProgramu.WriteXml(pisarz);
+                    pisarz.WriteEndElement();
+                    pisarz.WriteStartElement("Zmienne");
+
+                    foreach (Zmienna zmienna in ModelWidoku.Zmienne)
+                        pisarz.WriteElementString("Zmienna", zmienna.Nazwa);
+
+                    pisarz.WriteEndElement();
                     pisarz.WriteEndElement();
                     pisarz.WriteEndDocument();
                 }

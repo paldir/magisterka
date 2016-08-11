@@ -124,12 +124,5 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
             return kopia;
         }
-
-        public override void WriteXml(XmlWriter writer)
-        {
-            base.WriteXml(writer);
-
-            writer.WriteElementString("PunktPrzerwania", PunktPrzerwania.ToString());
-        }
     }
 }

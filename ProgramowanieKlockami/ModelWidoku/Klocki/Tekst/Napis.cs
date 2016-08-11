@@ -28,12 +28,5 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 
             return kopia;
         }
-
-        public override void WriteXml(XmlWriter writer)
-        {
-            base.WriteXml(writer);
-            writer.WriteElementString("Treść", Treść);
-            writer.WriteEndElement();
-        }
     }
 }

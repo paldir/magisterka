@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
@@ -21,7 +21,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         private Brush _kolor;
         private Brush _kolorObramowania;
         private bool _posiadaSkupienie;
-        private List<XElement> _węzłyWłaściwości;
 
         protected abstract WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące { get; }
 
@@ -113,7 +112,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         protected Klocek()
         {
-            _węzłyWłaściwości = new List<XElement>();
             Błędy = new ObservableCollection<BłądKlocka>();
             PosiadaSkupienie = false;
         }
@@ -159,10 +157,64 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             throw new NotImplementedException();
         }
 
-        public virtual void WriteXml(XmlWriter writer)
+        public void WriteXml(XmlWriter writer)
         {
             writer.WriteStartElement(GetType().FullName);
-            throw new Exception("FOREACH PROEPRTY");
+
+            foreach (PropertyInfo właściwość in GetType().GetProperties().OrderBy(w => w.Name))
+            {
+                Type typWłaściwości = właściwość.PropertyType;
+                object wartośćWłaściwości = właściwość.GetValue(this);
+
+                if (wartośćWłaściwości != null)
+                {
+                    writer.WriteStartElement(właściwość.Name);
+
+                    if (właściwość.GetSetMethod() == null)
+                    {
+                        if (typWłaściwości == typeof(WartośćWewnętrznegoKlockaZwracającegoWartość))
+                        {
+                            WartośćWewnętrznegoKlockaZwracającegoWartość wartość = (WartośćWewnętrznegoKlockaZwracającegoWartość) wartośćWłaściwości;
+
+                            wartość[0]?.WriteXml(writer);
+                        }
+                        else if (typWłaściwości == typeof(ZawartośćKlockaPionowegoZZawartością))
+                        {
+                            ZawartośćKlockaPionowegoZZawartością zawartość = (ZawartośćKlockaPionowegoZZawartością) wartośćWłaściwości;
+
+                            foreach (KlocekPionowy klocekPionowy in zawartość)
+                                klocekPionowy.WriteXml(writer);
+                        }
+                    }
+                    else
+                    {
+                        if (typWłaściwości == typeof(KlocekPionowyZZawartością))
+                        {
+
+                        }
+                        else if (typWłaściwości == typeof(Semafor))
+                        {
+
+                        }
+                        else if (typWłaściwości == typeof(WartośćWewnętrznegoKlockaZwracającegoWartość))
+                        {
+
+                        }
+                        else if (typWłaściwości == typeof(Zmienna))
+                        {
+                            Zmienna zmienna = (Zmienna) wartośćWłaściwości;
+
+                            writer.WriteString(zmienna.Nazwa);
+                        }
+                        else
+                            writer.WriteString(wartośćWłaściwości.ToString());
+                    }
+
+                    writer.WriteEndElement();
+                }
+            }
+
+            writer.WriteEndElement();
         }
     }
 }

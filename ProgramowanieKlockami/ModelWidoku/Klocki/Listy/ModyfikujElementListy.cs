@@ -35,20 +35,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             return kopia;
         }
 
-        public override void WriteXml(XmlWriter writer)
-        {
-            base.WriteXml(writer);
-            writer.WriteStartElement("Indeks");
-            Indeks[0]?.WriteXml(writer);
-            writer.WriteEndElement();
-            writer.WriteStartElement("Wartość");
-            Wartość[0]?.WriteXml(writer);
-            writer.WriteEndElement();
-            writer.WriteElementString("WybranaZmienna", WybranaZmienna?.Nazwa);
-            writer.WriteElementString("WybranyTypModyfikacjiListy", WybranyTypModyfikacjiListy.ToString());
-            writer.WriteEndElement();
-        }
-
         public override void Wykonaj()
         {
             SprawdźPoprawnośćKlockówKonfigurujących();

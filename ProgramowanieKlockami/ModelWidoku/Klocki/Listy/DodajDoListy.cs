@@ -22,13 +22,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             return kopia;
         }
 
-        public override void WriteXml(XmlWriter writer)
-        {
-            base.WriteXml(writer);
-            writer.WriteElementString("WybranaZmienna", WybranaZmienna?.Nazwa);
-            writer.WriteEndElement();
-        }
-
         public override void Wykonaj()
         {
             SprawdźPoprawnośćKlockówKonfigurujących();

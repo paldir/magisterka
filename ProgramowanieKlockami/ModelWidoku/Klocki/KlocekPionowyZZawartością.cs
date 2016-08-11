@@ -40,17 +40,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             return kopia;
         }
 
-        public override void WriteXml(XmlWriter writer)
-        {
-            base.WriteXml(writer);
-            writer.WriteStartElement("Zawartość");
-
-            foreach (KlocekPionowy klocekPionowy in Zawartość)
-                klocekPionowy.WriteXml(writer);
-
-            writer.WriteEndElement();
-        }
-
         public override void Wykonaj()
         {
             foreach (KlocekPionowy klocekPionowy in Zawartość)
