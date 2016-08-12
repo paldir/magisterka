@@ -7,13 +7,12 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
+using System.Xml.Linq;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
-    public abstract class Klocek : ICloneable, INotifyPropertyChanged, IXmlSerializable
+    public abstract class Klocek : ICloneable, INotifyPropertyChanged
     {
         private bool _aktywny;
         private bool _błąd;
@@ -140,24 +139,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             return Activator.CreateInstance(GetType());
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void PrzeczytajZXml(XElement elementXml)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         }
 
-        public XmlSchema GetSchema()
-        {
-            return null;
-        }
-
-        public void ReadXml(XmlReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void WriteXml(XmlWriter writer)
+        public void ZapiszJakoXml(XmlWriter writer)
         {
             writer.WriteStartElement(GetType().FullName);
 
@@ -176,14 +163,14 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                         {
                             WartośćWewnętrznegoKlockaZwracającegoWartość wartość = (WartośćWewnętrznegoKlockaZwracającegoWartość) wartośćWłaściwości;
 
-                            wartość[0]?.WriteXml(writer);
+                            wartość[0]?.ZapiszJakoXml(writer);
                         }
                         else if (typWłaściwości == typeof(ZawartośćKlockaPionowegoZZawartością))
                         {
                             ZawartośćKlockaPionowegoZZawartością zawartość = (ZawartośćKlockaPionowegoZZawartością) wartośćWłaściwości;
 
                             foreach (KlocekPionowy klocekPionowy in zawartość)
-                                klocekPionowy.WriteXml(writer);
+                                klocekPionowy.ZapiszJakoXml(writer);
                         }
                     }
                     else
@@ -215,6 +202,13 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             }
 
             writer.WriteEndElement();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

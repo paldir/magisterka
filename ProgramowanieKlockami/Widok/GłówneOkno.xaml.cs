@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 using ProgramowanieKlockami.ModelWidoku;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
 
@@ -34,9 +38,19 @@ namespace ProgramowanieKlockami.Widok
         {
             OpenFileDialog okno = new OpenFileDialog();
 
-            okno.ShowDialog();
+            if (okno.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Nowy_OnClick(null, null);
 
-            ModelWidoku.ŚcieżkaPliku = okno.FileName;
+                string ścieżkaPliku = okno.FileName;
+                ModelWidoku.ŚcieżkaPliku = ścieżkaPliku;
+                XDocument dokumentXml = XDocument.Load(ścieżkaPliku);
+                IEnumerable<XElement> węzły = dokumentXml.Elements().Elements();
+                ObservableCollection<Zmienna> zmienne = ModelWidoku.Zmienne;
+
+                foreach (XElement zmienna in węzły.Single(w => w.Name.LocalName == "Zmienne").Elements())
+                    zmienne.Add(new Zmienna(zmienne) {Nazwa = zmienna.Value});
+            }
         }
 
         private void Zapisz_OnClick(object sender, RoutedEventArgs e)
@@ -66,14 +80,16 @@ namespace ProgramowanieKlockami.Widok
 
                     pisarz.WriteStartDocument();
                     pisarz.WriteStartElement("Projekt");
-                    pisarz.WriteStartElement("Klocki");
-                    ModelWidoku.RozpoczęcieProgramu.WriteXml(pisarz);
-                    pisarz.WriteEndElement();
+
                     pisarz.WriteStartElement("Zmienne");
 
                     foreach (Zmienna zmienna in ModelWidoku.Zmienne)
                         pisarz.WriteElementString("Zmienna", zmienna.Nazwa);
 
+                    pisarz.WriteEndElement();
+
+                    pisarz.WriteStartElement("Klocki");
+                    ModelWidoku.RozpoczęcieProgramu.ZapiszJakoXml(pisarz);
                     pisarz.WriteEndElement();
                     pisarz.WriteEndElement();
                     pisarz.WriteEndDocument();
