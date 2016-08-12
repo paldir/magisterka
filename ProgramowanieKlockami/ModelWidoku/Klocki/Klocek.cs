@@ -87,7 +87,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         {
             get { return _kolorObramowania; }
 
-            set
+            protected set
             {
                 _kolorObramowania = value;
 
@@ -141,7 +141,69 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         public void PrzeczytajZXml(XElement elementXml)
         {
+            foreach (PropertyInfo właściwość in GetType().GetProperties())
+            {
+                Type typWłaściwości = właściwość.PropertyType;
+                XElement węzełWłaściwości = elementXml.Element(właściwość.Name);
 
+                if ((węzełWłaściwości != null) && !węzełWłaściwości.IsEmpty)
+                    if (właściwość.GetSetMethod() == null)
+                    {
+                        if (typWłaściwości == typeof(WartośćWewnętrznegoKlockaZwracającegoWartość))
+                        {
+                            XElement węzełWartości = węzełWłaściwości.Elements().Single();
+                            Type typKlockaZwracającegoWartość = Type.GetType(węzełWartości.Name.LocalName);
+
+                            if (typKlockaZwracającegoWartość != null)
+                            {
+                                KlocekZwracającyWartość klocekZwracającyWartość = (KlocekZwracającyWartość) Activator.CreateInstance(typKlockaZwracającegoWartość);
+                                WartośćWewnętrznegoKlockaZwracającegoWartość wartość = (WartośćWewnętrznegoKlockaZwracającegoWartość) właściwość.GetValue(this);
+                                klocekZwracającyWartość.MiejsceUmieszczenia = wartość;
+                                wartość[0] = klocekZwracającyWartość;
+
+                                klocekZwracającyWartość.PrzeczytajZXml(węzełWartości);
+                            }
+                        }
+                        else if (typWłaściwości == typeof(ZawartośćKlockaPionowegoZZawartością))
+                        {
+                            foreach (XElement węzełKlockaPionowego in węzełWłaściwości.Elements())
+                            {
+                                Type typKlockaPionowego = Type.GetType(węzełKlockaPionowego.Name.LocalName);
+
+                                if (typKlockaPionowego != null)
+                                {
+                                    KlocekPionowy klocekPionowy = (KlocekPionowy) Activator.CreateInstance(typKlockaPionowego);
+                                    klocekPionowy.Rodzic = (KlocekPionowyZZawartością) this;
+                                    ZawartośćKlockaPionowegoZZawartością zawartość = (ZawartośćKlockaPionowegoZZawartością) właściwość.GetValue(this);
+
+                                    klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego);
+                                    zawartość.Add(klocekPionowy);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (typWłaściwości == typeof(KlocekPionowyZZawartością))
+                        {
+
+                        }
+                        else if (typWłaściwości == typeof(Semafor))
+                        {
+
+                        }
+                        else if (typWłaściwości == typeof(WartośćWewnętrznegoKlockaZwracającegoWartość))
+                        {
+
+                        }
+                        else if (typWłaściwości == typeof(Zmienna))
+                        {
+
+                        }
+                        else
+                            właściwość.SetValue(this, Convert.ChangeType(węzełWłaściwości.Value, typWłaściwości));
+                    }
+            }
         }
 
         public void ZapiszJakoXml(XmlWriter writer)

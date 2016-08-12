@@ -10,6 +10,7 @@ using System.Xml;
 using System.Xml.Linq;
 using ProgramowanieKlockami.ModelWidoku;
 using ProgramowanieKlockami.ModelWidoku.Klocki;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 
 namespace ProgramowanieKlockami.Widok
 {
@@ -45,11 +46,29 @@ namespace ProgramowanieKlockami.Widok
                 string ścieżkaPliku = okno.FileName;
                 ModelWidoku.ŚcieżkaPliku = ścieżkaPliku;
                 XDocument dokumentXml = XDocument.Load(ścieżkaPliku);
-                IEnumerable<XElement> węzły = dokumentXml.Elements().Elements();
+                XElement[] węzły = dokumentXml.Elements().Elements().ToArray();
                 ObservableCollection<Zmienna> zmienne = ModelWidoku.Zmienne;
+                RozpoczęcieProgramu głównaFunkcja = ModelWidoku.RozpoczęcieProgramu;
 
-                foreach (XElement zmienna in węzły.Single(w => w.Name.LocalName == "Zmienne").Elements())
+                foreach (XElement zmienna in węzły.Single(w => w.Name == "Zmienne").Elements())
                     zmienne.Add(new Zmienna(zmienne) {Nazwa = zmienna.Value});
+
+                IEnumerable<XElement> klockiWewnętrzne = węzły.Single(w => w.Name == "Klocki").Element(typeof(RozpoczęcieProgramu).FullName)?.Element("Zawartość")?.Elements();
+
+                if (klockiWewnętrzne != null)
+                    foreach (XElement węzełKlockaPionowego in klockiWewnętrzne)
+                    {
+                        Type typKlockaPionowego = Type.GetType(węzełKlockaPionowego.Name.LocalName);
+
+                        if (typKlockaPionowego != null)
+                        {
+                            KlocekPionowy klocekPionowy = (KlocekPionowy) Activator.CreateInstance(typKlockaPionowego);
+                            klocekPionowy.Rodzic = głównaFunkcja;
+
+                            klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego);
+                            głównaFunkcja.Zawartość.Add(klocekPionowy);
+                        }
+                    }
             }
         }
 
