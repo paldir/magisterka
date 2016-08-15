@@ -6,7 +6,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
     {
         public override Type ZwracanyTyp => typeof(TZwracanaWartość);
 
-        public IOpcjaZwracającaWartośćNaPodstawieParametru<TZwracanaWartość, TParametr> WybranaOpcja { get; set; }
+        public OpcjaZwracającaWartośćNaPodstawieParametru<TZwracanaWartość, TParametr> WybranaOpcja { get; set; }
 
         protected KlocekZwracającyWartośćNaPodstawieOpcjiIParametru() : base(typeof(TParametr))
         {

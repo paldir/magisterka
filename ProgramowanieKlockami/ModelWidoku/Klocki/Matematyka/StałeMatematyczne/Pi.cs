@@ -3,9 +3,9 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne
 {
-    public class Pi : IOpcjaZwracającaWartość<double>
+    public class Pi : OpcjaZwracającaWartość<double>
     {
-        public string ReprezentacjaTekstowa => "π";
-        public double Wartość => Math.PI;
+        public override string ReprezentacjaTekstowa => "π";
+        public override double Wartość => Math.PI;
     }
 }

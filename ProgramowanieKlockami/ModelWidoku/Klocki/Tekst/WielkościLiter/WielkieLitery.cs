@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.WielkościLiter
 {
-    public class WielkieLitery : IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>
+    public class WielkieLitery : OpcjaZwracającaWartośćNaPodstawieParametru<object, object>
     {
-        public string ReprezentacjaTekstowa => "WIELKIE";
+        public override string ReprezentacjaTekstowa => "WIELKIE";
 
-        public object Zwróć(object x) => x.ToString().ToUpper();
+        public override object Zwróć(object x) => x.ToString().ToUpper();
     }
 }

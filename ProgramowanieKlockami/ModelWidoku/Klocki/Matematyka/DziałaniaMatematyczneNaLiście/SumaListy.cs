@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczneNaLiście
 {
-    public class SumaListy : IOpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>
+    public class SumaListy : OpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>
     {
-        public string ReprezentacjaTekstowa => "Suma";
+        public override string ReprezentacjaTekstowa => "Suma";
 
-        public double Zwróć(ZmiennaTypuListowego x) => x.Where(l => l is double).Sum(l => (double) l);
+        public override double Zwróć(ZmiennaTypuListowego x) => x.Where(l => l is double).Sum(l => (double) l);
     }
 }

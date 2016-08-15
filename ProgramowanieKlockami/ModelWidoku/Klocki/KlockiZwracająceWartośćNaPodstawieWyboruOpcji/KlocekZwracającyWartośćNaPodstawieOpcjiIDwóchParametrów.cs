@@ -11,7 +11,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
         public WartośćWewnętrznegoKlockaZwracającegoWartość Wartość1 { get; }
         public WartośćWewnętrznegoKlockaZwracającegoWartość Wartość2 { get; }
 
-        public IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<TZwracanaWartość, TParametr1, TParametr2> WybranaOpcja { get; set; }
+        public OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<TZwracanaWartość, TParametr1, TParametr2> WybranaOpcja { get; set; }
 
         protected KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów()
         {

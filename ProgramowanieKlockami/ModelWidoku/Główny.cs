@@ -45,16 +45,15 @@ namespace ProgramowanieKlockami.ModelWidoku
         private Klocek _klocekPosiadającySkupienie;
         private string _nazwaNowejZmiennej;
         private double _powiększenie;
-        private readonly Semafor _semafor;
         private Thread _wątekDebugowania;
         private bool _wPunkciePrzerwania;
 
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>> DziałaniaLogiczne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>> DziałaniaMatematyczne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>> DziałaniaMatematyczneNaLiście { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeTrygonometryczne { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieParametru<bool, double>> CechyLiczby { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>> DziałaniaLogiczne { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>> DziałaniaMatematyczne { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>> DziałaniaMatematyczneNaLiście { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeMatematyczne { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieParametru<double, double>> FunkcjeTrygonometryczne { get; }
         public IEnumerable<Klocek> KlockiDotycząceList { get; }
         public IEnumerable<Klocek> KlockiDotyczącePętli { get; }
         public IEnumerable<Klocek> KlockiDotycząceZmiennych { get; }
@@ -79,25 +78,26 @@ namespace ProgramowanieKlockami.ModelWidoku
         public Komenda KomendaZwinięciaRozwinięciaKlockaZZawartością { get; }
         public Konsola Konsola { get; }
         public MagazynZmian MagazynZmian { get; }
-        public IEnumerable<ITypUstawieniaElementuListy> ModyfikacjeElementuListy { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>> ObcinaniaSpacji { get; }
+        public IEnumerable<TypUstawieniaElementuListy> ModyfikacjeElementuListy { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieParametru<object, object>> ObcinaniaSpacji { get; }
         public ObsługującyPrzeciąganieZPrzybornika ObsługującyPrzeciąganieZPrzybornika { get; }
         public ObsługującyPrzenoszenieKlockówPionowych ObsługującyPrzenoszenieKlockówPionowych { get; }
         public ObsługującyPrzenoszenieKlockówZwracającychWartość ObsługującyPrzenoszenieKlockówZwracającychWartość { get; }
         public ObsługującyUpuszczanieKlockówPionowych ObsługującyUpuszczanieKlockówPionowych { get; }
         public ObsługującyUpuszczanieKlockówZwracającychWartość ObsługującyUpuszczanieKlockówZwracającychWartość { get; }
-        public IEnumerable<IPobieranieTekstu> PobieraniaTekstu { get; }
-        public IEnumerable<IPorządekSortowania> PorządkiSortowania { get; }
+        public IEnumerable<PobieranieTekstu> PobieraniaTekstu { get; }
+        public IEnumerable<PorządekSortowania> PorządkiSortowania { get; }
         public ObservableCollection<Klocek> Schowek { get; }
-        public IEnumerable<ISposóbSortowaniaListy> SortowaniaListy { get; }
-        public IEnumerable<IOpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
-        public IEnumerable<IOpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>> SzukaniaTekstuWTekście { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>> WielkościLiter { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>> WystąpieniaElementuNaLiście { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>> ZaokrąglaniaLiczby { get; }
+        public Semafor Semafor { get; }
+        public IEnumerable<SposóbSortowaniaListy> SortowaniaListy { get; }
+        public IEnumerable<OpcjaZwracającaWartość<bool>> StałeLogiczne { get; }
+        public IEnumerable<OpcjaZwracającaWartość<double>> StałeMatematyczne { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>> SzukaniaTekstuWTekście { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieParametru<object, object>> WielkościLiter { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>> WystąpieniaElementuNaLiście { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieParametru<double, double>> ZaokrąglaniaLiczby { get; }
         public ObservableCollection<Zmienna> Zmienne { get; }
-        public IEnumerable<IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, object, object>> ZnakiPorównania { get; }
+        public IEnumerable<OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, object, object>> ZnakiPorównania { get; }
 
         public RozpoczęcieProgramu RozpoczęcieProgramu { get; set; }
         public string ŚcieżkaPliku { get; set; }
@@ -155,7 +155,7 @@ namespace ProgramowanieKlockami.ModelWidoku
 
         public Główny()
         {
-            _semafor = new Semafor();
+            Semafor = new Semafor();
             MagazynZmian = new MagazynZmian();
             Konsola = new Konsola();
             KomendaCofnięciaStanuAplikacji = new Komenda(CofnijStanAplikacji);
@@ -183,9 +183,9 @@ namespace ProgramowanieKlockami.ModelWidoku
             RozpoczęcieProgramu = new RozpoczęcieProgramu();
             Schowek = new ObservableCollection<Klocek> {null};
             Zmienne = new ObservableCollection<Zmienna>();
-            _semafor.SemaforOpuszczony += _semafor_SemaforOpuszczony;
+            Semafor.SemaforOpuszczony += _semafor_SemaforOpuszczony;
 
-            CechyLiczby = new IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>[]
+            CechyLiczby = new OpcjaZwracającaWartośćNaPodstawieParametru<bool, double>[]
             {
                 new Parzystość(),
                 new Nieparzystość(),
@@ -194,13 +194,13 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Ujemność()
             };
 
-            DziałaniaLogiczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>[]
+            DziałaniaLogiczne = new OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>[]
             {
                 new Koniunkcja(),
                 new Alternatywa()
             };
 
-            DziałaniaMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>[]
+            DziałaniaMatematyczne = new OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>[]
             {
                 new Dodawanie(),
                 new Odejmowanie(),
@@ -210,7 +210,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Modulo()
             };
 
-            DziałaniaMatematyczneNaLiście = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>[]
+            DziałaniaMatematyczneNaLiście = new OpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>[]
             {
                 new SumaListy(),
                 new MinimumListy(),
@@ -218,7 +218,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new ŚredniaListy()
             };
 
-            FunkcjeMatematyczne = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
+            FunkcjeMatematyczne = new OpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
             {
                 new PierwiastekKwadratowy(),
                 new WartośćBezwzględna(),
@@ -229,7 +229,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new PotęgaOPodstawie10()
             };
 
-            FunkcjeTrygonometryczne = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
+            FunkcjeTrygonometryczne = new OpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
             {
                 new Sinus(),
                 new Cosinus(),
@@ -239,44 +239,44 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new ArcusTangens()
             };
 
-            ModyfikacjeElementuListy = new ITypUstawieniaElementuListy[]
+            ModyfikacjeElementuListy = new TypUstawieniaElementuListy[]
             {
                 new UstawienieElementu(),
                 new WstawienieElementu()
             };
 
-            ObcinaniaSpacji = new IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>[]
+            ObcinaniaSpacji = new OpcjaZwracającaWartośćNaPodstawieParametru<object, object>[]
             {
                 new ObcinanieSpacjiZObuStron(),
                 new ObcinanieSpacjiZLewejStrony(),
                 new ObcinanieSpacjiZPrawejStrony()
             };
 
-            PobieraniaTekstu = new IPobieranieTekstu[]
+            PobieraniaTekstu = new PobieranieTekstu[]
             {
                 new PobieranieTekstuTekstowego(),
                 new PobieranieTekstuLiczbowego()
             };
 
-            PorządkiSortowania = new IPorządekSortowania[]
+            PorządkiSortowania = new PorządekSortowania[]
             {
                 new SortowanieRosnąco(),
                 new SortowanieMalejąco()
             };
 
-            SortowaniaListy = new ISposóbSortowaniaListy[]
+            SortowaniaListy = new SposóbSortowaniaListy[]
             {
                 new SortowanieLiczbowe(),
                 new SortowanieAlfabetyczne()
             };
 
-            StałeLogiczne = new IOpcjaZwracającaWartość<bool>[]
+            StałeLogiczne = new OpcjaZwracającaWartość<bool>[]
             {
                 new Prawda(),
                 new Fałsz()
             };
 
-            StałeMatematyczne = new IOpcjaZwracającaWartość<double>[]
+            StałeMatematyczne = new OpcjaZwracającaWartość<double>[]
             {
                 new Pi(),
                 new LiczbaE(),
@@ -286,32 +286,32 @@ namespace ProgramowanieKlockami.ModelWidoku
                 new Nieskończoność()
             };
 
-            SzukaniaTekstuWTekście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>[]
+            SzukaniaTekstuWTekście = new OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>[]
             {
                 new PierwszeWystąpienieTekstuWTekście(),
                 new OstatnieWystąpienieTekstuWTekście()
             };
 
-            WielkościLiter = new IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>[]
+            WielkościLiter = new OpcjaZwracającaWartośćNaPodstawieParametru<object, object>[]
             {
                 new WielkieLitery(),
                 new MałeLitery()
             };
 
-            WystąpieniaElementuNaLiście = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>[]
+            WystąpieniaElementuNaLiście = new OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>[]
             {
                 new PierwszeWystąpienie(),
                 new OstatnieWystąpienie()
             };
 
-            ZaokrąglaniaLiczby = new IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
+            ZaokrąglaniaLiczby = new OpcjaZwracającaWartośćNaPodstawieParametru<double, double>[]
             {
                 new Zaokrąglanie(),
                 new ZaokrąglanieWGórę(),
                 new ZaokrąglanieWDół()
             };
 
-            ZnakiPorównania = new IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, object, object>[]
+            ZnakiPorównania = new OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, object, object>[]
             {
                 new Równy(),
                 new Nierówny(),
@@ -456,7 +456,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             if (klocekPionowy.Rodzic != null)
             {
                 klocekPionowy.PunktPrzerwania = !klocekPionowy.PunktPrzerwania;
-                RozpoczęcieProgramu.Semafor = _semafor;
+                RozpoczęcieProgramu.Semafor = Semafor;
             }
         }
 
@@ -482,7 +482,7 @@ namespace ProgramowanieKlockami.ModelWidoku
                 WPunkciePrzerwania = false;
                 RozpoczęcieProgramu.KrokPoKroku = false;
 
-                _semafor.Podnieś();
+                Semafor.Podnieś();
             }
         }
 
@@ -574,7 +574,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 RozpoczęcieProgramu.KrokPoKroku = true;
 
-                _semafor.Podnieś();
+                Semafor.Podnieś();
             }
         }
 

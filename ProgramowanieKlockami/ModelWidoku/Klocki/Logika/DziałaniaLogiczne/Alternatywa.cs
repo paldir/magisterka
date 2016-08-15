@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.DziałaniaLogiczne
 {
-    public class Alternatywa : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>
+    public class Alternatywa : OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<bool, bool, bool>
     {
-        public string ReprezentacjaTekstowa => "lub";
+        public override string ReprezentacjaTekstowa => "lub";
 
-        public bool Zwróć(bool a, bool b) => a || b;
+        public override bool Zwróć(bool a, bool b) => a || b;
     }
 }

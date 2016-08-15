@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeTrygonometryczne
 {
-    public class ArcusCosinus : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
+    public class ArcusCosinus : OpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
-        public string ReprezentacjaTekstowa => "Arccos";
+        public override string ReprezentacjaTekstowa => "Arccos";
 
-        public double Zwróć(double x) => Math.Acos(x)/Math.PI*180;
+        public override double Zwróć(double x) => Math.Acos(x)/Math.PI*180;
     }
 }

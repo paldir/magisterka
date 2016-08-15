@@ -3,9 +3,9 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne
 {
-    public class LiczbaE : IOpcjaZwracającaWartość<double>
+    public class LiczbaE : OpcjaZwracającaWartość<double>
     {
-        public string ReprezentacjaTekstowa => "e";
-        public double Wartość => Math.E;
+        public override string ReprezentacjaTekstowa => "e";
+        public override double Wartość => Math.E;
     }
 }

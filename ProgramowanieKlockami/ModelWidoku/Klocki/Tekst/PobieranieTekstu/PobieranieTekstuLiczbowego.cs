@@ -1,11 +1,11 @@
 ﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.PobieranieTekstu
 {
-    public class PobieranieTekstuLiczbowego : IPobieranieTekstu
+    public class PobieranieTekstuLiczbowego : PobieranieTekstu
     {
-        public string ReprezentacjaTekstowa => "liczbę";
-        public object WartośćDomyślna => 0.0;
+        public override string ReprezentacjaTekstowa => "liczbę";
+        public override object WartośćDomyślna => 0.0;
 
-        public object Konwertuj(string x)
+        public override object Konwertuj(string x)
         {
             double liczba;
 

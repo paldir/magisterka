@@ -3,9 +3,9 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne
 {
-    public class LiczbaPhi : IOpcjaZwracającaWartość<double>
+    public class LiczbaPhi : OpcjaZwracającaWartość<double>
     {
-        public string ReprezentacjaTekstowa => "φ";
-        public double Wartość => (1 + Math.Sqrt(5))/2;
+        public override string ReprezentacjaTekstowa => "φ";
+        public override double Wartość => (1 + Math.Sqrt(5))/2;
     }
 }

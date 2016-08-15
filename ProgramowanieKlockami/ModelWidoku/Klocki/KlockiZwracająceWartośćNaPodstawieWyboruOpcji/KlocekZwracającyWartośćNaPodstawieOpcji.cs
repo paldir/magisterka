@@ -11,7 +11,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
 
         public override Type ZwracanyTyp => typeof(T);
 
-        public IOpcjaZwracającaWartość<T> WybranaOpcja { get; set; }
+        public OpcjaZwracającaWartość<T> WybranaOpcja { get; set; }
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {

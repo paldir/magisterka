@@ -2,9 +2,9 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne
 {
-    public class Nieskończoność : IOpcjaZwracającaWartość<double>
+    public class Nieskończoność : OpcjaZwracającaWartość<double>
     {
-        public string ReprezentacjaTekstowa => "∞";
-        public double Wartość => double.PositiveInfinity;
+        public override string ReprezentacjaTekstowa => "∞";
+        public override double Wartość => double.PositiveInfinity;
     }
 }

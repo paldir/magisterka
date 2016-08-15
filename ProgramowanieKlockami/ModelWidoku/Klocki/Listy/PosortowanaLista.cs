@@ -10,8 +10,8 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override string Opis => "Zwraca posortowaną kopię listy.";
         public override Type ZwracanyTyp => typeof(ZmiennaTypuListowego);
 
-        public IPorządekSortowania WybranyPorządekSortowania { get; set; }
-        public ISposóbSortowaniaListy WybranySposóbSortowania { get; set; }
+        public PorządekSortowania WybranyPorządekSortowania { get; set; }
+        public SposóbSortowaniaListy WybranySposóbSortowania { get; set; }
 
         public PosortowanaLista() : base(typeof(ZmiennaTypuListowego))
         {

@@ -3,9 +3,9 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.StałeMatematyczne
 {
-    public class PierwiastekZJednejDrugiej : IOpcjaZwracającaWartość<double>
+    public class PierwiastekZJednejDrugiej : OpcjaZwracającaWartość<double>
     {
-        public string ReprezentacjaTekstowa => "Pierwiastek z 0.5";
-        public double Wartość => Math.Sqrt(0.5);
+        public override string ReprezentacjaTekstowa => "Pierwiastek z 0.5";
+        public override double Wartość => Math.Sqrt(0.5);
     }
 }

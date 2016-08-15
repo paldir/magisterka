@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczneNaLiście
 {
-    public class MaksimumListy : IOpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>
+    public class MaksimumListy : OpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>
     {
-        public string ReprezentacjaTekstowa => "Maksimum";
+        public override string ReprezentacjaTekstowa => "Maksimum";
 
-        public double Zwróć(ZmiennaTypuListowego x) => x.OfType<double>().Concat(new[] {double.MinValue}).Max();
+        public override double Zwróć(ZmiennaTypuListowego x) => x.OfType<double>().Concat(new[] {double.MinValue}).Max();
     }
 }

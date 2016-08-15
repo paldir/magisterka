@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class LogarytmNaturalny : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
+    public class LogarytmNaturalny : OpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
-        public string ReprezentacjaTekstowa => "Ln";
+        public override string ReprezentacjaTekstowa => "Ln";
 
-        public double Zwróć(double x) => Math.Log(x);
+        public override double Zwróć(double x) => Math.Log(x);
     }
 }

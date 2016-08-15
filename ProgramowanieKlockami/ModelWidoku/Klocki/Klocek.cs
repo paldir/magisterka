@@ -139,7 +139,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             return Activator.CreateInstance(GetType());
         }
 
-        public void PrzeczytajZXml(XElement elementXml)
+        public void PrzeczytajZXml(XElement elementXml, Semafor semafor, ObservableCollection<Zmienna> zmienne)
         {
             foreach (PropertyInfo właściwość in GetType().GetProperties())
             {
@@ -161,7 +161,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                                 klocekZwracającyWartość.MiejsceUmieszczenia = wartość;
                                 wartość[0] = klocekZwracającyWartość;
 
-                                klocekZwracającyWartość.PrzeczytajZXml(węzełWartości);
+                                klocekZwracającyWartość.PrzeczytajZXml(węzełWartości, semafor, zmienne);
                             }
                         }
                         else if (typWłaściwości == typeof(ZawartośćKlockaPionowegoZZawartością))
@@ -176,7 +176,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                                     klocekPionowy.Rodzic = (KlocekPionowyZZawartością) this;
                                     ZawartośćKlockaPionowegoZZawartością zawartość = (ZawartośćKlockaPionowegoZZawartością) właściwość.GetValue(this);
 
-                                    klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego);
+                                    klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego, semafor, zmienne);
                                     zawartość.Add(klocekPionowy);
                                 }
                             }
@@ -190,7 +190,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                         }
                         else if (typWłaściwości == typeof(Semafor))
                         {
-
+                            właściwość.SetValue(this, semafor);
                         }
                         else if (typWłaściwości == typeof(WartośćWewnętrznegoKlockaZwracającegoWartość))
                         {
@@ -198,10 +198,17 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                         }
                         else if (typWłaściwości == typeof(Zmienna))
                         {
-
+                            właściwość.SetValue(this, zmienne.Single(z => z.Nazwa == węzełWłaściwości.Value));
                         }
-                        else
+                        else if ((typWłaściwości == typeof(bool)) || (typWłaściwości == typeof(double)) || (typWłaściwości == typeof(string)))
                             właściwość.SetValue(this, Convert.ChangeType(węzełWłaściwości.Value, typWłaściwości));
+                        else
+                        {
+                            Type typOpcji = Type.GetType(węzełWłaściwości.Value);
+
+                            if (typOpcji != null)
+                                właściwość.SetValue(this, Activator.CreateInstance(typOpcji));
+                        }
                     }
             }
         }
@@ -243,7 +250,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                         }
                         else if (typWłaściwości == typeof(Semafor))
                         {
-
+                            
                         }
                         else if (typWłaściwości == typeof(WartośćWewnętrznegoKlockaZwracającegoWartość))
                         {

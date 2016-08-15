@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne
 {
-    public class Dodawanie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>
+    public class Dodawanie : OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>
     {
-        public string ReprezentacjaTekstowa => "+";
+        public override string ReprezentacjaTekstowa => "+";
 
-        public double Zwróć(double a, double b) => a + b;
+        public override double Zwróć(double a, double b) => a + b;
     }
 }

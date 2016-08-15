@@ -1,8 +1,8 @@
 ﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.PorządkiSortowaniaListy
 {
-    public class SortowanieRosnąco : IPorządekSortowania
+    public class SortowanieRosnąco : PorządekSortowania
     {
-        public string ReprezentacjaTekstowa => "rosnąco";
-        public bool Rosnąco => true;
+        public override string ReprezentacjaTekstowa => "rosnąco";
+        public override bool Rosnąco => true;
     }
 }

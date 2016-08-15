@@ -65,7 +65,7 @@ namespace ProgramowanieKlockami.Widok
                             KlocekPionowy klocekPionowy = (KlocekPionowy) Activator.CreateInstance(typKlockaPionowego);
                             klocekPionowy.Rodzic = głównaFunkcja;
 
-                            klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego);
+                            klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego, ModelWidoku.Semafor, zmienne);
                             głównaFunkcja.Zawartość.Add(klocekPionowy);
                         }
                     }

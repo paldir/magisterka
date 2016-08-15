@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaLiście
 {
-    public class PierwszeWystąpienie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>
+    public class PierwszeWystąpienie : OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>
     {
-        public string ReprezentacjaTekstowa => "pierwsze";
+        public override string ReprezentacjaTekstowa => "pierwsze";
 
-        public double Zwróć(ZmiennaTypuListowego a, object b) => a.IndexOf(b);
+        public override double Zwróć(ZmiennaTypuListowego a, object b) => a.IndexOf(b);
     }
 }

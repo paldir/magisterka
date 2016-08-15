@@ -3,11 +3,11 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczneNaLiście
 {
-    public class ŚredniaListy : IOpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>
+    public class ŚredniaListy : OpcjaZwracającaWartośćNaPodstawieParametru<double, ZmiennaTypuListowego>
     {
-        public string ReprezentacjaTekstowa => "Średnia";
+        public override string ReprezentacjaTekstowa => "Średnia";
 
-        public double Zwróć(ZmiennaTypuListowego x)
+        public override double Zwróć(ZmiennaTypuListowego x)
         {
             double suma = 0;
             int liczbaElementów = 0;

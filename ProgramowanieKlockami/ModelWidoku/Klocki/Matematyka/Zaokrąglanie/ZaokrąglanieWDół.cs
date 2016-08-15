@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.Zaokrąglanie
 {
-    public class ZaokrąglanieWDół : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
+    public class ZaokrąglanieWDół : OpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
-        public string ReprezentacjaTekstowa => "Zaokrąglij w dół";
+        public override string ReprezentacjaTekstowa => "Zaokrąglij w dół";
 
-        public double Zwróć(double x) => Math.Floor(x);
+        public override double Zwróć(double x) => Math.Floor(x);
     }
 }

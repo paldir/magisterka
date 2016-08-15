@@ -1,7 +1,7 @@
 ﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodstawieWyboruOpcji
 {
-    public interface IOpcjaZwracającaWartość<out T> : IOpcja
+    public abstract class OpcjaZwracającaWartość<T> : Opcja
     {
-        T Wartość { get; }
+        public abstract T Wartość { get; }
     }
 }

@@ -1,10 +1,10 @@
 ﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy
 {
-    public class UstawienieElementu : ITypUstawieniaElementuListy
+    public class UstawienieElementu : TypUstawieniaElementuListy
     {
-        public string ReprezentacjaTekstowa => "ustaw element o nr";
+        public override string ReprezentacjaTekstowa => "ustaw element o nr";
 
-        public void ModyfikujListę(ZmiennaTypuListowego lista, int indeks, object wartość)
+        public override void ModyfikujListę(ZmiennaTypuListowego lista, int indeks, object wartość)
         {
             for (int i = lista.Count - 1; i < indeks; i++)
                 lista.Add(null);

@@ -2,9 +2,9 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika.StałeLogiczne
 {
-    public class Fałsz : IOpcjaZwracającaWartość<bool>
+    public class Fałsz : OpcjaZwracającaWartość<bool>
     {
-        public string ReprezentacjaTekstowa => "fałsz";
-        public bool Wartość => false;
+        public override string ReprezentacjaTekstowa => "fałsz";
+        public override bool Wartość => false;
     }
 }

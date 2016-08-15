@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeTrygonometryczne
 {
-    public class Sinus : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
+    public class Sinus : OpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
-        public string ReprezentacjaTekstowa => "Sin";
+        public override string ReprezentacjaTekstowa => "Sin";
 
-        public double Zwróć(double x) => Math.Sin(x/180*Math.PI);
+        public override double Zwróć(double x) => Math.Sin(x/180*Math.PI);
     }
 }

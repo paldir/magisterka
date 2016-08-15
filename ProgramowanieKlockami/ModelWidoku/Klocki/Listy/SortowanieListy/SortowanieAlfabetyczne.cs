@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.SortowanieListy
 {
-    public class SortowanieAlfabetyczne : ISposóbSortowaniaListy
+    public class SortowanieAlfabetyczne : SposóbSortowaniaListy
     {
-        public string ReprezentacjaTekstowa => "alfabetycznie";
+        public override string ReprezentacjaTekstowa => "alfabetycznie";
 
-        public ZmiennaTypuListowego Uporządkuj(ZmiennaTypuListowego lista, bool rosnąco)
+        public override ZmiennaTypuListowego Uporządkuj(ZmiennaTypuListowego lista, bool rosnąco)
         {
             IEnumerable<string> kolekcja = lista.Select(x => x.ToString());
             kolekcja = rosnąco ? kolekcja.OrderBy(x => x) : kolekcja.OrderByDescending(x => x);

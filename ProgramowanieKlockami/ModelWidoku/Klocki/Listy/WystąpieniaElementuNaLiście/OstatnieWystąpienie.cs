@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy.WystąpieniaElementuNaLiście
 {
-    public class OstatnieWystąpienie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>
+    public class OstatnieWystąpienie : OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, ZmiennaTypuListowego, object>
     {
-        public string ReprezentacjaTekstowa => "ostatnie";
+        public override string ReprezentacjaTekstowa => "ostatnie";
 
-        public double Zwróć(ZmiennaTypuListowego a, object b) => a.ToList().LastIndexOf(b);
+        public override double Zwróć(ZmiennaTypuListowego a, object b) => a.ToList().LastIndexOf(b);
     }
 }

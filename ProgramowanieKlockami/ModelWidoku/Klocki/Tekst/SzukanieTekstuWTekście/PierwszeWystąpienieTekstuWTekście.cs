@@ -3,11 +3,11 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.SzukanieTekstuWTekście
 {
-    public class PierwszeWystąpienieTekstuWTekście : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>
+    public class PierwszeWystąpienieTekstuWTekście : OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, object, object>
     {
-        public string ReprezentacjaTekstowa => "pierwsze";
+        public override string ReprezentacjaTekstowa => "pierwsze";
 
-        public double Zwróć(object a, object b)
+        public override double Zwróć(object a, object b)
         {
             return a.ToString().IndexOf(b.ToString(), StringComparison.Ordinal);
         }

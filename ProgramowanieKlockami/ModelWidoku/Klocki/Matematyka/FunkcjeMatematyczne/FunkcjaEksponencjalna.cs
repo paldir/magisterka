@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class FunkcjaEksponencjalna : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
+    public class FunkcjaEksponencjalna : OpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
-        public string ReprezentacjaTekstowa => "e^";
+        public override string ReprezentacjaTekstowa => "e^";
 
-        public double Zwróć(double x) => Math.Exp(x);
+        public override double Zwróć(double x) => Math.Exp(x);
     }
 }

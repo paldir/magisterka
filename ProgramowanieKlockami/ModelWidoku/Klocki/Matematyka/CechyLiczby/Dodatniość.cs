@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.CechyLiczby
 {
-    public class Dodatniość : IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>
+    public class Dodatniość : OpcjaZwracającaWartośćNaPodstawieParametru<bool, double>
     {
-        public string ReprezentacjaTekstowa => "dodatnia";
+        public override string ReprezentacjaTekstowa => "dodatnia";
 
-        public bool Zwróć(double x) => x > 0;
+        public override bool Zwróć(double x) => x > 0;
     }
 }

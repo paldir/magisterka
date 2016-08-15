@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.DziałaniaMatematyczne
 {
-    public class Potęgowanie : IOpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>
+    public class Potęgowanie : OpcjaZwracającaWartośćNaPodstawieDwóchParametrów<double, double, double>
     {
-        public string ReprezentacjaTekstowa => "^";
+        public override string ReprezentacjaTekstowa => "^";
 
-        public double Zwróć(double a, double b) => Math.Pow(a, b);
+        public override double Zwróć(double a, double b) => Math.Pow(a, b);
     }
 }

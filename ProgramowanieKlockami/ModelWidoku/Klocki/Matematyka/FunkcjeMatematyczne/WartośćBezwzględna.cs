@@ -3,10 +3,10 @@ using ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaPodst
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class WartośćBezwzględna : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
+    public class WartośćBezwzględna : OpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
-        public string ReprezentacjaTekstowa => "Wartość bezwzględna z";
+        public override string ReprezentacjaTekstowa => "Wartość bezwzględna z";
 
-        public double Zwróć(double x) => Math.Abs(x);
+        public override double Zwróć(double x) => Math.Abs(x);
     }
 }

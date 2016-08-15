@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.ObcinanieSpacji
 {
-    public class ObcinanieSpacjiZPrawejStrony : IOpcjaZwracającaWartośćNaPodstawieParametru<object, object>
+    public class ObcinanieSpacjiZPrawejStrony : OpcjaZwracającaWartośćNaPodstawieParametru<object, object>
     {
-        public string ReprezentacjaTekstowa => "z prawej strony";
+        public override string ReprezentacjaTekstowa => "z prawej strony";
 
-        public object Zwróć(object x) => x.ToString().TrimEnd();
+        public override object Zwróć(object x) => x.ToString().TrimEnd();
     }
 }

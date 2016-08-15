@@ -15,7 +15,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public WartośćWewnętrznegoKlockaZwracającegoWartość Wartość { get; }
 
         public Zmienna WybranaZmienna { get; set; }
-        public ITypUstawieniaElementuListy WybranyTypModyfikacjiListy { get; set; }
+        public TypUstawieniaElementuListy WybranyTypModyfikacjiListy { get; set; }
 
         public ModyfikujElementListy()
         {

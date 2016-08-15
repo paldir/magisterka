@@ -15,7 +15,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
         public override Type ZwracanyTyp => null;
 
         public Konsola Konsola { get; set; }
-        public IPobieranieTekstu WybranaOpcja { get; set; }
+        public PobieranieTekstu.PobieranieTekstu WybranaOpcja { get; set; }
 
         public PobranyTekst() : base(typeof(object))
         {

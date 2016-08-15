@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.FunkcjeMatematyczne
 {
-    public class WartośćOdwrotna : IOpcjaZwracającaWartośćNaPodstawieParametru<double, double>
+    public class WartośćOdwrotna : OpcjaZwracającaWartośćNaPodstawieParametru<double, double>
     {
-        public string ReprezentacjaTekstowa => "-";
+        public override string ReprezentacjaTekstowa => "-";
 
-        public double Zwróć(double x) => -x;
+        public override double Zwróć(double x) => -x;
     }
 }

@@ -2,10 +2,10 @@
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka.CechyLiczby
 {
-    public class Parzystość : IOpcjaZwracającaWartośćNaPodstawieParametru<bool, double>
+    public class Parzystość : OpcjaZwracającaWartośćNaPodstawieParametru<bool, double>
     {
-        public string ReprezentacjaTekstowa => "parzysta";
+        public override string ReprezentacjaTekstowa => "parzysta";
 
-        public bool Zwróć(double x) => x%2 == 0;
+        public override bool Zwróć(double x) => x%2 == 0;
     }
 }
