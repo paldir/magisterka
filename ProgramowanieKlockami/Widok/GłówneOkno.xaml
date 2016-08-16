@@ -13,7 +13,8 @@
         xmlns:mwkp="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Pętle"
         xmlns:mwkt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Tekst"
         xmlns:mwkz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne"
-        Title="GłówneOkno">
+        Title="Praca mgr"
+        Closing="GłówneOkno_OnClosing">
     <Window.Resources>
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
         <mwk:KoniunkcjaWartościLogicznychKonwerter x:Key="KoniunkcjaWartościLogicznychKonwerter"></mwk:KoniunkcjaWartościLogicznychKonwerter>
@@ -1788,10 +1789,17 @@
               VerticalAlignment="Top">
             <MenuItem Header="Plik"
                       IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
-                <MenuItem Click="Nowy_OnClick" Header="Nowy"></MenuItem>
-                <MenuItem Click="Otwórz_OnClick" Header="Otwórz"></MenuItem>
-                <MenuItem Click="Zapisz_OnClick" Header="Zapisz"></MenuItem>
-                <MenuItem Click="ZapiszJako_OnClick" Header="Zapisz jako..."></MenuItem>
+                <MenuItem Click="Nowy_OnClick"
+                          Header="Nowy"
+                          InputGestureText="CTRL+N"></MenuItem>
+                <MenuItem Click="Otwórz_OnClick"
+                          Header="Otwórz"
+                          InputGestureText="CTRL+O"></MenuItem>
+                <MenuItem Click="Zapisz_OnClick"
+                          Header="Zapisz"
+                          InputGestureText="CTRL+S"></MenuItem>
+                <MenuItem Click="ZapiszJako_OnClick"
+                          Header="Zapisz jako..."></MenuItem>
             </MenuItem>
             <MenuItem Header="Edycja"
                       IsEnabled="{Binding Debugowanie, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}">
