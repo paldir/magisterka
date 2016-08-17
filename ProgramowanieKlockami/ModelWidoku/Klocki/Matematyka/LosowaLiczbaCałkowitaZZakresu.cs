@@ -39,7 +39,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
                 liczba2 = tmp;
             }
 
-            return Los.Next(liczba1, liczba2);
+            return Convert.ToDouble(Los.Next(liczba1, liczba2));
         }
 
         public override object Clone()

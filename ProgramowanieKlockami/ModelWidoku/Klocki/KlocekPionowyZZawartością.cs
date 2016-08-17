@@ -35,7 +35,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             KlocekPionowyZZawartością kopia = (KlocekPionowyZZawartością) base.Clone();
 
             foreach (KlocekPionowy klocekPionowy in Zawartość)
-                kopia.Zawartość.Add((KlocekPionowy) klocekPionowy.Clone());
+            {
+                KlocekPionowy kopiaKlockaPionowego = (KlocekPionowy) klocekPionowy.Clone();
+                kopiaKlockaPionowego.Rodzic = kopia;
+
+                kopia.Zawartość.Add(kopiaKlockaPionowego);
+            }
 
             return kopia;
         }

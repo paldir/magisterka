@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Xml;
 using System.Xml.Linq;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
+using ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -139,7 +140,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
             return Activator.CreateInstance(GetType());
         }
 
-        public void PrzeczytajZXml(XElement elementXml, Semafor semafor, ObservableCollection<Zmienna> zmienne)
+        public void PrzeczytajZXml(XElement elementXml, Konsola konsola, Semafor semafor, ObservableCollection<Zmienna> zmienne)
         {
             foreach (PropertyInfo właściwość in GetType().GetProperties())
             {
@@ -161,7 +162,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                                 klocekZwracającyWartość.MiejsceUmieszczenia = wartość;
                                 wartość[0] = klocekZwracającyWartość;
 
-                                klocekZwracającyWartość.PrzeczytajZXml(węzełWartości, semafor, zmienne);
+                                klocekZwracającyWartość.PrzeczytajZXml(węzełWartości, konsola, semafor, zmienne);
                             }
                         }
                         else if (typWłaściwości == typeof(ZawartośćKlockaPionowegoZZawartością))
@@ -176,7 +177,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                                     klocekPionowy.Rodzic = (KlocekPionowyZZawartością) this;
                                     ZawartośćKlockaPionowegoZZawartością zawartość = (ZawartośćKlockaPionowegoZZawartością) właściwość.GetValue(this);
 
-                                    klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego, semafor, zmienne);
+                                    klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego, konsola, semafor, zmienne);
                                     zawartość.Add(klocekPionowy);
                                 }
                             }
@@ -187,6 +188,10 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                         if (typWłaściwości == typeof(KlocekPionowyZZawartością))
                         {
 
+                        }
+                        else if (typWłaściwości == typeof(Konsola))
+                        {
+                            właściwość.SetValue(this, konsola);
                         }
                         else if (typWłaściwości == typeof(Semafor))
                         {

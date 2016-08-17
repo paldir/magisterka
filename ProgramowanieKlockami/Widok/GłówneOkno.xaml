@@ -13,7 +13,7 @@
         xmlns:mwkp="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Pętle"
         xmlns:mwkt="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Tekst"
         xmlns:mwkz="clr-namespace:ProgramowanieKlockami.ModelWidoku.Klocki.Zmienne"
-        Title="Praca mgr"
+        Title="Praca magisterska"
         Closing="GłówneOkno_OnClosing">
     <Window.Resources>
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>

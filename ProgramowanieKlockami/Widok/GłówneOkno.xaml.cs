@@ -63,7 +63,7 @@ namespace ProgramowanieKlockami.Widok
                 return;
 
             ModelWidoku.ŚcieżkaPliku = null;
-            Title = "Praca mgr";
+            Title = "Praca magisterska";
 
             Czyść();
         }
@@ -101,8 +101,8 @@ namespace ProgramowanieKlockami.Widok
 
             OpenFileDialog okno = new OpenFileDialog
             {
-                DefaultExt = "pz",
-                Filter = @"Pliki projektu pracy mgr | *.pz"
+                DefaultExt = "mgr",
+                Filter = @"Pliki projektu pracy mgr | *.mgr"
             };
 
             if (okno.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -111,7 +111,7 @@ namespace ProgramowanieKlockami.Widok
 
                 string ścieżkaPliku = okno.FileName;
                 ModelWidoku.ŚcieżkaPliku = ścieżkaPliku;
-                Title = $"Praca mgr - {Path.GetFileName(ścieżkaPliku)}";
+                Title = $"Praca magisterska - {Path.GetFileName(ścieżkaPliku)}";
                 XDocument dokumentXml = XDocument.Load(ścieżkaPliku);
                 XElement[] węzły = dokumentXml.Elements().Elements().ToArray();
                 ObservableCollection<Zmienna> zmienne = ModelWidoku.Zmienne;
@@ -132,7 +132,7 @@ namespace ProgramowanieKlockami.Widok
                             KlocekPionowy klocekPionowy = (KlocekPionowy) Activator.CreateInstance(typKlockaPionowego);
                             klocekPionowy.Rodzic = głównaFunkcja;
 
-                            klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego, ModelWidoku.Semafor, zmienne);
+                            klocekPionowy.PrzeczytajZXml(węzełKlockaPionowego, ModelWidoku.Konsola, ModelWidoku.Semafor, zmienne);
                             głównaFunkcja.Zawartość.Add(klocekPionowy);
                         }
                     }
@@ -189,11 +189,6 @@ namespace ProgramowanieKlockami.Widok
                 ZapiszJako_OnClick(null, null);
         }
 
-        private void ZapiszJako_OnClick()
-        {
-            ZapiszJako_OnClick(null, null);
-        }
-
         private void ZapiszJako_OnClick(object sender, RoutedEventArgs e)
         {
             if (ModelWidoku.Debugowanie)
@@ -201,15 +196,15 @@ namespace ProgramowanieKlockami.Widok
 
             SaveFileDialog okno = new SaveFileDialog
             {
-                DefaultExt = "pz",
-                Filter = @"Pliki projektu pracy mgr | *.pz"
+                DefaultExt = "mgr",
+                Filter = @"Pliki projektu pracy magisterskiej | *.mgr"
             };
 
             if (okno.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string ścieżkaPliku = okno.FileName;
                 ModelWidoku.ŚcieżkaPliku = ścieżkaPliku;
-                Title = $"Praca mgr - {Path.GetFileName(ścieżkaPliku)}";
+                Title = $"Praca magisterska - {Path.GetFileName(ścieżkaPliku)}";
 
                 Zapisz();
             }
