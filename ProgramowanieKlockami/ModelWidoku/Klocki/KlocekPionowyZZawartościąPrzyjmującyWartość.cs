@@ -16,7 +16,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public override object Clone()
         {
             KlocekPionowyZZawartościąPrzyjmującyWartość kopia = (KlocekPionowyZZawartościąPrzyjmującyWartość) base.Clone();
-            kopia.Wartość[0] = (KlocekZwracającyWartość) Wartość[0]?.Clone();
 
             return kopia;
         }

@@ -27,9 +27,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Pętle
         public override object Clone()
         {
             WykonujOdliczając kopia = (WykonujOdliczając) base.Clone();
-            kopia.Do[0] = (KlocekZwracającyWartość) Do[0]?.Clone();
-            kopia.Od[0] = (KlocekZwracającyWartość) Od[0]?.Clone();
-            kopia.Interwał[0] = (KlocekZwracającyWartość) Interwał[0]?.Clone();
             kopia.WybranaZmienna = WybranaZmienna;
 
             return kopia;

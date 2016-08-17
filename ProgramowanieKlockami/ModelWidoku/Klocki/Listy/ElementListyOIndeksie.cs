@@ -31,8 +31,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override object Clone()
         {
             ElementListyOIndeksie kopia = (ElementListyOIndeksie) base.Clone();
-            kopia.Indeks[0] = (KlocekZwracającyWartość) Indeks[0]?.Clone();
-            kopia.Lista[0] = (KlocekZwracającyWartość) Lista[0]?.Clone();
 
             return kopia;
         }

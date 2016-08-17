@@ -28,8 +28,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Matematyka
         public override object Clone()
         {
             PodzielnośćLiczbyPrzezLiczbę kopia = (PodzielnośćLiczbyPrzezLiczbę) base.Clone();
-            kopia.Liczba1[0] = (KlocekZwracającyWartość) Liczba1[0]?.Clone();
-            kopia.Liczba2[0] = (KlocekZwracającyWartość) Liczba2[0]?.Clone();
 
             return kopia;
         }

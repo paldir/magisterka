@@ -66,7 +66,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
             for (int i = 0; i < LiczbaElementów; i++)
             {
                 WartośćWewnętrznegoKlockaZwracającegoWartość element = Elementy[i];
-                kopia.Elementy[i] = new WartośćWewnętrznegoKlockaZwracającegoWartość(element.PrzyjmowanyTyp) {[0] = (KlocekZwracającyWartość) element[0]?.Clone()};
+                var tmp = new WartośćWewnętrznegoKlockaZwracającegoWartość(element.PrzyjmowanyTyp) {[0] = (KlocekZwracającyWartość) element[0]?.Clone()};
+
+                if (tmp[0] != null)
+                    tmp[0].MiejsceUmieszczenia = tmp;
+
+                kopia.Elementy[i] = tmp;
             }
 
             return kopia;

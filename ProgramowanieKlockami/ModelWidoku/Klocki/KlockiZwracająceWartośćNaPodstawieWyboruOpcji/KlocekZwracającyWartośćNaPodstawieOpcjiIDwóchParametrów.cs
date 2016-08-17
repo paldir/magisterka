@@ -27,8 +27,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.KlockiZwracająceWartośćNaP
         public override object Clone()
         {
             KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów<TZwracanaWartość, TParametr1, TParametr2> kopia = (KlocekZwracającyWartośćNaPodstawieOpcjiIDwóchParametrów<TZwracanaWartość, TParametr1, TParametr2>) base.Clone();
-            kopia.Wartość1[0] = (KlocekZwracającyWartość) Wartość1[0]?.Clone();
-            kopia.Wartość2[0] = (KlocekZwracającyWartość) Wartość2[0]?.Clone();
             kopia.WybranaOpcja = WybranaOpcja;
 
             return kopia;

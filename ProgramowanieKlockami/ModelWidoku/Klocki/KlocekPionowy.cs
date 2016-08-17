@@ -120,7 +120,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
         public override object Clone()
         {
             KlocekPionowy kopia = (KlocekPionowy) base.Clone();
-            kopia.Rodzic = Rodzic;
 
             return kopia;
         }

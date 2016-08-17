@@ -29,8 +29,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override object Clone()
         {
             ListaPowtórzonegoElementu kopia = (ListaPowtórzonegoElementu) base.Clone();
-            kopia.Element[0] = (KlocekZwracającyWartość) Element[0]?.Clone();
-            kopia.Liczba[0] = (KlocekZwracającyWartość) Liczba[0]?.Clone();
 
             return kopia;
         }

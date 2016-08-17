@@ -137,7 +137,28 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
         public virtual object Clone()
         {
-            return Activator.CreateInstance(GetType());
+            Type typKlocka = GetType();
+            object kopia = Activator.CreateInstance(typKlocka);
+
+            foreach (PropertyInfo właściwość in typKlocka.GetProperties().Where(w => w.PropertyType == typeof(WartośćWewnętrznegoKlockaZwracającegoWartość)))
+            {
+                WartośćWewnętrznegoKlockaZwracającegoWartość wartość = (WartośćWewnętrznegoKlockaZwracającegoWartość) właściwość.GetValue(this);
+                WartośćWewnętrznegoKlockaZwracającegoWartość kopiaWartości = (WartośćWewnętrznegoKlockaZwracającegoWartość) właściwość.GetValue(kopia);
+
+                if ((wartość != null) && (kopiaWartości != null))
+                {
+                    KlocekZwracającyWartość klocekZwracającyWartość = wartość[0];
+
+                    if (klocekZwracającyWartość != null)
+                    {
+                        KlocekZwracającyWartość kopiaKlockaZwracającegoWartość = (KlocekZwracającyWartość) klocekZwracającyWartość.Clone();
+                        kopiaKlockaZwracającegoWartość.MiejsceUmieszczenia = kopiaWartości;
+                        kopiaWartości[0] = kopiaKlockaZwracającegoWartość;
+                    }
+                }
+            }
+
+            return kopia;
         }
 
         public void PrzeczytajZXml(XElement elementXml, Konsola konsola, Semafor semafor, ObservableCollection<Zmienna> zmienne)

@@ -22,7 +22,6 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
         public override object Clone()
         {
             UsuńElementZListy kopia = (UsuńElementZListy) base.Clone();
-            kopia.Indeks[0] = (KlocekZwracającyWartość) Indeks[0]?.Clone();
             kopia.WybranaZmienna = WybranaZmienna;
 
             return kopia;
