@@ -5,12 +5,12 @@
         protected override WartośćWewnętrznegoKlockaZwracającegoWartość[] KlockiKonfigurujące => new WartośćWewnętrznegoKlockaZwracającegoWartość[0];
 
         public override string Nazwa => null;
-
         public override string Opis => null;
 
         public RozpoczęcieProgramu()
         {
             Kolor = Kolory.Funkcje;
+            ZPrzybornika = true;
         }
     }
 }

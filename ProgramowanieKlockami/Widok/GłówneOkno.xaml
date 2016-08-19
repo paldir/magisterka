@@ -413,6 +413,7 @@
                       ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Margin="1,1,0,0">
+                    
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
