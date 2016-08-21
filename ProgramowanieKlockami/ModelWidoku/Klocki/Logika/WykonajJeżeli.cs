@@ -11,7 +11,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Logika
 
         public WykonajJeżeli() : base(typeof(bool))
         {
-            AlternatywnaZawartość = new ZawartośćKlockaPionowegoZZawartością();
+            AlternatywnaZawartość = new ZawartośćKlockaPionowegoZZawartością {KlocekPionowyZZawartością = this};
             Kolor = Kolory.Logika;
         }
 

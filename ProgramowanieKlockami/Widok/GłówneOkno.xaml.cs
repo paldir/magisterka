@@ -123,6 +123,7 @@ namespace ProgramowanieKlockami.Widok
                 IEnumerable<XElement> klockiWewnętrzne = węzły.Single(w => w.Name == "Klocki").Element(typeof(RozpoczęcieProgramu).FullName)?.Element("Zawartość")?.Elements();
 
                 if (klockiWewnętrzne != null)
+                {
                     foreach (XElement węzełKlockaPionowego in klockiWewnętrzne)
                     {
                         Type typKlockaPionowego = Type.GetType(węzełKlockaPionowego.Name.LocalName);
@@ -136,6 +137,9 @@ namespace ProgramowanieKlockami.Widok
                             głównaFunkcja.Zawartość.Add(klocekPionowy);
                         }
                     }
+
+                    głównaFunkcja.Semafor = ModelWidoku.Semafor;
+                }
             }
         }
 

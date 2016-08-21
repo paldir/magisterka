@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Xml;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Inne;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki

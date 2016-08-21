@@ -17,7 +17,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
         {
             string napis = Wartość.Zwróć<object>(sprawdzanieBłędów).ToString();
 
-            return napis.Length;
+            return Convert.ToDouble(napis.Length);
         }
     }
 }

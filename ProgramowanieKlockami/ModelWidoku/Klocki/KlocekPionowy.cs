@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Threading;
-using System.Xml;
-using System.Xml.Linq;
 using ProgramowanieKlockami.ModelWidoku.Debugowanie;
+using ProgramowanieKlockami.ModelWidoku.Klocki.Logika;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki
 {
@@ -42,8 +40,16 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 KlocekPionowyZZawartością klocekPionowyZZawartością = this as KlocekPionowyZZawartością;
 
                 if (klocekPionowyZZawartością != null)
+                {
                     foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
                         klocekPionowy.Debugowanie = value;
+
+                    WykonajJeżeli jeżeli = klocekPionowyZZawartością as WykonajJeżeli;
+
+                    if (jeżeli != null)
+                        foreach (KlocekPionowy klocekPionowy in jeżeli.AlternatywnaZawartość)
+                            klocekPionowy.Debugowanie = value;
+                }
             }
         }
 
@@ -57,8 +63,16 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
                 KlocekPionowyZZawartością klocekPionowyZZawartością = this as KlocekPionowyZZawartością;
 
                 if (klocekPionowyZZawartością != null)
+                {
                     foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
                         klocekPionowy.KrokPoKroku = value;
+
+                    WykonajJeżeli jeżeli = klocekPionowyZZawartością as WykonajJeżeli;
+
+                    if (jeżeli != null)
+                        foreach (KlocekPionowy klocekPionowy in jeżeli.AlternatywnaZawartość)
+                            klocekPionowy.KrokPoKroku = value;
+                }
             }
         }
 
@@ -85,6 +99,12 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki
 
                 if (klocekPionowyZZawartością != null)
                     foreach (KlocekPionowy klocekPionowy in klocekPionowyZZawartością.Zawartość)
+                        klocekPionowy.Semafor = value;
+
+                WykonajJeżeli jeżeli = klocekPionowyZZawartością as WykonajJeżeli;
+
+                if (jeżeli != null)
+                    foreach (KlocekPionowy klocekPionowy in jeżeli.AlternatywnaZawartość)
                         klocekPionowy.Semafor = value;
             }
         }

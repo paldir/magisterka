@@ -15,7 +15,7 @@ namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 
         protected override object ZwróćNiebezpiecznie(bool sprawdzanieBłędów)
         {
-            return Wartość.Zwróć<ZmiennaTypuListowego>(sprawdzanieBłędów).Count;
+            return Convert.ToDouble(Wartość.Zwróć<ZmiennaTypuListowego>(sprawdzanieBłędów).Count);
         }
     }
 }

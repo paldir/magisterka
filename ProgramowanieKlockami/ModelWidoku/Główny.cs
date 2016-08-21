@@ -180,7 +180,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             ObsługującyUpuszczanieKlockówPionowych = new ObsługującyUpuszczanieKlockówPionowych(DodajDziałanie);
             ObsługującyUpuszczanieKlockówZwracającychWartość = new ObsługującyUpuszczanieKlockówZwracającychWartość(DodajDziałanie);
             Powiększenie = 1;
-            RozpoczęcieProgramu = new RozpoczęcieProgramu();
+            RozpoczęcieProgramu = new RozpoczęcieProgramu {Semafor = Semafor};
             Schowek = new ObservableCollection<Klocek> {null};
             Zmienne = new ObservableCollection<Zmienna>();
             Semafor.SemaforOpuszczony += _semafor_SemaforOpuszczony;
@@ -444,7 +444,7 @@ namespace ProgramowanieKlockami.ModelWidoku
             MagazynZmian.Cofnij();
         }
 
-        private void DodajDziałanie(ManipulacjaKlockiem manipulacja) 
+        private void DodajDziałanie(ManipulacjaKlockiem manipulacja)
         {
             MagazynZmian.DodajDziałanie(manipulacja);
         }
@@ -517,6 +517,8 @@ namespace ProgramowanieKlockami.ModelWidoku
                 foreach (Zmienna zmienna in Zmienne)
                     zmienna.Wartość = null;
 
+                RozpoczęcieProgramu.Semafor = Semafor;
+
                 ResetujBłędy(RozpoczęcieProgramu);
                 ResetujFlagęAktualnegoWykonywania(RozpoczęcieProgramu);
                 Konsola.LinieKonsoli.Clear();
@@ -542,6 +544,12 @@ namespace ProgramowanieKlockami.ModelWidoku
             {
                 ZawartośćKlockaPionowegoZZawartością miejsceUmieszczenia = klocekPionowyZZawartością.Zawartość;
                 int indeks = miejsceUmieszczenia.IndexOf(usuwanyKlocek);
+
+                if ((indeks == -1) && klocekPionowyZZawartością is WykonajJeżeli)
+                {
+                    miejsceUmieszczenia = ((WykonajJeżeli) klocekPionowyZZawartością).AlternatywnaZawartość;
+                    indeks = miejsceUmieszczenia.IndexOf(usuwanyKlocek);
+                }
 
                 miejsceUmieszczenia.RemoveAt(indeks);
                 DodajDziałanie(new ManipulacjaKlockiemPionowym(ManipulacjeKlockiem.Usunięcie, usuwanyKlocek)
