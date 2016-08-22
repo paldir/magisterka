@@ -17,6 +17,7 @@
         Closing="GłówneOkno_OnClosing">
     <Window.Resources>
         <mw:Główny x:Key="GłównyModelWidoku"></mw:Główny>
+        <mwk:KlocekNaŚcieżkęDoObrazkaKonwerter x:Key="KlocekNaŚcieżkęDoObrazkaKonwerter"></mwk:KlocekNaŚcieżkęDoObrazkaKonwerter>
         <mwk:KoniunkcjaWartościLogicznychKonwerter x:Key="KoniunkcjaWartościLogicznychKonwerter"></mwk:KoniunkcjaWartościLogicznychKonwerter>
         <mwk:WartośćLogicznaNaOdwrotnośćKonwerter x:Key="WartośćLogicznaNaOdwrotnośćKonwerter"></mwk:WartośćLogicznaNaOdwrotnośćKonwerter>
         <ContextMenu x:Key="MenuKontekstoweKlockaPionowego">
@@ -413,7 +414,7 @@
                       ContextMenuService.IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Kontekst.ZPrzybornika, Converter={StaticResource WartośćLogicznaNaOdwrotnośćKonwerter}}"
                       ContextMenuService.ShowOnDisabled="True"
                       Margin="1,1,0,0">
-                    
+
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction Command="{Binding Source={StaticResource GłównyModelWidoku}, Path=KomendaPrzejęciaSkupienia}"
@@ -1858,8 +1859,12 @@
                                           ItemsSource="{Binding KlockiDotycząceList}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ContentPresenter Content="{Binding}"
-                                                          Margin="0,3"></ContentPresenter>
+                                        <Image HorizontalAlignment="Left"
+                                               Margin="0,3">
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{Binding Converter={StaticResource KlocekNaŚcieżkęDoObrazkaKonwerter}}"></BitmapImage>
+                                            </Image.Source>
+                                        </Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -1872,8 +1877,12 @@
                                           ItemsSource="{Binding KlockiLogiczne}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ContentPresenter Content="{Binding}"
-                                                          Margin="0,3"></ContentPresenter>
+                                        <Image HorizontalAlignment="Left"
+                                               Margin="0,3">
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{Binding Converter={StaticResource KlocekNaŚcieżkęDoObrazkaKonwerter}}"></BitmapImage>
+                                            </Image.Source>
+                                        </Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -1886,8 +1895,12 @@
                                           ItemsSource="{Binding KlockiMatematyczne}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ContentPresenter Content="{Binding}"
-                                                          Margin="0,3"></ContentPresenter>
+                                        <Image HorizontalAlignment="Left"
+                                               Margin="0,3">
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{Binding Converter={StaticResource KlocekNaŚcieżkęDoObrazkaKonwerter}}"></BitmapImage>
+                                            </Image.Source>
+                                        </Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -1900,8 +1913,12 @@
                                           ItemsSource="{Binding KlockiDotyczącePętli}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ContentPresenter Content="{Binding}"
-                                                          Margin="0,3"></ContentPresenter>
+                                        <Image HorizontalAlignment="Left"
+                                               Margin="0,3">
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{Binding Converter={StaticResource KlocekNaŚcieżkęDoObrazkaKonwerter}}"></BitmapImage>
+                                            </Image.Source>
+                                        </Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -1914,8 +1931,12 @@
                                           ItemsSource="{Binding KlockiTekstowe}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ContentPresenter Content="{Binding}"
-                                                          Margin="0,3"></ContentPresenter>
+                                        <Image HorizontalAlignment="Left"
+                                               Margin="0,3">
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{Binding Converter={StaticResource KlocekNaŚcieżkęDoObrazkaKonwerter}}"></BitmapImage>
+                                            </Image.Source>
+                                        </Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -1928,8 +1949,12 @@
                                           ItemsSource="{Binding KlockiDotycząceZmiennych}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <ContentPresenter Content="{Binding}"
-                                                          Margin="0,3"></ContentPresenter>
+                                        <Image HorizontalAlignment="Left"
+                                               Margin="0,3">
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{Binding Converter={StaticResource KlocekNaŚcieżkęDoObrazkaKonwerter}}"></BitmapImage>
+                                            </Image.Source>
+                                        </Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
