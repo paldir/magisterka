@@ -1,6 +1,4 @@
-﻿using System.Xml;
-
-namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
+﻿namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy
 {
     public sealed class DodajDoListy : KlocekPionowyPrzyjmującyWartość
     {

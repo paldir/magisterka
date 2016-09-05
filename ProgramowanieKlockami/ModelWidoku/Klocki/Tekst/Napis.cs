@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml;
 using ProgramowanieKlockami.ModelWidoku.Klocki.Listy.ModyfikacjaElementuListy;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Listy

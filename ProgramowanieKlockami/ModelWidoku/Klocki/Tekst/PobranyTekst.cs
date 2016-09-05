@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-using ProgramowanieKlockami.ModelWidoku.Klocki.Tekst.PobieranieTekstu;
 using ProgramowanieKlockami.ModelWidoku.KonfiguracjaKonsoli;
 
 namespace ProgramowanieKlockami.ModelWidoku.Klocki.Tekst
